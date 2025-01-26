@@ -1,0 +1,15 @@
+{
+    "sign_up": "التسجيل",
+    "already_have_an_account": "هل لديك حساب بالفعل؟",
+    "login" : "تسجيل الدخول",
+    "first_name": "الاسم الأول",
+    "last_name": "الاسم الأخير",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "confirm_password": "تأكيد كلمة المرور",
+    "birthday": "تاريخ الميلاد",
+    "phone": "الهاتف",
+    "or": "أو",
+    "sign_up_with_google": "التسجيل بواسطة جوجل",
+    "create_account": "إنشاء حساب"
+}
