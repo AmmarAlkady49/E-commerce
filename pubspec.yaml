@@ -1,6 +1,6 @@
 name: e_commerce_graduation
 description: "A new Flutter project."
-publish_to: 'none' 
+publish_to: 'none'
 
 version: 1.0.0+1
 
@@ -8,17 +8,23 @@ environment:
   sdk: ^3.6.1
 
 dependencies:
+  cloud_firestore: ^5.6.2
+  cupertino_icons: ^1.0.8
+
+  # Firebase
+  firebase_auth: ^5.4.1
+  firebase_core: ^3.10.1
+  firebase_messaging: ^15.2.1
+  firebase_storage: ^12.4.1
+  google_sign_in: ^6.2.2
+  
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^1.0.8
-
 dev_dependencies:
+  flutter_lints: ^5.0.0
   flutter_test:
     sdk: flutter
-
-  flutter_lints: ^5.0.0
-
 
 flutter:
 
@@ -26,7 +32,6 @@ flutter:
 
   assets:
     - assets/images/
-
   # fonts:
   #   - family: Schyler
   #     fonts:
