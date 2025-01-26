@@ -10,16 +10,18 @@ environment:
 dependencies:
   cloud_firestore: ^5.6.2
   cupertino_icons: ^1.0.8
-
-  # Firebase
   firebase_auth: ^5.4.1
   firebase_core: ^3.10.1
   firebase_messaging: ^15.2.1
   firebase_storage: ^12.4.1
-  google_sign_in: ^6.2.2
-  
   flutter:
     sdk: flutter
+  flutter_svg: ^2.0.17
+  google_sign_in: ^6.2.2
+  iconsax: ^0.0.8
+  intl: ^0.19.0
+  flutter_localizations:
+        sdk: flutter
 
 dev_dependencies:
   flutter_lints: ^5.0.0
@@ -32,9 +34,33 @@ flutter:
 
   assets:
     - assets/images/
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
+    - assets/images/auth/
+  fonts:
+    - family: rubic
+      fonts:
+        - asset: assets/fonts/Rubik-Black.ttf
+        - asset: assets/fonts/Rubik-BlackItalic.ttf
+        - asset: assets/fonts/Rubik-Bold.ttf
+        - asset: assets/fonts/Rubik-BoldItalic.ttf
+        - asset: assets/fonts/Rubik-ExtraBold.ttf
+        - asset: assets/fonts/Rubik-ExtraBoldItalic.ttf
+        - asset: assets/fonts/Rubik-Italic.ttf
+        - asset: assets/fonts/Rubik-Light.ttf
+        - asset: assets/fonts/Rubik-LightItalic.ttf
+        - asset: assets/fonts/Rubik-Medium.ttf
+        - asset: assets/fonts/Rubik-MediumItalic.ttf
+        - asset: assets/fonts/Rubik-Regular.ttf
+        - asset: assets/fonts/Rubik-SemiBold.ttf
+        - asset: assets/fonts/Rubik-SemiBoldItalic.ttf
+    - family: cairo
+      fonts:
+        - asset: assets/fonts/Cairo-Black.ttf
+        - asset: assets/fonts/Cairo-Bold.ttf
+        - asset: assets/fonts/Cairo-ExtraBold.ttf
+        - asset: assets/fonts/Cairo-ExtraLight.ttf
+        - asset: assets/fonts/Cairo-Light.ttf
+        - asset: assets/fonts/Cairo-Medium.ttf
+        - asset: assets/fonts/Cairo-Regular.ttf
+        - asset: assets/fonts/Cairo-SemiBold.ttf
+flutter_intl:
+  enabled: true
