@@ -1,5 +1,6 @@
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyButton1 extends StatelessWidget {
   final double width;
@@ -28,7 +29,7 @@ class MyButton1 extends StatelessWidget {
         child: Text(
           buttonTitle,
           style: FontHelper.fontText(
-              size: 16, weight: FontWeight.w900, color: Colors.white),
+              size: 15.sp, weight: FontWeight.w700, color: Colors.white),
         ),
       ),
     );

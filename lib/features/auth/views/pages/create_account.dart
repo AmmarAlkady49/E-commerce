@@ -1,9 +1,12 @@
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
 import 'package:e_commerce_graduation/core/widgets/my_button1.dart';
+import 'package:e_commerce_graduation/core/widgets/my_button2.dart';
 import 'package:e_commerce_graduation/core/widgets/my_or_devider.dart';
 import 'package:e_commerce_graduation/core/widgets/my_text_form_field.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -37,30 +40,44 @@ class CreateAccount extends StatelessWidget {
                   Text(
                     S.of(context).sign_up,
                     style: FontHelper.fontText(
-                        size: 36, weight: FontWeight.w900, color: Colors.white),
+                        size: 36.sp,
+                        weight: FontWeight.w700,
+                        color: Colors.white),
                   ),
-                  SizedBox(height: 8),
-                  Text(
-                    '${S.of(context).already_have_an_account} ${S.of(context).login}',
+                  SizedBox(height: 4.h),
+                  Text.rich(TextSpan(
+                    text: S.of(context).already_have_an_account,
                     style: FontHelper.fontText(
-                        size: 12, weight: FontWeight.w900, color: Colors.white),
-                  ),
+                        size: 13.sp,
+                        weight: FontWeight.w600,
+                        color: Colors.white),
+                    children: [
+                      TextSpan(
+                        text: ' ${S.of(context).login}',
+                        style: FontHelper.fontText(
+                          size: 13.sp,
+                          weight: FontWeight.w700,
+                          color: Colors.white,
+                          decoration: TextDecoration.underline,
+                        ),
+                        recognizer: TapGestureRecognizer()..onTap = () {},
+                      ),
+                    ],
+                  )),
                 ],
               )),
           Positioned(
-            top: size.height * 0.18,
+            top: size.height * 0.185,
             left: 0,
             right: 0,
             bottom: size.height * 0.05,
             child: Padding(
-              padding: const EdgeInsets.only(left: 24.0, right: 24.0),
+              padding: EdgeInsets.symmetric(horizontal: 20.w),
               child: Container(
-                width: size.width,
-                height: size.height * 0.4,
                 decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.15),
+                      color: Colors.black.withOpacity(0.16),
                       blurRadius: 10,
                       spreadRadius: 5,
                       offset: const Offset(0, 0),
@@ -70,107 +87,91 @@ class CreateAccount extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 24.0, horizontal: 12.0),
+                  padding: EdgeInsets.symmetric(
+                      vertical: 18.0.h, horizontal: 12.0.w),
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            MyTextFormField(
-                              width: size.width * 0.39,
-                              hint: S.of(context).first_name,
-                            ),
-                            MyTextFormField(
-                              width: size.width * 0.39,
-                              hint: S.of(context).last_name,
-                            ),
-                          ],
+                        SizedBox(
+                          width: size.width * 0.8,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              MyTextFormField(
+                                width: size.width * 0.395,
+                                hint: S.of(context).first_name,
+                                textInputType: TextInputType.name,
+                              ),
+                              MyTextFormField(
+                                width: size.width * 0.395,
+                                hint: S.of(context).last_name,
+                                textInputType: TextInputType.name,
+                              ),
+                            ],
+                          ),
                         ),
-                        SizedBox(height: 16),
+                        SizedBox(height: 13.h),
                         MyTextFormField(
                           width: size.width * 0.8,
                           hint: S.of(context).email,
+                          textInputType: TextInputType.emailAddress,
                         ),
-                        SizedBox(height: 16),
+                        SizedBox(height: 13.h),
                         MyTextFormField(
                           width: size.width * 0.8,
                           hint: S.of(context).birthday,
                           suffIcon: Iconsax.calendar_1,
+                          textInputType: TextInputType.datetime,
                         ),
-                        SizedBox(height: 16),
+                        SizedBox(height: 13.h),
                         MyTextFormField(
                           width: size.width * 0.8,
                           hint: S.of(context).phone,
+                          textInputType: TextInputType.phone,
                           prefix: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Text(
                                 '+20',
                                 style: TextStyle(
-                                  fontSize: 16,
+                                  fontSize: 15.sp,
                                   fontWeight: FontWeight.w400,
                                   color: Colors.grey,
                                 ),
                               ),
-                              SizedBox(width: 8),
+                              SizedBox(width: 7.w),
                               Container(
                                 width: 1,
-                                height: 20,
+                                height: 18.h,
                                 color: Colors.grey,
                               ),
-                              SizedBox(width: 8),
                             ],
                           ),
                         ),
-                        SizedBox(height: 16),
+                        SizedBox(height: 13.h),
                         MyTextFormField(
                           width: size.width * 0.8,
                           hint: S.of(context).password,
+                          textInputType: TextInputType.visiblePassword,
                         ),
-                        SizedBox(height: 16),
+                        SizedBox(height: 13.h),
                         MyTextFormField(
                           width: size.width * 0.8,
                           hint: S.of(context).confirm_password,
+                          textInputType: TextInputType.visiblePassword,
                         ),
-                        SizedBox(height: 16),
+                        SizedBox(height: 15.h),
                         MyButton1(
                           buttonTitle: S.of(context).create_account,
-                          height: 50,
+                          height: 42.h,
                           width: size.width * 0.8,
                         ),
-                        SizedBox(height: 16),
+                        SizedBox(height: 13.h),
                         MyOrDevider(size: size.width * 0.02),
-                        SizedBox(height: 16),
+                        SizedBox(height: 13.h),
                         SizedBox(
                           width: size.width * 0.8,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              border: Border.all(color: Colors.black26),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(12.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Image.asset(
-                                    'assets/images/auth/google.png',
-                                    height: 24,
-                                    width: 24,
-                                  ),
-                                  SizedBox(width: 16),
-                                  Text(S.of(context).sign_up_with_google,
-                                      style: FontHelper.fontText(
-                                          size: 16,
-                                          weight: FontWeight.bold,
-                                          color: Colors.black)),
-                                ],
-                              ),
-                            ),
-                          ),
+                          child: MyButton2(),
                         )
                       ],
                     ),
