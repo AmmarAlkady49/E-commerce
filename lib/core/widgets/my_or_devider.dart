@@ -1,5 +1,6 @@
 import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyOrDevider extends StatelessWidget {
   final double size;
@@ -11,18 +12,17 @@ class MyOrDevider extends StatelessWidget {
       children: [
         Expanded(
           child: Divider(
-            height: 24,
             thickness: 1,
             color: Colors.grey,
             indent: size,
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          padding: EdgeInsets.symmetric(horizontal: 14.0.w),
           child: Text(
             S.of(context).or,
             style: TextStyle(
-              fontSize: 16,
+              fontSize: 16.sp,
               fontWeight: FontWeight.w400,
               color: Colors.grey,
             ),
@@ -30,7 +30,6 @@ class MyOrDevider extends StatelessWidget {
         ),
         Expanded(
           child: Divider(
-            height: 24,
             thickness: 1,
             color: Colors.grey,
             endIndent: size,
