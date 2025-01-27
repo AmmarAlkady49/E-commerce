@@ -224,6 +224,81 @@ class S {
       args: [],
     );
   }
+
+  /// `Sign Up`
+  String get sign_up2 {
+    return Intl.message('Sign Up', name: 'sign_up2', desc: '', args: []);
+  }
+
+  /// `Login`
+  String get login2 {
+    return Intl.message('Login', name: 'login2', desc: '', args: []);
+  }
+
+  /// `العربية`
+  String get english {
+    return Intl.message('العربية', name: 'english', desc: '', args: []);
+  }
+
+  /// `Loading...`
+  String get loading {
+    return Intl.message('Loading...', name: 'loading', desc: '', args: []);
+  }
+
+  /// `Empty cell`
+  String get empty_cell {
+    return Intl.message('Empty cell', name: 'empty_cell', desc: '', args: []);
+  }
+
+  /// `Password must be at least 6 characters`
+  String get password_length {
+    return Intl.message(
+      'Password must be at least 6 characters',
+      name: 'password_length',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid email`
+  String get invalid_email {
+    return Intl.message(
+      'Invalid email',
+      name: 'invalid_email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid name`
+  String get invalid_name {
+    return Intl.message(
+      'Invalid name',
+      name: 'invalid_name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid phone`
+  String get invalid_phone {
+    return Intl.message(
+      'Invalid phone',
+      name: 'invalid_phone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password not match`
+  String get password_not_match {
+    return Intl.message(
+      'Password not match',
+      name: 'password_not_match',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -37,6 +37,8 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "create_account": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
     "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
+    "empty_cell": MessageLookupByLibrary.simpleMessage("الخلية فارغة"),
+    "english": MessageLookupByLibrary.simpleMessage("English"),
     "enter_your_email": MessageLookupByLibrary.simpleMessage(
       "ادخل البريد الالكتروني",
     ),
@@ -50,15 +52,31 @@ class MessageLookup extends MessageLookupByLibrary {
     "forgot_password": MessageLookupByLibrary.simpleMessage(
       "نسيت كلمة المرور ؟",
     ),
+    "invalid_email": MessageLookupByLibrary.simpleMessage(
+      "البريد الالكتروني غير صحيح",
+    ),
+    "invalid_name": MessageLookupByLibrary.simpleMessage("الاسم غير صحيح"),
+    "invalid_phone": MessageLookupByLibrary.simpleMessage(
+      "رقم الهاتف غير صحيح",
+    ),
     "last_name": MessageLookupByLibrary.simpleMessage("الإسم الأخير"),
+    "loading": MessageLookupByLibrary.simpleMessage("جاري التحميل..."),
     "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+    "login2": MessageLookupByLibrary.simpleMessage("دخول"),
     "or": MessageLookupByLibrary.simpleMessage("أو"),
     "or_login_with": MessageLookupByLibrary.simpleMessage("أو من خلال"),
     "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
+    "password_length": MessageLookupByLibrary.simpleMessage(
+      "كلمة المرور يجب ان تكون على الاقل 6 حروف",
+    ),
+    "password_not_match": MessageLookupByLibrary.simpleMessage(
+      "كلمة المرور غير متطابقة",
+    ),
     "phone": MessageLookupByLibrary.simpleMessage("الهاتف"),
     "remember_me": MessageLookupByLibrary.simpleMessage("تذكرني"),
     "sign_in": MessageLookupByLibrary.simpleMessage("تسجيل الدخول للحساب"),
     "sign_up": MessageLookupByLibrary.simpleMessage("التسجيل"),
+    "sign_up2": MessageLookupByLibrary.simpleMessage("انشاء حساب"),
     "sign_up_with_google": MessageLookupByLibrary.simpleMessage(
       "التسجيل بواسطة جوجل",
     ),

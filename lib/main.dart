@@ -2,6 +2,7 @@ import 'package:e_commerce_graduation/core/utils/routes/app_router.dart';
 import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
 import 'package:e_commerce_graduation/firebase_options.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -45,7 +46,9 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
             useMaterial3: true,
           ),
-          initialRoute: AppRoutes.login,
+          initialRoute: FirebaseAuth.instance.currentUser != null
+              ? AppRoutes.home
+              : AppRoutes.login,
           onGenerateRoute: AppRouter.onGenerateRoute,
         );
       },
