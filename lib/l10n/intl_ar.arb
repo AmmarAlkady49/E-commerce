@@ -1,7 +1,7 @@
 {
     "sign_up": "التسجيل",
     "already_have_an_account": "هل لديك حساب بالفعل؟",
-    "login" : "تسجيل الدخول",
+    "login": "تسجيل الدخول",
     "first_name": "الإسم الأول",
     "last_name": "الإسم الأخير",
     "email": "البريد الإلكتروني",
@@ -11,5 +11,14 @@
     "phone": "الهاتف",
     "or": "أو",
     "sign_up_with_google": "التسجيل بواسطة جوجل",
-    "create_account": "إنشاء حساب"
+    "create_account": "إنشاء حساب",
+    "sign_in": "تسجيل الدخول للحساب",
+    "enter_your_email_and_password": "أدخل البريد الالكتروني و كلمة المرور",
+    "continue_with_google": "الاستمرار بواسطة جوجل",
+    "or_login_with": "أو من خلال",
+    "enter_your_email": "ادخل البريد الالكتروني",
+    "enter_your_password": "ادخل كلمة المرور",
+    "forgot_password": "نسيت كلمة المرور ؟",
+    "remember_me": "تذكرني",
+    "Dont_have_an_account": "لا تمتلك حساب ؟"
 }

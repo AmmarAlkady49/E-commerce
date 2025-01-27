@@ -11,5 +11,14 @@
     "phone": "Phone",
     "or": "Or",
     "sign_up_with_google": "Sign Up with Google",
-    "create_account": "Create Account"
+    "create_account": "Create Account",
+    "sign_in": "Sign in to your Account",
+    "enter_your_email_and_password": "Enter your email and password to log in ",
+    "continue_with_google": "Continue with Google",
+    "or_login_with": "Or login with",
+    "enter_your_email": "Enter your email",
+    "enter_your_password": "Enter your password",
+    "forgot_password": "Forgot password ?",
+    "remember_me": "Remember me",
+    "Dont_have_an_account": "Don't have an account?"
 }
