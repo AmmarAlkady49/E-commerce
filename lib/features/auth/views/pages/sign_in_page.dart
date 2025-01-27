@@ -1,3 +1,4 @@
+import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
 import 'package:e_commerce_graduation/core/widgets/my_button1.dart';
 import 'package:e_commerce_graduation/core/widgets/my_button2.dart';
@@ -129,7 +130,10 @@ class SignInPage extends StatelessWidget {
                                       weight: FontWeight.w700,
                                       color: Color(0xff1D61E7)),
                                   recognizer: TapGestureRecognizer()
-                                    ..onTap = () {},
+                                    ..onTap = () {
+                                      Navigator.pushNamed(
+                                          context, AppRoutes.createAccount);
+                                    },
                                 )
                               ],
                             ),

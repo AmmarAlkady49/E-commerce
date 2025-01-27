@@ -60,7 +60,10 @@ class CreateAccount extends StatelessWidget {
                           color: Colors.white,
                           decoration: TextDecoration.underline,
                         ),
-                        recognizer: TapGestureRecognizer()..onTap = () {},
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            Navigator.pop(context);
+                          },
                       ),
                     ],
                   )),

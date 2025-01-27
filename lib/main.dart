@@ -1,5 +1,5 @@
-import 'package:e_commerce_graduation/features/auth/views/pages/create_account.dart';
-import 'package:e_commerce_graduation/features/auth/views/pages/sign_in_page.dart';
+import 'package:e_commerce_graduation/core/utils/routes/app_router.dart';
+import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
 import 'package:e_commerce_graduation/firebase_options.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -45,8 +45,8 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
             useMaterial3: true,
           ),
-          home: const SignInPage(),
-          // home: const CreateAccount(),
+          initialRoute: AppRoutes.login,
+          onGenerateRoute: AppRouter.onGenerateRoute,
         );
       },
     );
