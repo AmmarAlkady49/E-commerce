@@ -4,7 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyOrDevider extends StatelessWidget {
   final double size;
-  const MyOrDevider({super.key, required this.size});
+  final String text;
+  const MyOrDevider({super.key, required this.size,required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class MyOrDevider extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 14.0.w),
           child: Text(
-            S.of(context).or,
+            text,
             style: TextStyle(
               fontSize: 16.sp,
               fontWeight: FontWeight.w400,

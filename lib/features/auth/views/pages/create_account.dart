@@ -167,7 +167,8 @@ class CreateAccount extends StatelessWidget {
                           width: size.width * 0.8,
                         ),
                         SizedBox(height: 13.h),
-                        MyOrDevider(size: size.width * 0.02),
+                        MyOrDevider(
+                            size: size.width * 0.02, text: S.of(context).or),
                         SizedBox(height: 13.h),
                         SizedBox(
                           width: size.width * 0.8,

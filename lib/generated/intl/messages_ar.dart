@@ -22,6 +22,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "Dont_have_an_account": MessageLookupByLibrary.simpleMessage(
+      "لا تمتلك حساب ؟",
+    ),
     "already_have_an_account": MessageLookupByLibrary.simpleMessage(
       "هل لديك حساب بالفعل؟",
     ),
@@ -29,14 +32,32 @@ class MessageLookup extends MessageLookupByLibrary {
     "confirm_password": MessageLookupByLibrary.simpleMessage(
       "تأكيد كلمة المرور",
     ),
+    "continue_with_google": MessageLookupByLibrary.simpleMessage(
+      "الاستمرار بواسطة جوجل",
+    ),
     "create_account": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
     "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
+    "enter_your_email": MessageLookupByLibrary.simpleMessage(
+      "ادخل البريد الالكتروني",
+    ),
+    "enter_your_email_and_password": MessageLookupByLibrary.simpleMessage(
+      "أدخل البريد الالكتروني و كلمة المرور",
+    ),
+    "enter_your_password": MessageLookupByLibrary.simpleMessage(
+      "ادخل كلمة المرور",
+    ),
     "first_name": MessageLookupByLibrary.simpleMessage("الإسم الأول"),
+    "forgot_password": MessageLookupByLibrary.simpleMessage(
+      "نسيت كلمة المرور ؟",
+    ),
     "last_name": MessageLookupByLibrary.simpleMessage("الإسم الأخير"),
     "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
     "or": MessageLookupByLibrary.simpleMessage("أو"),
+    "or_login_with": MessageLookupByLibrary.simpleMessage("أو من خلال"),
     "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
     "phone": MessageLookupByLibrary.simpleMessage("الهاتف"),
+    "remember_me": MessageLookupByLibrary.simpleMessage("تذكرني"),
+    "sign_in": MessageLookupByLibrary.simpleMessage("تسجيل الدخول للحساب"),
     "sign_up": MessageLookupByLibrary.simpleMessage("التسجيل"),
     "sign_up_with_google": MessageLookupByLibrary.simpleMessage(
       "التسجيل بواسطة جوجل",

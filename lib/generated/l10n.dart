@@ -139,6 +139,91 @@ class S {
       args: [],
     );
   }
+
+  /// `Sign in to your Account`
+  String get sign_in {
+    return Intl.message(
+      'Sign in to your Account',
+      name: 'sign_in',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your email and password to log in `
+  String get enter_your_email_and_password {
+    return Intl.message(
+      'Enter your email and password to log in ',
+      name: 'enter_your_email_and_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continue with Google`
+  String get continue_with_google {
+    return Intl.message(
+      'Continue with Google',
+      name: 'continue_with_google',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Or login with`
+  String get or_login_with {
+    return Intl.message(
+      'Or login with',
+      name: 'or_login_with',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your email`
+  String get enter_your_email {
+    return Intl.message(
+      'Enter your email',
+      name: 'enter_your_email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your password`
+  String get enter_your_password {
+    return Intl.message(
+      'Enter your password',
+      name: 'enter_your_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Forgot password ?`
+  String get forgot_password {
+    return Intl.message(
+      'Forgot password ?',
+      name: 'forgot_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Remember me`
+  String get remember_me {
+    return Intl.message('Remember me', name: 'remember_me', desc: '', args: []);
+  }
+
+  /// `Don't have an account?`
+  String get Dont_have_an_account {
+    return Intl.message(
+      'Don\'t have an account?',
+      name: 'Dont_have_an_account',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
