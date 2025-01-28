@@ -1,4 +1,6 @@
 import 'package:e_commerce_graduation/features/auth/services/auth_services.dart';
+import 'package:e_commerce_graduation/generated/l10n.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'auth_state.dart';
@@ -20,8 +22,16 @@ class AuthCubit extends Cubit<AuthState> {
       } else {
         emit(AuthError('Faild to create account'));
       }
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        print('The password provided is too weak.');
+        return emit(AuthError(S.current.weak_password));
+      } else if (e.code == 'email-already-in-use') {
+        print('The account already exists for that email.');
+        return emit(AuthError(S.current.account_exists));
+      }
     } catch (e) {
-      emit(AuthError(e.toString()));
+      print(e);
     }
   }
 

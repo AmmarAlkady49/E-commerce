@@ -25,6 +25,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "Dont_have_an_account": MessageLookupByLibrary.simpleMessage(
       "لا تمتلك حساب ؟",
     ),
+    "account_exists": MessageLookupByLibrary.simpleMessage(
+      "الحساب موجود بالفعل",
+    ),
     "already_have_an_account": MessageLookupByLibrary.simpleMessage(
       "هل لديك حساب بالفعل؟",
     ),
@@ -80,5 +83,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "sign_up_with_google": MessageLookupByLibrary.simpleMessage(
       "التسجيل بواسطة جوجل",
     ),
+    "weak_password": MessageLookupByLibrary.simpleMessage("كلمة المرور ضعيفة"),
   };
 }

@@ -4,6 +4,8 @@ import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:restart_app/restart_app.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SignInPage extends StatelessWidget {
   const SignInPage({super.key});
@@ -58,7 +60,13 @@ class SignInPage extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 24.0.w, vertical: 42.h),
               child: InkWell(
-                onTap: () {},
+                onTap: () async {
+                  SharedPreferences pref =
+                      await SharedPreferences.getInstance();
+                  String presentLang = pref.getString('lang') ?? 'ar';
+                  pref.setString('lang', presentLang == 'ar' ? 'en' : 'ar');
+                  Restart.restartApp();
+                },
                 child: Text(S.of(context).english,
                     style: FontHelper.fontText(
                         size: 16.sp,

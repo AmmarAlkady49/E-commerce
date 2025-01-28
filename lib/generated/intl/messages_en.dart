@@ -25,6 +25,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "Dont_have_an_account": MessageLookupByLibrary.simpleMessage(
       "Don\'t have an account?",
     ),
+    "account_exists": MessageLookupByLibrary.simpleMessage(
+      "The account already exists for that email.",
+    ),
     "already_have_an_account": MessageLookupByLibrary.simpleMessage(
       "Already have an account?",
     ),
@@ -75,6 +78,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "sign_up2": MessageLookupByLibrary.simpleMessage("Sign Up"),
     "sign_up_with_google": MessageLookupByLibrary.simpleMessage(
       "Sign Up with Google",
+    ),
+    "weak_password": MessageLookupByLibrary.simpleMessage(
+      "The password provided is too weak.",
     ),
   };
 }

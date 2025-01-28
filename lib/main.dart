@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,11 +19,14 @@ void main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
-  runApp(const MyApp());
+  SharedPreferences pref = await SharedPreferences.getInstance();
+  String lang = pref.getString('lang') ?? 'ar';
+  runApp(MyApp(lang: lang));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final String lang;
+  const MyApp({super.key, required this.lang});
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +45,7 @@ class MyApp extends StatelessWidget {
             GlobalCupertinoLocalizations.delegate,
           ],
           supportedLocales: S.delegate.supportedLocales,
-          locale: const Locale('ar'),
+          locale: Locale(lang),
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
             useMaterial3: true,

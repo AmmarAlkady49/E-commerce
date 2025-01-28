@@ -30,5 +30,7 @@
     "invalid_email": "البريد الالكتروني غير صحيح",
     "invalid_name": "الاسم غير صحيح",
     "invalid_phone": "رقم الهاتف غير صحيح",
-    "password_not_match": "كلمة المرور غير متطابقة"
+    "password_not_match": "كلمة المرور غير متطابقة",
+    "weak_password": "كلمة المرور ضعيفة",
+    "account_exists": "الحساب موجود بالفعل"
 }

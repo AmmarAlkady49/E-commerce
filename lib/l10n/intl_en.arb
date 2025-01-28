@@ -30,5 +30,7 @@
     "invalid_email": "Invalid email",
     "invalid_name": "Invalid name",
     "invalid_phone": "Invalid phone",
-    "password_not_match" : "Password not match"
+    "password_not_match" : "Password not match",
+    "weak_password": "The password provided is too weak.",
+    "account_exists": "The account already exists for that email."
 }
