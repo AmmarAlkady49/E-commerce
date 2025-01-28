@@ -16,6 +16,8 @@ class MyTextFormField extends StatefulWidget {
   final FocusNode? presentFocusNode;
   final FocusNode? nextFocusNode;
   final TextInputAction? textInputAction;
+  final bool? readOnly;
+  final VoidCallback? onTap;
 
   const MyTextFormField(
       {super.key,
@@ -29,7 +31,9 @@ class MyTextFormField extends StatefulWidget {
       required this.validator,
       this.presentFocusNode,
       this.textInputAction,
-      this.nextFocusNode});
+      this.nextFocusNode,
+      this.readOnly,
+      this.onTap});
 
   @override
   State<MyTextFormField> createState() => _MyTextFormFieldState();
@@ -44,6 +48,8 @@ class _MyTextFormFieldState extends State<MyTextFormField> {
       child: Column(
         children: [
           TextFormField(
+            readOnly: widget.readOnly ?? false,
+            onTap: widget.onTap,
             validator: widget.validator,
             controller: widget.controller,
             keyboardType: widget.textInputType,

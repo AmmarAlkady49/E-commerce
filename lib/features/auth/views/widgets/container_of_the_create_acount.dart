@@ -26,6 +26,8 @@ class _ContainerOfTheCreateAcountState
       TextEditingController();
   final TextEditingController fNameController = TextEditingController();
   final TextEditingController lNameController = TextEditingController();
+  final TextEditingController birthOfDateController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   final FocusNode emailFocusNode = FocusNode();
@@ -35,6 +37,21 @@ class _ContainerOfTheCreateAcountState
   final FocusNode birthOfDateFocusNode = FocusNode();
   final FocusNode phoneFocusNode = FocusNode();
   final FocusNode confirmPasswordFocusNode = FocusNode();
+  DateTime? _lastPickedDate;
+  Future<void> _selectDate() async {
+    DateTime? picked;
+    picked = await showDatePicker(
+        context: context,
+        firstDate: DateTime(1900),
+        initialDate: _lastPickedDate ?? DateTime.now(),
+        lastDate: DateTime.now());
+    if (picked != null) {
+      setState(() {
+        _lastPickedDate = picked;
+        birthOfDateController.text = picked.toString().split(' ')[0];
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -126,7 +143,7 @@ class _ContainerOfTheCreateAcountState
                   width: size.width * 0.8,
                   hint: S.of(context).birthday,
                   suffIcon: Iconsax.calendar_1,
-                  textInputType: TextInputType.datetime,
+                  controller: birthOfDateController,
                   validator: (value) {
                     if (value!.isEmpty) {
                       return S.of(context).empty_cell;
@@ -135,6 +152,8 @@ class _ContainerOfTheCreateAcountState
                   },
                   presentFocusNode: birthOfDateFocusNode,
                   nextFocusNode: phoneFocusNode,
+                  readOnly: true,
+                  onTap: _selectDate,
                 ),
                 SizedBox(height: 13.h),
                 Directionality(
