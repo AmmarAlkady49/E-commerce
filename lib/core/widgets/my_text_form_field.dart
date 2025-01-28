@@ -13,6 +13,9 @@ class MyTextFormField extends StatefulWidget {
   final TextInputType? textInputType;
   final TextEditingController? controller;
   final String? Function(String?) validator;
+  final FocusNode? presentFocusNode;
+  final FocusNode? nextFocusNode;
+  final TextInputAction? textInputAction;
 
   const MyTextFormField(
       {super.key,
@@ -23,7 +26,10 @@ class MyTextFormField extends StatefulWidget {
       required this.hint,
       this.textInputType,
       this.controller,
-      required this.validator});
+      required this.validator,
+      this.presentFocusNode,
+      this.textInputAction,
+      this.nextFocusNode});
 
   @override
   State<MyTextFormField> createState() => _MyTextFormFieldState();
@@ -41,6 +47,11 @@ class _MyTextFormFieldState extends State<MyTextFormField> {
             validator: widget.validator,
             controller: widget.controller,
             keyboardType: widget.textInputType,
+            focusNode: widget.presentFocusNode,
+            textInputAction: widget.textInputAction,
+            onFieldSubmitted: (value) {
+              FocusScope.of(context).requestFocus(widget.nextFocusNode);
+            },
             style: (widget.hint == S.of(context).password ||
                     widget.hint == S.of(context).confirm_password)
                 ? TextStyle(

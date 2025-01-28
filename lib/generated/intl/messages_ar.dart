@@ -37,7 +37,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "create_account": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
     "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
-    "empty_cell": MessageLookupByLibrary.simpleMessage("الخلية فارغة"),
+    "empty_cell": MessageLookupByLibrary.simpleMessage("الحقل فارغ"),
     "english": MessageLookupByLibrary.simpleMessage("English"),
     "enter_your_email": MessageLookupByLibrary.simpleMessage(
       "ادخل البريد الالكتروني",
@@ -76,7 +76,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "remember_me": MessageLookupByLibrary.simpleMessage("تذكرني"),
     "sign_in": MessageLookupByLibrary.simpleMessage("تسجيل الدخول للحساب"),
     "sign_up": MessageLookupByLibrary.simpleMessage("التسجيل"),
-    "sign_up2": MessageLookupByLibrary.simpleMessage("انشاء حساب"),
+    "sign_up2": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
     "sign_up_with_google": MessageLookupByLibrary.simpleMessage(
       "التسجيل بواسطة جوجل",
     ),
