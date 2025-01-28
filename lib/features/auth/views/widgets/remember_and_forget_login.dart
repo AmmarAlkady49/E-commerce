@@ -21,6 +21,7 @@ class _RememberAndForgetLoginState extends State<RememberAndForgetLogin> {
           children: [
             Checkbox(
               value: isSelected,
+              activeColor: Color(0xff1D61E7),
               materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
               onChanged: (value) {
                 setState(() {
@@ -35,7 +36,7 @@ class _RememberAndForgetLoginState extends State<RememberAndForgetLogin> {
             Text(
               S.of(context).remember_me,
               style: FontHelper.fontText(
-                  size: 14.sp, weight: FontWeight.w500, color: Colors.black),
+                  size: 13.sp, weight: FontWeight.w600, color: Colors.black),
             )
           ],
         ),
@@ -45,7 +46,7 @@ class _RememberAndForgetLoginState extends State<RememberAndForgetLogin> {
           child: Text(
             S.of(context).forgot_password,
             style: FontHelper.fontText(
-                size: 12.sp,
+                size: 13.sp,
                 weight: FontWeight.w700,
                 color: Color.fromARGB(255, 44, 103, 223)),
           ),

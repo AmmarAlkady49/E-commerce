@@ -13,7 +13,7 @@ class FontHelper {
       color: color,
       fontFamily: 'cairo',
       decoration: decoration,
-      decorationColor: Colors.red.shade700,
+      decorationColor: Colors.white,
       decorationStyle: TextDecorationStyle.solid,
       decorationThickness: 2.0,
     );

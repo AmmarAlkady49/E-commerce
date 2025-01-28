@@ -20,5 +20,15 @@
     "enter_your_password": "ادخل كلمة المرور",
     "forgot_password": "نسيت كلمة المرور ؟",
     "remember_me": "تذكرني",
-    "Dont_have_an_account": "لا تمتلك حساب ؟"
+    "Dont_have_an_account": "لا تمتلك حساب ؟",
+    "sign_up2": "إنشاء حساب",
+    "login2": "دخول",
+    "english": "English",
+    "loading": "جاري التحميل...",
+    "empty_cell": "الحقل فارغ",
+    "password_length": "كلمة المرور يجب ان تكون على الاقل 6 حروف",
+    "invalid_email": "البريد الالكتروني غير صحيح",
+    "invalid_name": "الاسم غير صحيح",
+    "invalid_phone": "رقم الهاتف غير صحيح",
+    "password_not_match": "كلمة المرور غير متطابقة"
 }

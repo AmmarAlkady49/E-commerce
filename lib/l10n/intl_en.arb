@@ -20,5 +20,15 @@
     "enter_your_password": "Enter your password",
     "forgot_password": "Forgot password ?",
     "remember_me": "Remember me",
-    "Dont_have_an_account": "Don't have an account?"
+    "Dont_have_an_account": "Don't have an account?",
+    "sign_up2": "Sign Up",
+    "login2": "Login",
+    "english": "العربية",
+    "loading": "Loading...",
+    "empty_cell": "Empty cell",
+    "password_length": "Password must be at least 6 characters",
+    "invalid_email": "Invalid email",
+    "invalid_name": "Invalid name",
+    "invalid_phone": "Invalid phone",
+    "password_not_match" : "Password not match"
 }
