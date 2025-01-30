@@ -1,4 +1,6 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
+import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
 import 'package:e_commerce_graduation/core/widgets/my_button1.dart';
 import 'package:e_commerce_graduation/core/widgets/my_button2.dart';
 import 'package:e_commerce_graduation/core/widgets/my_or_devider.dart';
@@ -37,6 +39,25 @@ class _ContainerOfTheCreateAcountState
   final FocusNode birthOfDateFocusNode = FocusNode();
   final FocusNode phoneFocusNode = FocusNode();
   final FocusNode confirmPasswordFocusNode = FocusNode();
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    fNameController.dispose();
+    lNameController.dispose();
+    birthOfDateController.dispose();
+    phoneController.dispose();
+    emailFocusNode.dispose();
+    passwordFocusNode.dispose();
+    fNameFocusNode.dispose();
+    lNameFocusNode.dispose();
+    birthOfDateFocusNode.dispose();
+    phoneFocusNode.dispose();
+    confirmPasswordFocusNode.dispose();
+    super.dispose();
+  }
+
   DateTime? _lastPickedDate;
   Future<void> _selectDate() async {
     DateTime? picked;
@@ -73,7 +94,6 @@ class _ContainerOfTheCreateAcountState
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 18.0.h, horizontal: 12.0.w),
         child: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
           child: Form(
             key: formKey,
             child: Column(
@@ -166,7 +186,7 @@ class _ContainerOfTheCreateAcountState
                       if (value!.isEmpty) {
                         return S.of(context).empty_cell;
                       }
-                      if (value.length < 10) {
+                      if (value.length != 10) {
                         return S.of(context).invalid_phone;
                       }
                       return null;
@@ -204,7 +224,7 @@ class _ContainerOfTheCreateAcountState
                     if (value!.isEmpty) {
                       return S.of(context).empty_cell;
                     }
-                    if (value.length < 6) {
+                    if (value.length < 5) {
                       return S.of(context).password_length;
                     }
                     return null;
@@ -222,7 +242,7 @@ class _ContainerOfTheCreateAcountState
                     if (value!.isEmpty) {
                       return S.of(context).empty_cell;
                     }
-                    if (value.length < 6) {
+                    if (value.length < 5) {
                       return S.of(context).password_length;
                     }
                     if (value != passwordController.text) {
@@ -235,18 +255,66 @@ class _ContainerOfTheCreateAcountState
                 ),
                 SizedBox(height: 15.h),
                 BlocConsumer<AuthCubit, AuthState>(
-                  listenWhen: (previous, current) => current is AuthSuccess,
+                  listenWhen: (previous, current) =>
+                      current is CreatingAccoutSuccess ||
+                      current is AuthError ||
+                      current is AuthErrorVerification,
                   listener: (context, state) {
-                    if (state is AuthSuccess) {
-                      Navigator.pushNamedAndRemoveUntil(
-                          context, AppRoutes.login, (route) => false);
+                    if (state is CreatingAccoutSuccess) {
+                      // Navigator.pushNamedAndRemoveUntil(
+                      //     context, AppRoutes.login, (route) => false);
+                      AwesomeDialog(
+                        context: context,
+                        dialogType: DialogType.warning,
+                        animType: AnimType.bottomSlide,
+                        autoDismiss: true,
+                        headerAnimationLoop: false,
+                        // barrierDismissible: true,
+                        dismissOnBackKeyPress: true,
+                        title: S.of(context).verify_email,
+                        desc: S.of(context).desc_verify_email,
+                        titleTextStyle: FontHelper.fontText(
+                            size: 20.sp,
+                            weight: FontWeight.w600,
+                            color: Colors.black),
+                        descTextStyle: FontHelper.fontText(
+                            size: 15.sp,
+                            weight: FontWeight.w600,
+                            color: Colors.black),
+                        onDismissCallback: (type) {
+                          Navigator.pushNamedAndRemoveUntil(
+                              context, AppRoutes.login, (route) => false); // T
+                        },
+                        btnOkOnPress: () {
+                          print("OK button pressed"); // Debug print
+                          Navigator.pushNamedAndRemoveUntil(
+                              context,
+                              AppRoutes.login,
+                              (route) =>
+                                  false); // This should dismiss the dialog
+                        },
+                      ).show();
+                    } else if (state is AuthError) {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text(
+                          state.message,
+                          style: FontHelper.fontText(
+                              size: 15.sp,
+                              weight: FontWeight.w600,
+                              color: Colors.white),
+                        ),
+                        backgroundColor: Colors.redAccent,
+                        behavior: SnackBarBehavior.floating,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(26),
+                        ),
+                      ));
                     }
                   },
                   bloc: cubit,
                   buildWhen: (previous, current) =>
                       current is! AuthLoading ||
-                      current is AuthError ||
-                      current is AuthSuccess,
+                      current is AuthErrorVerification,
                   builder: (context, state) {
                     if (state is AuthLoading) {
                       return MyButton1(
@@ -265,6 +333,7 @@ class _ContainerOfTheCreateAcountState
                         if (formKey.currentState!.validate()) {
                           await cubit.createAccount(
                               emailController.text, passwordController.text);
+                          cubit.sendEmailVerification();
                         }
                       },
                     );

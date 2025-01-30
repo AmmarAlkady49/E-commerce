@@ -319,6 +319,121 @@ class S {
       args: [],
     );
   }
+
+  /// `Error login, please try again`
+  String get error_login {
+    return Intl.message(
+      'Error login, please try again',
+      name: 'error_login',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `verification email sent`
+  String get verify_email {
+    return Intl.message(
+      'verification email sent',
+      name: 'verify_email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please check your email to verify your account`
+  String get desc_verify_email {
+    return Intl.message(
+      'Please check your email to verify your account',
+      name: 'desc_verify_email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Google sign-in aborted`
+  String get google_error {
+    return Intl.message(
+      'Google sign-in aborted',
+      name: 'google_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your email to reset the password`
+  String get enter_your_email_to_reset {
+    return Intl.message(
+      'Please enter your email to reset the password',
+      name: 'enter_your_email_to_reset',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your Email`
+  String get your_email {
+    return Intl.message('Your Email', name: 'your_email', desc: '', args: []);
+  }
+
+  /// `Enter your email`
+  String get enter_your_email2 {
+    return Intl.message(
+      'Enter your email',
+      name: 'enter_your_email2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Forget Password`
+  String get forget_password2 {
+    return Intl.message(
+      'Forget Password',
+      name: 'forget_password2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reset Password`
+  String get reset_password {
+    return Intl.message(
+      'Reset Password',
+      name: 'reset_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error reset password, please try again`
+  String get error_reset_password {
+    return Intl.message(
+      'Error reset password, please try again',
+      name: 'error_reset_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Check your mail`
+  String get check_your_mail {
+    return Intl.message(
+      'Check your mail',
+      name: 'check_your_mail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We have sent a password recover instruction to your email.`
+  String get password_instruction {
+    return Intl.message(
+      'We have sent a password recover instruction to your email.',
+      name: 'password_instruction',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

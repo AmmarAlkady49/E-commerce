@@ -30,7 +30,19 @@
     "invalid_email": "Invalid email",
     "invalid_name": "Invalid name",
     "invalid_phone": "Invalid phone",
-    "password_not_match" : "Password not match",
+    "password_not_match": "Password not match",
     "weak_password": "The password provided is too weak.",
-    "account_exists": "The account already exists for that email."
+    "account_exists": "The account already exists for that email.",
+    "error_login": "Error login, please try again",
+    "verify_email": "verification email sent",
+    "desc_verify_email": "Please check your email to verify your account",
+    "google_error": "Google sign-in aborted",
+    "enter_your_email_to_reset": "Please enter your email to reset the password",
+    "your_email": "Your Email",
+    "enter_your_email2": "Enter your email",
+    "forget_password2": "Forget Password",
+    "reset_password": "Reset Password",
+    "error_reset_password": "Error reset password, please try again",
+    "check_your_mail": "Check your mail",
+    "password_instruction" : "We have sent a password recover instruction to your email."
 }

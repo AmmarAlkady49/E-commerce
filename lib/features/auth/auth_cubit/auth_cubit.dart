@@ -1,6 +1,7 @@
 import 'package:e_commerce_graduation/features/auth/services/auth_services.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'auth_state.dart';
@@ -16,22 +17,19 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       final result =
           await authServices.registerWithEmailAndPassword(email, password);
-      emit(AuthSuccess());
       if (result) {
-        emit(AuthSuccess());
-      } else {
-        emit(AuthError('Faild to create account'));
+        emit(CreatingAccoutSuccess());
       }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
+        debugPrint('The password provided is too weak.');
         return emit(AuthError(S.current.weak_password));
       } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
+        debugPrint('The account already exists for that email.');
         return emit(AuthError(S.current.account_exists));
       }
     } catch (e) {
-      print(e);
+      debugPrint(e.toString());
     }
   }
 
@@ -41,14 +39,74 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       final result =
           await authServices.loginWithEmailAndPassword(email, password);
-      emit(AuthSuccess());
       if (result) {
-        emit(AuthSuccess());
+        if (authServices.getCurrentUser()!.emailVerified) {
+          emit(AuthSuccess());
+        } else {
+          emit(AuthErrorVerification());
+        }
       } else {
-        emit(AuthError('Faild to login account'));
+        emit(AuthError(S.current.error_login));
       }
     } catch (e) {
+      return emit(AuthError(S.current.error_login));
+    }
+  }
+
+  // checkout account
+  void checkAuth() {
+    final user = authServices.getCurrentUser();
+    if (user != null && user.emailVerified) {
+      emit(AuthSuccess());
+    }
+  }
+
+  // send email verification
+  void sendEmailVerification() {
+    try {
+      authServices.sendEmailVerification();
+    } catch (e) {
       emit(AuthError(e.toString()));
+    }
+  }
+
+  // sign out
+  void signOut() async {
+    emit(LoggingOut());
+    try {
+      await authServices.signoutFromGoogle();
+      await authServices.signOut();
+      emit(LoggedOut());
+    } catch (e) {
+      emit(LogoutError(e.toString()));
+    }
+  }
+
+  void siginWithGoogle() async {
+    emit(SigningWithGoogle());
+    try {
+      final result = await authServices.signinWithGoogle();
+      if (result.user != null) {
+        emit(SigningWithGoogleSuccess());
+      } else {
+        emit(SigningWithGoogleError(S.current.error_login));
+      }
+    } catch (e) {
+      emit(SigningWithGoogleError(S.current.error_login));
+    }
+  }
+
+  void updatePassword(String emailText) async {
+    emit(updatingPassword());
+    try {
+      await authServices.updatePassword(emailText);
+      emit(PasswordUpdated());
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'invalid-email') {
+        emit(PasswordUpdateError(S.current.invalid_email));
+      }
+    } catch (e) {
+      emit(PasswordUpdateError(S.current.error_reset_password));
     }
   }
 }

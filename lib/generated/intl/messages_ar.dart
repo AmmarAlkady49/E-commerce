@@ -32,6 +32,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "هل لديك حساب بالفعل؟",
     ),
     "birthday": MessageLookupByLibrary.simpleMessage("تاريخ الميلاد"),
+    "check_your_mail": MessageLookupByLibrary.simpleMessage(
+      "تحقق من بريدك الالكتروني",
+    ),
     "confirm_password": MessageLookupByLibrary.simpleMessage(
       "تأكيد كلمة المرور",
     ),
@@ -39,26 +42,47 @@ class MessageLookup extends MessageLookupByLibrary {
       "الاستمرار بواسطة جوجل",
     ),
     "create_account": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
+    "desc_verify_email": MessageLookupByLibrary.simpleMessage(
+      "يرجى التحقق من بريدك الالكتروني للتحقق من حسابك",
+    ),
     "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
     "empty_cell": MessageLookupByLibrary.simpleMessage("الحقل فارغ"),
     "english": MessageLookupByLibrary.simpleMessage("English"),
     "enter_your_email": MessageLookupByLibrary.simpleMessage(
       "ادخل البريد الالكتروني",
     ),
+    "enter_your_email2": MessageLookupByLibrary.simpleMessage(
+      "ادخل البريد الالكتروني",
+    ),
     "enter_your_email_and_password": MessageLookupByLibrary.simpleMessage(
       "أدخل البريد الالكتروني و كلمة المرور",
+    ),
+    "enter_your_email_to_reset": MessageLookupByLibrary.simpleMessage(
+      "ادخل البريد الالكتروني لاستعادة كلمة المرور",
     ),
     "enter_your_password": MessageLookupByLibrary.simpleMessage(
       "ادخل كلمة المرور",
     ),
+    "error_login": MessageLookupByLibrary.simpleMessage(
+      "حدث خطأ اثناء تسجيل الدخول",
+    ),
+    "error_reset_password": MessageLookupByLibrary.simpleMessage(
+      "حدث خطأ اثناء استعادة كلمة المرور",
+    ),
     "first_name": MessageLookupByLibrary.simpleMessage("الإسم الأول"),
+    "forget_password2": MessageLookupByLibrary.simpleMessage(
+      "نسيت كلمة المرور",
+    ),
     "forgot_password": MessageLookupByLibrary.simpleMessage(
       "نسيت كلمة المرور ؟",
+    ),
+    "google_error": MessageLookupByLibrary.simpleMessage(
+      "حدث خطأ اثناء تسجيل الدخول بواسطة جوجل",
     ),
     "invalid_email": MessageLookupByLibrary.simpleMessage(
       "البريد الالكتروني غير صحيح",
     ),
-    "invalid_name": MessageLookupByLibrary.simpleMessage("الاسم غير صحيح"),
+    "invalid_name": MessageLookupByLibrary.simpleMessage("الاسم غير مناسب"),
     "invalid_phone": MessageLookupByLibrary.simpleMessage(
       "رقم الهاتف غير صحيح",
     ),
@@ -69,20 +93,30 @@ class MessageLookup extends MessageLookupByLibrary {
     "or": MessageLookupByLibrary.simpleMessage("أو"),
     "or_login_with": MessageLookupByLibrary.simpleMessage("أو من خلال"),
     "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
+    "password_instruction": MessageLookupByLibrary.simpleMessage(
+      "لقد قمنا بارسال تعليمات استعادة كلمة المرور الى بريدك الالكتروني",
+    ),
     "password_length": MessageLookupByLibrary.simpleMessage(
-      "كلمة المرور يجب ان تكون على الاقل 6 حروف",
+      "كلمة المرور يجب ان تكون على الاقل 5 حروف",
     ),
     "password_not_match": MessageLookupByLibrary.simpleMessage(
       "كلمة المرور غير متطابقة",
     ),
     "phone": MessageLookupByLibrary.simpleMessage("الهاتف"),
     "remember_me": MessageLookupByLibrary.simpleMessage("تذكرني"),
+    "reset_password": MessageLookupByLibrary.simpleMessage(
+      "استعادة كلمة المرور",
+    ),
     "sign_in": MessageLookupByLibrary.simpleMessage("تسجيل الدخول للحساب"),
     "sign_up": MessageLookupByLibrary.simpleMessage("التسجيل"),
     "sign_up2": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
     "sign_up_with_google": MessageLookupByLibrary.simpleMessage(
       "التسجيل بواسطة جوجل",
     ),
+    "verify_email": MessageLookupByLibrary.simpleMessage(
+      "تحقق من بريدك الالكتروني",
+    ),
     "weak_password": MessageLookupByLibrary.simpleMessage("كلمة المرور ضعيفة"),
+    "your_email": MessageLookupByLibrary.simpleMessage("بريدك الالكتروني"),
   };
 }

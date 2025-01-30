@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
 import 'package:e_commerce_graduation/core/widgets/my_button1.dart';
@@ -28,6 +29,14 @@ class _ContainerOfTheSigninWidgetState
 
   FocusNode emailFocusNode = FocusNode();
   FocusNode passwordFocusNode = FocusNode();
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    emailFocusNode.dispose();
+    passwordFocusNode.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +59,6 @@ class _ContainerOfTheSigninWidgetState
         padding: EdgeInsets.symmetric(vertical: 18.0.h, horizontal: 12.0.w),
         child: Center(
           child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
             child: Form(
               key: formKey,
               child: Column(
@@ -89,7 +97,7 @@ class _ContainerOfTheSigninWidgetState
                       if (value!.isEmpty) {
                         return S.of(context).empty_cell;
                       }
-                      if (value.length < 6) {
+                      if (value.length < 5) {
                         return S.of(context).password_length;
                       }
                       return null;
@@ -105,20 +113,60 @@ class _ContainerOfTheSigninWidgetState
                   SizedBox(height: 12.h),
                   BlocConsumer<AuthCubit, AuthState>(
                     bloc: cubit,
-                    listenWhen: (previous, current) => current is AuthSuccess,
+                    listenWhen: (previous, current) =>
+                        current is AuthSuccess ||
+                        current is AuthError ||
+                        current is AuthErrorVerification,
                     listener: (context, state) {
                       if (state is AuthSuccess) {
                         Navigator.pushNamedAndRemoveUntil(
-                          context,
-                          AppRoutes.home,
-                          (route) => false,
-                        );
+                            context, AppRoutes.home, (route) => false);
+                      }
+                      if (state is AuthError) {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text(
+                            state.message,
+                            style: FontHelper.fontText(
+                                size: 15.sp,
+                                weight: FontWeight.w600,
+                                color: Colors.white),
+                          ),
+                          backgroundColor: Colors.redAccent,
+                          behavior: SnackBarBehavior.floating,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(26),
+                          ),
+                        ));
+                      }
+                      if (state is AuthErrorVerification) {
+                        AwesomeDialog(
+                          context: context,
+                          dialogType: DialogType.warning,
+                          animType: AnimType.bottomSlide,
+                          autoDismiss: true,
+                          dismissOnBackKeyPress: true,
+                          headerAnimationLoop: false,
+                          title: S.of(context).verify_email,
+                          desc: S.of(context).desc_verify_email,
+                          titleTextStyle: FontHelper.fontText(
+                              size: 20.sp,
+                              weight: FontWeight.w600,
+                              color: Colors.black),
+                          descTextStyle: FontHelper.fontText(
+                              size: 15.sp,
+                              weight: FontWeight.w600,
+                              color: Colors.black),
+                          btnOkOnPress: () {
+                            Navigator.pushNamedAndRemoveUntil(
+                                context, AppRoutes.login, (route) => false);
+                          },
+                        ).show();
                       }
                     },
                     buildWhen: (previous, current) =>
                         current is AuthLoading ||
                         current is AuthError ||
-                        current is AuthSuccess,
+                        current is AuthErrorVerification,
                     builder: (context, state) {
                       if (state is AuthLoading) {
                         return MyButton1(
@@ -127,6 +175,20 @@ class _ContainerOfTheSigninWidgetState
                           width: size.width * 0.8,
                           onTap: () {},
                           isLoading: true,
+                        );
+                      }
+                      if (state is AuthErrorVerification ||
+                          state is AuthError) {
+                        return MyButton1(
+                          buttonTitle: S.of(context).login,
+                          height: 42.h,
+                          width: size.width * 0.8,
+                          onTap: () async {
+                            if (formKey.currentState!.validate()) {
+                              await cubit.loginAccount(emailController.text,
+                                  passwordController.text);
+                            }
+                          },
                         );
                       }
                       return MyButton1(
