@@ -52,22 +52,29 @@ class SignInPage extends StatelessWidget {
                   )
                 ],
               )),
-          Positioned(
-            top: 0,
-            left: 0,
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24.0.w, vertical: 42.h),
-              child: InkWell(
-                onTap: () {},
-                child: Text(S.of(context).english,
-                    style: FontHelper.fontText(
-                        size: 16.sp,
-                        weight: FontWeight.w600,
-                        color: Colors.white,
-                        decoration: TextDecoration.underline)),
-              ),
-            ),
-          ),
+          // Positioned(
+          //   top: 0,
+          //   left: 0,
+          //   child: Padding(
+          //     padding: EdgeInsets.symmetric(horizontal: 24.0.w, vertical: 54.h),
+          //     child: InkWell(
+          //       onTap: () async {
+          //         SharedPreferences pref =
+          //             await SharedPreferences.getInstance();
+          //         String presentLang = pref.getString('lang') ?? 'ar';
+          //         pref.setString('lang', presentLang == 'ar' ? 'en' : 'ar');
+
+          //         // Phoenix.rebirth(context);
+          //       },
+          //       child: Text(S.of(context).english,
+          //           style: FontHelper.fontText(
+          //               size: 16.sp,
+          //               weight: FontWeight.w600,
+          //               color: Colors.white,
+          //               decoration: TextDecoration.underline)),
+          //     ),
+          //   ),
+          // ),
           Positioned(
             top: size.height * 0.4,
             left: 0,

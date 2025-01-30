@@ -1,13 +1,16 @@
 import 'package:e_commerce_graduation/core/utils/routes/app_router.dart';
 import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
+import 'package:e_commerce_graduation/features/auth/auth_cubit/auth_cubit.dart';
 import 'package:e_commerce_graduation/firebase_options.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,11 +21,20 @@ void main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
-  runApp(const MyApp());
+  SharedPreferences pref = await SharedPreferences.getInstance();
+  String lang = pref.getString('lang') ?? 'ar';
+  bool rememberMe = pref.getBool("rememberMe") ?? false;
+  runApp(Phoenix(
+      child: MyApp(
+    lang: lang,
+    rememberMe: rememberMe,
+  )));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final String lang;
+  final bool rememberMe;
+  const MyApp({super.key, required this.lang, required this.rememberMe});
 
   @override
   Widget build(BuildContext context) {
@@ -31,25 +43,42 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
-        return MaterialApp(
-          title: 'E-Commerce Graduation Project',
-          debugShowCheckedModeBanner: false,
-          localizationsDelegates: [
-            S.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          supportedLocales: S.delegate.supportedLocales,
-          locale: const Locale('ar'),
-          theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-            useMaterial3: true,
-          ),
-          initialRoute: FirebaseAuth.instance.currentUser != null
-              ? AppRoutes.home
-              : AppRoutes.login,
-          onGenerateRoute: AppRouter.onGenerateRoute,
+        return BlocProvider(
+          create: (context) {
+            final cubit = AuthCubit();
+            cubit.checkAuth();
+            return cubit;
+          },
+          child: Builder(builder: (context) {
+            final authCubit = BlocProvider.of<AuthCubit>(context);
+            return BlocBuilder<AuthCubit, AuthState>(
+              bloc: authCubit,
+              buildWhen: (previous, current) =>
+                  current is AuthSuccess || current is AuthInitial,
+              builder: (context, state) {
+                return MaterialApp(
+                  title: 'E-Commerce Graduation Project',
+                  debugShowCheckedModeBanner: false,
+                  localizationsDelegates: [
+                    S.delegate,
+                    GlobalMaterialLocalizations.delegate,
+                    GlobalWidgetsLocalizations.delegate,
+                    GlobalCupertinoLocalizations.delegate,
+                  ],
+                  supportedLocales: S.delegate.supportedLocales,
+                  locale: Locale(lang),
+                  theme: ThemeData(
+                    colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+                    useMaterial3: true,
+                  ),
+                  initialRoute: (state is AuthSuccess && rememberMe)
+                      ? AppRoutes.home
+                      : AppRoutes.login,
+                  onGenerateRoute: AppRouter.onGenerateRoute,
+                );
+              },
+            );
+          }),
         );
       },
     );
