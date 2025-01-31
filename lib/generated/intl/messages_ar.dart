@@ -25,6 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "Dont_have_an_account": MessageLookupByLibrary.simpleMessage(
       "لا تمتلك حساب ؟",
     ),
+    "Favorites": MessageLookupByLibrary.simpleMessage("المفضلة"),
     "account_exists": MessageLookupByLibrary.simpleMessage(
       "الحساب موجود بالفعل",
     ),
@@ -32,6 +33,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "هل لديك حساب بالفعل؟",
     ),
     "birthday": MessageLookupByLibrary.simpleMessage("تاريخ الميلاد"),
+    "cart": MessageLookupByLibrary.simpleMessage("عربة تسوق"),
     "check_your_mail": MessageLookupByLibrary.simpleMessage(
       "تحقق من بريدك الالكتروني",
     ),
@@ -79,6 +81,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "google_error": MessageLookupByLibrary.simpleMessage(
       "حدث خطأ اثناء تسجيل الدخول بواسطة جوجل",
     ),
+    "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
     "invalid_email": MessageLookupByLibrary.simpleMessage(
       "البريد الالكتروني غير صحيح",
     ),
@@ -103,10 +106,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "كلمة المرور غير متطابقة",
     ),
     "phone": MessageLookupByLibrary.simpleMessage("الهاتف"),
+    "profile": MessageLookupByLibrary.simpleMessage("الحساب"),
     "remember_me": MessageLookupByLibrary.simpleMessage("تذكرني"),
     "reset_password": MessageLookupByLibrary.simpleMessage(
       "استعادة كلمة المرور",
     ),
+    "settings": MessageLookupByLibrary.simpleMessage("الاعدادات"),
     "sign_in": MessageLookupByLibrary.simpleMessage("تسجيل الدخول للحساب"),
     "sign_up": MessageLookupByLibrary.simpleMessage("التسجيل"),
     "sign_up2": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),

@@ -119,8 +119,8 @@ class _ContainerOfTheSigninWidgetState
                         current is AuthErrorVerification,
                     listener: (context, state) {
                       if (state is AuthSuccess) {
-                        Navigator.pushNamedAndRemoveUntil(
-                            context, AppRoutes.home, (route) => false);
+                        Navigator.pushNamedAndRemoveUntil(context,
+                            AppRoutes.bottomNavBar, (route) => false);
                       }
                       if (state is AuthError) {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(

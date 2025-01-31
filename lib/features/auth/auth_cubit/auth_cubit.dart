@@ -97,7 +97,7 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   void updatePassword(String emailText) async {
-    emit(updatingPassword());
+    emit(UpdatingPassword());
     try {
       await authServices.updatePassword(emailText);
       emit(PasswordUpdated());

@@ -72,7 +72,7 @@ class MyApp extends StatelessWidget {
                     useMaterial3: true,
                   ),
                   initialRoute: (state is AuthSuccess && rememberMe)
-                      ? AppRoutes.home
+                      ? AppRoutes.bottomNavBar
                       : AppRoutes.login,
                   onGenerateRoute: AppRouter.onGenerateRoute,
                 );

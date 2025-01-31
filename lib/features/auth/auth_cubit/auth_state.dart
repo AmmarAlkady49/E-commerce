@@ -37,7 +37,7 @@ final class SigningWithGoogleError extends AuthState {
   SigningWithGoogleError(this.message);
 }
 
-final class updatingPassword extends AuthState {}
+final class UpdatingPassword extends AuthState {}
 
 final class PasswordUpdated extends AuthState {}
 

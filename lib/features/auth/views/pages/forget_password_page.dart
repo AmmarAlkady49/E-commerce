@@ -126,11 +126,11 @@ class ForgetPasswordPage extends StatelessWidget {
                   }
                 },
                 buildWhen: (previous, current) =>
-                    current is updatingPassword ||
+                    current is UpdatingPassword ||
                     current is PasswordUpdated ||
                     current is PasswordUpdateError,
                 builder: (context, state) {
-                  if (state is updatingPassword) {
+                  if (state is UpdatingPassword) {
                     return MyButton1(
                         width: double.infinity,
                         height: 48.h,

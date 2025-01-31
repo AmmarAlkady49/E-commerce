@@ -25,6 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "Dont_have_an_account": MessageLookupByLibrary.simpleMessage(
       "Don\'t have an account?",
     ),
+    "Favorites": MessageLookupByLibrary.simpleMessage("Favorites"),
     "account_exists": MessageLookupByLibrary.simpleMessage(
       "The account already exists for that email.",
     ),
@@ -32,6 +33,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Already have an account?",
     ),
     "birthday": MessageLookupByLibrary.simpleMessage("Birth Day"),
+    "cart": MessageLookupByLibrary.simpleMessage("Cart"),
     "check_your_mail": MessageLookupByLibrary.simpleMessage("Check your mail"),
     "confirm_password": MessageLookupByLibrary.simpleMessage(
       "Confirm Password",
@@ -75,6 +77,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "google_error": MessageLookupByLibrary.simpleMessage(
       "Google sign-in aborted",
     ),
+    "home": MessageLookupByLibrary.simpleMessage("Home"),
     "invalid_email": MessageLookupByLibrary.simpleMessage("Invalid email"),
     "invalid_name": MessageLookupByLibrary.simpleMessage("Invalid name"),
     "invalid_phone": MessageLookupByLibrary.simpleMessage("Invalid phone"),
@@ -95,8 +98,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "Password not match",
     ),
     "phone": MessageLookupByLibrary.simpleMessage("Phone"),
+    "profile": MessageLookupByLibrary.simpleMessage("Profile"),
     "remember_me": MessageLookupByLibrary.simpleMessage("Remember me"),
     "reset_password": MessageLookupByLibrary.simpleMessage("Reset Password"),
+    "settings": MessageLookupByLibrary.simpleMessage("Settings"),
     "sign_in": MessageLookupByLibrary.simpleMessage("Sign in to your Account"),
     "sign_up": MessageLookupByLibrary.simpleMessage("Sign Up"),
     "sign_up2": MessageLookupByLibrary.simpleMessage("Sign Up"),
