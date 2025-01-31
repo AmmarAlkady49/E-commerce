@@ -1,3 +1,4 @@
+import 'package:e_commerce_graduation/bottom_nav_bar.dart';
 import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
 import 'package:e_commerce_graduation/features/auth/auth_cubit/auth_cubit.dart';
 import 'package:e_commerce_graduation/features/auth/views/pages/create_account.dart';
@@ -29,6 +30,8 @@ class AppRouter {
 
       case AppRoutes.forgotPassword:
         return MaterialPageRoute(builder: (_) => const ForgetPasswordPage());
+      case AppRoutes.bottomNavBar:
+        return MaterialPageRoute(builder: (_) => const BottomNavBar());
 
       default:
         debugPrint('No route defined for ${settings.name}');

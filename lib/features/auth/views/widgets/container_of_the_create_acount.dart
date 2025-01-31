@@ -286,7 +286,7 @@ class _ContainerOfTheCreateAcountState
                               context, AppRoutes.login, (route) => false); // T
                         },
                         btnOkOnPress: () {
-                          print("OK button pressed"); // Debug print
+                          debugPrint("OK button pressed"); // Debug print
                           Navigator.pushNamedAndRemoveUntil(
                               context,
                               AppRoutes.login,

@@ -44,5 +44,10 @@
     "reset_password": "Reset Password",
     "error_reset_password": "Error reset password, please try again",
     "check_your_mail": "Check your mail",
-    "password_instruction" : "We have sent a password recover instruction to your email."
+    "password_instruction" : "We have sent a password recover instruction to your email.",
+    "home": "Home",
+    "profile": "Profile",
+    "settings": "Settings",
+    "cart": "Cart",
+    "Favorites": "Favorites"
 }
