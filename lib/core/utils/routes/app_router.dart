@@ -5,6 +5,7 @@ import 'package:e_commerce_graduation/features/auth/views/pages/create_account.d
 import 'package:e_commerce_graduation/features/auth/views/pages/forget_password_page.dart';
 import 'package:e_commerce_graduation/features/auth/views/pages/sign_in_page.dart';
 import 'package:e_commerce_graduation/features/home/views/pages/home_page.dart';
+import 'package:e_commerce_graduation/features/profile/views/pages/profile_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,6 +33,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const ForgetPasswordPage());
       case AppRoutes.bottomNavBar:
         return MaterialPageRoute(builder: (_) => const BottomNavBar());
+      case AppRoutes.profile:
+        return MaterialPageRoute(builder: (_) => const ProfilePage());
 
       default:
         debugPrint('No route defined for ${settings.name}');

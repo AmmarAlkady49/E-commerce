@@ -49,5 +49,9 @@
     "profile": "Profile",
     "settings": "Settings",
     "cart": "Cart",
-    "Favorites": "Favorites"
+    "Favorites": "Favorites",
+    "hi" : "Hi",
+    "someone_name" : "John Doe",
+    "lets_go_shopping" : "Let's go shopping",
+    "category" : "Category"
 }

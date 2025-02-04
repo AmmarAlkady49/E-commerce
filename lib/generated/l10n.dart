@@ -459,6 +459,31 @@ class S {
   String get Favorites {
     return Intl.message('Favorites', name: 'Favorites', desc: '', args: []);
   }
+
+  /// `Hi`
+  String get hi {
+    return Intl.message('Hi', name: 'hi', desc: '', args: []);
+  }
+
+  /// `John Doe`
+  String get someone_name {
+    return Intl.message('John Doe', name: 'someone_name', desc: '', args: []);
+  }
+
+  /// `Let's go shopping`
+  String get lets_go_shopping {
+    return Intl.message(
+      'Let\'s go shopping',
+      name: 'lets_go_shopping',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Category`
+  String get category {
+    return Intl.message('Category', name: 'category', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

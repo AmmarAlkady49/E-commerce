@@ -4,7 +4,6 @@ import 'package:e_commerce_graduation/features/favorites/views/pages/favorites_p
 import 'package:e_commerce_graduation/features/home/views/pages/home_page.dart';
 import 'package:e_commerce_graduation/features/profile/views/pages/profile_page.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -20,8 +19,7 @@ class BottomNavBar extends StatefulWidget {
 
 class _BottomNavBarState extends State<BottomNavBar> {
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
+
   static const List _screenOptions = [
     HomePage(),
     CartPage(),
@@ -41,7 +39,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
           boxShadow: [
             BoxShadow(
               blurRadius: 20,
-              color: Colors.black.withOpacity(.1),
+              color: Colors.black.withValues(alpha: .1),
             )
           ],
         ),
@@ -56,7 +54,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
               iconSize: 24,
               padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 10.h),
               duration: Duration(milliseconds: 400),
-              tabBackgroundColor: Color(0xff1D61E7).withOpacity(0.8),
+              tabBackgroundColor: Color(0xff1D61E7).withValues(alpha: 0.8),
               color: Colors.black54,
               tabs: [
                 GButton(

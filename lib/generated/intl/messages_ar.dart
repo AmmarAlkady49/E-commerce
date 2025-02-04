@@ -34,6 +34,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "birthday": MessageLookupByLibrary.simpleMessage("تاريخ الميلاد"),
     "cart": MessageLookupByLibrary.simpleMessage("عربة تسوق"),
+    "category": MessageLookupByLibrary.simpleMessage("مجموعات"),
     "check_your_mail": MessageLookupByLibrary.simpleMessage(
       "تحقق من بريدك الالكتروني",
     ),
@@ -81,6 +82,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "google_error": MessageLookupByLibrary.simpleMessage(
       "حدث خطأ اثناء تسجيل الدخول بواسطة جوجل",
     ),
+    "hi": MessageLookupByLibrary.simpleMessage("أهلآ"),
     "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
     "invalid_email": MessageLookupByLibrary.simpleMessage(
       "البريد الالكتروني غير صحيح",
@@ -90,6 +92,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "رقم الهاتف غير صحيح",
     ),
     "last_name": MessageLookupByLibrary.simpleMessage("الإسم الأخير"),
+    "lets_go_shopping": MessageLookupByLibrary.simpleMessage("جاهز للتسوق ؟"),
     "loading": MessageLookupByLibrary.simpleMessage("جاري التحميل..."),
     "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
     "login2": MessageLookupByLibrary.simpleMessage("دخول"),
@@ -118,6 +121,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "sign_up_with_google": MessageLookupByLibrary.simpleMessage(
       "التسجيل بواسطة جوجل",
     ),
+    "someone_name": MessageLookupByLibrary.simpleMessage("عمار"),
     "verify_email": MessageLookupByLibrary.simpleMessage(
       "تحقق من بريدك الالكتروني",
     ),
