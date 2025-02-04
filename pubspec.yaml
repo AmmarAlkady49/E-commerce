@@ -43,6 +43,7 @@ flutter:
   assets:
     - assets/images/
     - assets/images/auth/
+    - assets/images/home_page/
   fonts:
     - family: rubic
       fonts:

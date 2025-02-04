@@ -34,6 +34,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "birthday": MessageLookupByLibrary.simpleMessage("Birth Day"),
     "cart": MessageLookupByLibrary.simpleMessage("Cart"),
+    "category": MessageLookupByLibrary.simpleMessage("Category"),
     "check_your_mail": MessageLookupByLibrary.simpleMessage("Check your mail"),
     "confirm_password": MessageLookupByLibrary.simpleMessage(
       "Confirm Password",
@@ -77,11 +78,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "google_error": MessageLookupByLibrary.simpleMessage(
       "Google sign-in aborted",
     ),
+    "hi": MessageLookupByLibrary.simpleMessage("Hi"),
     "home": MessageLookupByLibrary.simpleMessage("Home"),
     "invalid_email": MessageLookupByLibrary.simpleMessage("Invalid email"),
     "invalid_name": MessageLookupByLibrary.simpleMessage("Invalid name"),
     "invalid_phone": MessageLookupByLibrary.simpleMessage("Invalid phone"),
     "last_name": MessageLookupByLibrary.simpleMessage("Last Name"),
+    "lets_go_shopping": MessageLookupByLibrary.simpleMessage(
+      "Let\'s go shopping",
+    ),
     "loading": MessageLookupByLibrary.simpleMessage("Loading..."),
     "login": MessageLookupByLibrary.simpleMessage("Login"),
     "login2": MessageLookupByLibrary.simpleMessage("Login"),
@@ -108,6 +113,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "sign_up_with_google": MessageLookupByLibrary.simpleMessage(
       "Sign Up with Google",
     ),
+    "someone_name": MessageLookupByLibrary.simpleMessage("John Doe"),
     "verify_email": MessageLookupByLibrary.simpleMessage(
       "verification email sent",
     ),
