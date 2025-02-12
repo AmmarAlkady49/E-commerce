@@ -23,7 +23,10 @@ class MyButton2 extends StatelessWidget {
             content: Text(
               state.message,
               style: FontHelper.fontText(
-                  size: 15.sp, weight: FontWeight.w600, color: Colors.white),
+                  size: 15.sp,
+                  weight: FontWeight.w600,
+                  color: Colors.white,
+                  context: context),
             ),
             backgroundColor: Colors.redAccent,
             behavior: SnackBarBehavior.floating,
@@ -34,7 +37,7 @@ class MyButton2 extends StatelessWidget {
         }
         if (state is SigningWithGoogleSuccess) {
           Navigator.pushNamedAndRemoveUntil(
-              context, AppRoutes.home, (route) => false);
+              context, AppRoutes.bottomNavBar, (route) => false);
         }
       },
       child: InkWell(
@@ -59,10 +62,10 @@ class MyButton2 extends StatelessWidget {
                 SizedBox(width: 8.w),
                 Text(S.of(context).sign_up_with_google,
                     style: FontHelper.fontText(
-                      size: 14.sp,
-                      weight: FontWeight.w700,
-                      color: Colors.black,
-                    )),
+                        size: 14.sp,
+                        weight: FontWeight.w700,
+                        color: Colors.black,
+                        context: context)),
               ],
             ),
           ),

@@ -36,7 +36,10 @@ class ForgetPasswordPage extends StatelessWidget {
         title: Text(
           S.of(context).forget_password2,
           style: FontHelper.fontText(
-              size: 19.sp, weight: FontWeight.w800, color: Colors.white),
+              size: 19.sp,
+              weight: FontWeight.w800,
+              color: Colors.white,
+              context: context),
         ),
       ),
       body: Padding(
@@ -50,25 +53,29 @@ class ForgetPasswordPage extends StatelessWidget {
               Text(
                 S.of(context).forget_password2,
                 style: FontHelper.fontText(
-                    size: 18.sp, weight: FontWeight.w800, color: Colors.black),
+                    size: 18.sp,
+                    weight: FontWeight.w800,
+                    color: Colors.black,
+                    context: context),
               ),
               SizedBox(
                 height: 6.h,
               ),
               Text(
                 S.of(context).enter_your_email_to_reset,
-                textDirection: TextDirection.rtl,
                 style: FontHelper.fontText(
                     size: 16.sp,
-                    weight: FontWeight.w600,
-                    color: Colors.black45),
+                    weight: FontWeight.w500,
+                    color: Colors.black45,
+                    context: context),
               ),
               SizedBox(height: 24.h),
               Text('${S.of(context).your_email}:',
                   style: FontHelper.fontText(
                       size: 15.sp,
                       weight: FontWeight.w700,
-                      color: Colors.black)),
+                      color: Colors.black,
+                      context: context)),
               SizedBox(height: 8.h),
               MyTextFormField(
                   width: double.infinity,
@@ -98,11 +105,13 @@ class ForgetPasswordPage extends StatelessWidget {
                       titleTextStyle: FontHelper.fontText(
                           size: 20.sp,
                           weight: FontWeight.w600,
-                          color: Colors.black),
+                          color: Colors.black,
+                          context: context),
                       descTextStyle: FontHelper.fontText(
                           size: 15.sp,
                           weight: FontWeight.w600,
-                          color: Colors.black),
+                          color: Colors.black,
+                          context: context),
                       btnOkOnPress: () {
                         Navigator.pop(context);
                       },
@@ -115,7 +124,8 @@ class ForgetPasswordPage extends StatelessWidget {
                         style: FontHelper.fontText(
                             size: 15.sp,
                             weight: FontWeight.w600,
-                            color: Colors.white),
+                            color: Colors.white,
+                            context: context),
                       ),
                       backgroundColor: Colors.redAccent,
                       behavior: SnackBarBehavior.floating,

@@ -58,139 +58,126 @@ class _ContainerOfTheSigninWidgetState
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 18.0.h, horizontal: 12.0.w),
         child: Center(
-          child: SingleChildScrollView(
-            child: Form(
-              key: formKey,
-              child: Column(
-                children: [
-                  SizedBox(
-                    width: size.width * 0.8,
-                    child: MyButton2(),
-                  ),
-                  SizedBox(height: 10.h),
-                  MyOrDevider(size: size.width * 0.02, text: S.of(context).or),
-                  SizedBox(height: 10.h),
-                  MyTextFormField(
-                    width: size.width * 0.8,
-                    hint: S.of(context).enter_your_email,
-                    textInputType: TextInputType.emailAddress,
-                    controller: emailController,
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return S.of(context).empty_cell;
-                      }
-                      if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
-                        return S.of(context).invalid_email;
-                      }
-                      return null;
-                    },
-                    presentFocusNode: emailFocusNode,
-                    nextFocusNode: passwordFocusNode,
-                  ),
-                  SizedBox(height: 13.h),
-                  MyTextFormField(
-                    width: size.width * 0.8,
-                    hint: S.of(context).password,
-                    textInputType: TextInputType.visiblePassword,
-                    controller: passwordController,
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return S.of(context).empty_cell;
-                      }
-                      if (value.length < 5) {
-                        return S.of(context).password_length;
-                      }
-                      return null;
-                    },
-                    presentFocusNode: passwordFocusNode,
-                    nextFocusNode: null,
-                  ),
-                  SizedBox(height: 0.h),
-                  SizedBox(
-                    width: size.width * 0.8,
-                    child: RememberAndForgetLogin(),
-                  ),
-                  SizedBox(height: 12.h),
-                  BlocConsumer<AuthCubit, AuthState>(
-                    bloc: cubit,
-                    listenWhen: (previous, current) =>
-                        current is AuthSuccess ||
-                        current is AuthError ||
-                        current is AuthErrorVerification,
-                    listener: (context, state) {
-                      if (state is AuthSuccess) {
-                        Navigator.pushNamedAndRemoveUntil(context,
-                            AppRoutes.bottomNavBar, (route) => false);
-                      }
-                      if (state is AuthError) {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text(
-                            state.message,
-                            style: FontHelper.fontText(
-                                size: 15.sp,
-                                weight: FontWeight.w600,
-                                color: Colors.white),
-                          ),
-                          backgroundColor: Colors.redAccent,
-                          behavior: SnackBarBehavior.floating,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(26),
-                          ),
-                        ));
-                      }
-                      if (state is AuthErrorVerification) {
-                        AwesomeDialog(
-                          context: context,
-                          dialogType: DialogType.warning,
-                          animType: AnimType.bottomSlide,
-                          autoDismiss: true,
-                          dismissOnBackKeyPress: true,
-                          headerAnimationLoop: false,
-                          title: S.of(context).verify_email,
-                          desc: S.of(context).desc_verify_email,
-                          titleTextStyle: FontHelper.fontText(
-                              size: 20.sp,
-                              weight: FontWeight.w600,
-                              color: Colors.black),
-                          descTextStyle: FontHelper.fontText(
+          child: Form(
+            key: formKey,
+            child: Column(
+              children: [
+                SizedBox(
+                  width: size.width * 0.8,
+                  child: MyButton2(),
+                ),
+                SizedBox(height: 10.h),
+                MyOrDevider(size: size.width * 0.02, text: S.of(context).or),
+                SizedBox(height: 10.h),
+                MyTextFormField(
+                  width: size.width * 0.8,
+                  hint: S.of(context).enter_your_email,
+                  textInputType: TextInputType.emailAddress,
+                  controller: emailController,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return S.of(context).empty_cell;
+                    }
+                    if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
+                      return S.of(context).invalid_email;
+                    }
+                    return null;
+                  },
+                  presentFocusNode: emailFocusNode,
+                  nextFocusNode: passwordFocusNode,
+                ),
+                SizedBox(height: 13.h),
+                MyTextFormField(
+                  width: size.width * 0.8,
+                  hint: S.of(context).password,
+                  textInputType: TextInputType.visiblePassword,
+                  controller: passwordController,
+                  textInputAction: TextInputAction.done,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return S.of(context).empty_cell;
+                    }
+                    if (value.length < 5) {
+                      return S.of(context).password_length;
+                    }
+                    return null;
+                  },
+                  presentFocusNode: passwordFocusNode,
+                  nextFocusNode: null,
+                ),
+                SizedBox(height: 0.h),
+                SizedBox(
+                  width: size.width * 0.8,
+                  child: RememberAndForgetLogin(),
+                ),
+                SizedBox(height: 12.h),
+                BlocConsumer<AuthCubit, AuthState>(
+                  bloc: cubit,
+                  listenWhen: (previous, current) =>
+                      current is AuthSuccess ||
+                      current is AuthError ||
+                      current is AuthErrorVerification,
+                  listener: (context, state) {
+                    if (state is AuthSuccess) {
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, AppRoutes.bottomNavBar, (route) => false);
+                    }
+                    if (state is AuthError) {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text(
+                          state.message,
+                          style: FontHelper.fontText(
                               size: 15.sp,
                               weight: FontWeight.w600,
-                              color: Colors.black),
-                          btnOkOnPress: () {
-                            Navigator.pushNamedAndRemoveUntil(
-                                context, AppRoutes.login, (route) => false);
-                          },
-                        ).show();
-                      }
-                    },
-                    buildWhen: (previous, current) =>
-                        current is AuthLoading ||
-                        current is AuthError ||
-                        current is AuthErrorVerification,
-                    builder: (context, state) {
-                      if (state is AuthLoading) {
-                        return MyButton1(
-                          buttonTitle: S.of(context).login,
-                          height: 42.h,
-                          width: size.width * 0.8,
-                          onTap: () {},
-                          isLoading: true,
-                        );
-                      }
-                      if (state is AuthErrorVerification ||
-                          state is AuthError) {
-                        return MyButton1(
-                          buttonTitle: S.of(context).login,
-                          height: 42.h,
-                          width: size.width * 0.8,
-                          onTap: () async {
-                            if (formKey.currentState!.validate()) {
-                              await cubit.loginAccount(emailController.text,
-                                  passwordController.text);
-                            }
-                          },
-                        );
-                      }
+                              color: Colors.white,context: context),
+                        ),
+                        backgroundColor: Colors.redAccent,
+                        behavior: SnackBarBehavior.floating,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(26),
+                        ),
+                      ));
+                    }
+                    if (state is AuthErrorVerification) {
+                      AwesomeDialog(
+                        context: context,
+                        dialogType: DialogType.warning,
+                        animType: AnimType.bottomSlide,
+                        autoDismiss: true,
+                        dismissOnBackKeyPress: true,
+                        headerAnimationLoop: false,
+                        title: S.of(context).verify_email,
+                        desc: S.of(context).desc_verify_email,
+                        titleTextStyle: FontHelper.fontText(
+                            size: 20.sp,
+                            weight: FontWeight.w600,
+                            color: Colors.black,context: context),
+                        descTextStyle: FontHelper.fontText(
+                            size: 15.sp,
+                            weight: FontWeight.w600,
+                            color: Colors.black,context: context),
+                        btnOkOnPress: () {
+                          Navigator.pushNamedAndRemoveUntil(
+                              context, AppRoutes.login, (route) => false);
+                        },
+                      ).show();
+                    }
+                  },
+                  buildWhen: (previous, current) =>
+                      current is AuthLoading ||
+                      current is AuthError ||
+                      current is AuthErrorVerification,
+                  builder: (context, state) {
+                    if (state is AuthLoading) {
+                      return MyButton1(
+                        buttonTitle: S.of(context).login,
+                        height: 42.h,
+                        width: size.width * 0.8,
+                        onTap: () {},
+                        isLoading: true,
+                      );
+                    }
+                    if (state is AuthErrorVerification || state is AuthError) {
                       return MyButton1(
                         buttonTitle: S.of(context).login,
                         height: 42.h,
@@ -202,34 +189,45 @@ class _ContainerOfTheSigninWidgetState
                           }
                         },
                       );
-                    },
+                    }
+                    return MyButton1(
+                      buttonTitle: S.of(context).login,
+                      height: 42.h,
+                      width: size.width * 0.8,
+                      onTap: () async {
+                        if (formKey.currentState!.validate()) {
+                          await cubit.loginAccount(
+                              emailController.text, passwordController.text);
+                        }
+                      },
+                    );
+                  },
+                ),
+                SizedBox(height: 12.h),
+                RichText(
+                  text: TextSpan(
+                    text: '${S.of(context).Dont_have_an_account} ',
+                    style: FontHelper.fontText(
+                        size: 14.sp,
+                        weight: FontWeight.w400,
+                        color: Colors.black,context: context),
+                    children: [
+                      TextSpan(
+                        text: S.of(context).sign_up2,
+                        style: FontHelper.fontText(
+                            size: 14.sp,
+                            weight: FontWeight.w700,
+                            color: Color(0xff1D61E7),context: context),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            Navigator.pushNamed(
+                                context, AppRoutes.createAccount);
+                          },
+                      )
+                    ],
                   ),
-                  SizedBox(height: 12.h),
-                  RichText(
-                    text: TextSpan(
-                      text: '${S.of(context).Dont_have_an_account} ',
-                      style: FontHelper.fontText(
-                          size: 14.sp,
-                          weight: FontWeight.w400,
-                          color: Colors.black),
-                      children: [
-                        TextSpan(
-                          text: S.of(context).sign_up2,
-                          style: FontHelper.fontText(
-                              size: 14.sp,
-                              weight: FontWeight.w700,
-                              color: Color(0xff1D61E7)),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              Navigator.pushNamed(
-                                  context, AppRoutes.createAccount);
-                            },
-                        )
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),

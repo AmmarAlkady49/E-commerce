@@ -235,9 +235,9 @@ class S {
     return Intl.message('Login', name: 'login2', desc: '', args: []);
   }
 
-  /// `العربية`
+  /// ` ع `
   String get english {
-    return Intl.message('العربية', name: 'english', desc: '', args: []);
+    return Intl.message(' ع ', name: 'english', desc: '', args: []);
   }
 
   /// `Loading...`
@@ -483,6 +483,236 @@ class S {
   /// `Category`
   String get category {
     return Intl.message('Category', name: 'category', desc: '', args: []);
+  }
+
+  /// `General`
+  String get general {
+    return Intl.message('General', name: 'general', desc: '', args: []);
+  }
+
+  /// `Edit Profile`
+  String get edit_profile {
+    return Intl.message(
+      'Edit Profile',
+      name: 'edit_profile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change Password`
+  String get change_password {
+    return Intl.message(
+      'Change Password',
+      name: 'change_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notification`
+  String get notification {
+    return Intl.message(
+      'Notification',
+      name: 'notification',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Language`
+  String get language {
+    return Intl.message('Language', name: 'language', desc: '', args: []);
+  }
+
+  /// `Logout`
+  String get logout {
+    return Intl.message('Logout', name: 'logout', desc: '', args: []);
+  }
+
+  /// `Preferences`
+  String get preferences {
+    return Intl.message('Preferences', name: 'preferences', desc: '', args: []);
+  }
+
+  /// `Choose language`
+  String get Choose_language {
+    return Intl.message(
+      'Choose language',
+      name: 'Choose_language',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get password2 {
+    return Intl.message('Password', name: 'password2', desc: '', args: []);
+  }
+
+  /// `Password should be:`
+  String get password_instruction2 {
+    return Intl.message(
+      'Password should be:',
+      name: 'password_instruction2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `At least 6 characters`
+  String get password_length2 {
+    return Intl.message(
+      'At least 6 characters',
+      name: 'password_length2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `At least 1 uppercase letter (A-Z)`
+  String get password_uppercase {
+    return Intl.message(
+      'At least 1 uppercase letter (A-Z)',
+      name: 'password_uppercase',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `At least 1 lowercase letter (a-z)`
+  String get password_lowercase {
+    return Intl.message(
+      'At least 1 lowercase letter (a-z)',
+      name: 'password_lowercase',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `At least 1 number (0-9)`
+  String get password_number {
+    return Intl.message(
+      'At least 1 number (0-9)',
+      name: 'password_number',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `At least 1 special character (_!@#$%^&*)`
+  String get password_special {
+    return Intl.message(
+      'At least 1 special character (_!@#\$%^&*)',
+      name: 'password_special',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save`
+  String get save {
+    return Intl.message('Save', name: 'save', desc: '', args: []);
+  }
+
+  /// `Change password successfully`
+  String get change_password_successfully {
+    return Intl.message(
+      'Change password successfully',
+      name: 'change_password_successfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Don't forget your new password`
+  String get dont_forget_new_password {
+    return Intl.message(
+      'Don\'t forget your new password',
+      name: 'dont_forget_new_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Personal information`
+  String get personal_info {
+    return Intl.message(
+      'Personal information',
+      name: 'personal_info',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Gender`
+  String get gender {
+    return Intl.message('Gender', name: 'gender', desc: '', args: []);
+  }
+
+  /// `Male`
+  String get male {
+    return Intl.message('Male', name: 'male', desc: '', args: []);
+  }
+
+  /// `Female`
+  String get female {
+    return Intl.message('Female', name: 'female', desc: '', args: []);
+  }
+
+  /// `Name`
+  String get name {
+    return Intl.message('Name', name: 'name', desc: '', args: []);
+  }
+
+  /// `Save changes`
+  String get save_changes {
+    return Intl.message(
+      'Save changes',
+      name: 'save_changes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New Arrival🔥`
+  String get new_arrival {
+    return Intl.message(
+      'New Arrival🔥',
+      name: 'new_arrival',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Best Seller`
+  String get best_seller {
+    return Intl.message('Best Seller', name: 'best_seller', desc: '', args: []);
+  }
+
+  /// `Most Popular`
+  String get most_popular {
+    return Intl.message(
+      'Most Popular',
+      name: 'most_popular',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search`
+  String get search {
+    return Intl.message('Search', name: 'search', desc: '', args: []);
+  }
+
+  /// `Filter`
+  String get filter {
+    return Intl.message('Filter', name: 'filter', desc: '', args: []);
+  }
+
+  /// `See All`
+  String get see_all {
+    return Intl.message('See All', name: 'see_all', desc: '', args: []);
   }
 }
 

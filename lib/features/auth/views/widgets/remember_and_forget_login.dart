@@ -55,7 +55,7 @@ class _RememberAndForgetLoginState extends State<RememberAndForgetLogin> {
             Text(
               S.of(context).remember_me,
               style: FontHelper.fontText(
-                  size: 13.sp, weight: FontWeight.w600, color: Colors.black),
+                  size: 13.sp, weight: FontWeight.w600, color: Colors.black,context: context),
             ),
           ],
         ),
@@ -69,7 +69,7 @@ class _RememberAndForgetLoginState extends State<RememberAndForgetLogin> {
             style: FontHelper.fontText(
                 size: 13.sp,
                 weight: FontWeight.w700,
-                color: const Color.fromARGB(255, 44, 103, 223)),
+                color: const Color.fromARGB(255, 44, 103, 223),context: context),
           ),
         ),
       ],
