@@ -30,6 +30,7 @@ class _HomePageState extends State<HomePage>
     return DefaultTabController(
         length: 2,
         child: Scaffold(
+          backgroundColor: Colors.white,
           appBar: HomeAppBar(
             tabController: _tabController,
           ),

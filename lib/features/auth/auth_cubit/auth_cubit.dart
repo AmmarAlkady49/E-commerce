@@ -1,3 +1,6 @@
+import 'package:e_commerce_graduation/core/models/user_data.dart';
+import 'package:e_commerce_graduation/core/services/firestore_services.dart';
+import 'package:e_commerce_graduation/core/utils/api_pathes.dart';
 import 'package:e_commerce_graduation/features/auth/services/auth_services.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -10,14 +13,23 @@ class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthInitial());
 
   final AuthServices authServices = AuthServicesImpl();
+  final fireStoreServices = FirestoreServices.instance;
 
   // Create Account
-  Future<void> createAccount(String email, String password) async {
+  Future<void> createAccount({
+    required String email,
+    required String password,
+    required String fName,
+    required String lName,
+    required String phone,
+    required String birthDate,
+  }) async {
     emit(AuthLoading());
     try {
       final result =
           await authServices.registerWithEmailAndPassword(email, password);
       if (result) {
+        await _saveUserData(email, fName, lName, phone, birthDate);
         emit(CreatingAccoutSuccess());
       }
     } on FirebaseAuthException catch (e) {
@@ -30,7 +42,31 @@ class AuthCubit extends Cubit<AuthState> {
       }
     } catch (e) {
       debugPrint(e.toString());
+      emit(AuthError(e.toString()));
     }
+  }
+
+  // save user date
+  Future<void> _saveUserData(
+    String email,
+    String fName,
+    String lName,
+    String phone,
+    String birthDate,
+  ) async {
+    final currentUser = authServices.getCurrentUser();
+    final userData = UserData(
+        uid: currentUser!.uid,
+        email: email,
+        firstName: fName,
+        lasttName: lName,
+        birthDate: birthDate,
+        phoneNumber: phone,
+        createdAt: DateTime.now().toIso8601String());
+    await fireStoreServices.setData(
+      path: ApiPathes.users(userData.uid),
+      data: userData.toMap(),
+    );
   }
 
   // Login Account

@@ -93,261 +93,265 @@ class _ContainerOfTheCreateAcountState
       ),
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 18.0.h, horizontal: 12.0.w),
-        child: SingleChildScrollView(
-          child: Form(
-            key: formKey,
-            child: Column(
-              children: [
-                SizedBox(
+        child: Form(
+          key: formKey,
+          child: Column(
+            children: [
+              SizedBox(
+                width: size.width * 0.8,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    MyTextFormField(
+                      width: size.width * 0.395,
+                      hint: S.of(context).first_name,
+                      textInputType: TextInputType.name,
+                      controller: fNameController,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return S.of(context).empty_cell;
+                        }
+                        if (value.length < 3) {
+                          return S.of(context).invalid_name;
+                        }
+                        return null;
+                      },
+                      presentFocusNode: fNameFocusNode,
+                      nextFocusNode: lNameFocusNode,
+                    ),
+                    MyTextFormField(
+                      width: size.width * 0.395,
+                      hint: S.of(context).last_name,
+                      textInputType: TextInputType.name,
+                      controller: lNameController,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return S.of(context).empty_cell;
+                        }
+                        if (value.length < 3) {
+                          return S.of(context).invalid_name;
+                        }
+                        return null;
+                      },
+                      presentFocusNode: lNameFocusNode,
+                      nextFocusNode: emailFocusNode,
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 13.h),
+              MyTextFormField(
+                width: size.width * 0.8,
+                hint: S.of(context).email,
+                textInputType: TextInputType.emailAddress,
+                controller: emailController,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return S.of(context).empty_cell;
+                  }
+                  if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
+                    return S.of(context).invalid_email;
+                  }
+                  return null;
+                },
+                presentFocusNode: emailFocusNode,
+                nextFocusNode: birthOfDateFocusNode,
+              ),
+              SizedBox(height: 13.h),
+              MyTextFormField(
+                width: size.width * 0.8,
+                hint: S.of(context).birthday,
+                suffIcon: Iconsax.calendar_1,
+                controller: birthOfDateController,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return S.of(context).empty_cell;
+                  }
+                  return null;
+                },
+                presentFocusNode: birthOfDateFocusNode,
+                nextFocusNode: phoneFocusNode,
+                readOnly: true,
+                onTap: _selectDate,
+              ),
+              SizedBox(height: 13.h),
+              Directionality(
+                textDirection: TextDirection.ltr,
+                child: MyTextFormField(
                   width: size.width * 0.8,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  hint: S.of(context).phone,
+                  textInputType: TextInputType.phone,
+                  controller: phoneController,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return S.of(context).empty_cell;
+                    }
+                    if (value.length != 10) {
+                      return S.of(context).invalid_phone;
+                    }
+                    return null;
+                  },
+                  prefix: Row(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      MyTextFormField(
-                        width: size.width * 0.395,
-                        hint: S.of(context).first_name,
-                        textInputType: TextInputType.name,
-                        controller: fNameController,
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return S.of(context).empty_cell;
-                          }
-                          if (value.length < 3) {
-                            return S.of(context).invalid_name;
-                          }
-                          return null;
-                        },
-                        presentFocusNode: fNameFocusNode,
-                        nextFocusNode: lNameFocusNode,
+                      Text(
+                        '+20',
+                        style: TextStyle(
+                          fontSize: 15.sp,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.grey,
+                        ),
                       ),
-                      MyTextFormField(
-                        width: size.width * 0.395,
-                        hint: S.of(context).last_name,
-                        textInputType: TextInputType.name,
-                        controller: lNameController,
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return S.of(context).empty_cell;
-                          }
-                          if (value.length < 3) {
-                            return S.of(context).invalid_name;
-                          }
-                          return null;
-                        },
-                        presentFocusNode: lNameFocusNode,
-                        nextFocusNode: emailFocusNode,
+                      SizedBox(width: 7.w),
+                      Container(
+                        width: 1,
+                        height: 18.h,
+                        color: Colors.grey,
                       ),
                     ],
                   ),
+                  presentFocusNode: phoneFocusNode,
+                  nextFocusNode: passwordFocusNode,
                 ),
-                SizedBox(height: 13.h),
-                MyTextFormField(
-                  width: size.width * 0.8,
-                  hint: S.of(context).email,
-                  textInputType: TextInputType.emailAddress,
-                  controller: emailController,
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return S.of(context).empty_cell;
-                    }
-                    if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
-                      return S.of(context).invalid_email;
-                    }
-                    return null;
-                  },
-                  presentFocusNode: emailFocusNode,
-                  nextFocusNode: birthOfDateFocusNode,
-                ),
-                SizedBox(height: 13.h),
-                MyTextFormField(
-                  width: size.width * 0.8,
-                  hint: S.of(context).birthday,
-                  suffIcon: Iconsax.calendar_1,
-                  controller: birthOfDateController,
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return S.of(context).empty_cell;
-                    }
-                    return null;
-                  },
-                  presentFocusNode: birthOfDateFocusNode,
-                  nextFocusNode: phoneFocusNode,
-                  readOnly: true,
-                  onTap: _selectDate,
-                ),
-                SizedBox(height: 13.h),
-                Directionality(
-                  textDirection: TextDirection.ltr,
-                  child: MyTextFormField(
-                    width: size.width * 0.8,
-                    hint: S.of(context).phone,
-                    textInputType: TextInputType.phone,
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return S.of(context).empty_cell;
-                      }
-                      if (value.length != 10) {
-                        return S.of(context).invalid_phone;
-                      }
-                      return null;
-                    },
-                    prefix: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          '+20',
-                          style: TextStyle(
-                            fontSize: 15.sp,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.grey,
-                          ),
-                        ),
-                        SizedBox(width: 7.w),
-                        Container(
-                          width: 1,
-                          height: 18.h,
-                          color: Colors.grey,
-                        ),
-                      ],
-                    ),
-                    presentFocusNode: phoneFocusNode,
-                    nextFocusNode: passwordFocusNode,
-                  ),
-                ),
-                SizedBox(height: 13.h),
-                MyTextFormField(
-                  width: size.width * 0.8,
-                  hint: S.of(context).password,
-                  textInputType: TextInputType.visiblePassword,
-                  controller: passwordController,
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return S.of(context).empty_cell;
-                    }
-                    if (value.length < 5) {
-                      return S.of(context).password_length;
-                    }
-                    return null;
-                  },
-                  presentFocusNode: passwordFocusNode,
-                  nextFocusNode: confirmPasswordFocusNode,
-                ),
-                SizedBox(height: 13.h),
-                MyTextFormField(
-                  width: size.width * 0.8,
-                  hint: S.of(context).confirm_password,
-                  textInputType: TextInputType.visiblePassword,
-                  controller: confirmPasswordController,
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return S.of(context).empty_cell;
-                    }
-                    if (value.length < 5) {
-                      return S.of(context).password_length;
-                    }
-                    if (value != passwordController.text) {
-                      return S.of(context).password_not_match;
-                    }
-                    return null;
-                  },
-                  presentFocusNode: confirmPasswordFocusNode,
-                  nextFocusNode: null,
-                ),
-                SizedBox(height: 15.h),
-                BlocConsumer<AuthCubit, AuthState>(
-                  listenWhen: (previous, current) =>
-                      current is CreatingAccoutSuccess ||
-                      current is AuthError ||
-                      current is AuthErrorVerification,
-                  listener: (context, state) {
-                    if (state is CreatingAccoutSuccess) {
-                      // Navigator.pushNamedAndRemoveUntil(
-                      //     context, AppRoutes.login, (route) => false);
-                      AwesomeDialog(
-                        context: context,
-                        dialogType: DialogType.warning,
-                        animType: AnimType.bottomSlide,
-                        autoDismiss: true,
-                        headerAnimationLoop: false,
-                        // barrierDismissible: true,
-                        dismissOnBackKeyPress: true,
-                        title: S.of(context).verify_email,
-                        desc: S.of(context).desc_verify_email,
-                        titleTextStyle: FontHelper.fontText(
-                            size: 20.sp,
-                            weight: FontWeight.w600,
-                            color: Colors.black),
-                        descTextStyle: FontHelper.fontText(
+              ),
+              SizedBox(height: 13.h),
+              MyTextFormField(
+                width: size.width * 0.8,
+                hint: S.of(context).password,
+                textInputType: TextInputType.visiblePassword,
+                controller: passwordController,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return S.of(context).empty_cell;
+                  }
+                  if (value.length < 5) {
+                    return S.of(context).password_length;
+                  }
+                  return null;
+                },
+                presentFocusNode: passwordFocusNode,
+                nextFocusNode: confirmPasswordFocusNode,
+              ),
+              SizedBox(height: 13.h),
+              MyTextFormField(
+                width: size.width * 0.8,
+                hint: S.of(context).confirm_password,
+                textInputType: TextInputType.visiblePassword,
+                controller: confirmPasswordController,
+                textInputAction: TextInputAction.done,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return S.of(context).empty_cell;
+                  }
+                  if (value.length < 5) {
+                    return S.of(context).password_length;
+                  }
+                  if (value != passwordController.text) {
+                    return S.of(context).password_not_match;
+                  }
+                  return null;
+                },
+                presentFocusNode: confirmPasswordFocusNode,
+                nextFocusNode: null,
+              ),
+              SizedBox(height: 15.h),
+              BlocConsumer<AuthCubit, AuthState>(
+                listenWhen: (previous, current) =>
+                    current is CreatingAccoutSuccess ||
+                    current is AuthError ||
+                    current is AuthErrorVerification,
+                listener: (context, state) {
+                  if (state is CreatingAccoutSuccess) {
+                    // Navigator.pushNamedAndRemoveUntil(
+                    //     context, AppRoutes.login, (route) => false);
+                    AwesomeDialog(
+                      context: context,
+                      dialogType: DialogType.warning,
+                      animType: AnimType.bottomSlide,
+                      autoDismiss: true,
+                      headerAnimationLoop: false,
+                      // barrierDismissible: true,
+                      dismissOnBackKeyPress: true,
+                      title: S.of(context).verify_email,
+                      desc: S.of(context).desc_verify_email,
+                      titleTextStyle: FontHelper.fontText(
+                          size: 20.sp,
+                          weight: FontWeight.w600,
+                          color: Colors.black,context: context),
+                      descTextStyle: FontHelper.fontText(
+                          size: 15.sp,
+                          weight: FontWeight.w600,
+                          color: Colors.black,context: context),
+                      onDismissCallback: (type) {
+                        Navigator.pushNamedAndRemoveUntil(
+                            context, AppRoutes.login, (route) => false); // T
+                      },
+                      btnOkOnPress: () {
+                        debugPrint("OK button pressed"); // Debug print
+                        Navigator.pushNamedAndRemoveUntil(
+                            context,
+                            AppRoutes.login,
+                            (route) => false); // This should dismiss the dialog
+                      },
+                    ).show();
+                  } else if (state is AuthError) {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text(
+                        state.message,
+                        style: FontHelper.fontText(
                             size: 15.sp,
                             weight: FontWeight.w600,
-                            color: Colors.black),
-                        onDismissCallback: (type) {
-                          Navigator.pushNamedAndRemoveUntil(
-                              context, AppRoutes.login, (route) => false); // T
-                        },
-                        btnOkOnPress: () {
-                          debugPrint("OK button pressed"); // Debug print
-                          Navigator.pushNamedAndRemoveUntil(
-                              context,
-                              AppRoutes.login,
-                              (route) =>
-                                  false); // This should dismiss the dialog
-                        },
-                      ).show();
-                    } else if (state is AuthError) {
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text(
-                          state.message,
-                          style: FontHelper.fontText(
-                              size: 15.sp,
-                              weight: FontWeight.w600,
-                              color: Colors.white),
-                        ),
-                        backgroundColor: Colors.redAccent,
-                        behavior: SnackBarBehavior.floating,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(26),
-                        ),
-                      ));
-                    }
-                  },
-                  bloc: cubit,
-                  buildWhen: (previous, current) =>
-                      current is! AuthLoading ||
-                      current is AuthErrorVerification,
-                  builder: (context, state) {
-                    if (state is AuthLoading) {
-                      return MyButton1(
-                        buttonTitle: S.of(context).create_account,
-                        height: 42.h,
-                        width: size.width * 0.8,
-                        onTap: () {},
-                        isLoading: true,
-                      );
-                    }
+                            color: Colors.white,context: context),
+                      ),
+                      backgroundColor: Colors.redAccent,
+                      behavior: SnackBarBehavior.floating,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(26),
+                      ),
+                    ));
+                  }
+                },
+                bloc: cubit,
+                buildWhen: (previous, current) =>
+                    current is! AuthLoading || current is AuthErrorVerification,
+                builder: (context, state) {
+                  if (state is AuthLoading) {
                     return MyButton1(
                       buttonTitle: S.of(context).create_account,
                       height: 42.h,
                       width: size.width * 0.8,
-                      onTap: () async {
-                        if (formKey.currentState!.validate()) {
-                          await cubit.createAccount(
-                              emailController.text, passwordController.text);
-                          cubit.sendEmailVerification();
-                        }
-                      },
+                      onTap: () {},
+                      isLoading: true,
                     );
-                  },
-                ),
-                SizedBox(height: 13.h),
-                MyOrDevider(size: size.width * 0.02, text: S.of(context).or),
-                SizedBox(height: 13.h),
-                SizedBox(
-                  width: size.width * 0.8,
-                  child: MyButton2(),
-                )
-              ],
-            ),
+                  }
+                  return MyButton1(
+                    buttonTitle: S.of(context).create_account,
+                    height: 42.h,
+                    width: size.width * 0.8,
+                    onTap: () async {
+                      if (formKey.currentState!.validate()) {
+                        await cubit.createAccount(
+                          email: emailController.text,
+                          password: passwordController.text,
+                          fName: fNameController.text,
+                          lName: lNameController.text,
+                          phone: phoneController.text,
+                          birthDate: birthOfDateController.text,
+                        );
+                        cubit.sendEmailVerification();
+                      }
+                    },
+                  );
+                },
+              ),
+              SizedBox(height: 13.h),
+              MyOrDevider(size: size.width * 0.02, text: S.of(context).or),
+              SizedBox(height: 13.h),
+              SizedBox(
+                width: size.width * 0.8,
+                child: MyButton2(),
+              )
+            ],
           ),
         ),
       ),

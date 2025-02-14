@@ -54,7 +54,7 @@ class _MyTextFormFieldState extends State<MyTextFormField> {
             controller: widget.controller,
             keyboardType: widget.textInputType,
             focusNode: widget.presentFocusNode,
-            textInputAction: widget.textInputAction,
+            textInputAction: widget.textInputAction ?? TextInputAction.next,
             onFieldSubmitted: (value) {
               FocusScope.of(context).requestFocus(widget.nextFocusNode);
             },
@@ -66,7 +66,7 @@ class _MyTextFormFieldState extends State<MyTextFormField> {
                     color: Colors.black,
                   )
                 : FontHelper.fontText(
-                    size: 15.sp, weight: FontWeight.w500, color: Colors.black),
+                    size: 15.sp, weight: FontWeight.w500, color: Colors.black,context: context),
             obscureText: ((widget.hint == S.of(context).password ||
                     widget.hint == S.of(context).confirm_password)
                 ? true && ishidden
@@ -93,10 +93,10 @@ class _MyTextFormFieldState extends State<MyTextFormField> {
               errorStyle: FontHelper.fontText(
                   size: 12.sp,
                   weight: FontWeight.w500,
-                  color: Colors.red.shade800),
+                  color: Colors.red.shade800,context: context),
               hintText: widget.hint,
               hintStyle: FontHelper.fontText(
-                  size: 15.sp, weight: FontWeight.w500, color: Colors.grey),
+                  size: 15.sp, weight: FontWeight.w500, color: Colors.grey,context: context),
               prefixIcon: widget.prefix != null
                   ? Padding(
                       padding: EdgeInsets.only(left: 12.0.w, right: 8.0.w),

@@ -1,5 +1,6 @@
 import 'package:e_commerce_graduation/core/utils/routes/app_router.dart';
 import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
+import 'package:e_commerce_graduation/core/utils/app_constants.dart';
 import 'package:e_commerce_graduation/features/auth/auth_cubit/auth_cubit.dart';
 import 'package:e_commerce_graduation/firebase_options.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
@@ -57,7 +58,7 @@ class MyApp extends StatelessWidget {
                   current is AuthSuccess || current is AuthInitial,
               builder: (context, state) {
                 return MaterialApp(
-                  title: 'E-Commerce Graduation Project',
+                  title: AppConstants.appTitle,
                   debugShowCheckedModeBanner: false,
                   localizationsDelegates: [
                     S.delegate,

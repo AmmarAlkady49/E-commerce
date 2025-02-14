@@ -42,7 +42,7 @@ class MyButton1 extends StatelessWidget {
         child: Text(
           isLoading == true ? S.of(context).loading : buttonTitle,
           style: FontHelper.fontText(
-              size: 15.sp, weight: FontWeight.w700, color: Colors.white),
+              size: 15.sp, weight: FontWeight.w700, color: Colors.white,context: context),
         ),
       ),
     );
