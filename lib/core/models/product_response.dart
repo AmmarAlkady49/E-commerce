@@ -18,7 +18,7 @@ class ProductResponse {
     this.creationAt,
     this.updatedAt,
     this.category,
-    this.isFavorite
+    this.isFavorite = false,
   });
 
   Map<String, dynamic> toMap() {
@@ -40,16 +40,25 @@ class ProductResponse {
       title: map['title']?.toString(),
       description: map['description']?.toString(),
       price: map['price']?.toString(),
-      images: map['images'] != null
-          ? List<String>.from(
-              (map['images'] as List).map((item) => item.toString()))
-          : null,
+      images: map['images'] != null ? _parseImages(map['images']) : null,
       creationAt: map['creationAt']?.toString(),
       updatedAt: map['updatedAt']?.toString(),
       category: map['category'] != null
           ? Category.fromMap(map['category'] as Map<String, dynamic>)
           : null,
     );
+  }
+  static List<String> _parseImages(List<dynamic> images) {
+    List<String> parsedImages = [];
+    for (var item in images) {
+      if (item is String) {
+        String cleanedString =
+            item.replaceAll('[', '').replaceAll(']', '').replaceAll('"', '');
+        List<String> urls = cleanedString.split(',');
+        parsedImages.addAll(urls);
+      }
+    }
+    return parsedImages;
   }
 
   ProductResponse copyWith({

@@ -28,24 +28,43 @@ class HomeCubit extends Cubit<HomeState> {
 
   // Get All Products
   Future<void> getAllProducts() async {
-    // final currentUser = await homeServices.getUserData();
-    // final favoriteProducts =
-    // await favoriteServices.getFavorites(currentUser.uid);
+    final currentUser = await homeServices.getUserData();
+    final favoriteProducts =
+        await homeServices.getFavoriteProducts(currentUser.uid);
 
     emit(LoadingHomeProducts());
     try {
       final products = await homeServices.getAllProducts();
-      //
-      // final List<ProductResponse> finalProducts = products.map((product) {
-      //   final isFavorite = favoriteProducts.any(
-      //     (item) => item.id == product.id,
-      //   );
-      //   return product.copyWith(isFavorite: isFavorite);
-      // }).toList();
-      emit(LoadedHomeProducts(products));
+      final List<ProductResponse> finalProducts = products.map((product) {
+        final isFavorite = favoriteProducts.any(
+          (item) => item.id == product.id,
+        );
+        return product.copyWith(isFavorite: isFavorite);
+      }).toList();
+      emit(LoadedHomeProducts(finalProducts));
     } catch (e) {
       emit(ErrorHomeProducts(e.toString()));
       debugPrint(e.toString());
+    }
+  }
+
+  Future<void> setFavortie(ProductResponse product) async {
+    emit(SetFavoriteLoading(productId: product.id!));
+    try {
+      final currentUser = await homeServices.getUserData();
+      final favoriteProducts =
+          await homeServices.getFavoriteProducts(currentUser.uid);
+      final isFavorite = favoriteProducts.any(
+        (element) => element.id == product.id,
+      );
+      if (isFavorite) {
+        await homeServices.deleteFavoriteProduct(currentUser.uid, product.id!);
+      } else {
+        await homeServices.addFavoriteProduct(currentUser.uid, product);
+      }
+      emit(SetFavoriteSuccess(isFavorite: !isFavorite, productId: product.id!));
+    } catch (e) {
+      emit(SetFavoriteError(error: e.toString(), productId: product.id!));
     }
   }
 }

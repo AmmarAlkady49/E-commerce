@@ -26,7 +26,7 @@ class FavoritesCubit extends Cubit<FavoritesState> {
           productId: productItem.id!,
         ));
       } else {
-        _favoritesServices.addFavorite(user.uid, productItem);
+        // _favoritesServices.addFavorite(user.uid, productItem);
         emit(FavoriteItemLoaded(
           productId: productItem.id!,
         ));
