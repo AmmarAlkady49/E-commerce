@@ -56,7 +56,7 @@ class HomeTap extends StatelessWidget {
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisSpacing: 16.w,
                         mainAxisSpacing: 16.h,
-                        mainAxisExtent: 220.h,
+                        mainAxisExtent: 230.h,
                         crossAxisCount: 2,
                       ),
                       itemCount: state.products.length,

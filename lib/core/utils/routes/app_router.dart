@@ -6,6 +6,7 @@ import 'package:e_commerce_graduation/features/auth/views/pages/forget_password_
 import 'package:e_commerce_graduation/features/auth/views/pages/sign_in_page.dart';
 import 'package:e_commerce_graduation/core/models/product_response.dart';
 import 'package:e_commerce_graduation/features/home/views/pages/home_page.dart';
+import 'package:e_commerce_graduation/features/product_details/cubit/product_details_cubit.dart';
 import 'package:e_commerce_graduation/features/product_details/views/pages/product_details_page.dart';
 import 'package:e_commerce_graduation/features/profile/profile_cubit/cubit/profile_cubit.dart';
 import 'package:e_commerce_graduation/features/profile/views/pages/account_page.dart';
@@ -62,8 +63,13 @@ class AppRouter {
       case AppRoutes.productPage:
         final ProductResponse product = settings.arguments as ProductResponse;
         return MaterialPageRoute(
-            builder: (_) => ProductDetailsPage(
-                  product: product,
+            builder: (_) => BlocProvider(
+                  create: (context) {
+                    return ProductDetailsCubit();
+                  },
+                  child: ProductDetailsPage(
+                    product: product,
+                  ),
                 ));
 
       default:
