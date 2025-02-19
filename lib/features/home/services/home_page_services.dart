@@ -6,6 +6,7 @@ import 'package:e_commerce_graduation/core/utils/app_constants.dart';
 import 'package:e_commerce_graduation/features/home/model/parameter_request.dart';
 import 'package:e_commerce_graduation/core/models/product_response.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 
 abstract class HomePageServices {
   Future<UserData> getUserData();
@@ -40,10 +41,15 @@ class HomePageServicesImpl implements HomePageServices {
       final response = await aDio.get(
           "${AppConstants.baseUrl}${AppConstants.productsPath}",
           queryParameters: ParameterRequest().toMap());
+      debugPrint(response.data.toString());
       if (response.statusCode == 200) {
-        return (response.data as List)
+        return (response.data as List<dynamic>)
             .map((item) => ProductResponse.fromMap(item))
             .toList();
+
+        // return response.data
+        //     .map((item) => ProductResponse.fromMap(item))
+        //     .toList();
       } else {
         throw Exception('Failed to load products');
       }

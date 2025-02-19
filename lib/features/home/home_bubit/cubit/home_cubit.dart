@@ -19,6 +19,7 @@ class HomeCubit extends Cubit<HomeState> {
     try {
       final userData = await homeServices.getUserData();
       emit(HomeAppBarLoaded(userData));
+
       return userData;
     } catch (e) {
       emit(HomeAppBarError(e.toString()));
@@ -33,6 +34,8 @@ class HomeCubit extends Cubit<HomeState> {
         await homeServices.getFavoriteProducts(currentUser.uid);
 
     emit(LoadingHomeProducts());
+    debugPrint("===================Loading==================");
+
     try {
       final products = await homeServices.getAllProducts();
       final List<ProductResponse> finalProducts = products.map((product) {
@@ -42,8 +45,11 @@ class HomeCubit extends Cubit<HomeState> {
         return product.copyWith(isFavorite: isFavorite);
       }).toList();
       emit(LoadedHomeProducts(finalProducts));
+      debugPrint("===================Loaded==================");
     } catch (e) {
       emit(ErrorHomeProducts(e.toString()));
+      debugPrint("===================error==================");
+
       debugPrint(e.toString());
     }
   }

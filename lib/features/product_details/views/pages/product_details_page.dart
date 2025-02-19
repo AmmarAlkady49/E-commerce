@@ -1,4 +1,7 @@
 import 'package:e_commerce_graduation/core/models/product_response.dart';
+import 'package:e_commerce_graduation/features/product_details/views/widgets/body_of_product_details.dart';
+import 'package:e_commerce_graduation/features/product_details/views/widgets/bottom_of_the_product_details.dart';
+import 'package:e_commerce_graduation/features/product_details/views/widgets/custom_app_bar_product_details.dart';
 import 'package:flutter/material.dart';
 
 class ProductDetailsPage extends StatelessWidget {
@@ -8,21 +11,13 @@ class ProductDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xff1D61E7),
-        title: Text(product.category!.name!),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(product.category!.name!),
-            Text(product.creationAt!),
-            // Text(product.description!),
-            Text(product.id!),
+        backgroundColor: Colors.grey.shade400,
+        body: CustomScrollView(
+          slivers: [
+            CustomAppBarProductDetails(product: product),
+            BodyOfProductDetails(product: product),
           ],
         ),
-      ),
-    );
+        bottomNavigationBar: BottomOfTheProductDetails(product: product));
   }
 }

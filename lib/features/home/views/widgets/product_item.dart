@@ -44,25 +44,27 @@ class ProductItem extends StatelessWidget {
           children: [
             Column(
               children: [
-                SizedBox(
-                  height: 125.h,
-                  width: double.infinity,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(12.r),
-                      topRight: Radius.circular(12.r),
-                    ),
+                // SizedBox(height: 8.h),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SizedBox(
+                    height: 125.h,
+                    width: double.infinity,
                     child: CachedNetworkImage(
-                      imageUrl: product.images![0],
-                      fit: BoxFit.cover,
+                      imageUrl: (product.image != null &&
+                              product.image!.trim().isNotEmpty)
+                          ? product.image!
+                          : 'https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=',
+                      fit: BoxFit.contain,
                     ),
                   ),
                 ),
-                SizedBox(height: 8.h),
+                SizedBox(height: 2.h),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 8.w),
                   child: Text(
                     textAlign: TextAlign.center,
+                    textDirection: TextDirection.ltr,
                     product.title ?? 'Item not found',
                     style: FontHelper.fontText(
                         context: context,
@@ -73,9 +75,9 @@ class ProductItem extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
-                SizedBox(height: 2.h),
+                SizedBox(height: 0.h),
                 Text(
-                  product.category!.name ?? 'Othersss',
+                  product.category ?? 'other',
                   style: FontHelper.fontText(
                       context: context,
                       size: 14.sp,
@@ -113,7 +115,7 @@ class ProductItem extends StatelessWidget {
                       return state.isFavorite
                           ? Container(
                               decoration: BoxDecoration(
-                                color: Colors.white,
+                                color: Colors.black87,
                                 shape: BoxShape.circle,
                               ),
                               child: Padding(
@@ -131,7 +133,7 @@ class ProductItem extends StatelessWidget {
                             )
                           : Container(
                               decoration: BoxDecoration(
-                                color: Colors.white,
+                                color: Colors.black87,
                                 shape: BoxShape.circle,
                               ),
                               child: Padding(
@@ -142,7 +144,7 @@ class ProductItem extends StatelessWidget {
                                     },
                                     child: Icon(
                                       Icons.favorite_border_outlined,
-                                      color: Colors.black,
+                                      color: Colors.white,
                                       size: 20.sp,
                                     )),
                               ),
@@ -150,7 +152,7 @@ class ProductItem extends StatelessWidget {
                     }
                     return Container(
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Colors.black87,
                         shape: BoxShape.circle,
                       ),
                       child: Padding(
@@ -167,7 +169,7 @@ class ProductItem extends StatelessWidget {
                                   )
                                 : Icon(
                                     Icons.favorite_border_outlined,
-                                    color: Colors.black,
+                                    color: Colors.white,
                                     size: 20.sp,
                                   )),
                       ),
