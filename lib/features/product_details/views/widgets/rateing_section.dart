@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconsax/iconsax.dart';
 
 class RateingSection extends StatelessWidget {
-  final ProductResponse product;
+  final ProductItemModel product;
   const RateingSection({super.key, required this.product});
 
   @override
@@ -20,7 +20,7 @@ class RateingSection extends StatelessWidget {
               Text(
                 "(${product.rating!.count} reviews)",
                 style: FontHelper.fontText(
-                  size: 15.sp,
+                  size: 14.sp,
                   weight: FontWeight.w500,
                   color: Colors.black54,
                   context: context,
@@ -30,7 +30,7 @@ class RateingSection extends StatelessWidget {
               Text(
                 product.rating!.rate.toString(),
                 style: FontHelper.fontText(
-                  size: 17.sp,
+                  size: 16.sp,
                   weight: FontWeight.w800,
                   color: Colors.black,
                   context: context,
@@ -39,21 +39,21 @@ class RateingSection extends StatelessWidget {
               SizedBox(width: 6.w),
               Icon(
                 CupertinoIcons.star_fill,
-                color: Colors.yellow.shade700,
+                color: Colors.yellow.shade600,
                 size: 18.sp,
               ),
             ]
           : [
               Icon(
                 Iconsax.star1,
-                color: Colors.yellow.shade700,
+                color: Colors.yellow.shade600,
                 size: 18.sp,
               ),
               SizedBox(width: 6.w),
               Text(
                 product.rating!.rate.toString(),
                 style: FontHelper.fontText(
-                  size: 17.sp,
+                  size: 16.sp,
                   weight: FontWeight.w800,
                   color: Colors.black,
                   context: context,
@@ -63,7 +63,7 @@ class RateingSection extends StatelessWidget {
               Text(
                 "(${product.rating!.count} reviews)",
                 style: FontHelper.fontText(
-                  size: 15.sp,
+                  size: 14.sp,
                   weight: FontWeight.w500,
                   color: Colors.black54,
                   context: context,

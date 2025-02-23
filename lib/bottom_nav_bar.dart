@@ -61,11 +61,15 @@ class _BottomNavBarState extends State<BottomNavBar> {
                   ], child: screenOptions.elementAt(_selectedIndex))
                 : _selectedIndex == 2
                     ? BlocProvider(
-                        create: (context) => FavoritesCubit(),
+                        create: (context) {
+                          final cubit = FavoritesCubit();
+                          cubit.getFavoriteProducts();
+                          return cubit;
+                        },
                         child: screenOptions.elementAt(_selectedIndex))
                     : screenOptions.elementAt(_selectedIndex),
         bottomNavigationBar: Container(
-          height: 85.h,
+          height: 90.h,
           decoration: BoxDecoration(
             border: BorderDirectional(
                 top: BorderSide(color: Colors.black12, width: 1)),
@@ -73,18 +77,17 @@ class _BottomNavBarState extends State<BottomNavBar> {
             boxShadow: [
               BoxShadow(
                 blurRadius: 20,
-                color: Colors.black.withValues(alpha: .1),
+                color: Colors.black.withValues(alpha: 0.1),
               )
             ],
           ),
           child: SafeArea(
             child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 15.0),
               child: GNav(
                 textStyle: FontHelper.fontText(
                     size: 14.sp,
-                    weight: FontWeight.w500,
+                    weight: FontWeight.w700,
                     color: Colors.white,
                     context: context),
                 hoverColor: Colors.grey[100]!,

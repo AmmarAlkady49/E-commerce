@@ -6,14 +6,13 @@ import 'package:e_commerce_graduation/core/utils/app_constants.dart';
 import 'package:e_commerce_graduation/features/home/model/parameter_request.dart';
 import 'package:e_commerce_graduation/core/models/product_response.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 
 abstract class HomePageServices {
   Future<UserData> getUserData();
-  Future<List<ProductResponse>> getAllProducts();
-  Future<void> addFavoriteProduct(String userId, ProductResponse product);
+  Future<List<ProductItemModel>> getAllProducts();
+  Future<void> addFavoriteProduct(String userId, ProductItemModel product);
   Future<void> deleteFavoriteProduct(String userId, String productId);
-  Future<List<ProductResponse>> getFavoriteProducts(String userId);
+  Future<List<ProductItemModel>> getFavoriteProducts(String userId);
 }
 
 class HomePageServicesImpl implements HomePageServices {
@@ -36,20 +35,15 @@ class HomePageServicesImpl implements HomePageServices {
 
   // get all products
   @override
-  Future<List<ProductResponse>> getAllProducts() async {
+  Future<List<ProductItemModel>> getAllProducts() async {
     try {
       final response = await aDio.get(
           "${AppConstants.baseUrl}${AppConstants.productsPath}",
           queryParameters: ParameterRequest().toMap());
-      debugPrint(response.data.toString());
       if (response.statusCode == 200) {
         return (response.data as List<dynamic>)
-            .map((item) => ProductResponse.fromMap(item))
+            .map((item) => ProductItemModel.fromMap(item))
             .toList();
-
-        // return response.data
-        //     .map((item) => ProductResponse.fromMap(item))
-        //     .toList();
       } else {
         throw Exception('Failed to load products');
       }
@@ -60,7 +54,7 @@ class HomePageServicesImpl implements HomePageServices {
 
   @override
   Future<void> addFavoriteProduct(
-      String userId, ProductResponse product) async {
+      String userId, ProductItemModel product) async {
     await _firestoreServices.setData(
         path: ApiPathes.favoriteProduct(userId, product.id!),
         data: product.toMap());
@@ -73,10 +67,10 @@ class HomePageServicesImpl implements HomePageServices {
   }
 
   @override
-  Future<List<ProductResponse>> getFavoriteProducts(String userId) async {
-    return await _firestoreServices.getCollection<ProductResponse>(
+  Future<List<ProductItemModel>> getFavoriteProducts(String userId) async {
+    return await _firestoreServices.getCollection<ProductItemModel>(
       path: ApiPathes.favoriteProducts(userId),
-      builder: (data, documentId) => ProductResponse.fromMap(data),
+      builder: (data, documentId) => ProductItemModel.fromMap(data),
     );
   }
 }

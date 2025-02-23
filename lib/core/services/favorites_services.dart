@@ -4,8 +4,8 @@ import 'package:e_commerce_graduation/core/utils/api_pathes.dart';
 
 abstract class FavoritesServices {
   // Future<void> addFavorite(String userId, ProductResponse productId);
-  Future<void> removeFavorite(String userId, ProductResponse productId);
-  Future<List<ProductResponse>> getFavorites(String userId);
+  Future<void> removeFavorite(String userId, ProductItemModel productId);
+  Future<List<ProductItemModel>> getFavorites(String userId);
 }
 
 class FavoritesServicesImpl implements FavoritesServices {
@@ -18,16 +18,16 @@ class FavoritesServicesImpl implements FavoritesServices {
   // }
 
   @override
-  Future<void> removeFavorite(String userId, ProductResponse productId) {
+  Future<void> removeFavorite(String userId, ProductItemModel productId) {
     return _firestoreServices.deleteData(
         path: ApiPathes.favoriteProduct(userId, productId.id!));
   }
 
   @override
-  Future<List<ProductResponse>> getFavorites(String userId) async {
+  Future<List<ProductItemModel>> getFavorites(String userId) async {
     return await _firestoreServices.getCollection(
       path: ApiPathes.favoriteProducts(userId),
-      builder: (data, documentId) => ProductResponse.fromMap(data),
+      builder: (data, documentId) => ProductItemModel.fromMap(data),
     );
   }
 }

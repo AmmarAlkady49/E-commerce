@@ -30,6 +30,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "account_exists": MessageLookupByLibrary.simpleMessage(
       "The account already exists for that email.",
     ),
+    "add_to_card2": MessageLookupByLibrary.simpleMessage("Add to Cart"),
+    "add_to_cart": MessageLookupByLibrary.simpleMessage("Add to Cart"),
+    "added": MessageLookupByLibrary.simpleMessage("Added"),
+    "added_to_cart": MessageLookupByLibrary.simpleMessage("Added to Cart"),
     "already_have_an_account": MessageLookupByLibrary.simpleMessage(
       "Already have an account?",
     ),
@@ -49,6 +53,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Continue with Google",
     ),
     "create_account": MessageLookupByLibrary.simpleMessage("Create Account"),
+    "delete": MessageLookupByLibrary.simpleMessage("Delete"),
     "desc_verify_email": MessageLookupByLibrary.simpleMessage(
       "Please check your email to verify your account",
     ),
@@ -110,6 +115,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "most_popular": MessageLookupByLibrary.simpleMessage("Most Popular"),
     "name": MessageLookupByLibrary.simpleMessage("Name"),
     "new_arrival": MessageLookupByLibrary.simpleMessage("New Arrival🔥"),
+    "no_favorite_item": MessageLookupByLibrary.simpleMessage(
+      "No favorite item\'s found",
+    ),
     "notification": MessageLookupByLibrary.simpleMessage("Notification"),
     "or": MessageLookupByLibrary.simpleMessage("Or"),
     "or_login_with": MessageLookupByLibrary.simpleMessage("Or login with"),
@@ -146,6 +154,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Personal information",
     ),
     "phone": MessageLookupByLibrary.simpleMessage("Phone"),
+    "please_enter_a_search_term": MessageLookupByLibrary.simpleMessage(
+      "Please enter a search term",
+    ),
     "preferences": MessageLookupByLibrary.simpleMessage("Preferences"),
     "profile": MessageLookupByLibrary.simpleMessage("Profile"),
     "remember_me": MessageLookupByLibrary.simpleMessage("Remember me"),
@@ -153,8 +164,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "save": MessageLookupByLibrary.simpleMessage("Save"),
     "save_changes": MessageLookupByLibrary.simpleMessage("Save changes"),
     "search": MessageLookupByLibrary.simpleMessage("Search"),
+    "search_something": MessageLookupByLibrary.simpleMessage(
+      "Search something...",
+    ),
     "see_all": MessageLookupByLibrary.simpleMessage("See All"),
     "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+    "show_less": MessageLookupByLibrary.simpleMessage("Show Less"),
+    "show_more": MessageLookupByLibrary.simpleMessage("Show More"),
     "sign_in": MessageLookupByLibrary.simpleMessage("Sign in to your Account"),
     "sign_up": MessageLookupByLibrary.simpleMessage("Sign Up"),
     "sign_up2": MessageLookupByLibrary.simpleMessage("Sign Up"),
@@ -167,6 +183,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "weak_password": MessageLookupByLibrary.simpleMessage(
       "The password provided is too weak.",
+    ),
+    "you_can_add_items": MessageLookupByLibrary.simpleMessage(
+      "You can add items to your favorite list by clicking the heart icon",
     ),
     "your_email": MessageLookupByLibrary.simpleMessage("Your Email"),
   };

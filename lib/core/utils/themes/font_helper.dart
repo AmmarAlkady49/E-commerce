@@ -6,12 +6,16 @@ class FontHelper {
     required double size,
     required FontWeight weight,
     required Color color,
+    List<Shadow>? shadows,
     TextDecoration? decoration,
+    bool? isItalic,
   }) {
     return TextStyle(
       fontSize: size,
       fontWeight: weight,
       color: color,
+      shadows: shadows,
+      fontStyle: isItalic == true ? FontStyle.italic : null,
       fontFamily:
           Localizations.localeOf(context).languageCode == 'en' ? null : 'cairo',
       decoration: decoration,

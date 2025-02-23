@@ -30,6 +30,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "account_exists": MessageLookupByLibrary.simpleMessage(
       "الحساب موجود بالفعل",
     ),
+    "add_to_card2": MessageLookupByLibrary.simpleMessage("أضف للعربة"),
+    "add_to_cart": MessageLookupByLibrary.simpleMessage("اضافة الى العربة"),
+    "added": MessageLookupByLibrary.simpleMessage("تمت الإضافة"),
+    "added_to_cart": MessageLookupByLibrary.simpleMessage("تمت الإضافة للعربة"),
     "already_have_an_account": MessageLookupByLibrary.simpleMessage(
       "هل لديك حساب بالفعل؟",
     ),
@@ -53,6 +57,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "الاستمرار بواسطة جوجل",
     ),
     "create_account": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
+    "delete": MessageLookupByLibrary.simpleMessage("حذف"),
     "desc_verify_email": MessageLookupByLibrary.simpleMessage(
       "يرجى التحقق من بريدك الالكتروني للتحقق من حسابك",
     ),
@@ -118,6 +123,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "most_popular": MessageLookupByLibrary.simpleMessage("المنتجات الشائعة"),
     "name": MessageLookupByLibrary.simpleMessage("الاسم"),
     "new_arrival": MessageLookupByLibrary.simpleMessage("المنتجات الجديدة🔥"),
+    "no_favorite_item": MessageLookupByLibrary.simpleMessage(
+      "لا يوجد منتجات مفضلة",
+    ),
     "notification": MessageLookupByLibrary.simpleMessage("الاشعارات"),
     "or": MessageLookupByLibrary.simpleMessage("أو"),
     "or_login_with": MessageLookupByLibrary.simpleMessage("أو من خلال"),
@@ -152,6 +160,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "personal_info": MessageLookupByLibrary.simpleMessage("المعلومات الشخصية"),
     "phone": MessageLookupByLibrary.simpleMessage("الهاتف"),
+    "please_enter_a_search_term": MessageLookupByLibrary.simpleMessage(
+      "الرجاء ادخال كلمة بحث",
+    ),
     "preferences": MessageLookupByLibrary.simpleMessage("التفضيلات"),
     "profile": MessageLookupByLibrary.simpleMessage("الحساب"),
     "remember_me": MessageLookupByLibrary.simpleMessage("تذكرني"),
@@ -161,8 +172,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "save": MessageLookupByLibrary.simpleMessage("حفظ"),
     "save_changes": MessageLookupByLibrary.simpleMessage("حفظ التعديلات"),
     "search": MessageLookupByLibrary.simpleMessage("البحث"),
+    "search_something": MessageLookupByLibrary.simpleMessage("إبحث عن شيء ..."),
     "see_all": MessageLookupByLibrary.simpleMessage("اظهار الكل"),
     "settings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
+    "show_less": MessageLookupByLibrary.simpleMessage("اظهار أقل"),
+    "show_more": MessageLookupByLibrary.simpleMessage("اظهار المزيد"),
     "sign_in": MessageLookupByLibrary.simpleMessage("تسجيل الدخول للحساب"),
     "sign_up": MessageLookupByLibrary.simpleMessage("التسجيل"),
     "sign_up2": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
@@ -174,6 +188,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "تحقق من بريدك الالكتروني",
     ),
     "weak_password": MessageLookupByLibrary.simpleMessage("كلمة المرور ضعيفة"),
+    "you_can_add_items": MessageLookupByLibrary.simpleMessage(
+      "يمكنك اضافة المنتجات المفضلة من خلال الضغط على القلب",
+    ),
     "your_email": MessageLookupByLibrary.simpleMessage("بريدك الالكتروني"),
   };
 }

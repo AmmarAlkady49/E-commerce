@@ -38,7 +38,7 @@ class HomeCubit extends Cubit<HomeState> {
 
     try {
       final products = await homeServices.getAllProducts();
-      final List<ProductResponse> finalProducts = products.map((product) {
+      final List<ProductItemModel> finalProducts = products.map((product) {
         final isFavorite = favoriteProducts.any(
           (item) => item.id == product.id,
         );
@@ -54,7 +54,7 @@ class HomeCubit extends Cubit<HomeState> {
     }
   }
 
-  Future<void> setFavortie(ProductResponse product) async {
+  Future<void> setFavortie(ProductItemModel product) async {
     emit(SetFavoriteLoading(productId: product.id!));
     try {
       final currentUser = await homeServices.getUserData();

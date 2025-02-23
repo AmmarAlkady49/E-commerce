@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BodyOfProductDetails extends StatelessWidget {
-  final ProductResponse product;
+  final ProductItemModel product;
   const BodyOfProductDetails({super.key, required this.product});
 
   @override
@@ -15,20 +15,13 @@ class BodyOfProductDetails extends StatelessWidget {
     return SliverFillRemaining(
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Color(0xfffefffe),
+          // color: Colors.grey.shade300,
           borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(36.r), topRight: Radius.circular(36.r)),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withValues(alpha: 0.5),
-              spreadRadius: 1,
-              blurRadius: 5,
-              offset: const Offset(0, 3),
-            ),
-          ],
+              topLeft: Radius.circular(40.r), topRight: Radius.circular(40.r)),
         ),
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 24.h),
+          padding: EdgeInsets.symmetric(horizontal: 18.0.w, vertical: 24.h),
           child: SingleChildScrollView(
             physics: const NeverScrollableScrollPhysics(),
             child: Column(
@@ -36,10 +29,10 @@ class BodyOfProductDetails extends StatelessWidget {
               children: [
                 SizedBox(width: double.infinity),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     CounterPlusMinus(),
+                    Spacer(),
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.57.w,
                       child: Text(

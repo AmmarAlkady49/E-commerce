@@ -28,3 +28,36 @@ final class SetProductFavoriteLoading extends ProductDetailsState {
     required this.productId,
   });
 }
+
+final class ProductAddingToCart extends ProductDetailsState {}
+
+final class ProductAddedToCart extends ProductDetailsState {}
+
+final class ProductAddedToCartError extends ProductDetailsState {
+  final String message;
+  ProductAddedToCartError({
+    required this.message,
+  });
+}
+
+final class ProductDetailsQuantityChanged extends ProductDetailsState {
+  final int quantity;
+
+  ProductDetailsQuantityChanged({required this.quantity});
+}
+
+final class ProductDetailsLoading extends ProductDetailsState {}
+
+final class ProductDetailsLoaded extends ProductDetailsState {
+  final ProductItemModel product;
+  ProductDetailsLoaded({
+    required this.product,
+  });
+}
+
+final class ProductDetailsError extends ProductDetailsState {
+  final String message;
+  ProductDetailsError({
+    required this.message,
+  });
+}
