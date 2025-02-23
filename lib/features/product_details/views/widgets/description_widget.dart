@@ -1,4 +1,5 @@
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
+import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -34,11 +35,12 @@ class _DescriptionWidgetState extends State<DescriptionWidget> {
           overflow: isExpanded ? TextOverflow.visible : TextOverflow.ellipsis,
           style: FontHelper.fontText(
             size: 14.sp,
-            color: Colors.black45,
+            color: Color(0xff555555),
             context: context,
-            weight: FontWeight.w500,
+            weight: FontWeight.w600,
           ),
         ),
+        SizedBox(height: isExpanded ? 2.w : 0.w),
         InkWell(
           onTap: () => setState(() {
             isExpanded = !isExpanded;
@@ -54,7 +56,7 @@ class _DescriptionWidgetState extends State<DescriptionWidget> {
                 color: Color(0xff1D61E7),
               ),
               Text(
-                isExpanded ? "Show Less" : "Show More",
+                isExpanded ? S.of(context).show_less : S.of(context).show_more,
                 style: FontHelper.fontText(
                   size: 13.sp,
                   color: Color(0xff1D61E7),

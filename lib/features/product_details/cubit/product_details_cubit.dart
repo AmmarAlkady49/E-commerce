@@ -1,6 +1,8 @@
+import 'package:e_commerce_graduation/core/models/add_to_cart_model.dart';
 import 'package:e_commerce_graduation/core/models/product_response.dart';
 import 'package:e_commerce_graduation/features/auth/services/auth_services.dart';
 import 'package:e_commerce_graduation/features/product_details/services/product_details_services.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'product_details_state.dart';
@@ -12,7 +14,8 @@ class ProductDetailsCubit extends Cubit<ProductDetailsState> {
       ProductDetailsServicesImpl();
   final AuthServices authServices = AuthServicesImpl();
 
-  Future<void> setProductFavorite(ProductResponse product) async {
+  int quantity = 1;
+  Future<void> setProductFavorite(ProductItemModel product) async {
     emit(SetProductFavoriteLoading(productId: product.id!));
     try {
       final currentUser = authServices.getCurrentUser();
@@ -35,6 +38,51 @@ class ProductDetailsCubit extends Cubit<ProductDetailsState> {
         message: e.toString(),
         productId: product.id!,
       ));
+    }
+  }
+
+  // Add To cart Items
+  Future<void> addToCart(ProductItemModel product) async {
+    emit(ProductAddingToCart());
+    final currentUser = authServices.getCurrentUser();
+    try {
+      final cartItem = AddToCartModel(
+          id: DateTime.now().toIso8601String(),
+          quantity: quantity,
+          userPrice: product.price! * quantity,
+          product: product);
+      await _productDetailsServices.addToCart(currentUser!.uid, cartItem);
+      emit(ProductAddedToCart());
+    } catch (e) {
+      emit(ProductAddedToCartError(message: e.toString()));
+    }
+  }
+
+  void increaseQuantity() {
+    if (quantity < 10) {
+      quantity++;
+    }
+    emit(ProductDetailsQuantityChanged(quantity: quantity));
+  }
+
+  void decreaseQuantity() {
+    if (quantity > 1) {
+      quantity--;
+      emit(ProductDetailsQuantityChanged(quantity: quantity));
+    }
+  }
+
+  // Get Product Details
+  Future<void> getProductDetails(String productId) async {
+    emit(ProductDetailsLoading());
+    try {
+      final product =
+          await _productDetailsServices.getProductDetails(productId);
+      debugPrint(
+          'ProductDetailsCubit getProductDetails product===============: ${product.price}');
+      emit(ProductDetailsLoaded(product: product));
+    } catch (e) {
+      emit(ProductDetailsError(message: e.toString()));
     }
   }
 }

@@ -61,15 +61,17 @@ class AppRouter {
                   child: const AccountPage(),
                 ));
       case AppRoutes.productPage:
-        final ProductResponse product = settings.arguments as ProductResponse;
+        final ProductItemModel product = settings.arguments as ProductItemModel;
         return MaterialPageRoute(
             builder: (_) => BlocProvider(
                   create: (context) {
-                    return ProductDetailsCubit();
+                    final cubit = ProductDetailsCubit();
+                    cubit.getProductDetails(product.id!);
+                    return cubit;
                   },
                   child: ProductDetailsPage(
-                    product: product,
-                  ),
+                      // product: product,
+                      ),
                 ));
 
       default:

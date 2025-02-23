@@ -1,3 +1,4 @@
+import 'package:e_commerce_graduation/core/utils/themes/app_bar_default_theme.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
 import 'package:e_commerce_graduation/features/profile/profile_cubit/cubit/profile_cubit.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
@@ -12,30 +13,7 @@ class AccountPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final profileCubit = BlocProvider.of<ProfileCubit>(context);
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xff1D61E7),
-        elevation: 4.0,
-        shadowColor: Colors.black,
-        toolbarHeight: 55.h,
-        centerTitle: true,
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back_ios_new_rounded,
-            color: Colors.white,
-          ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        title: Text(
-          S.of(context).personal_info,
-          style: FontHelper.fontText(
-              size: 19.sp,
-              weight: FontWeight.w800,
-              color: Colors.white,
-              context: context),
-        ),
-      ),
+      appBar: AppBarDefaultTheme(title: S.of(context).personal_info),
       body: BlocBuilder<ProfileCubit, ProfileState>(
         bloc: profileCubit,
         buildWhen: (previous, current) =>

@@ -9,7 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProductItem extends StatelessWidget {
-  final ProductResponse product;
+  final ProductItemModel product;
   const ProductItem({
     super.key,
     required this.product,
@@ -115,17 +115,18 @@ class ProductItem extends StatelessWidget {
                       return state.isFavorite
                           ? Container(
                               decoration: BoxDecoration(
-                                color: Colors.black87,
+                                color: Colors.white,
                                 shape: BoxShape.circle,
+                                border: Border.all(color: Colors.black26),
                               ),
                               child: Padding(
-                                padding: const EdgeInsets.all(5.0),
+                                padding: const EdgeInsets.all(3.0),
                                 child: InkWell(
                                     onTap: () async {
                                       await homeCubit.setFavortie(product);
                                     },
                                     child: Icon(
-                                      Icons.favorite,
+                                      CupertinoIcons.heart_fill,
                                       color: Colors.red.shade600,
                                       size: 20.sp,
                                     )),
@@ -133,18 +134,19 @@ class ProductItem extends StatelessWidget {
                             )
                           : Container(
                               decoration: BoxDecoration(
-                                color: Colors.black87,
+                                color: Colors.white,
                                 shape: BoxShape.circle,
+                                border: Border.all(color: Colors.black26),
                               ),
                               child: Padding(
-                                padding: const EdgeInsets.all(5.0),
+                                padding: const EdgeInsets.all(3.0),
                                 child: InkWell(
                                     onTap: () async {
                                       await homeCubit.setFavortie(product);
                                     },
                                     child: Icon(
-                                      Icons.favorite_border_outlined,
-                                      color: Colors.white,
+                                      CupertinoIcons.heart,
+                                      color: Colors.black87,
                                       size: 20.sp,
                                     )),
                               ),
@@ -152,11 +154,12 @@ class ProductItem extends StatelessWidget {
                     }
                     return Container(
                       decoration: BoxDecoration(
-                        color: Colors.black87,
+                        color: Colors.white,
                         shape: BoxShape.circle,
+                        border: Border.all(color: Colors.black26),
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.all(5.0),
+                        padding: const EdgeInsets.all(3.0),
                         child: InkWell(
                             onTap: () async {
                               await homeCubit.setFavortie(product);
@@ -168,8 +171,8 @@ class ProductItem extends StatelessWidget {
                                     size: 20.sp,
                                   )
                                 : Icon(
-                                    Icons.favorite_border_outlined,
-                                    color: Colors.white,
+                                    CupertinoIcons.heart,
+                                    color: Colors.black87,
                                     size: 20.sp,
                                   )),
                       ),

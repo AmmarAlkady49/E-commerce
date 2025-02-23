@@ -8,7 +8,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomAppBarProductDetails extends StatelessWidget {
-  final ProductResponse product;
+  final ProductItemModel product;
+  
   const CustomAppBarProductDetails({super.key, required this.product});
 
   @override
@@ -16,23 +17,26 @@ class CustomAppBarProductDetails extends StatelessWidget {
     final productDetailsCubit = BlocProvider.of<ProductDetailsCubit>(context);
     return SliverAppBar(
       expandedHeight: 300.h,
-      collapsedHeight: 50.h,
+      collapsedHeight: 55.h,
       pinned: true,
-      leading: IconButton(
-        onPressed: () => Navigator.pushNamedAndRemoveUntil(
-            context, AppRoutes.bottomNavBar, (route) => false),
-        style: ButtonStyle(
-          backgroundColor: WidgetStateProperty.all(Colors.white),
-        ),
-        icon: Icon(
-          Icons.chevron_left_rounded,
-          size: 30.r,
-          color: Colors.black,
+      leadingWidth: 80.w,
+      leading: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16.w),
+        child: InkWell(
+          onTap: () => Navigator.pushNamedAndRemoveUntil(
+              context, AppRoutes.bottomNavBar, (route) => false),
+          borderRadius: BorderRadius.circular(100.r),
+          child: Container(
+            decoration:
+                BoxDecoration(color: Colors.white, shape: BoxShape.circle),
+            child: Icon(Icons.chevron_left_rounded,
+                size: 30.r, color: Colors.black),
+          ),
         ),
       ),
       actions: [
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 8.w),
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 0.h),
           child: BlocBuilder<ProductDetailsCubit, ProductDetailsState>(
             bloc: productDetailsCubit,
             buildWhen: (previous, current) =>
@@ -44,11 +48,14 @@ class CustomAppBarProductDetails extends StatelessWidget {
                     current.productId == product.id),
             builder: (context, state) {
               return IconButton(
+                  padding: EdgeInsets.all(10.r),
                   onPressed: () {
                     productDetailsCubit.setProductFavorite(product);
                   },
                   style: ButtonStyle(
-                    backgroundColor: WidgetStateProperty.all(Colors.white),
+                    backgroundColor: WidgetStateProperty.all(
+                        // Color.fromARGB(222, 222, 222, 222)),
+                        Colors.white),
                   ),
                   icon: state is SetProductFavoriteLoading
                       ? CupertinoActivityIndicator()
@@ -87,19 +94,16 @@ class CustomAppBarProductDetails extends StatelessWidget {
           ),
         ),
       ],
-      // backgroundColor: Colors.white,
-      backgroundColor: Colors.grey.shade400,
+      // backgroundColor: Colors.amber,
+      // backgroundColor: Color(0xFFFDFEFF),
+      backgroundColor: Colors.grey.shade200,
       flexibleSpace: FlexibleSpaceBar(
         background: Padding(
-          padding: EdgeInsets.only(top: 8.h),
-          child: Padding(
-            padding: EdgeInsets.only(
-                left: 8.0.w, right: 8.0.w, top: 8.h, bottom: 8.h),
-            child: CachedNetworkImage(
-              imageUrl: product.image ??
-                  "https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=",
-              fit: BoxFit.contain,
-            ),
+          padding: EdgeInsets.only(top: 36.h, bottom: 8.h),
+          child: CachedNetworkImage(
+            imageUrl: product.image ??
+                "https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=",
+            fit: BoxFit.contain,
           ),
         ),
       ),

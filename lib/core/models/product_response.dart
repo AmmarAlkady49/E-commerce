@@ -1,14 +1,14 @@
-class ProductResponse {
+class ProductItemModel {
   final String? id;
   final String? title;
   final String? description;
-  final String? price;
+  final double? price;
   final String? image;
   final String? category;
   final Rating? rating;
   final bool? isFavorite;
 
-  ProductResponse(
+  ProductItemModel(
       {this.id,
       this.title,
       this.description,
@@ -18,17 +18,17 @@ class ProductResponse {
       this.rating,
       this.isFavorite = false});
 
-  ProductResponse copyWith({
+  ProductItemModel copyWith({
     String? id,
     String? title,
     String? description,
-    String? price,
+    double? price,
     String? image,
     String? category,
     Rating? rating,
     bool? isFavorite,
   }) {
-    return ProductResponse(
+    return ProductItemModel(
       id: id ?? this.id,
       title: title ?? this.title,
       description: description ?? this.description,
@@ -52,13 +52,15 @@ class ProductResponse {
     };
   }
 
-  factory ProductResponse.fromMap(Map<String, dynamic> map) {
-    return ProductResponse(
+  factory ProductItemModel.fromMap(Map<String, dynamic> map) {
+    return ProductItemModel(
       id: map['id'].toString(),
       title: map['title'] != null ? map['title'] as String : null,
       description:
           map['description'] != null ? map['description'] as String : null,
-      price: map['price']?.toString(),
+      price: map['price'] is num
+          ? (map['price'] as num).toDouble()
+          : double.tryParse(map['price'].toString()),
       image: map['image'] != null ? map['image'] as String : null,
       category: map['category'] != null ? map['category'] as String : null,
       rating: map['rating'] != null ? Rating.fromMap(map['rating']) : null,

@@ -83,5 +83,16 @@
     "most_popular": "المنتجات الشائعة",
     "search": "البحث",
     "filter": "تصفية",
-    "see_all": "اظهار الكل"
+    "see_all": "اظهار الكل",
+    "add_to_cart": "اضافة الى العربة",
+    "added_to_cart": "تمت الإضافة للعربة",
+    "show_more": "اظهار المزيد",
+    "show_less": "اظهار أقل",
+    "no_favorite_item": "لا يوجد منتجات مفضلة",
+    "you_can_add_items": "يمكنك اضافة المنتجات المفضلة من خلال الضغط على القلب",
+    "add_to_card2": "أضف للعربة",
+    "delete": "حذف",
+    "added": "تمت الإضافة",
+    "search_something": "إبحث عن شيء ...",
+    "please_enter_a_search_term": "الرجاء ادخال كلمة بحث"
 }

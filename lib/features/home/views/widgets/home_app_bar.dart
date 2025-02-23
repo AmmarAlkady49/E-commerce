@@ -2,6 +2,7 @@ import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
 import 'package:e_commerce_graduation/features/home/home_bubit/cubit/home_cubit.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -68,11 +69,13 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                                   baseColor: Colors.grey[300]!,
                                   highlightColor: Colors.grey[100]!,
                                   child: Container(
-                                      width: 80.w,
-                                      height: 15.h,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                      )),
+                                    width: 80.w,
+                                    height: 15.h,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Colors.grey,
+                                    ),
+                                  ),
                                 )
                               : state is HomeAppBarLoaded
                                   ? Text(
@@ -97,9 +100,8 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                       const Spacer(),
                       IconButton(
                         onPressed: () {},
-                        icon: Icon(
-                          Iconsax.search_normal_1,
-                        ),
+                        icon: Icon(Iconsax.search_normal_1,
+                            color: Colors.black, size: 24.sp),
                       ),
                       IconButton(
                         onPressed: () {},

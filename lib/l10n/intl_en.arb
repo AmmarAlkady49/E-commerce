@@ -83,5 +83,16 @@
     "most_popular": "Most Popular",
     "search": "Search",
     "filter": "Filter",
-    "see_all": "See All"
+    "see_all": "See All",
+    "add_to_cart": "Add to Cart",
+    "added_to_cart": "Added to Cart",
+    "show_more": "Show More",
+    "show_less": "Show Less",
+    "no_favorite_item": "No favorite item's found",
+    "you_can_add_items": "You can add items to your favorite list by clicking the heart icon",
+    "add_to_card2": "Add to Cart",
+    "delete": "Delete",
+    "added" : "Added",
+    "search_something": "Search something...",
+    "please_enter_a_search_term": "Please enter a search term"
 }

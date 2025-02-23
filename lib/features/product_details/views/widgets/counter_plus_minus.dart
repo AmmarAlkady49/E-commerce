@@ -1,6 +1,8 @@
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
+import 'package:e_commerce_graduation/features/product_details/cubit/product_details_cubit.dart';
 import 'package:e_commerce_graduation/features/product_details/views/widgets/button_plus_minus.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CounterPlusMinus extends StatefulWidget {
@@ -11,9 +13,11 @@ class CounterPlusMinus extends StatefulWidget {
 }
 
 class _CounterPlusMinusState extends State<CounterPlusMinus> {
-  int count = 1;
+  // int count = 1;
   @override
   Widget build(BuildContext context) {
+    final productDetailsCubit = BlocProvider.of<ProductDetailsCubit>(context);
+
     return SizedBox(
       height: 36.h,
       width: 95.w,
@@ -30,42 +34,53 @@ class _CounterPlusMinusState extends State<CounterPlusMinus> {
             ),
           ],
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ButtonPlusMinus(
-              onTap: () {
-                setState(() {
-                  if (count < 10) {
-                    count++;
-                  }
-                });
-              },
-              isMax: count == 10 ? true : false,
-              icon: Icons.add,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Text(
-                count.toString(),
-                style: FontHelper.fontText(
-                  size: 19.sp,
-                  weight: FontWeight.w700,
-                  color: Colors.black,
-                  context: context,
+        child: BlocBuilder<ProductDetailsCubit, ProductDetailsState>(
+          bloc: productDetailsCubit,
+          buildWhen: (previous, current) =>
+              current is ProductDetailsQuantityChanged,
+          builder: (context, state) {
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ButtonPlusMinus(
+                  onTap: () {
+                    productDetailsCubit.increaseQuantity();
+                  },
+                  isMax: state is ProductDetailsQuantityChanged
+                      ? state.quantity == 10
+                          ? true
+                          : false
+                      : false,
+                  icon: Icons.add,
                 ),
-              ),
-            ),
-            ButtonPlusMinus(
-              onTap: () {
-                setState(() {
-                  if (count > 1) count--;
-                });
-              },
-              isMax: count == 1 ? true : false,
-              icon: Icons.remove,
-            ),
-          ],
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Text(
+                    state is ProductDetailsQuantityChanged
+                        ? state.quantity.toString()
+                        : "1",
+                    style: FontHelper.fontText(
+                      size: 19.sp,
+                      weight: FontWeight.w700,
+                      color: Colors.black,
+                      context: context,
+                    ),
+                  ),
+                ),
+                ButtonPlusMinus(
+                  onTap: () {
+                    productDetailsCubit.decreaseQuantity();
+                  },
+                  isMax: state is ProductDetailsQuantityChanged
+                      ? state.quantity == 1
+                          ? true
+                          : false
+                      : true,
+                  icon: Icons.remove,
+                ),
+              ],
+            );
+          },
         ),
       ),
     );

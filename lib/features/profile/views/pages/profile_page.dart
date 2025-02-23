@@ -1,4 +1,5 @@
 import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
+import 'package:e_commerce_graduation/core/utils/themes/app_bar_default_theme.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
 import 'package:e_commerce_graduation/features/profile/profile_cubit/cubit/profile_cubit.dart';
 import 'package:e_commerce_graduation/features/profile/views/widgets/log_out_button.dart';
@@ -16,18 +17,9 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final profileCubit = BlocProvider.of<ProfileCubit>(context);
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        forceMaterialTransparency: false,
-        backgroundColor: Colors.white,
-        shape: Border.all(color: Colors.black12, width: 1.5.h),
-        automaticallyImplyLeading: false,
-        title: Text(S.of(context).settings,
-            style: FontHelper.fontText(
-                size: 20.sp,
-                weight: FontWeight.w700,
-                color: Colors.black,
-                context: context)),
+      appBar: AppBarDefaultTheme(
+        title: S.of(context).settings,
+        needLeadingButton: false,
       ),
       body: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 18.0.h),

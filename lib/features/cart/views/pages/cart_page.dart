@@ -1,3 +1,5 @@
+import 'package:e_commerce_graduation/core/utils/themes/app_bar_default_theme.dart';
+import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class CartPage extends StatelessWidget {
@@ -6,8 +8,12 @@ class CartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBarDefaultTheme(
+          title: S.of(context).cart,
+          needLeadingButton: false,
+        ),
         body: Center(
-      child: Text('Cart Page'),
-    ));
+          child: Text('Cart Page'),
+        ));
   }
 }

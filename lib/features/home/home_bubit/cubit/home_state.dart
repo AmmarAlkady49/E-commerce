@@ -21,7 +21,7 @@ final class HomeAppBarError extends HomeState {
 final class LoadingHomeProducts extends HomeState {}
 
 final class LoadedHomeProducts extends HomeState {
-  final List<ProductResponse> products;
+  final List<ProductItemModel> products;
 
   LoadedHomeProducts(this.products);
 }

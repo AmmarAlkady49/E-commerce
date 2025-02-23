@@ -714,6 +714,91 @@ class S {
   String get see_all {
     return Intl.message('See All', name: 'see_all', desc: '', args: []);
   }
+
+  /// `Add to Cart`
+  String get add_to_cart {
+    return Intl.message('Add to Cart', name: 'add_to_cart', desc: '', args: []);
+  }
+
+  /// `Added to Cart`
+  String get added_to_cart {
+    return Intl.message(
+      'Added to Cart',
+      name: 'added_to_cart',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Show More`
+  String get show_more {
+    return Intl.message('Show More', name: 'show_more', desc: '', args: []);
+  }
+
+  /// `Show Less`
+  String get show_less {
+    return Intl.message('Show Less', name: 'show_less', desc: '', args: []);
+  }
+
+  /// `No favorite item's found`
+  String get no_favorite_item {
+    return Intl.message(
+      'No favorite item\'s found',
+      name: 'no_favorite_item',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You can add items to your favorite list by clicking the heart icon`
+  String get you_can_add_items {
+    return Intl.message(
+      'You can add items to your favorite list by clicking the heart icon',
+      name: 'you_can_add_items',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add to Cart`
+  String get add_to_card2 {
+    return Intl.message(
+      'Add to Cart',
+      name: 'add_to_card2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete`
+  String get delete {
+    return Intl.message('Delete', name: 'delete', desc: '', args: []);
+  }
+
+  /// `Added`
+  String get added {
+    return Intl.message('Added', name: 'added', desc: '', args: []);
+  }
+
+  /// `Search something...`
+  String get search_something {
+    return Intl.message(
+      'Search something...',
+      name: 'search_something',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a search term`
+  String get please_enter_a_search_term {
+    return Intl.message(
+      'Please enter a search term',
+      name: 'please_enter_a_search_term',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
