@@ -94,5 +94,12 @@
     "delete": "حذف",
     "added": "تمت الإضافة",
     "search_something": "إبحث عن شيء ...",
-    "please_enter_a_search_term": "الرجاء ادخال كلمة بحث"
+    "please_enter_a_search_term": "الرجاء ادخال كلمة بحث",
+    "delete_all": "حذف الكل",
+    "confirm_deletion": "تأكيد الحذف",
+    "are_you_sure": "هل انت متاكد من حذف كل المنتجات المفضلة؟",
+    "are_you_sure2": "هل انت متاكد من حذف كل المنتجات من العربة؟",
+    "cancel": "الغاء",
+    "your_cart_is_empty": "عربة التسوق فارغة",
+    "looks_like_you_havent_added": "يبدو انك لم تقم بإضافة اي منتجات بعد"
 }

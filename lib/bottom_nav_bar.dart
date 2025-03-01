@@ -1,4 +1,5 @@
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
+import 'package:e_commerce_graduation/features/cart/cubit/cart_cubit.dart';
 import 'package:e_commerce_graduation/features/cart/views/pages/cart_page.dart';
 import 'package:e_commerce_graduation/features/favorites/cubit/favorites_cubit.dart';
 import 'package:e_commerce_graduation/features/favorites/views/pages/favorites_page.dart';
@@ -67,7 +68,15 @@ class _BottomNavBarState extends State<BottomNavBar> {
                           return cubit;
                         },
                         child: screenOptions.elementAt(_selectedIndex))
-                    : screenOptions.elementAt(_selectedIndex),
+                    : _selectedIndex == 1
+                        ? BlocProvider(
+                            create: (context) {
+                              final cubit = CartCubit();
+                              cubit.getCartItems();
+                              return cubit;
+                            },
+                            child: screenOptions.elementAt(_selectedIndex))
+                        : screenOptions.elementAt(_selectedIndex),
         bottomNavigationBar: Container(
           height: 90.h,
           decoration: BoxDecoration(

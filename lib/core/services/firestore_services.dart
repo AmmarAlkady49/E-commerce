@@ -18,6 +18,14 @@ class FirestoreServices {
     await reference.set(data);
   }
 
+  Future<void> deleteCollection({required String path}) async {
+    final reference = firestore.collection(path);
+    final snapshots = await reference.get();
+    for (var doc in snapshots.docs) {
+      await doc.reference.delete();
+    }
+  }
+
   Future<void> deleteData({required String path}) async { 
     final reference = firestore.doc(path);
     debugPrint('delete: $path');

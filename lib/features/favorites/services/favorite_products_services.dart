@@ -8,6 +8,7 @@ abstract class FavoriteProductsServices {
   Future<void> addFavoriteProduct(String userId, ProductItemModel product);
   Future<void> removeFavoriteProduct(String userId, ProductItemModel product);
   Future<void> addToProduct(String userId, AddToCartModel product);
+  Future<void> removeAllProducts(String userId);
 }
 
 class FavoriteProductsServicesImpl implements FavoriteProductsServices {
@@ -38,5 +39,11 @@ class FavoriteProductsServicesImpl implements FavoriteProductsServices {
   Future<void> addToProduct(String userId, AddToCartModel product) async {
     await _firestoreServices.setData(
         path: ApiPathes.cartItem(userId, product.id), data: product.toMap());
+  }
+
+  @override
+  Future<void> removeAllProducts(String userId) async {
+    await _firestoreServices.deleteCollection(
+        path: ApiPathes.favoriteProducts(userId));
   }
 }

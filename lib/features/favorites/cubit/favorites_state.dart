@@ -25,6 +25,8 @@ final class SetFavoriteItemError extends FavoritesState {
 
 final class FavoriteProductsLoading extends FavoritesState {}
 
+final class UpdateFavoritePage extends FavoritesState {}
+
 final class FavoriteProductsLoaded extends FavoritesState {
   final List<ProductItemModel> favoriteProducts;
 

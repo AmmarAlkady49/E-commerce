@@ -6,8 +6,9 @@ class AppBarDefaultTheme extends StatelessWidget
     implements PreferredSizeWidget {
   final String title;
   final bool? needLeadingButton;
+  final List<Widget>? actions;
   const AppBarDefaultTheme(
-      {super.key, required this.title, this.needLeadingButton = true});
+      {super.key, required this.title, this.needLeadingButton = true, this.actions});
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +38,7 @@ class AppBarDefaultTheme extends StatelessWidget
             color: Colors.white,
             context: context),
       ),
+      actions: actions,
     );
   }
 

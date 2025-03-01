@@ -799,6 +799,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Delete All`
+  String get delete_all {
+    return Intl.message('Delete All', name: 'delete_all', desc: '', args: []);
+  }
+
+  /// `Confirm Deletion`
+  String get confirm_deletion {
+    return Intl.message(
+      'Confirm Deletion',
+      name: 'confirm_deletion',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to delete all Favorite products?`
+  String get are_you_sure {
+    return Intl.message(
+      'Are you sure you want to delete all Favorite products?',
+      name: 'are_you_sure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to delete all cart Items?`
+  String get are_you_sure2 {
+    return Intl.message(
+      'Are you sure you want to delete all cart Items?',
+      name: 'are_you_sure2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message('Cancel', name: 'cancel', desc: '', args: []);
+  }
+
+  /// `Your cart is Empty`
+  String get your_cart_is_empty {
+    return Intl.message(
+      'Your cart is Empty',
+      name: 'your_cart_is_empty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Looks like you haven't added anything to your cart yet`
+  String get looks_like_you_havent_added {
+    return Intl.message(
+      'Looks like you haven\'t added anything to your cart yet',
+      name: 'looks_like_you_havent_added',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -37,8 +37,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "already_have_an_account": MessageLookupByLibrary.simpleMessage(
       "Already have an account?",
     ),
+    "are_you_sure": MessageLookupByLibrary.simpleMessage(
+      "Are you sure you want to delete all Favorite products?",
+    ),
+    "are_you_sure2": MessageLookupByLibrary.simpleMessage(
+      "Are you sure you want to delete all cart Items?",
+    ),
     "best_seller": MessageLookupByLibrary.simpleMessage("Best Seller"),
     "birthday": MessageLookupByLibrary.simpleMessage("Birth Day"),
+    "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
     "cart": MessageLookupByLibrary.simpleMessage("Cart"),
     "category": MessageLookupByLibrary.simpleMessage("Category"),
     "change_password": MessageLookupByLibrary.simpleMessage("Change Password"),
@@ -46,6 +53,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Change password successfully",
     ),
     "check_your_mail": MessageLookupByLibrary.simpleMessage("Check your mail"),
+    "confirm_deletion": MessageLookupByLibrary.simpleMessage(
+      "Confirm Deletion",
+    ),
     "confirm_password": MessageLookupByLibrary.simpleMessage(
       "Confirm Password",
     ),
@@ -54,6 +64,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "create_account": MessageLookupByLibrary.simpleMessage("Create Account"),
     "delete": MessageLookupByLibrary.simpleMessage("Delete"),
+    "delete_all": MessageLookupByLibrary.simpleMessage("Delete All"),
     "desc_verify_email": MessageLookupByLibrary.simpleMessage(
       "Please check your email to verify your account",
     ),
@@ -111,6 +122,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "login": MessageLookupByLibrary.simpleMessage("Login"),
     "login2": MessageLookupByLibrary.simpleMessage("Login"),
     "logout": MessageLookupByLibrary.simpleMessage("Logout"),
+    "looks_like_you_havent_added": MessageLookupByLibrary.simpleMessage(
+      "Looks like you haven\'t added anything to your cart yet",
+    ),
     "male": MessageLookupByLibrary.simpleMessage("Male"),
     "most_popular": MessageLookupByLibrary.simpleMessage("Most Popular"),
     "name": MessageLookupByLibrary.simpleMessage("Name"),
@@ -186,6 +200,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "you_can_add_items": MessageLookupByLibrary.simpleMessage(
       "You can add items to your favorite list by clicking the heart icon",
+    ),
+    "your_cart_is_empty": MessageLookupByLibrary.simpleMessage(
+      "Your cart is Empty",
     ),
     "your_email": MessageLookupByLibrary.simpleMessage("Your Email"),
   };

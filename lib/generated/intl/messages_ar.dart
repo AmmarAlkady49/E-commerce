@@ -37,8 +37,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "already_have_an_account": MessageLookupByLibrary.simpleMessage(
       "هل لديك حساب بالفعل؟",
     ),
+    "are_you_sure": MessageLookupByLibrary.simpleMessage(
+      "هل انت متاكد من حذف كل المنتجات المفضلة؟",
+    ),
+    "are_you_sure2": MessageLookupByLibrary.simpleMessage(
+      "هل انت متاكد من حذف كل المنتجات من العربة؟",
+    ),
     "best_seller": MessageLookupByLibrary.simpleMessage("المنتجات المبيعة"),
     "birthday": MessageLookupByLibrary.simpleMessage("تاريخ الميلاد"),
+    "cancel": MessageLookupByLibrary.simpleMessage("الغاء"),
     "cart": MessageLookupByLibrary.simpleMessage("عربة تسوق"),
     "category": MessageLookupByLibrary.simpleMessage("مجموعات"),
     "change_password": MessageLookupByLibrary.simpleMessage(
@@ -50,6 +57,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "check_your_mail": MessageLookupByLibrary.simpleMessage(
       "تحقق من بريدك الالكتروني",
     ),
+    "confirm_deletion": MessageLookupByLibrary.simpleMessage("تأكيد الحذف"),
     "confirm_password": MessageLookupByLibrary.simpleMessage(
       "تأكيد كلمة المرور",
     ),
@@ -58,6 +66,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "create_account": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
     "delete": MessageLookupByLibrary.simpleMessage("حذف"),
+    "delete_all": MessageLookupByLibrary.simpleMessage("حذف الكل"),
     "desc_verify_email": MessageLookupByLibrary.simpleMessage(
       "يرجى التحقق من بريدك الالكتروني للتحقق من حسابك",
     ),
@@ -119,6 +128,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
     "login2": MessageLookupByLibrary.simpleMessage("دخول"),
     "logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
+    "looks_like_you_havent_added": MessageLookupByLibrary.simpleMessage(
+      "يبدو انك لم تقم بإضافة اي منتجات بعد",
+    ),
     "male": MessageLookupByLibrary.simpleMessage("ذكر"),
     "most_popular": MessageLookupByLibrary.simpleMessage("المنتجات الشائعة"),
     "name": MessageLookupByLibrary.simpleMessage("الاسم"),
@@ -190,6 +202,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "weak_password": MessageLookupByLibrary.simpleMessage("كلمة المرور ضعيفة"),
     "you_can_add_items": MessageLookupByLibrary.simpleMessage(
       "يمكنك اضافة المنتجات المفضلة من خلال الضغط على القلب",
+    ),
+    "your_cart_is_empty": MessageLookupByLibrary.simpleMessage(
+      "عربة التسوق فارغة",
     ),
     "your_email": MessageLookupByLibrary.simpleMessage("بريدك الالكتروني"),
   };

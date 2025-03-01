@@ -24,7 +24,10 @@ class _SearchSectionForFavoritePageState
             size: 14.sp,
             weight: FontWeight.w600,
             color: Colors.black54),
-        prefixIcon: Icon(Iconsax.search_normal_1, color: Colors.black87),
+        // prefixIcon: Icon(Iconsax.search_normal_1, color: Colors.black87),
+        suffixIcon: IconButton(
+            onPressed: () {},
+            icon: Icon(Iconsax.search_normal_1, color: Colors.black87)),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.black54, width: 0.7.w),
           borderRadius: BorderRadius.circular(16.r),

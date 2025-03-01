@@ -94,5 +94,12 @@
     "delete": "Delete",
     "added" : "Added",
     "search_something": "Search something...",
-    "please_enter_a_search_term": "Please enter a search term"
+    "please_enter_a_search_term": "Please enter a search term",
+    "delete_all": "Delete All",
+    "confirm_deletion": "Confirm Deletion",
+    "are_you_sure": "Are you sure you want to delete all Favorite products?",
+    "are_you_sure2": "Are you sure you want to delete all cart Items?",
+    "cancel": "Cancel",
+    "your_cart_is_empty": "Your cart is Empty",
+    "looks_like_you_havent_added": "Looks like you haven't added anything to your cart yet"
 }
