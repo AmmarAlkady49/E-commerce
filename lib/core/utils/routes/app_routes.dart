@@ -9,5 +9,8 @@ class AppRoutes {
   static const String changePassword = '/change_password';
   static const String accountPage = '/account_page';
   static const String productPage = '/product_page';
+  static const String addressPage = '/address_page';
+  static const String newAddressPage = '/new_address_page';
+
 }
 

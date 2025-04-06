@@ -20,7 +20,7 @@ class _CounterPlusMinusState extends State<CounterPlusMinus> {
 
     return SizedBox(
       height: 36.h,
-      width: 95.w,
+      width: 100.w,
       child: Container(
         decoration: BoxDecoration(
           color: Colors.grey.shade200,
@@ -40,7 +40,7 @@ class _CounterPlusMinusState extends State<CounterPlusMinus> {
               current is ProductDetailsQuantityChanged,
           builder: (context, state) {
             return Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ButtonPlusMinus(
                   onTap: () {
@@ -54,7 +54,7 @@ class _CounterPlusMinusState extends State<CounterPlusMinus> {
                   icon: Icons.add,
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 0.0),
                   child: Text(
                     state is ProductDetailsQuantityChanged
                         ? state.quantity.toString()

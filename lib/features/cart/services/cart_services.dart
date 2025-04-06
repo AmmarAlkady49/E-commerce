@@ -6,8 +6,7 @@ abstract class CartServices {
   Future<List<AddToCartModel>> getCartItems(String userId);
   Future<void> deleteProductFromCart(String userId, String productId);
   Future<void> deleteAllProductsFromCart(String userId);
-  Future<void> updateProductQuantity(
-      String userId, String productId, int quantity);
+  Future<void> updateProductQuantity(String userId, String productId, AddToCartModel cartItem);
 }
 
 class CartServicesImpl implements CartServices {
@@ -31,11 +30,10 @@ class CartServicesImpl implements CartServices {
   }
 
   @override
-  Future<void> updateProductQuantity(
-      String userId, String productId, int quantity) async {
+  Future<void> updateProductQuantity(String userId, String productId, AddToCartModel cartItem) async {
     await _fireStoreService.setData(
       path: ApiPathes.cartItem(userId, productId),
-      data: {'quantity': quantity},
+      data: cartItem.toMap(),
     );
   }
 }

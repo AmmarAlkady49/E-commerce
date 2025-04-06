@@ -3,6 +3,7 @@ import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
 import 'package:e_commerce_graduation/features/cart/cubit/cart_cubit.dart';
 import 'package:e_commerce_graduation/features/cart/views/widgets/empty_cart.dart';
 import 'package:e_commerce_graduation/features/cart/views/widgets/not_empty_cart.dart';
+import 'package:e_commerce_graduation/features/cart/views/widgets/checkout_button_bottom.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -106,9 +107,10 @@ class CartPage extends StatelessWidget {
           ],
           needLeadingButton: false),
       body: BlocConsumer<CartCubit, CartState>(
-        listenWhen: (previous, current) => current is CartItemDeleted,
+        listenWhen: (previous, current) =>
+            current is CartItemUpdated || current is CartItemDeleted,
         listener: (context, state) {
-          if (state is CartItemDeleted) {
+          if (state is CartItemUpdated || state is CartItemDeleted) {
             cartCubit.getCartItems();
           }
         },
@@ -122,13 +124,41 @@ class CartPage extends StatelessWidget {
             return const Center(child: CupertinoActivityIndicator());
           } else if (state is CartError) {
             return Center(child: Text(state.message));
-          } else {
-            final cartItems = (state as CartLoaded).cartItems;
+          } else if (state is CartLoaded) {
+            final cartItems = state.cartItems;
+            // (state as CartLoaded).cartItems;
             if (cartItems.isEmpty) {
               return EmptyCart();
             } else {
               return NotEmptyCart(cartItems: cartItems);
             }
+          } else {
+            return const SizedBox.shrink();
+          }
+        },
+      ),
+      // Bottom Bar
+      bottomNavigationBar: BlocBuilder<CartCubit, CartState>(
+        bloc: cartCubit,
+        buildWhen: (previous, current) =>
+            current is CartLoading ||
+            current is CartLoaded ||
+            current is CartError,
+        builder: (context, state) {
+          final showBottomBar =
+              state is CartLoaded && state.cartItems.isNotEmpty;
+
+          if (state is CartLoaded) {
+            if (showBottomBar) {
+              final cartItems = state.cartItems;
+
+              return CheckoutButtonBottom(cartItems: cartItems);
+              // return TotalSubtotalInfo();
+            } else {
+              return const SizedBox.shrink();
+            }
+          } else {
+            return const SizedBox.shrink();
           }
         },
       ),

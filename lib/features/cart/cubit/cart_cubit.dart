@@ -13,7 +13,7 @@ class CartCubit extends Cubit<CartState> {
 
   // get all cart items
   Future<void> getCartItems() async {
-    emit(CartLoading());
+    // emit(CartLoading());
     final user = _authService.getCurrentUser();
     try {
       final cartItems = await _cartServices.getCartItems(user!.uid);
@@ -25,13 +25,13 @@ class CartCubit extends Cubit<CartState> {
 
   // delete product form cart
   Future<void> deleteProductFromCart(AddToCartModel cartItem) async {
-    emit(CartLoading());
+    emit(CartItemDeleting(cartItem.id));
     final user = _authService.getCurrentUser();
     try {
       await _cartServices.deleteProductFromCart(user!.uid, cartItem.id);
       emit(CartItemDeleted());
     } catch (e) {
-      emit(CartError(e.toString()));
+      emit(CartItemDeletedError(e.toString()));
     }
   }
 
@@ -49,18 +49,19 @@ class CartCubit extends Cubit<CartState> {
 
   // update product quantity
   Future<void> updateProductQuantity(
-      bool Added, AddToCartModel cartItem) async {
-    emit(CartLoading());
+      AddToCartModel cartItem, bool isIncrement) async {
+    emit(CartItemUpdating(cartItem.id));
     final user = _authService.getCurrentUser();
     try {
-      Added == true
-          ? await _cartServices.updateProductQuantity(
-              user!.uid, cartItem.id, cartItem.quantity++)
-          : await _cartServices.updateProductQuantity(
-              user!.uid, cartItem.id, cartItem.quantity--);
-      emit(CartItemUpdated());
+      final newCartItem = isIncrement
+          ? cartItem.copyWith(quantity: cartItem.quantity + 1)
+          : cartItem.copyWith(quantity: cartItem.quantity - 1);
+      await _cartServices.updateProductQuantity(
+          user!.uid, cartItem.id, newCartItem);
+
+      emit(CartItemUpdated(cartItem.quantity));
     } catch (e) {
-      emit(CartError(e.toString()));
+      emit(CartItemUpdatedError(e.toString()));
     }
   }
 }

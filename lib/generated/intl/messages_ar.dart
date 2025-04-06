@@ -30,10 +30,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "account_exists": MessageLookupByLibrary.simpleMessage(
       "الحساب موجود بالفعل",
     ),
+    "add_new_address": MessageLookupByLibrary.simpleMessage("اضافة عنوان جديد"),
     "add_to_card2": MessageLookupByLibrary.simpleMessage("أضف للعربة"),
     "add_to_cart": MessageLookupByLibrary.simpleMessage("اضافة الى العربة"),
     "added": MessageLookupByLibrary.simpleMessage("تمت الإضافة"),
     "added_to_cart": MessageLookupByLibrary.simpleMessage("تمت الإضافة للعربة"),
+    "address": MessageLookupByLibrary.simpleMessage("عنوانى"),
+    "address_new": MessageLookupByLibrary.simpleMessage("عنوان جديد"),
+    "alexandria": MessageLookupByLibrary.simpleMessage("الاسكندرية"),
     "already_have_an_account": MessageLookupByLibrary.simpleMessage(
       "هل لديك حساب بالفعل؟",
     ),
@@ -43,8 +47,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "are_you_sure2": MessageLookupByLibrary.simpleMessage(
       "هل انت متاكد من حذف كل المنتجات من العربة؟",
     ),
+    "area": MessageLookupByLibrary.simpleMessage("المنطقة"),
+    "bahrain": MessageLookupByLibrary.simpleMessage("البحرين"),
+    "behera": MessageLookupByLibrary.simpleMessage("البحيرة"),
     "best_seller": MessageLookupByLibrary.simpleMessage("المنتجات المبيعة"),
     "birthday": MessageLookupByLibrary.simpleMessage("تاريخ الميلاد"),
+    "building": MessageLookupByLibrary.simpleMessage("البناء"),
+    "cairo": MessageLookupByLibrary.simpleMessage("القاهرة"),
     "cancel": MessageLookupByLibrary.simpleMessage("الغاء"),
     "cart": MessageLookupByLibrary.simpleMessage("عربة تسوق"),
     "category": MessageLookupByLibrary.simpleMessage("مجموعات"),
@@ -57,6 +66,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "check_your_mail": MessageLookupByLibrary.simpleMessage(
       "تحقق من بريدك الالكتروني",
     ),
+    "checkout": MessageLookupByLibrary.simpleMessage("إتمام الشراء"),
+    "checkout2": MessageLookupByLibrary.simpleMessage("إتمام الشراء"),
+    "choose_the_address": MessageLookupByLibrary.simpleMessage(
+      "اختر العنوان الذي تود استلام طلباتك عليه.",
+    ),
+    "choose_your_location": MessageLookupByLibrary.simpleMessage("إختر موقعك"),
+    "city": MessageLookupByLibrary.simpleMessage("المدينة"),
     "confirm_deletion": MessageLookupByLibrary.simpleMessage("تأكيد الحذف"),
     "confirm_password": MessageLookupByLibrary.simpleMessage(
       "تأكيد كلمة المرور",
@@ -64,6 +80,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "continue_with_google": MessageLookupByLibrary.simpleMessage(
       "الاستمرار بواسطة جوجل",
     ),
+    "country": MessageLookupByLibrary.simpleMessage("الدولة"),
     "create_account": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
     "delete": MessageLookupByLibrary.simpleMessage("حذف"),
     "delete_all": MessageLookupByLibrary.simpleMessage("حذف الكل"),
@@ -74,9 +91,11 @@ class MessageLookup extends MessageLookupByLibrary {
       "لا تنسي كلمة المرور الجديدة",
     ),
     "edit_profile": MessageLookupByLibrary.simpleMessage("تعديل الحساب"),
+    "egypt": MessageLookupByLibrary.simpleMessage("مصر"),
     "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
     "empty_cell": MessageLookupByLibrary.simpleMessage("الحقل فارغ"),
     "english": MessageLookupByLibrary.simpleMessage("En"),
+    "enter_your_address": MessageLookupByLibrary.simpleMessage("ادخل عنوانك"),
     "enter_your_email": MessageLookupByLibrary.simpleMessage(
       "ادخل البريد الالكتروني",
     ),
@@ -107,8 +126,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "forgot_password": MessageLookupByLibrary.simpleMessage(
       "نسيت كلمة المرور ؟",
     ),
+    "free": MessageLookupByLibrary.simpleMessage("مجانآ"),
     "gender": MessageLookupByLibrary.simpleMessage("النوع"),
     "general": MessageLookupByLibrary.simpleMessage("عام"),
+    "giza": MessageLookupByLibrary.simpleMessage("الجيزه"),
+    "go_to_checkout": MessageLookupByLibrary.simpleMessage("الذهاب للدفع"),
     "google_error": MessageLookupByLibrary.simpleMessage(
       "حدث خطأ اثناء تسجيل الدخول بواسطة جوجل",
     ),
@@ -131,16 +153,25 @@ class MessageLookup extends MessageLookupByLibrary {
     "looks_like_you_havent_added": MessageLookupByLibrary.simpleMessage(
       "يبدو انك لم تقم بإضافة اي منتجات بعد",
     ),
+    "make_sure_to_choose_your_location": MessageLookupByLibrary.simpleMessage(
+      "أدخل تفاصيل عنوانك لضمان وصول الطلب إلى باب منزلك",
+    ),
     "male": MessageLookupByLibrary.simpleMessage("ذكر"),
+    "mansoura": MessageLookupByLibrary.simpleMessage("المنصورة"),
     "most_popular": MessageLookupByLibrary.simpleMessage("المنتجات الشائعة"),
     "name": MessageLookupByLibrary.simpleMessage("الاسم"),
     "new_arrival": MessageLookupByLibrary.simpleMessage("المنتجات الجديدة🔥"),
     "no_favorite_item": MessageLookupByLibrary.simpleMessage(
       "لا يوجد منتجات مفضلة",
     ),
+    "no_saved_addresses": MessageLookupByLibrary.simpleMessage(
+      "لا يوجد عناوين محفوظة",
+    ),
     "notification": MessageLookupByLibrary.simpleMessage("الاشعارات"),
     "or": MessageLookupByLibrary.simpleMessage("أو"),
     "or_login_with": MessageLookupByLibrary.simpleMessage("أو من خلال"),
+    "other": MessageLookupByLibrary.simpleMessage("اخرى"),
+    "palestine": MessageLookupByLibrary.simpleMessage("فلسطين"),
     "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
     "password2": MessageLookupByLibrary.simpleMessage("كلمة السر"),
     "password_instruction": MessageLookupByLibrary.simpleMessage(
@@ -175,18 +206,28 @@ class MessageLookup extends MessageLookupByLibrary {
     "please_enter_a_search_term": MessageLookupByLibrary.simpleMessage(
       "الرجاء ادخال كلمة بحث",
     ),
+    "please_select_axact_address": MessageLookupByLibrary.simpleMessage(
+      "يرجى اختيار العنوان الدقيق الذي ترغب في استلام طلباتك عليه لضمان توصيلها بسرعة وسهولة.",
+    ),
     "preferences": MessageLookupByLibrary.simpleMessage("التفضيلات"),
+    "product": MessageLookupByLibrary.simpleMessage("منتج"),
+    "products": MessageLookupByLibrary.simpleMessage("منتجات"),
     "profile": MessageLookupByLibrary.simpleMessage("الحساب"),
+    "qatar": MessageLookupByLibrary.simpleMessage("قطر"),
     "remember_me": MessageLookupByLibrary.simpleMessage("تذكرني"),
     "reset_password": MessageLookupByLibrary.simpleMessage(
       "استعادة كلمة المرور",
     ),
+    "saudi_arabia": MessageLookupByLibrary.simpleMessage("السعودية"),
     "save": MessageLookupByLibrary.simpleMessage("حفظ"),
     "save_changes": MessageLookupByLibrary.simpleMessage("حفظ التعديلات"),
     "search": MessageLookupByLibrary.simpleMessage("البحث"),
     "search_something": MessageLookupByLibrary.simpleMessage("إبحث عن شيء ..."),
     "see_all": MessageLookupByLibrary.simpleMessage("اظهار الكل"),
+    "selecet_location": MessageLookupByLibrary.simpleMessage("اختر الموقع"),
     "settings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
+    "shipping": MessageLookupByLibrary.simpleMessage("الشحن"),
+    "shipping_fees": MessageLookupByLibrary.simpleMessage("رسوم الشحن"),
     "show_less": MessageLookupByLibrary.simpleMessage("اظهار أقل"),
     "show_more": MessageLookupByLibrary.simpleMessage("اظهار المزيد"),
     "sign_in": MessageLookupByLibrary.simpleMessage("تسجيل الدخول للحساب"),
@@ -196,12 +237,22 @@ class MessageLookup extends MessageLookupByLibrary {
       "التسجيل بواسطة جوجل",
     ),
     "someone_name": MessageLookupByLibrary.simpleMessage("عمار"),
+    "street": MessageLookupByLibrary.simpleMessage("الشارع"),
+    "submet": MessageLookupByLibrary.simpleMessage("حفظ"),
+    "subtotal": MessageLookupByLibrary.simpleMessage("المجموع الفرعي"),
+    "suez": MessageLookupByLibrary.simpleMessage("السويس"),
+    "tanta": MessageLookupByLibrary.simpleMessage("طنطا"),
+    "total_amount": MessageLookupByLibrary.simpleMessage("المبلغ الكلي"),
+    "type_your_address": MessageLookupByLibrary.simpleMessage("ادخل عنوانك"),
     "verify_email": MessageLookupByLibrary.simpleMessage(
       "تحقق من بريدك الالكتروني",
     ),
     "weak_password": MessageLookupByLibrary.simpleMessage("كلمة المرور ضعيفة"),
     "you_can_add_items": MessageLookupByLibrary.simpleMessage(
       "يمكنك اضافة المنتجات المفضلة من خلال الضغط على القلب",
+    ),
+    "you_havenot_saved_any_address": MessageLookupByLibrary.simpleMessage(
+      "لم تقم بحفظ عنوانك بعد. أضف عنوانًا الآن لتلقي طلباتك بسلاسة!",
     ),
     "your_cart_is_empty": MessageLookupByLibrary.simpleMessage(
       "عربة التسوق فارغة",
