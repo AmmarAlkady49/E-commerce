@@ -1,5 +1,8 @@
 import 'package:e_commerce_graduation/bottom_nav_bar.dart';
 import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
+import 'package:e_commerce_graduation/features/address/cubit/address_cubit.dart';
+import 'package:e_commerce_graduation/features/address/views/pages/address_page.dart';
+import 'package:e_commerce_graduation/features/address/views/pages/new_address_page.dart';
 import 'package:e_commerce_graduation/features/auth/auth_cubit/auth_cubit.dart';
 import 'package:e_commerce_graduation/features/auth/views/pages/create_account.dart';
 import 'package:e_commerce_graduation/features/auth/views/pages/forget_password_page.dart';
@@ -44,6 +47,22 @@ class AppRouter {
                 ));
       case AppRoutes.languagePage:
         return MaterialPageRoute(builder: (_) => const LangPage());
+      case AppRoutes.addressPage:
+        return MaterialPageRoute(
+            builder: (_) => BlocProvider(
+                  create: (context) {
+                    final cubit = AddressCubit();
+                    cubit.getAllAddresses();
+                    return cubit;
+                  },
+                  child: const AddressPage(),
+                ));
+      case AppRoutes.newAddressPage:
+        return MaterialPageRoute(
+            builder: (_) => BlocProvider(
+                  create: (context) => AddressCubit(),
+                  child: const NewAddressPage(),
+                ));
       case AppRoutes.changePassword:
         return MaterialPageRoute(
             builder: (_) => BlocProvider(

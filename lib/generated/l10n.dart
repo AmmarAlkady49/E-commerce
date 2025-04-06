@@ -799,6 +799,341 @@ class S {
       args: [],
     );
   }
+
+  /// `Delete All`
+  String get delete_all {
+    return Intl.message('Delete All', name: 'delete_all', desc: '', args: []);
+  }
+
+  /// `Confirm Deletion`
+  String get confirm_deletion {
+    return Intl.message(
+      'Confirm Deletion',
+      name: 'confirm_deletion',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to delete all Favorite products?`
+  String get are_you_sure {
+    return Intl.message(
+      'Are you sure you want to delete all Favorite products?',
+      name: 'are_you_sure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to delete all cart Items?`
+  String get are_you_sure2 {
+    return Intl.message(
+      'Are you sure you want to delete all cart Items?',
+      name: 'are_you_sure2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message('Cancel', name: 'cancel', desc: '', args: []);
+  }
+
+  /// `Your cart is Empty`
+  String get your_cart_is_empty {
+    return Intl.message(
+      'Your cart is Empty',
+      name: 'your_cart_is_empty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Looks like you haven't added anything to your cart yet`
+  String get looks_like_you_havent_added {
+    return Intl.message(
+      'Looks like you haven\'t added anything to your cart yet',
+      name: 'looks_like_you_havent_added',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Go to Checkout`
+  String get go_to_checkout {
+    return Intl.message(
+      'Go to Checkout',
+      name: 'go_to_checkout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Checkout`
+  String get checkout {
+    return Intl.message('Checkout', name: 'checkout', desc: '', args: []);
+  }
+
+  /// `Checkout`
+  String get checkout2 {
+    return Intl.message('Checkout', name: 'checkout2', desc: '', args: []);
+  }
+
+  /// `Total amount`
+  String get total_amount {
+    return Intl.message(
+      'Total amount',
+      name: 'total_amount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Shipping`
+  String get shipping {
+    return Intl.message('Shipping', name: 'shipping', desc: '', args: []);
+  }
+
+  /// `Subtotal`
+  String get subtotal {
+    return Intl.message('Subtotal', name: 'subtotal', desc: '', args: []);
+  }
+
+  /// `Shipping fees`
+  String get shipping_fees {
+    return Intl.message(
+      'Shipping fees',
+      name: 'shipping_fees',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Products`
+  String get products {
+    return Intl.message('Products', name: 'products', desc: '', args: []);
+  }
+
+  /// `Product`
+  String get product {
+    return Intl.message('Product', name: 'product', desc: '', args: []);
+  }
+
+  /// `Free`
+  String get free {
+    return Intl.message('Free', name: 'free', desc: '', args: []);
+  }
+
+  /// `Address`
+  String get address {
+    return Intl.message('Address', name: 'address', desc: '', args: []);
+  }
+
+  /// `New Address`
+  String get address_new {
+    return Intl.message('New Address', name: 'address_new', desc: '', args: []);
+  }
+
+  /// `Choose your location`
+  String get choose_your_location {
+    return Intl.message(
+      'Choose your location',
+      name: 'choose_your_location',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your address details to ensure your order reaches your doorstep.`
+  String get make_sure_to_choose_your_location {
+    return Intl.message(
+      'Enter your address details to ensure your order reaches your doorstep.',
+      name: 'make_sure_to_choose_your_location',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your address`
+  String get enter_your_address {
+    return Intl.message(
+      'Enter your address',
+      name: 'enter_your_address',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Location`
+  String get selecet_location {
+    return Intl.message(
+      'Select Location',
+      name: 'selecet_location',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Country`
+  String get country {
+    return Intl.message('Country', name: 'country', desc: '', args: []);
+  }
+
+  /// `City`
+  String get city {
+    return Intl.message('City', name: 'city', desc: '', args: []);
+  }
+
+  /// `Street`
+  String get street {
+    return Intl.message('Street', name: 'street', desc: '', args: []);
+  }
+
+  /// `Area`
+  String get area {
+    return Intl.message('Area', name: 'area', desc: '', args: []);
+  }
+
+  /// `Building`
+  String get building {
+    return Intl.message('Building', name: 'building', desc: '', args: []);
+  }
+
+  /// `Egypt`
+  String get egypt {
+    return Intl.message('Egypt', name: 'egypt', desc: '', args: []);
+  }
+
+  /// `Palestine`
+  String get palestine {
+    return Intl.message('Palestine', name: 'palestine', desc: '', args: []);
+  }
+
+  /// `Saudi Arabia`
+  String get saudi_arabia {
+    return Intl.message(
+      'Saudi Arabia',
+      name: 'saudi_arabia',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Qatar`
+  String get qatar {
+    return Intl.message('Qatar', name: 'qatar', desc: '', args: []);
+  }
+
+  /// `Bahrain`
+  String get bahrain {
+    return Intl.message('Bahrain', name: 'bahrain', desc: '', args: []);
+  }
+
+  /// `Cairo`
+  String get cairo {
+    return Intl.message('Cairo', name: 'cairo', desc: '', args: []);
+  }
+
+  /// `Giza`
+  String get giza {
+    return Intl.message('Giza', name: 'giza', desc: '', args: []);
+  }
+
+  /// `Alexandria`
+  String get alexandria {
+    return Intl.message('Alexandria', name: 'alexandria', desc: '', args: []);
+  }
+
+  /// `Tanta`
+  String get tanta {
+    return Intl.message('Tanta', name: 'tanta', desc: '', args: []);
+  }
+
+  /// `Behera`
+  String get behera {
+    return Intl.message('Behera', name: 'behera', desc: '', args: []);
+  }
+
+  /// `Mansoura`
+  String get mansoura {
+    return Intl.message('Mansoura', name: 'mansoura', desc: '', args: []);
+  }
+
+  /// `Suez`
+  String get suez {
+    return Intl.message('Suez', name: 'suez', desc: '', args: []);
+  }
+
+  /// `Other`
+  String get other {
+    return Intl.message('Other', name: 'other', desc: '', args: []);
+  }
+
+  /// `Type your address`
+  String get type_your_address {
+    return Intl.message(
+      'Type your address',
+      name: 'type_your_address',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Submit`
+  String get submet {
+    return Intl.message('Submit', name: 'submet', desc: '', args: []);
+  }
+
+  /// `Choose the address where you would like to receive your orders.`
+  String get choose_the_address {
+    return Intl.message(
+      'Choose the address where you would like to receive your orders.',
+      name: 'choose_the_address',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Saved Address`
+  String get no_saved_addresses {
+    return Intl.message(
+      'No Saved Address',
+      name: 'no_saved_addresses',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You haven't saved an address yet. Add one now to receive your orders smoothly!`
+  String get you_havenot_saved_any_address {
+    return Intl.message(
+      'You haven\'t saved an address yet. Add one now to receive your orders smoothly!',
+      name: 'you_havenot_saved_any_address',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add New Address`
+  String get add_new_address {
+    return Intl.message(
+      'Add New Address',
+      name: 'add_new_address',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select the exact address where you would like to receive your orders to ensure fast and smooth delivery.`
+  String get please_select_axact_address {
+    return Intl.message(
+      'Please select the exact address where you would like to receive your orders to ensure fast and smooth delivery.',
+      name: 'please_select_axact_address',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

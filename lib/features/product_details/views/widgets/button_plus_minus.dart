@@ -21,40 +21,43 @@ class _ButtonPlusMinusState extends State<ButtonPlusMinus> {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: widget.isMax
-          ? null
-          : () {
-              setState(() {
-                _isPressed = true;
-              });
-              widget.onTap();
-              Future.delayed(const Duration(milliseconds: 200), () {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 6.0.w),
+      child: InkWell(
+        onTap: widget.isMax
+            ? null
+            : () {
                 setState(() {
-                  _isPressed = false;
+                  _isPressed = true;
                 });
-              });
-            },
-      borderRadius: BorderRadius.circular(50.r),
-      child: Container(
-        width: 26.w,
-        height: 26.h,
-        decoration: BoxDecoration(
-          color: _isPressed ? Colors.grey[200] : Colors.white,
-          shape: BoxShape.circle,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withAlpha(400),
-              spreadRadius: 1,
-              blurRadius: 5,
-              offset: const Offset(0, 3),
-            ),
-          ],
-        ),
-        child: Icon(
-          widget.icon,
-          size: 24.sp,
-          color: widget.isMax ? Colors.black45 : Colors.black,
+                widget.onTap();
+                Future.delayed(const Duration(milliseconds: 200), () {
+                  setState(() {
+                    _isPressed = false;
+                  });
+                });
+              },
+        borderRadius: BorderRadius.circular(50.r),
+        child: Container(
+          width: 26.w,
+          height: 26.h,
+          decoration: BoxDecoration(
+            color: _isPressed ? Colors.grey[200] : Colors.white,
+            shape: BoxShape.circle,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withAlpha(400),
+                spreadRadius: 1,
+                blurRadius: 5,
+                offset: const Offset(0, 3),
+              ),
+            ],
+          ),
+          child: Icon(
+            widget.icon,
+            size: 24.sp,
+            color: widget.isMax ? Colors.black45 : Colors.black,
+          ),
         ),
       ),
     );

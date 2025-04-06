@@ -57,63 +57,75 @@ class ProfilePage extends StatelessWidget {
               if (state is ProfileLogingOut) {
                 return CircularProgressIndicator();
               }
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(width: double.infinity),
-                  Text(
-                    S.of(context).general,
-                    style: FontHelper.fontText(
-                        size: 18.sp,
-                        weight: FontWeight.w700,
-                        color: Colors.black,
-                        context: context),
-                  ),
-                  SizedBox(height: 12.h),
-                  MyListTile(
-                      onTap: () {
-                        Navigator.of(context).pushNamed(AppRoutes.accountPage);
+              return SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(width: double.infinity),
+                    Text(
+                      S.of(context).general,
+                      style: FontHelper.fontText(
+                          size: 18.sp,
+                          weight: FontWeight.w700,
+                          color: Colors.black,
+                          context: context),
+                    ),
+                    SizedBox(height: 12.h),
+                    MyListTile(
+                        onTap: () {
+                          Navigator.of(context)
+                              .pushNamed(AppRoutes.accountPage);
+                        },
+                        title: S.of(context).personal_info,
+                        leadingIcon: Iconsax.user),
+                    SizedBox(height: 12.h),
+                    MyListTile(
+                        onTap: () {
+                          Navigator.of(context)
+                              .pushNamed(AppRoutes.changePassword);
+                        },
+                        title: S.of(context).change_password,
+                        leadingIcon: Iconsax.lock4),
+                    SizedBox(height: 12.h),
+                    MyListTile(
+                        onTap: () {},
+                        title: S.of(context).notification,
+                        leadingIcon: Iconsax.notification),
+                    SizedBox(height: 18.h),
+                    Text(
+                      S.of(context).preferences,
+                      style: FontHelper.fontText(
+                          size: 18.sp,
+                          weight: FontWeight.w700,
+                          color: Colors.black,
+                          context: context),
+                    ),
+                    SizedBox(height: 12.h),
+                    MyListTile(
+                        onTap: () {
+                          Navigator.of(context)
+                              .pushNamed(AppRoutes.languagePage);
+                        },
+                        title: S.of(context).language,
+                        leadingIcon: Iconsax.language_square),
+                    SizedBox(height: 12.h),
+                    MyListTile(
+                        onTap: () {
+                          Navigator.of(context)
+                              .pushNamed(AppRoutes.addressPage);
+                        },
+                        title: S.of(context).address,
+                        leadingIcon: Iconsax.location),
+                    SizedBox(height: 12.h),
+                    LogOutButton(
+                      leadingIcon: Iconsax.logout,
+                      title: S.of(context).logout,
+                      onTap: () async {
+                        await profileCubit.logout();
                       },
-                      title: S.of(context).personal_info,
-                      leadingIcon: Iconsax.user),
-                  SizedBox(height: 12.h),
-                  MyListTile(
-                      onTap: () {
-                        Navigator.of(context)
-                            .pushNamed(AppRoutes.changePassword);
-                      },
-                      title: S.of(context).change_password,
-                      leadingIcon: Iconsax.lock4),
-                  SizedBox(height: 12.h),
-                  MyListTile(
-                      onTap: () {},
-                      title: S.of(context).notification,
-                      leadingIcon: Iconsax.notification),
-                  SizedBox(height: 12.h),
-                  MyListTile(
-                      onTap: () {
-                        Navigator.of(context).pushNamed(AppRoutes.languagePage);
-                      },
-                      title: S.of(context).language,
-                      leadingIcon: Iconsax.language_square),
-                  SizedBox(height: 18.h),
-                  Text(
-                    S.of(context).preferences,
-                    style: FontHelper.fontText(
-                        size: 18.sp,
-                        weight: FontWeight.w700,
-                        color: Colors.black,
-                        context: context),
-                  ),
-                  SizedBox(height: 12.h),
-                  LogOutButton(
-                    leadingIcon: Iconsax.logout,
-                    title: S.of(context).logout,
-                    onTap: () async {
-                      await profileCubit.logout();
-                    },
-                  )
-                ],
+                    )
+                  ],
+                ),
               );
             },
           )),

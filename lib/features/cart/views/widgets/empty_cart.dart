@@ -1,11 +1,11 @@
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:iconsax/iconsax.dart';
 
-class EmptyFavoriteProducts extends StatelessWidget {
-  const EmptyFavoriteProducts({super.key});
+class EmptyCart extends StatelessWidget {
+  const EmptyCart({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,28 +17,27 @@ class EmptyFavoriteProducts extends StatelessWidget {
           children: [
             SizedBox(height: 30.h),
             Icon(
-              CupertinoIcons.heart,
+              Iconsax.shopping_bag,
               size: 50.sp,
               color: Colors.black,
             ),
             Text(
-              S.of(context).no_favorite_item,
+              S.of(context).your_cart_is_empty,
               style: FontHelper.fontText(
-                  context: context,
                   size: 20.sp,
                   weight: FontWeight.bold,
-                  color: Colors.black),
+                  color: Colors.black,
+                  context: context),
             ),
             SizedBox(height: 4.h),
             Text(
-              S.of(context).you_can_add_items,
+              S.of(context).looks_like_you_havent_added,
               textAlign: TextAlign.center,
               style: FontHelper.fontText(
-                  context: context,
                   size: 16.sp,
-                  // isItalic: true,
                   weight: FontWeight.w500,
-                  color: Colors.black45),
+                  color: Colors.black45,
+                  context: context),
             ),
           ],
         ),

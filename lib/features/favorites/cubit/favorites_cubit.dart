@@ -64,4 +64,18 @@ class FavoritesCubit extends Cubit<FavoritesState> {
           AddProductToCartError(productId: product.id!, message: e.toString()));
     }
   }
+
+  // delete all Favorite Products
+  Future<void> clearFavorites() async {
+    emit(FavoriteProductsLoading());
+    final userId = _authServices.getCurrentUser()!.uid;
+    final favoriteProducts = await _favoritesServices.getFavorites(userId);
+    try {
+      await _favoritesServices2.removeAllProducts(userId);
+      emit(FavoriteProductsLoaded(favoriteProducts: favoriteProducts));
+      emit(UpdateFavoritePage());
+    } catch (e) {
+      emit(FavoriteProductsError(message: e.toString()));
+    }
+  }
 }

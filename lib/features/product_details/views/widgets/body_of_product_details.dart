@@ -16,7 +16,6 @@ class BodyOfProductDetails extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: Color(0xfffefffe),
-          // color: Colors.grey.shade300,
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(40.r), topRight: Radius.circular(40.r)),
         ),
@@ -29,24 +28,42 @@ class BodyOfProductDetails extends StatelessWidget {
               children: [
                 SizedBox(width: double.infinity),
                 Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    CounterPlusMinus(),
-                    Spacer(),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.57.w,
-                      child: Text(
-                        "${product.title!}                                  ",
-                        textAlign: TextAlign.left,
-                        style: FontHelper.fontText(
-                          size: 18.sp,
-                          weight: FontWeight.w700,
-                          color: Colors.black,
-                          context: context,
-                        ),
-                      ),
-                    ),
-                  ],
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: Localizations.localeOf(context).languageCode == 'ar'
+                      ? [
+                          CounterPlusMinus(),
+                          // Spacer(),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.56.w,
+                            child: Text(
+                              "${product.title!}                                  ",
+                              textAlign: TextAlign.left,
+                              style: FontHelper.fontText(
+                                size: 18.sp,
+                                weight: FontWeight.w700,
+                                color: Colors.black,
+                                context: context,
+                              ),
+                            ),
+                          ),
+                        ]
+                      : [
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.57.w,
+                            child: Text(
+                              "${product.title!}                                  ",
+                              textAlign: TextAlign.left,
+                              style: FontHelper.fontText(
+                                size: 18.sp,
+                                weight: FontWeight.w700,
+                                color: Colors.black,
+                                context: context,
+                              ),
+                            ),
+                          ),
+                          CounterPlusMinus(),
+                        ],
                 ),
                 SizedBox(height: 4.h),
                 RateingSection(product: product),
