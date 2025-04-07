@@ -87,6 +87,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "desc_verify_email": MessageLookupByLibrary.simpleMessage(
       "Please check your email to verify your account",
     ),
+    "description": MessageLookupByLibrary.simpleMessage("Description"),
     "dont_forget_new_password": MessageLookupByLibrary.simpleMessage(
       "Don\'t forget your new password",
     ),
@@ -159,9 +160,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "most_popular": MessageLookupByLibrary.simpleMessage("Most Popular"),
     "name": MessageLookupByLibrary.simpleMessage("Name"),
     "new_arrival": MessageLookupByLibrary.simpleMessage("New Arrival🔥"),
+    "no_description": MessageLookupByLibrary.simpleMessage(
+      "There is no description for this product",
+    ),
     "no_favorite_item": MessageLookupByLibrary.simpleMessage(
       "No favorite item\'s found",
     ),
+    "no_reviews": MessageLookupByLibrary.simpleMessage("No reviews yet"),
     "no_saved_addresses": MessageLookupByLibrary.simpleMessage(
       "No Saved Address",
     ),
@@ -216,6 +221,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "qatar": MessageLookupByLibrary.simpleMessage("Qatar"),
     "remember_me": MessageLookupByLibrary.simpleMessage("Remember me"),
     "reset_password": MessageLookupByLibrary.simpleMessage("Reset Password"),
+    "reviews": MessageLookupByLibrary.simpleMessage("Reviews"),
     "saudi_arabia": MessageLookupByLibrary.simpleMessage("Saudi Arabia"),
     "save": MessageLookupByLibrary.simpleMessage("Save"),
     "save_changes": MessageLookupByLibrary.simpleMessage("Save changes"),

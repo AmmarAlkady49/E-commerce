@@ -87,6 +87,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "desc_verify_email": MessageLookupByLibrary.simpleMessage(
       "يرجى التحقق من بريدك الالكتروني للتحقق من حسابك",
     ),
+    "description": MessageLookupByLibrary.simpleMessage("الوصف"),
     "dont_forget_new_password": MessageLookupByLibrary.simpleMessage(
       "لا تنسي كلمة المرور الجديدة",
     ),
@@ -161,8 +162,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "most_popular": MessageLookupByLibrary.simpleMessage("المنتجات الشائعة"),
     "name": MessageLookupByLibrary.simpleMessage("الاسم"),
     "new_arrival": MessageLookupByLibrary.simpleMessage("المنتجات الجديدة🔥"),
+    "no_description": MessageLookupByLibrary.simpleMessage(
+      "لا يوجد وصف لهذا المنتج",
+    ),
     "no_favorite_item": MessageLookupByLibrary.simpleMessage(
       "لا يوجد منتجات مفضلة",
+    ),
+    "no_reviews": MessageLookupByLibrary.simpleMessage(
+      "لا يوجد تقييمات لهذا المنتج",
     ),
     "no_saved_addresses": MessageLookupByLibrary.simpleMessage(
       "لا يوجد عناوين محفوظة",
@@ -218,6 +225,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "reset_password": MessageLookupByLibrary.simpleMessage(
       "استعادة كلمة المرور",
     ),
+    "reviews": MessageLookupByLibrary.simpleMessage("تقيم"),
     "saudi_arabia": MessageLookupByLibrary.simpleMessage("السعودية"),
     "save": MessageLookupByLibrary.simpleMessage("حفظ"),
     "save_changes": MessageLookupByLibrary.simpleMessage("حفظ التعديلات"),

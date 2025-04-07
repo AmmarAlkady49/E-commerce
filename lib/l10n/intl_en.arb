@@ -142,5 +142,9 @@
     "no_saved_addresses": "No Saved Address",
     "you_havenot_saved_any_address": "You haven't saved an address yet. Add one now to receive your orders smoothly!",
     "add_new_address": "Add New Address",
-    "please_select_axact_address" :"Please select the exact address where you would like to receive your orders to ensure fast and smooth delivery."
+    "please_select_axact_address" :"Please select the exact address where you would like to receive your orders to ensure fast and smooth delivery.",
+    "description": "Description",
+    "no_description": "There is no description for this product",
+    "reviews": "Reviews",
+    "no_reviews": "No reviews yet"
 }

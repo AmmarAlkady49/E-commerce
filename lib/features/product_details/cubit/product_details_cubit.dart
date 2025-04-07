@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:e_commerce_graduation/core/models/add_to_cart_model.dart';
 import 'package:e_commerce_graduation/core/models/product_response.dart';
 import 'package:e_commerce_graduation/features/auth/services/auth_services.dart';
@@ -73,13 +75,12 @@ class ProductDetailsCubit extends Cubit<ProductDetailsState> {
   }
 
   // Get Product Details
-  Future<void> getProductDetails(String productId) async {
+  Future<void> getProductDetails(int productId) async {
     emit(ProductDetailsLoading());
     try {
       final product =
           await _productDetailsServices.getProductDetails(productId);
-      debugPrint(
-          'ProductDetailsCubit getProductDetails product===============: ${product.price}');
+      log('ProductDetailsCubit getProductDetails product===============: ${product.price}');
       emit(ProductDetailsLoaded(product: product));
     } catch (e) {
       emit(ProductDetailsError(message: e.toString()));

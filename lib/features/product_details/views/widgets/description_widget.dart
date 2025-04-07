@@ -16,21 +16,20 @@ class _DescriptionWidgetState extends State<DescriptionWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.end,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Description                                                               ",
+          "                                                                              ${S.of(context).description}",
           textDirection: TextDirection.ltr,
           style: FontHelper.fontText(
-            size: 16.sp,
+            size: 15.sp,
             weight: FontWeight.w700,
-            color: Colors.black,
+            color: Colors.black87,
             context: context,
           ),
         ),
         Text(
-          widget.description!,
-          textDirection: TextDirection.ltr,
+          widget.description ?? S.of(context).no_description,
           maxLines: isExpanded ? null : 2,
           overflow: isExpanded ? TextOverflow.visible : TextOverflow.ellipsis,
           style: FontHelper.fontText(
@@ -40,16 +39,16 @@ class _DescriptionWidgetState extends State<DescriptionWidget> {
             weight: FontWeight.w600,
           ),
         ),
-        SizedBox(height: isExpanded ? 2.w : 0.w),
+        SizedBox(height: 1.h),
         InkWell(
           onTap: () => setState(() {
             isExpanded = !isExpanded;
           }),
           borderRadius: BorderRadius.circular(10.r),
           child: Row(
-            mainAxisSize: Localizations.localeOf(context).languageCode == 'ar'
-                ? MainAxisSize.min
-                : MainAxisSize.max,
+            // mainAxisSize: Localizations.localeOf(context).languageCode == 'ar'
+            //     ? MainAxisSize.min
+            //     : MainAxisSize.max,
             children: [
               Icon(
                 isExpanded ? Icons.arrow_drop_up : Icons.arrow_drop_down,
@@ -58,7 +57,7 @@ class _DescriptionWidgetState extends State<DescriptionWidget> {
               Text(
                 isExpanded ? S.of(context).show_less : S.of(context).show_more,
                 style: FontHelper.fontText(
-                  size: 13.sp,
+                  size: 12.sp,
                   color: Color(0xff1D61E7),
                   context: context,
                   weight: FontWeight.w700,

@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BodyOfProductDetails extends StatelessWidget {
-  final ProductItemModel product;
+  final ProductResponse product;
   const BodyOfProductDetails({super.key, required this.product});
 
   @override
@@ -30,15 +30,15 @@ class BodyOfProductDetails extends StatelessWidget {
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: Localizations.localeOf(context).languageCode == 'ar'
+                  children: Localizations.localeOf(context).languageCode == 'en'
                       ? [
                           CounterPlusMinus(),
                           // Spacer(),
                           SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.56.w,
+                            width: MediaQuery.of(context).size.width * 0.55.w,
                             child: Text(
-                              "${product.title!}                                  ",
-                              textAlign: TextAlign.left,
+                              product.name!,
+                              textAlign: TextAlign.right,
                               style: FontHelper.fontText(
                                 size: 18.sp,
                                 weight: FontWeight.w700,
@@ -50,10 +50,9 @@ class BodyOfProductDetails extends StatelessWidget {
                         ]
                       : [
                           SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.57.w,
+                            width: MediaQuery.of(context).size.width * 0.55.w,
                             child: Text(
-                              "${product.title!}                                  ",
-                              textAlign: TextAlign.left,
+                              product.name!,
                               style: FontHelper.fontText(
                                 size: 18.sp,
                                 weight: FontWeight.w700,
@@ -65,7 +64,7 @@ class BodyOfProductDetails extends StatelessWidget {
                           CounterPlusMinus(),
                         ],
                 ),
-                SizedBox(height: 4.h),
+                SizedBox(height: 8.h),
                 RateingSection(product: product),
                 SizedBox(height: 4.h),
                 DescriptionWidget(description: product.description),

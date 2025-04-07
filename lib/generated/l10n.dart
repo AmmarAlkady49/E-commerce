@@ -1134,6 +1134,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Description`
+  String get description {
+    return Intl.message('Description', name: 'description', desc: '', args: []);
+  }
+
+  /// `There is no description for this product`
+  String get no_description {
+    return Intl.message(
+      'There is no description for this product',
+      name: 'no_description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reviews`
+  String get reviews {
+    return Intl.message('Reviews', name: 'reviews', desc: '', args: []);
+  }
+
+  /// `No reviews yet`
+  String get no_reviews {
+    return Intl.message(
+      'No reviews yet',
+      name: 'no_reviews',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

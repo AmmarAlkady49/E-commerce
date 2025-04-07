@@ -80,12 +80,12 @@ class AppRouter {
                   child: const AccountPage(),
                 ));
       case AppRoutes.productPage:
-        final ProductItemModel product = settings.arguments as ProductItemModel;
+        final ProductResponse product = settings.arguments as ProductResponse;
         return MaterialPageRoute(
             builder: (_) => BlocProvider(
                   create: (context) {
                     final cubit = ProductDetailsCubit();
-                    cubit.getProductDetails(product.id!);
+                    cubit.getProductDetails(product.photos.first.productID!);
                     return cubit;
                   },
                   child: ProductDetailsPage(

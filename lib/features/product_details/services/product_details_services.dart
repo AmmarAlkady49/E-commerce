@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:e_commerce_graduation/core/models/add_to_cart_model.dart';
 import 'package:e_commerce_graduation/core/models/product_response.dart';
@@ -10,7 +12,7 @@ abstract class ProductDetailsServices {
   Future<void> deleteFavoriteProduct(String userId, String productId);
   Future<List<ProductItemModel>> getFavoriteProducts(String userId);
   Future<void> addToCart(String userId, AddToCartModel cartItem);
-  Future<ProductItemModel> getProductDetails(String productId);
+  Future<ProductResponse> getProductDetails(int productId);
 }
 
 class ProductDetailsServicesImpl extends ProductDetailsServices {
@@ -45,17 +47,19 @@ class ProductDetailsServicesImpl extends ProductDetailsServices {
   }
 
   @override
-  Future<ProductItemModel> getProductDetails(String productId) async {
+  Future<ProductResponse> getProductDetails(int productId) async {
     try {
       final selectedProduct = await aDio.get(
-          "${AppConstants.baseUrl}${AppConstants.productsPath}/$productId");
+          "${AppConstants.baseUrl}${AppConstants.getProductById}$productId");
+      log('message: ${selectedProduct.data}');
       if (selectedProduct.statusCode == 200) {
-        return ProductItemModel.fromMap(selectedProduct.data);
+        log('statusCode: ${selectedProduct.statusCode}');
+        return ProductResponse.fromMap(selectedProduct.data);
       } else {
-        throw Exception('Failed to load product details');
+        throw Exception('Failed to load product detailssssss');
       }
     } catch (e) {
-      throw Exception('Failed to load product details');
+      throw Exception('Failed to load product detailseeeee');
     }
   }
 }

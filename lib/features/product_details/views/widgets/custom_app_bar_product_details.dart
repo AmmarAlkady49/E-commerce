@@ -8,13 +8,21 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomAppBarProductDetails extends StatelessWidget {
-  final ProductItemModel product;
-  
+  final ProductResponse product;
+
   const CustomAppBarProductDetails({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
     final productDetailsCubit = BlocProvider.of<ProductDetailsCubit>(context);
+    String fixGoogleDriveUrl(String url) {
+      if (url.contains('drive.google.com') && url.contains('open?id=')) {
+        final fileId = url.split('id=').last;
+        return 'https://drive.google.com/uc?export=view&id=$fileId';
+      }
+      return url;
+    }
+
     return SliverAppBar(
       expandedHeight: 300.h,
       collapsedHeight: 55.h,
@@ -34,66 +42,66 @@ class CustomAppBarProductDetails extends StatelessWidget {
           ),
         ),
       ),
-      actions: [
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 0.h),
-          child: BlocBuilder<ProductDetailsCubit, ProductDetailsState>(
-            bloc: productDetailsCubit,
-            buildWhen: (previous, current) =>
-                (current is SetProductFavoriteSuccess &&
-                    current.productId == product.id) ||
-                (current is SetProductFavoriteError &&
-                    current.productId == product.id) ||
-                (current is SetProductFavoriteLoading &&
-                    current.productId == product.id),
-            builder: (context, state) {
-              return IconButton(
-                  padding: EdgeInsets.all(10.r),
-                  onPressed: () {
-                    productDetailsCubit.setProductFavorite(product);
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: WidgetStateProperty.all(
-                        // Color.fromARGB(222, 222, 222, 222)),
-                        Colors.white),
-                  ),
-                  icon: state is SetProductFavoriteLoading
-                      ? CupertinoActivityIndicator()
-                      : (state is SetProductFavoriteSuccess &&
-                              state.isFavorite == true)
-                          ? Icon(
-                              Icons.favorite,
-                              color: Colors.red.shade600,
-                              size: 28.r,
-                            )
-                          : (state is SetProductFavoriteSuccess &&
-                                  state.isFavorite == false)
-                              ? Icon(
-                                  Icons.favorite_border_rounded,
-                                  color: Colors.black,
-                                  size: 28.r,
-                                )
-                              : state is SetProductFavoriteError
-                                  ? Icon(
-                                      Icons.favorite_border_rounded,
-                                      color: Colors.black,
-                                      size: 28.r,
-                                    )
-                                  : product.isFavorite!
-                                      ? Icon(
-                                          Icons.favorite,
-                                          color: Colors.red.shade600,
-                                          size: 28.r,
-                                        )
-                                      : Icon(
-                                          Icons.favorite_border_rounded,
-                                          color: Colors.black,
-                                          size: 28.r,
-                                        ));
-            },
-          ),
-        ),
-      ],
+      // actions: [
+      //   Padding(
+      //     padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 0.h),
+      //     child: BlocBuilder<ProductDetailsCubit, ProductDetailsState>(
+      //       bloc: productDetailsCubit,
+      //       // buildWhen: (previous, current) =>
+      //       //     (current is SetProductFavoriteSuccess &&
+      //       //         current.productId == product.id) ||
+      //       //     (current is SetProductFavoriteError &&
+      //       //         current.productId == product.id) ||
+      //       //     (current is SetProductFavoriteLoading &&
+      //       //         current.productId == product.id),
+      //       builder: (context, state) {
+      //         return IconButton(
+      //             padding: EdgeInsets.all(10.r),
+      //             onPressed: () {
+      //               // productDetailsCubit.setProductFavorite(product);
+      //             },
+      //             style: ButtonStyle(
+      //               backgroundColor: WidgetStateProperty.all(
+      //                   // Color.fromARGB(222, 222, 222, 222)),
+      //                   Colors.white),
+      //             ),
+      //             icon: state is SetProductFavoriteLoading
+      //                 ? CupertinoActivityIndicator()
+      //                 : (state is SetProductFavoriteSuccess &&
+      //                         state.isFavorite == true)
+      //                     ? Icon(
+      //                         Icons.favorite,
+      //                         color: Colors.red.shade600,
+      //                         size: 28.r,
+      //                       )
+      //                     : (state is SetProductFavoriteSuccess &&
+      //                             state.isFavorite == false)
+      //                         ? Icon(
+      //                             Icons.favorite_border_rounded,
+      //                             color: Colors.black,
+      //                             size: 28.r,
+      //                           )
+      //                         : state is SetProductFavoriteError
+      //                             ? Icon(
+      //                                 Icons.favorite_border_rounded,
+      //                                 color: Colors.black,
+      //                                 size: 28.r,
+      //                               )
+      //                             : product.isFavorite!
+      //                                 ? Icon(
+      //                                     Icons.favorite,
+      //                                     color: Colors.red.shade600,
+      //                                     size: 28.r,
+      //                                   )
+      //                                 : Icon(
+      //                                     Icons.favorite_border_rounded,
+      //                                     color: Colors.black,
+      //                                     size: 28.r,
+      //                                   ));
+      //       },
+      // ),
+      // ),
+      // ],
       // backgroundColor: Colors.amber,
       // backgroundColor: Color(0xFFFDFEFF),
       backgroundColor: Colors.grey.shade200,
@@ -101,8 +109,9 @@ class CustomAppBarProductDetails extends StatelessWidget {
         background: Padding(
           padding: EdgeInsets.only(top: 36.h, bottom: 8.h),
           child: CachedNetworkImage(
-            imageUrl: product.image ??
-                "https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=",
+            imageUrl: product.photos.isNotEmpty
+                ? fixGoogleDriveUrl(product.photos.first.imageURL!)
+                : 'https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=',
             fit: BoxFit.contain,
           ),
         ),

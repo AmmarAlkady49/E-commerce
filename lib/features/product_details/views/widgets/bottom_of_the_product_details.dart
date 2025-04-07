@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BottomOfTheProductDetails extends StatelessWidget {
-  final ProductItemModel product;
+  final ProductResponse product;
   const BottomOfTheProductDetails({super.key, required this.product});
 
   @override
@@ -42,7 +42,7 @@ class BottomOfTheProductDetails extends StatelessWidget {
                           )
                         : AddToCartButton(
                             onTap: () {
-                              productDetailsCubit.addToCart(product);
+                              // productDetailsCubit.addToCart(product);
                             },
                             status: "add"),
                 Spacer(),

@@ -49,7 +49,7 @@ final class ProductDetailsQuantityChanged extends ProductDetailsState {
 final class ProductDetailsLoading extends ProductDetailsState {}
 
 final class ProductDetailsLoaded extends ProductDetailsState {
-  final ProductItemModel product;
+  final ProductResponse product;
   ProductDetailsLoaded({
     required this.product,
   });
