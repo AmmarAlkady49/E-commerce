@@ -48,7 +48,7 @@ class AddToCardAndDeleteFromFavorite extends StatelessWidget {
                       ),
                       child: InkWell(
                         onTap: () {
-                          favortiePageCubit.setFavoriteItem(productItem);
+                          // favortiePageCubit.setFavoriteItem(productItem);
                           Navigator.of(context).pop();
                         },
                         borderRadius: BorderRadius.circular(12.r),

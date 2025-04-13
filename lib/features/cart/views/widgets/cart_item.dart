@@ -102,7 +102,7 @@ class CartItem extends StatelessWidget {
                           }
                           return InkWell(
                             onTap: () {
-                              cartCubit.deleteProductFromCart(cartItem);
+                              // cartCubit.deleteProductFromCart(cartItem);
                             },
                             borderRadius: BorderRadius.circular(50.r),
                             child: Icon(

@@ -77,7 +77,7 @@ class CartPage extends StatelessWidget {
                                 ),
                                 ElevatedButton(
                                   onPressed: () {
-                                    cartCubit.clearTheCart();
+                                    // cartCubit.clearTheCart();
                                     Navigator.pop(context);
                                   },
                                   style: ElevatedButton.styleFrom(
@@ -111,7 +111,7 @@ class CartPage extends StatelessWidget {
             current is CartItemUpdated || current is CartItemDeleted,
         listener: (context, state) {
           if (state is CartItemUpdated || state is CartItemDeleted) {
-            cartCubit.getCartItems();
+            // cartCubit.getCartItems();
           }
         },
         bloc: cartCubit,

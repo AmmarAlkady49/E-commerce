@@ -28,13 +28,13 @@ class _IncrementDecrementButtonState extends State<IncrementDecrementButton> {
               })
             : null;
 
-        widget.isIncrement
-            ? widget.cartItem.quantity < 10
-                ? cartCubit.updateProductQuantity(widget.cartItem, true)
-                : null
-            : widget.cartItem.quantity > 1
-                ? cartCubit.updateProductQuantity(widget.cartItem, false)
-                : null;
+        // widget.isIncrement
+        //     ? widget.cartItem.quantity < 10
+        //         ? cartCubit.updateProductQuantity(widget.cartItem, true)
+        //         : null
+        //     : widget.cartItem.quantity > 1
+        //         ? cartCubit.updateProductQuantity(widget.cartItem, false)
+        //         : null;
         Future.delayed(const Duration(milliseconds: 400), () {
           setState(() {
             isChanging = false;

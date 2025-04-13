@@ -1,16 +1,12 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
-import 'package:e_commerce_graduation/core/models/user_data.dart';
-import 'package:e_commerce_graduation/core/services/firestore_services.dart';
-import 'package:e_commerce_graduation/core/utils/api_pathes.dart';
 import 'package:e_commerce_graduation/core/utils/app_constants.dart';
 import 'package:e_commerce_graduation/features/home/model/parameter_request.dart';
 import 'package:e_commerce_graduation/core/models/product_response.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 abstract class HomePageServices {
-  Future<UserData> getUserData();
+  // Future<UserData> getUserData();
   Future<List<ProductResponse>> getAllProducts();
   // Future<void> addFavoriteProduct(String userId, ProductItemModel product);
   // Future<void> deleteFavoriteProduct(String userId, String productId);
@@ -18,22 +14,20 @@ abstract class HomePageServices {
 }
 
 class HomePageServicesImpl implements HomePageServices {
-  final _firestoreServices = FirestoreServices.instance;
-  final firebaseAuth = FirebaseAuth.instance;
   final aDio = Dio();
 
   //get user data
-  @override
-  Future<UserData> getUserData() async {
-    final user = firebaseAuth.currentUser;
-    final UserData userData = await _firestoreServices.getDocument(
-      path: ApiPathes.users(user!.uid),
-      builder: (data, documentID) {
-        return UserData.fromMap(data);
-      },
-    );
-    return userData;
-  }
+  // @override
+  // Future<UserData> getUserData() async {
+  //   final user = firebaseAuth.currentUser;
+  //   final UserData userData = await _firestoreServices.getDocument(
+  //     path: ApiPathes.users(user!.uid),
+  //     builder: (data, documentID) {
+  //       return UserData.fromMap(data);
+  //     },
+  //   );
+  //   return userData;
+  // }
 
   // get all products
   @override

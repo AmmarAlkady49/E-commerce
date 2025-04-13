@@ -48,7 +48,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
                     BlocProvider(
                       create: (context) {
                         final cubit = HomeCubit();
-                        cubit.getUserData();
+                        // cubit.getUserData();
                         cubit.getAllProducts();
                         return cubit;
                       },
@@ -64,7 +64,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
                     ? BlocProvider(
                         create: (context) {
                           final cubit = FavoritesCubit();
-                          cubit.getFavoriteProducts();
+                          // cubit.getFavoriteProducts();
                           return cubit;
                         },
                         child: screenOptions.elementAt(_selectedIndex))
@@ -72,7 +72,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
                         ? BlocProvider(
                             create: (context) {
                               final cubit = CartCubit();
-                              cubit.getCartItems();
+                              // cubit.getCartItems();
                               return cubit;
                             },
                             child: screenOptions.elementAt(_selectedIndex))

@@ -3,7 +3,6 @@ import 'package:dio/dio.dart';
 import 'package:e_commerce_graduation/core/models/customer_data.dart';
 import 'package:e_commerce_graduation/core/secure_storage.dart';
 import 'package:e_commerce_graduation/core/utils/app_constants.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 abstract class AuthServices {
@@ -15,7 +14,6 @@ abstract class AuthServices {
     required String phone,
     required String birthOfDate,
   });
-  User? getCurrentUser();
   Future<CustomerData?> getUserProfile();
   Future<bool> verifyEmail(String code, String email);
   Future<bool> verifyOtpCode(String email, String otpCode);
@@ -27,7 +25,6 @@ abstract class AuthServices {
 }
 
 class AuthServicesImpl implements AuthServices {
-  final _firebaseAuth = FirebaseAuth.instance;
   final aDio = Dio();
   final secureStorage = SecureStorage();
 
@@ -100,10 +97,7 @@ class AuthServicesImpl implements AuthServices {
     }
   }
 
-  @override
-  User? getCurrentUser() {
-    return _firebaseAuth.currentUser;
-  }
+ 
 
   @override
   Future<CustomerData?> getUserProfile() async {

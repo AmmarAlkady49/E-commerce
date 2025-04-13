@@ -50,9 +50,11 @@ class AddToCartButtonFavPage extends StatelessWidget {
               ),
             ),
           ),
-          onPressed: () => state is! AddProductToCartLoaded
-              ? favortiePageCubit.addToCart(productItem)
-              : null,
+          onPressed: () {
+            // state is! AddProductToCartLoaded
+            //   ? favortiePageCubit.addToCart(productItem)
+            //   : null;
+          },
           child: state is AddProductToCartLoading
               ? CupertinoActivityIndicator(color: Colors.white)
               : state is AddProductToCartLoaded

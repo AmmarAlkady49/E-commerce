@@ -21,7 +21,7 @@ class FavoritesPage extends StatelessWidget {
           current is SetFavoriteItemLoaded || current is UpdateFavoritePage,
       listener: (context, state) {
         if (state is SetFavoriteItemLoaded || state is UpdateFavoritePage) {
-          favoritesCubit.getFavoriteProducts();
+          // favoritesCubit.getFavoriteProducts();
         }
       },
       buildWhen: (previous, current) =>
@@ -92,7 +92,7 @@ class FavoritesPage extends StatelessWidget {
                                     ),
                                     ElevatedButton(
                                       onPressed: () {
-                                        favoritesCubit.clearFavorites();
+                                        // favoritesCubit.clearFavorites();
                                         Navigator.pop(context);
                                       },
                                       style: ElevatedButton.styleFrom(

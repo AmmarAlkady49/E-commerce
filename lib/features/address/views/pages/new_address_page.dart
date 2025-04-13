@@ -125,15 +125,15 @@ class _NewAddressPageState extends State<NewAddressPage> {
                       buttonTitle: S.of(context).save,
                       onTap: () {
                         if (formKey.currentState!.validate()) {
-                          addressCubit.addNewAddress(
-                            AddressModel(
-                              id: DateTime.now().toIso8601String(),
-                              country: _selectedCountry ?? S.of(context).egypt,
-                              city: _selectedCite ?? S.of(context).alexandria,
-                              area: addressController.text,
-                              // isDefault: false,
-                            ),
-                          );
+                          // addressCubit.addNewAddress(
+                          //   AddressModel(
+                          //     id: DateTime.now().toIso8601String(),
+                          //     country: _selectedCountry ?? S.of(context).egypt,
+                          //     city: _selectedCite ?? S.of(context).alexandria,
+                          //     area: addressController.text,
+                          //     // isDefault: false,
+                          //   ),
+                          // );
                           Navigator.pop(context);
                           addressController.clear();
                         }

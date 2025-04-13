@@ -67,8 +67,8 @@ class NotEmptyAddresses extends StatelessWidget {
               height: 48.h,
               buttonTitle: S.of(context).add_new_address,
               onTap: () {
-                Navigator.pushNamed(context, AppRoutes.newAddressPage)
-                    .then((value) => addressCubit.getAllAddresses());
+                // Navigator.pushNamed(context, AppRoutes.newAddressPage)
+                    // .then((value) => addressCubit.getAllAddresses());
               }),
         ),
         SizedBox(height: 32.h),

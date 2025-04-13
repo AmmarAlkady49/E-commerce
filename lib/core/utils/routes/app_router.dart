@@ -62,7 +62,7 @@ class AppRouter {
             builder: (_) => BlocProvider(
                   create: (context) {
                     final cubit = AddressCubit();
-                    cubit.getAllAddresses();
+                    // cubit.getAllAddresses();
                     return cubit;
                   },
                   child: const AddressPage(),

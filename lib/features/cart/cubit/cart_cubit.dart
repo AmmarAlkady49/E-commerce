@@ -12,56 +12,56 @@ class CartCubit extends Cubit<CartState> {
   final _cartServices = CartServicesImpl();
 
   // get all cart items
-  Future<void> getCartItems() async {
-    // emit(CartLoading());
-    final user = _authService.getCurrentUser();
-    try {
-      final cartItems = await _cartServices.getCartItems(user!.uid);
-      emit(CartLoaded(cartItems));
-    } catch (e) {
-      emit(CartError(e.toString()));
-    }
-  }
+  // Future<void> getCartItems() async {
+  //   // emit(CartLoading());
+  //   final user = _authService.getCurrentUser();
+  //   try {
+  //     final cartItems = await _cartServices.getCartItems(user!.uid);
+  //     emit(CartLoaded(cartItems));
+  //   } catch (e) {
+  //     emit(CartError(e.toString()));
+  //   }
+  // }
 
   // delete product form cart
-  Future<void> deleteProductFromCart(AddToCartModel cartItem) async {
-    emit(CartItemDeleting(cartItem.id));
-    final user = _authService.getCurrentUser();
-    try {
-      await _cartServices.deleteProductFromCart(user!.uid, cartItem.id);
-      emit(CartItemDeleted());
-    } catch (e) {
-      emit(CartItemDeletedError(e.toString()));
-    }
-  }
+  // Future<void> deleteProductFromCart(AddToCartModel cartItem) async {
+  //   emit(CartItemDeleting(cartItem.id));
+  //   final user = _authService.getCurrentUser();
+  //   try {
+  //     await _cartServices.deleteProductFromCart(user!.uid, cartItem.id);
+  //     emit(CartItemDeleted());
+  //   } catch (e) {
+  //     emit(CartItemDeletedError(e.toString()));
+  //   }
+  // }
 
   // clear the cart items
-  Future<void> clearTheCart() async {
-    emit(CartLoading());
-    final user = _authService.getCurrentUser();
-    try {
-      await _cartServices.deleteAllProductsFromCart(user!.uid);
-      emit(CartItemDeleted());
-    } catch (e) {
-      emit(CartError(e.toString()));
-    }
-  }
+  // Future<void> clearTheCart() async {
+  //   emit(CartLoading());
+  //   final user = _authService.getCurrentUser();
+  //   try {
+  //     await _cartServices.deleteAllProductsFromCart(user!.uid);
+  //     emit(CartItemDeleted());
+  //   } catch (e) {
+  //     emit(CartError(e.toString()));
+  //   }
+  // }
 
   // update product quantity
-  Future<void> updateProductQuantity(
-      AddToCartModel cartItem, bool isIncrement) async {
-    emit(CartItemUpdating(cartItem.id));
-    final user = _authService.getCurrentUser();
-    try {
-      final newCartItem = isIncrement
-          ? cartItem.copyWith(quantity: cartItem.quantity + 1)
-          : cartItem.copyWith(quantity: cartItem.quantity - 1);
-      await _cartServices.updateProductQuantity(
-          user!.uid, cartItem.id, newCartItem);
+  // Future<void> updateProductQuantity(
+  //     AddToCartModel cartItem, bool isIncrement) async {
+  //   emit(CartItemUpdating(cartItem.id));
+  //   final user = _authService.getCurrentUser();
+  //   try {
+  //     final newCartItem = isIncrement
+  //         ? cartItem.copyWith(quantity: cartItem.quantity + 1)
+  //         : cartItem.copyWith(quantity: cartItem.quantity - 1);
+  //     await _cartServices.updateProductQuantity(
+  //         user!.uid, cartItem.id, newCartItem);
 
-      emit(CartItemUpdated(cartItem.quantity));
-    } catch (e) {
-      emit(CartItemUpdatedError(e.toString()));
-    }
-  }
+  //     emit(CartItemUpdated(cartItem.quantity));
+  //   } catch (e) {
+  //     emit(CartItemUpdatedError(e.toString()));
+  //   }
+  // }
 }

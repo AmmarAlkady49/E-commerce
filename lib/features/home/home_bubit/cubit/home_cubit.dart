@@ -13,21 +13,20 @@ class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(HomeInitial());
 
   final HomePageServices homeServices = HomePageServicesImpl();
-  final FavoritesServices favoriteServices = FavoritesServicesImpl();
 
-  // Get UserData
-  Future<UserData?> getUserData() async {
-    emit(HomeAppBarLoading());
-    try {
-      final userData = await homeServices.getUserData();
-      emit(HomeAppBarLoaded(userData));
+  // // Get UserData
+  // Future<UserData?> getUserData() async {
+  //   emit(HomeAppBarLoading());
+  //   try {
+  //     final userData = await homeServices.getUserData();
+  //     emit(HomeAppBarLoaded(userData));
 
-      return userData;
-    } catch (e) {
-      emit(HomeAppBarError(e.toString()));
-    }
-    return null;
-  }
+  //     return userData;
+  //   } catch (e) {
+  //     emit(HomeAppBarError(e.toString()));
+  //   }
+  //   return null;
+  // }
 
   // Get All Products
   Future<void> getAllProducts() async {

@@ -2,9 +2,7 @@ import 'package:e_commerce_graduation/core/utils/routes/app_router.dart';
 import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
 import 'package:e_commerce_graduation/core/utils/app_constants.dart';
 import 'package:e_commerce_graduation/features/auth/auth_cubit/auth_cubit.dart';
-import 'package:e_commerce_graduation/firebase_options.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,7 +13,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   SharedPreferences pref = await SharedPreferences.getInstance();

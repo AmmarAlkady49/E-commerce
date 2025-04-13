@@ -104,7 +104,6 @@ class AuthCubit extends Cubit<AuthState> {
   void signinWithGoogle() async {
     emit(SigningWithGoogle()); // Emitting an initial loading state
     // try {
-    final response = await authServices.signinWithGoogle();
 
     // Check if the response contains a 'token' or some success flag
     //   if (response) {

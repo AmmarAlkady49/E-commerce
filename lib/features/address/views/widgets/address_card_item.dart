@@ -24,7 +24,7 @@ class AddressCardItem extends StatelessWidget {
         ),
       ),
       onPressed: () {
-        addressCubit.updateAddress(address);
+        // addressCubit.updateAddress(address);
       },
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 8.h),
@@ -42,7 +42,7 @@ class AddressCardItem extends StatelessWidget {
                 alignment: Alignment.topLeft,
                 child: InkWell(
                   onTap: () {
-                    addressCubit.deleteAddress(address.id);
+                    // addressCubit.deleteAddress(address.id);
                   },
                   borderRadius: BorderRadius.circular(50.r),
                   child: Padding(

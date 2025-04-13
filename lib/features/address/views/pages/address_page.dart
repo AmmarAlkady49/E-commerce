@@ -29,7 +29,7 @@ class AddressPage extends StatelessWidget {
             if (state is DeleteAddressSucess ||
                 state is AddNewAddressSucess ||
                 state is UpdateAddressSucess) {
-              addressCubit.getAllAddresses();
+              // addressCubit.getAllAddresses();
             }
           },
           buildWhen: (previous, current) =>
