@@ -48,6 +48,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "Are you sure you want to delete all cart Items?",
     ),
     "area": MessageLookupByLibrary.simpleMessage("Area"),
+    "assign_new_password": MessageLookupByLibrary.simpleMessage(
+      "Set New Password",
+    ),
+    "assign_new_password_desc": MessageLookupByLibrary.simpleMessage(
+      "Please enter your new password to assign it to your account.",
+    ),
     "bahrain": MessageLookupByLibrary.simpleMessage("Bahrain"),
     "behera": MessageLookupByLibrary.simpleMessage("Behera"),
     "best_seller": MessageLookupByLibrary.simpleMessage("Best Seller"),
@@ -120,6 +126,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "error_reset_password": MessageLookupByLibrary.simpleMessage(
       "Error reset password, please try again",
     ),
+    "error_verification_code": MessageLookupByLibrary.simpleMessage(
+      "Error verification code, please try again",
+    ),
     "female": MessageLookupByLibrary.simpleMessage("Female"),
     "filter": MessageLookupByLibrary.simpleMessage("Filter"),
     "first_name": MessageLookupByLibrary.simpleMessage("First Name"),
@@ -160,6 +169,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "most_popular": MessageLookupByLibrary.simpleMessage("Most Popular"),
     "name": MessageLookupByLibrary.simpleMessage("Name"),
     "new_arrival": MessageLookupByLibrary.simpleMessage("New Arrival🔥"),
+    "new_password": MessageLookupByLibrary.simpleMessage("New Password"),
     "no_description": MessageLookupByLibrary.simpleMessage(
       "There is no description for this product",
     ),
@@ -220,7 +230,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "profile": MessageLookupByLibrary.simpleMessage("Profile"),
     "qatar": MessageLookupByLibrary.simpleMessage("Qatar"),
     "remember_me": MessageLookupByLibrary.simpleMessage("Remember me"),
+    "resend_otp_code_successfully": MessageLookupByLibrary.simpleMessage(
+      "Resend OTP code successfully",
+    ),
     "reset_password": MessageLookupByLibrary.simpleMessage("Reset Password"),
+    "reset_password_successfully": MessageLookupByLibrary.simpleMessage(
+      "Reset password successfully",
+    ),
     "reviews": MessageLookupByLibrary.simpleMessage("Reviews"),
     "saudi_arabia": MessageLookupByLibrary.simpleMessage("Saudi Arabia"),
     "save": MessageLookupByLibrary.simpleMessage("Save"),
@@ -254,6 +270,22 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "verify_email": MessageLookupByLibrary.simpleMessage(
       "verification email sent",
+    ),
+    "verify_email_1": MessageLookupByLibrary.simpleMessage(
+      "Enter Verification Code",
+    ),
+    "verify_email_2": MessageLookupByLibrary.simpleMessage(
+      "We have sent a verification code to your email, please enter it below to verify your account.",
+    ),
+    "verify_email_3": MessageLookupByLibrary.simpleMessage("Resend Code"),
+    "verify_email_4": MessageLookupByLibrary.simpleMessage(
+      "Did not receive the code?",
+    ),
+    "verify_email_successfully": MessageLookupByLibrary.simpleMessage(
+      "Verify email successfully",
+    ),
+    "verify_otp_code_successfully": MessageLookupByLibrary.simpleMessage(
+      "Verify OTP code successfully",
     ),
     "weak_password": MessageLookupByLibrary.simpleMessage(
       "The password provided is too weak.",

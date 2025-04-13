@@ -7,7 +7,7 @@ class MyButton1 extends StatelessWidget {
   final double width;
   final double height;
   final String buttonTitle;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
   final bool? isLoading;
   const MyButton1(
       {super.key,
@@ -42,7 +42,10 @@ class MyButton1 extends StatelessWidget {
         child: Text(
           isLoading == true ? S.of(context).loading : buttonTitle,
           style: FontHelper.fontText(
-              size: 15.sp, weight: FontWeight.w700, color: Colors.white,context: context),
+              size: 15.sp,
+              weight: FontWeight.w700,
+              color: Colors.white,
+              context: context),
         ),
       ),
     );

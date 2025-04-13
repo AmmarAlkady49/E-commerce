@@ -2,6 +2,7 @@ import 'package:e_commerce_graduation/core/utils/themes/app_bar_default_theme.da
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
 import 'package:e_commerce_graduation/features/profile/profile_cubit/cubit/profile_cubit.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,11 +20,12 @@ class AccountPage extends StatelessWidget {
         buildWhen: (previous, current) =>
             current is AccountPageLoading ||
             current is AccountPageLoaded ||
+            current is AccountPageUpdated ||
             current is AccountPageError,
         builder: (context, state) {
           if (state is AccountPageLoading) {
             return Center(
-              child: CircularProgressIndicator(),
+              child: CupertinoActivityIndicator(),
             );
           }
           if (state is AccountPageError) {
@@ -84,8 +86,8 @@ class AccountPage extends StatelessWidget {
                           title: S.of(context).email,
                           data: state.email,
                           onTap: () {
-                            showEditModalBottomSheet(
-                                context, S.of(context).email, state.email);
+                            // showEditModalBottomSheet(
+                            //     context, S.of(context).email, state.email);
                           },
                         ),
                         Divider(),
@@ -100,8 +102,11 @@ class AccountPage extends StatelessWidget {
                         Divider(),
                         InfoCard(
                           title: S.of(context).gender,
-                          data: S.of(context).gender,
-                          onTap: () {},
+                          data: state.gender,
+                          onTap: () {
+                            showEditModalBottomSheet(
+                                context, S.of(context).gender, state.gender);
+                          },
                         ),
                         Divider(),
                         InfoCard(
@@ -130,13 +135,13 @@ class AccountPage extends StatelessWidget {
 
 void showEditModalBottomSheet(
     BuildContext context, String title, String initialValue) {
+  final profileCubit = BlocProvider.of<ProfileCubit>(context);
   final TextEditingController controller =
       TextEditingController(text: initialValue);
 
   showModalBottomSheet(
     context: context,
     isScrollControlled: true,
-    // showDragHandle: true,
     backgroundColor: Colors.white,
     builder: (context) {
       return Padding(
@@ -172,7 +177,7 @@ void showEditModalBottomSheet(
                 "$title :",
                 style: FontHelper.fontText(
                     size: 16.sp,
-                    weight: FontWeight.w600,
+                    weight: FontWeight.w800,
                     color: Colors.black,
                     context: context),
               ),
@@ -200,8 +205,28 @@ void showEditModalBottomSheet(
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    // final newValue = controller.text;
+                    final newValue = controller.text;
+                    final currentUserData = profileCubit.currentUserData;
                     Navigator.pop(context);
+                    // profileCubit.getUserData();
+                    final updatedUserData = currentUserData.copyWith(
+                      name: title == S.of(context).name
+                          ? newValue
+                          : currentUserData.name,
+                      email: title == S.of(context).email
+                          ? newValue
+                          : currentUserData.email,
+                      phoneNumber: title == S.of(context).phone
+                          ? newValue
+                          : currentUserData.phoneNumber,
+                      dateOfBirth: title == S.of(context).birthday
+                          ? newValue
+                          : currentUserData.dateOfBirth,
+                      gender: title == S.of(context).gender
+                          ? newValue
+                          : currentUserData.gender,
+                    );
+                    profileCubit.updateUserData(updatedUserData);
                   },
                   style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.symmetric(vertical: 10.0.h),

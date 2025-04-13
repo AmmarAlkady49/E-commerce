@@ -1,4 +1,3 @@
-import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
 import 'package:e_commerce_graduation/core/widgets/my_button1.dart';
@@ -262,46 +261,24 @@ class _ContainerOfTheCreateAcountState
                     current is AuthErrorVerification,
                 listener: (context, state) {
                   if (state is CreatingAccoutSuccess) {
-                    // Navigator.pushNamedAndRemoveUntil(
-                    //     context, AppRoutes.login, (route) => false);
-                    AwesomeDialog(
-                      context: context,
-                      dialogType: DialogType.warning,
-                      animType: AnimType.bottomSlide,
-                      autoDismiss: true,
-                      headerAnimationLoop: false,
-                      // barrierDismissible: true,
-                      dismissOnBackKeyPress: true,
-                      title: S.of(context).verify_email,
-                      desc: S.of(context).desc_verify_email,
-                      titleTextStyle: FontHelper.fontText(
-                          size: 20.sp,
-                          weight: FontWeight.w600,
-                          color: Colors.black,context: context),
-                      descTextStyle: FontHelper.fontText(
-                          size: 15.sp,
-                          weight: FontWeight.w600,
-                          color: Colors.black,context: context),
-                      onDismissCallback: (type) {
-                        Navigator.pushNamedAndRemoveUntil(
-                            context, AppRoutes.login, (route) => false); // T
+                    Navigator.pushReplacementNamed(
+                      context,
+                      AppRoutes.verifyEmail,
+                      arguments: {
+                        "email": emailController.text,
+                        "pageType": "register",
                       },
-                      btnOkOnPress: () {
-                        debugPrint("OK button pressed"); // Debug print
-                        Navigator.pushNamedAndRemoveUntil(
-                            context,
-                            AppRoutes.login,
-                            (route) => false); // This should dismiss the dialog
-                      },
-                    ).show();
+                    );
                   } else if (state is AuthError) {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       content: Text(
                         state.message,
+                        textAlign: TextAlign.left,
                         style: FontHelper.fontText(
                             size: 15.sp,
                             weight: FontWeight.w600,
-                            color: Colors.white,context: context),
+                            color: Colors.white,
+                            context: context),
                       ),
                       backgroundColor: Colors.redAccent,
                       behavior: SnackBarBehavior.floating,
@@ -313,14 +290,17 @@ class _ContainerOfTheCreateAcountState
                 },
                 bloc: cubit,
                 buildWhen: (previous, current) =>
-                    current is! AuthLoading || current is AuthErrorVerification,
+                    current is AuthLoading ||
+                    current is AuthErrorVerification ||
+                    current is CreatingAccoutSuccess ||
+                    current is AuthError,
                 builder: (context, state) {
                   if (state is AuthLoading) {
                     return MyButton1(
                       buttonTitle: S.of(context).create_account,
                       height: 42.h,
                       width: size.width * 0.8,
-                      onTap: () {},
+                      onTap: null,
                       isLoading: true,
                     );
                   }
@@ -338,7 +318,7 @@ class _ContainerOfTheCreateAcountState
                           phone: phoneController.text,
                           birthDate: birthOfDateController.text,
                         );
-                        cubit.sendEmailVerification();
+                        // cubit.sendEmailVerification();
                       }
                     },
                   );

@@ -1,6 +1,7 @@
 import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
 import 'package:e_commerce_graduation/core/utils/themes/app_bar_default_theme.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
+import 'package:e_commerce_graduation/features/auth/services/auth_services.dart';
 import 'package:e_commerce_graduation/features/profile/profile_cubit/cubit/profile_cubit.dart';
 import 'package:e_commerce_graduation/features/profile/views/widgets/log_out_button.dart';
 import 'package:e_commerce_graduation/features/profile/views/widgets/my_list_tile.dart';
@@ -16,6 +17,7 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final profileCubit = BlocProvider.of<ProfileCubit>(context);
+    final authServices = AuthServicesImpl();
     return Scaffold(
       appBar: AppBarDefaultTheme(
         title: S.of(context).settings,
@@ -80,15 +82,17 @@ class ProfilePage extends StatelessWidget {
                         leadingIcon: Iconsax.user),
                     SizedBox(height: 12.h),
                     MyListTile(
-                        onTap: () {
+                        onTap: () async {
                           Navigator.of(context)
-                              .pushNamed(AppRoutes.changePassword);
+                              .pushNamed(AppRoutes.forgotPassword);
                         },
                         title: S.of(context).change_password,
                         leadingIcon: Iconsax.lock4),
                     SizedBox(height: 12.h),
                     MyListTile(
-                        onTap: () {},
+                        onTap: () {
+                          authServices.getUserProfile();
+                        },
                         title: S.of(context).notification,
                         leadingIcon: Iconsax.notification),
                     SizedBox(height: 18.h),

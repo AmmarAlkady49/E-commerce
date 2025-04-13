@@ -1,10 +1,17 @@
+import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconsax/iconsax.dart';
 
 class TextFormFieldChangePassword extends StatefulWidget {
   final TextEditingController controller;
-  const TextFormFieldChangePassword({super.key, required this.controller});
+  final String? hintText;
+  final String? Function(String?)? validator;
+  const TextFormFieldChangePassword(
+      {super.key,
+      required this.controller,
+      this.hintText,
+      required this.validator});
 
   @override
   State<TextFormFieldChangePassword> createState() =>
@@ -17,24 +24,7 @@ class _TextFormFieldChangePasswordState
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return 'Please enter password';
-        }
-        if (value.length < 6) {
-          return 'Password must be at least 6 characters';
-        }
-        if (!value.contains(RegExp(r'[A-Z]'))) {
-          return 'Password must contain at least one uppercase letter';
-        }
-        if (!value.contains(RegExp(r'[a-z]'))) {
-          return 'Password must contain at least one lowercase letter';
-        }
-        if (!value.contains(RegExp(r'\d'))) {
-          return 'password must contain at least one number';
-        }
-        return null;
-      },
+      validator: widget.validator,
       obscureText: obscureText,
       maxLength: 12,
       controller: widget.controller,
@@ -50,10 +40,19 @@ class _TextFormFieldChangePasswordState
           borderRadius: BorderRadius.circular(12.0.r),
         ),
         errorBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.red, width: 1.5),
+          borderSide: const BorderSide(color: Colors.red, width: 1),
           borderRadius: BorderRadius.circular(12.0.r),
         ),
-        hintText: '**********',
+        focusedErrorBorder: OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.red, width: 2),
+          borderRadius: BorderRadius.circular(12.0.r),
+        ),
+        hintText: widget.hintText ?? '**********',
+        hintStyle: FontHelper.fontText(
+            size: 14.sp,
+            weight: FontWeight.w400,
+            color: Colors.black38,
+            context: context),
         prefixIcon: const Icon(Iconsax.lock, color: Colors.black38),
         suffixIcon: IconButton(
             onPressed: () {

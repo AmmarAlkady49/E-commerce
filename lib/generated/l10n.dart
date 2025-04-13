@@ -1164,6 +1164,126 @@ class S {
       args: [],
     );
   }
+
+  /// `Enter Verification Code`
+  String get verify_email_1 {
+    return Intl.message(
+      'Enter Verification Code',
+      name: 'verify_email_1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We have sent a verification code to your email, please enter it below to verify your account.`
+  String get verify_email_2 {
+    return Intl.message(
+      'We have sent a verification code to your email, please enter it below to verify your account.',
+      name: 'verify_email_2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resend Code`
+  String get verify_email_3 {
+    return Intl.message(
+      'Resend Code',
+      name: 'verify_email_3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Did not receive the code?`
+  String get verify_email_4 {
+    return Intl.message(
+      'Did not receive the code?',
+      name: 'verify_email_4',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error verification code, please try again`
+  String get error_verification_code {
+    return Intl.message(
+      'Error verification code, please try again',
+      name: 'error_verification_code',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verify email successfully`
+  String get verify_email_successfully {
+    return Intl.message(
+      'Verify email successfully',
+      name: 'verify_email_successfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verify OTP code successfully`
+  String get verify_otp_code_successfully {
+    return Intl.message(
+      'Verify OTP code successfully',
+      name: 'verify_otp_code_successfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Set New Password`
+  String get assign_new_password {
+    return Intl.message(
+      'Set New Password',
+      name: 'assign_new_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your new password to assign it to your account.`
+  String get assign_new_password_desc {
+    return Intl.message(
+      'Please enter your new password to assign it to your account.',
+      name: 'assign_new_password_desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New Password`
+  String get new_password {
+    return Intl.message(
+      'New Password',
+      name: 'new_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reset password successfully`
+  String get reset_password_successfully {
+    return Intl.message(
+      'Reset password successfully',
+      name: 'reset_password_successfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resend OTP code successfully`
+  String get resend_otp_code_successfully {
+    return Intl.message(
+      'Resend OTP code successfully',
+      name: 'resend_otp_code_successfully',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

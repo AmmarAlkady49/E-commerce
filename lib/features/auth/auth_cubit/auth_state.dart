@@ -30,18 +30,58 @@ final class LogoutError extends AuthState {
 
 final class SigningWithGoogle extends AuthState {}
 
-final class SigningWithGoogleSuccess extends AuthState {}
+final class SigningWithGoogleSuccess extends AuthState {
+  final Map<String, dynamic> data;
+  SigningWithGoogleSuccess(this.data);
+}
 
 final class SigningWithGoogleError extends AuthState {
   final String message;
   SigningWithGoogleError(this.message);
 }
 
-final class UpdatingPassword extends AuthState {}
+final class OTPCodeSending extends AuthState {}
 
-final class PasswordUpdated extends AuthState {}
+final class OTPCodeSent extends AuthState {}
 
-final class PasswordUpdateError extends AuthState {
+final class OTPCodeSendingError extends AuthState {
   final String message;
-  PasswordUpdateError(this.message);
+  OTPCodeSendingError(this.message);
+}
+
+final class VerifyEmailLoading extends AuthState {}
+
+final class VerifyEmailSuccess extends AuthState {}
+
+final class VerifyOTPCodeSuccess extends AuthState {}
+
+final class VerifyEmailError extends AuthState {
+  final String message;
+  VerifyEmailError(this.message);
+}
+
+final class UpdateingPassword extends AuthState {
+  UpdateingPassword();
+}
+
+final class UpdatePasswordSuccess extends AuthState {
+  UpdatePasswordSuccess();
+}
+
+final class UpdatePasswordError extends AuthState {
+  final String message;
+  UpdatePasswordError({required this.message});
+}
+
+final class ResendOTPCodeLoading extends AuthState {
+  ResendOTPCodeLoading();
+}
+
+final class ResendOTPCodeSuccess extends AuthState {
+  ResendOTPCodeSuccess();
+}
+
+final class ResendOTPCodeError extends AuthState {
+  final String message;
+  ResendOTPCodeError(this.message);
 }

@@ -1,7 +1,7 @@
 import 'package:e_commerce_graduation/core/utils/themes/app_bar_default_theme.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
 import 'package:e_commerce_graduation/core/widgets/my_button1.dart';
-import 'package:e_commerce_graduation/features/profile/profile_cubit/cubit/profile_cubit.dart';
+import 'package:e_commerce_graduation/features/auth/auth_cubit/auth_cubit.dart';
 import 'package:e_commerce_graduation/features/profile/views/widgets/text_form_field_change_password.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:flutter/material.dart';
@@ -9,14 +9,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ChangePasswordProfile extends StatelessWidget {
-  const ChangePasswordProfile({super.key});
+  final String? email;
+  const ChangePasswordProfile({super.key, this.email});
 
   @override
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormState>();
     final passwordController = TextEditingController();
+    final passwordConfirmController = TextEditingController();
 
-    final profileCubit = BlocProvider.of<ProfileCubit>(context);
+    final authCubit = BlocProvider.of<AuthCubit>(context);
 
     return Scaffold(
       appBar: AppBarDefaultTheme(title: S.of(context).change_password),
@@ -28,7 +30,7 @@ class ChangePasswordProfile extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                S.of(context).change_password,
+                S.of(context).assign_new_password,
                 style: FontHelper.fontText(
                     size: 18.sp,
                     weight: FontWeight.w600,
@@ -36,7 +38,44 @@ class ChangePasswordProfile extends StatelessWidget {
                     context: context),
               ),
               SizedBox(height: 12.h),
-              TextFormFieldChangePassword(controller: passwordController),
+              TextFormFieldChangePassword(
+                controller: passwordController,
+                hintText: S.of(context).new_password,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter password';
+                  }
+                  if (value.length < 6) {
+                    return 'Password must be at least 6 characters';
+                  }
+                  if (!value.contains(RegExp(r'[A-Z]'))) {
+                    return 'Password must contain at least one uppercase letter';
+                  }
+                  if (!value.contains(RegExp(r'[a-z]'))) {
+                    return 'Password must contain at least one lowercase letter';
+                  }
+                  if (!value.contains(RegExp(r'\d'))) {
+                    return 'password must contain at least one number';
+                  }
+                  if (!value.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
+                    return 'Password must contain at least one special character';
+                  }
+
+                  return null;
+                },
+              ),
+              SizedBox(height: 12.h),
+              TextFormFieldChangePassword(
+                controller: passwordConfirmController,
+                hintText: S.of(context).confirm_password,
+                validator: (value) {
+                  if (value != passwordController.text) {
+                    return S.of(context).password_not_match;
+                  }
+
+                  return null;
+                },
+              ),
               SizedBox(height: 12.h),
               Text(
                 '- ${S.of(context).password_instruction2}',
@@ -92,15 +131,15 @@ class ChangePasswordProfile extends StatelessWidget {
                     context: context),
               ),
               SizedBox(height: 24.h),
-              BlocConsumer<ProfileCubit, ProfileState>(
-                bloc: profileCubit,
+              BlocConsumer<AuthCubit, AuthState>(
+                bloc: authCubit,
                 buildWhen: (previous, current) => current is UpdateingPassword,
                 listenWhen: (previous, current) =>
-                    current is UpdatedPassword ||
+                    current is UpdatePasswordSuccess ||
                     current is UpdatePasswordError,
                 listener: (context, state) {
-                  if (state is UpdatedPassword) {
-                    // Navigator.pop(context);
+                  if (state is UpdatePasswordSuccess) {
+                    Navigator.pop(context);
                     showModalBottomSheet(
                         context: context,
                         builder: (context) {
@@ -118,7 +157,7 @@ class ChangePasswordProfile extends StatelessWidget {
                               children: [
                                 SizedBox(height: 24.h),
                                 Text(
-                                  S.of(context).change_password_successfully,
+                                  S.of(context).reset_password_successfully,
                                   style: FontHelper.fontText(
                                       size: 20.sp,
                                       weight: FontWeight.w700,
@@ -170,7 +209,7 @@ class ChangePasswordProfile extends StatelessWidget {
                       width: double.infinity,
                       height: 42.h,
                       buttonTitle: S.of(context).loading,
-                      onTap: () {},
+                      onTap: null,
                       isLoading: true,
                     );
                   }
@@ -180,9 +219,14 @@ class ChangePasswordProfile extends StatelessWidget {
                       buttonTitle: S.of(context).save,
                       onTap: () async {
                         if (formKey.currentState!.validate()) {
-                          await profileCubit
-                              .updatePassword(passwordController.text);
-                          passwordController.clear();
+                          email != null
+                              ? await authCubit.updatePassword(
+                                  newPassword: passwordController.text,
+                                  email: email)
+                              : await authCubit.updatePassword(
+                                  newPassword: passwordController.text,
+                                  email: null);
+                          // passwordController.clear();
                         }
                       });
                 },

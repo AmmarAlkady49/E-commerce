@@ -8,7 +8,10 @@ class AppBarDefaultTheme extends StatelessWidget
   final bool? needLeadingButton;
   final List<Widget>? actions;
   const AppBarDefaultTheme(
-      {super.key, required this.title, this.needLeadingButton = true, this.actions});
+      {super.key,
+      required this.title,
+      this.needLeadingButton = true,
+      this.actions});
 
   @override
   Widget build(BuildContext context) {

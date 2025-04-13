@@ -11,6 +11,8 @@ class AppRoutes {
   static const String productPage = '/product_page';
   static const String addressPage = '/address_page';
   static const String newAddressPage = '/new_address_page';
+  static const String verifyEmail = '/verify_email_page';
+  static const String assignNewPassword = '/assign_new_password_page';
 
 }
 

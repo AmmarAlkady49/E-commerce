@@ -42,7 +42,7 @@ class MyButton2 extends StatelessWidget {
       },
       child: InkWell(
         onTap: () {
-          homeCubit.siginWithGoogle();
+          homeCubit.signinWithGoogle();
         },
         child: Container(
           decoration: BoxDecoration(

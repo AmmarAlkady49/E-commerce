@@ -4,7 +4,6 @@ import 'package:e_commerce_graduation/core/models/add_to_cart_model.dart';
 import 'package:e_commerce_graduation/core/models/product_response.dart';
 import 'package:e_commerce_graduation/features/auth/services/auth_services.dart';
 import 'package:e_commerce_graduation/features/product_details/services/product_details_services.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'product_details_state.dart';

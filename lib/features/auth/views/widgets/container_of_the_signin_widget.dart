@@ -126,10 +126,12 @@ class _ContainerOfTheSigninWidgetState
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                         content: Text(
                           state.message,
+                          textAlign: TextAlign.left,
                           style: FontHelper.fontText(
                               size: 15.sp,
                               weight: FontWeight.w600,
-                              color: Colors.white,context: context),
+                              color: Colors.white,
+                              context: context),
                         ),
                         backgroundColor: Colors.redAccent,
                         behavior: SnackBarBehavior.floating,
@@ -151,11 +153,13 @@ class _ContainerOfTheSigninWidgetState
                         titleTextStyle: FontHelper.fontText(
                             size: 20.sp,
                             weight: FontWeight.w600,
-                            color: Colors.black,context: context),
+                            color: Colors.black,
+                            context: context),
                         descTextStyle: FontHelper.fontText(
                             size: 15.sp,
                             weight: FontWeight.w600,
-                            color: Colors.black,context: context),
+                            color: Colors.black,
+                            context: context),
                         btnOkOnPress: () {
                           Navigator.pushNamedAndRemoveUntil(
                               context, AppRoutes.login, (route) => false);
@@ -173,7 +177,7 @@ class _ContainerOfTheSigninWidgetState
                         buttonTitle: S.of(context).login,
                         height: 42.h,
                         width: size.width * 0.8,
-                        onTap: () {},
+                        onTap: null,
                         isLoading: true,
                       );
                     }
@@ -210,14 +214,16 @@ class _ContainerOfTheSigninWidgetState
                     style: FontHelper.fontText(
                         size: 14.sp,
                         weight: FontWeight.w400,
-                        color: Colors.black,context: context),
+                        color: Colors.black,
+                        context: context),
                     children: [
                       TextSpan(
                         text: S.of(context).sign_up2,
                         style: FontHelper.fontText(
                             size: 14.sp,
                             weight: FontWeight.w700,
-                            color: Color(0xff1D61E7),context: context),
+                            color: Color(0xff1D61E7),
+                            context: context),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
                             Navigator.pushNamed(

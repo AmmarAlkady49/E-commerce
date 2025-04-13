@@ -25,12 +25,14 @@ final class UpdatePasswordError extends ProfileState {
 }
 
 final class AccountPageLoading extends ProfileState {}
+final class AccountPageUpdated extends ProfileState {}
 
 final class AccountPageLoaded extends ProfileState {
   final String email;
   final String fName;
   final String lName;
   final String phone;
+  final String gender;
   final String birthDate;
 
   AccountPageLoaded({
@@ -38,6 +40,7 @@ final class AccountPageLoaded extends ProfileState {
     required this.fName,
     required this.lName,
     required this.phone,
+    required this.gender,
     required this.birthDate,
   });
 }

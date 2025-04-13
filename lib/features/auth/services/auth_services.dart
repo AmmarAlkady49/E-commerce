@@ -1,41 +1,102 @@
+import 'dart:developer';
+import 'package:dio/dio.dart';
+import 'package:e_commerce_graduation/core/models/customer_data.dart';
+import 'package:e_commerce_graduation/core/secure_storage.dart';
+import 'package:e_commerce_graduation/core/utils/app_constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 abstract class AuthServices {
   Future<bool> loginWithEmailAndPassword(String email, String password);
-  Future<bool> registerWithEmailAndPassword(String email, String password);
+  Future<bool> registerWithEmailAndPassword({
+    required String name,
+    required String email,
+    required String password,
+    required String phone,
+    required String birthOfDate,
+  });
   User? getCurrentUser();
-  Future<void> sendEmailVerification();
-  Future<void> signOut();
+  Future<CustomerData?> getUserProfile();
+  Future<bool> verifyEmail(String code, String email);
+  Future<bool> verifyOtpCode(String email, String otpCode);
+  Future<bool> resendOtpCode(String email);
+  Future<bool> resetPasword(String email, String password);
   Future<void> signoutFromGoogle();
-  Future<UserCredential> signinWithGoogle();
-  Future<void> updatePassword(String emailText);
+  Future<GoogleSignInAccount?> signinWithGoogle();
+  Future<bool> sendEmailForgetPassword(String emailText);
 }
 
 class AuthServicesImpl implements AuthServices {
   final _firebaseAuth = FirebaseAuth.instance;
+  final aDio = Dio();
+  final secureStorage = SecureStorage();
+
   @override
   Future<bool> loginWithEmailAndPassword(String email, String password) async {
-    final userCredintial = await _firebaseAuth.signInWithEmailAndPassword(
-        email: email, password: password);
-    final user = userCredintial.user;
-    if (user != null) {
-      return true;
-    } else {
-      return false;
+    try {
+      final apiResponse = await aDio.post(
+        "${AppConstants.baseUrl}${AppConstants.login}",
+        data: {
+          "email": email,
+          "password": password,
+        },
+        options: Options(
+          validateStatus: (status) => status != null && status < 500,
+        ),
+      );
+      if (apiResponse.statusCode == 200) {
+        final responseMessage = apiResponse.data['message'];
+        if (responseMessage != null) {
+          await secureStorage.saveSecureData('token', responseMessage);
+          await secureStorage.saveSecureData('isLogin', 'true');
+          await secureStorage.saveSecureData('email', email);
+          return true;
+        } else {
+          return false;
+        }
+      } else if (apiResponse.statusCode == 400) {
+        throw Exception(apiResponse.data['message'] ?? 'Failed to login');
+      } else {
+        log('Failed to login: ${apiResponse.statusCode}');
+        throw Exception('Failed to login: ${apiResponse.statusCode}');
+      }
+    } catch (e) {
+      return throw Exception('Failed to login: $e');
     }
   }
 
   @override
-  Future<bool> registerWithEmailAndPassword(
-      String email, String password) async {
-    final userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
-        email: email, password: password);
-    final user = userCredential.user;
-    if (user != null) {
-      return true;
+  Future<bool> registerWithEmailAndPassword({
+    required String name,
+    required String email,
+    required String password,
+    required String phone,
+    required String birthOfDate,
+  }) async {
+    final customerData = CustomerData(
+      name: name,
+      email: email,
+      password: password,
+      phoneNumber: phone,
+      dateOfBirth: birthOfDate,
+    );
+    final apiResponse =
+        await aDio.post("${AppConstants.baseUrl}${AppConstants.register}",
+            data: customerData.toMap(),
+            options: Options(
+              validateStatus: (status) => status != null && status < 500,
+            ));
+    if (apiResponse.statusCode == 200) {
+      if (apiResponse.data['message'] != null) {
+        return true;
+      } else {
+        return false;
+      }
+    } else if (apiResponse.statusCode == 400) {
+      throw Exception(apiResponse.data['message'] ?? 'Failed to register');
     } else {
-      return false;
+      log('Failed to register: ${apiResponse.statusCode}');
+      throw Exception('Failed to register: ${apiResponse.statusCode}');
     }
   }
 
@@ -45,32 +106,41 @@ class AuthServicesImpl implements AuthServices {
   }
 
   @override
-  Future<void> sendEmailVerification() async {
-    await FirebaseAuth.instance.setLanguageCode("en");
-    return _firebaseAuth.currentUser!.sendEmailVerification();
-  }
-
-  @override
-  Future<void> signOut() {
-    return _firebaseAuth.signOut();
-  }
-
-  @override
-  Future<UserCredential> signinWithGoogle() async {
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-
-    if (googleUser == null) {
-      return Future.error('Google sign-in aborted');
+  Future<CustomerData?> getUserProfile() async {
+    try {
+      final getUserProfileResponse = await aDio.get(
+        "${AppConstants.baseUrl}${AppConstants.accountProfile}",
+      );
+      log(getUserProfileResponse.data);
+      return getUserProfileResponse.data['message'] != null
+          ? CustomerData.fromMap(getUserProfileResponse.data['message'])
+          : null;
+    } catch (e) {
+      log('Error getting user profile: $e');
+      throw Exception('Failed to get user profile: $e');
     }
-    final GoogleSignInAuthentication googleAuth =
-        await googleUser.authentication;
+  }
 
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth.accessToken,
-      idToken: googleAuth.idToken,
-    );
+  // @override
+  // Future<UserCredential> signinWithGoogle() async {
+  //   final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-    return await FirebaseAuth.instance.signInWithCredential(credential);
+  //   if (googleUser == null) {
+  //     return Future.error('Google sign-in aborted');
+  //   }
+  //   final GoogleSignInAuthentication googleAuth =
+  //       await googleUser.authentication;
+
+  //   final credential = GoogleAuthProvider.credential(
+  //     accessToken: googleAuth.accessToken,
+  //     idToken: googleAuth.idToken,
+  //   );
+
+  //   return await FirebaseAuth.instance.signInWithCredential(credential);
+  // }
+  @override
+  Future<GoogleSignInAccount?> signinWithGoogle() async {
+    final GoogleSignInAccount? _googleSignIn = await GoogleSignIn().signIn();
   }
 
   @override
@@ -79,7 +149,118 @@ class AuthServicesImpl implements AuthServices {
   }
 
   @override
-  Future<void> updatePassword(String emailText) async {
-    await _firebaseAuth.sendPasswordResetEmail(email: emailText);
+  Future<bool> sendEmailForgetPassword(String emailText) async {
+    final apiResponse = await aDio.get(
+      "${AppConstants.baseUrl}${AppConstants.sendEmailForgetPassword}",
+      queryParameters: {
+        "email": emailText,
+      },
+      options: Options(
+        validateStatus: (status) => status != null && status < 500,
+      ),
+    );
+    if (apiResponse.statusCode == 200) {
+      return true;
+    } else if (apiResponse.statusCode == 400) {
+      throw Exception(apiResponse.data['message'] ?? 'Failed to register');
+    } else {
+      log('Failed to register: ${apiResponse.statusCode}');
+      throw Exception('Failed to register: ${apiResponse.statusCode}');
+    }
+  }
+
+  @override
+  Future<bool> verifyOtpCode(String email, String otpCode) async {
+    final apiRespons = await aDio.post(
+      "${AppConstants.baseUrl}${AppConstants.verifyOtp}",
+      data: {
+        "email": email,
+        "code": otpCode,
+      },
+      options: Options(
+        headers: {
+          "Authorization":
+              "Bearer ${await secureStorage.readSecureData('token')}",
+        },
+        validateStatus: (status) => status != null && status < 500,
+      ),
+    );
+    if (apiRespons.statusCode == 200) {
+      await secureStorage.saveSecureData('otpCode', otpCode);
+      return true;
+    } else if (apiRespons.statusCode == 400) {
+      throw Exception("Bad request: ${apiRespons.data}");
+    } else {
+      throw Exception("Failed to verify otp: ${apiRespons.statusCode}");
+    }
+  }
+
+  @override
+  Future<bool> verifyEmail(String code, String email) async {
+    final response = await aDio.post(
+      "${AppConstants.baseUrl}${AppConstants.activeAccount}",
+      data: {
+        "email": email,
+        "code": code,
+      },
+    );
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  @override
+  Future<bool> resetPasword(String email, String password) async {
+    final code = await secureStorage.readSecureData('otpCode');
+    final apiResponse = await aDio.post(
+      "${AppConstants.baseUrl}${AppConstants.resetPasswort}",
+      data: {
+        "email": email,
+        "password": password,
+        "code": code,
+      },
+      options: Options(
+        headers: {
+          "Authorization":
+              "Bearer ${await secureStorage.readSecureData('token')}",
+        },
+        validateStatus: (status) => status != null && status < 500,
+      ),
+    );
+    await secureStorage.deleteSecureData('otpCode');
+    if (apiResponse.statusCode == 200) {
+      return true;
+    } else if (apiResponse.statusCode == 400) {
+      throw Exception(apiResponse.data['message'] ?? 'Failed to register');
+    } else {
+      log('Failed to register: ${apiResponse.statusCode}');
+      throw Exception('Failed to register: ${apiResponse.statusCode}');
+    }
+  }
+
+  @override
+  Future<bool> resendOtpCode(String email) async {
+    final apiResponse =
+        await aDio.post("${AppConstants.baseUrl}${AppConstants.resendOtp}",
+            data: {
+              "email": email,
+            },
+            options: Options(
+              headers: {
+                "Authorization":
+                    "Bearer ${await secureStorage.readSecureData('token')}",
+              },
+              validateStatus: (status) => status != null && status < 500,
+            ));
+    if (apiResponse.statusCode == 200) {
+      return true;
+    } else if (apiResponse.statusCode == 400) {
+      throw Exception(apiResponse.data['message'] ?? 'Failed to register');
+    } else {
+      log('Failed to register: ${apiResponse.statusCode}');
+      throw Exception('Failed to register: ${apiResponse.statusCode}');
+    }
   }
 }

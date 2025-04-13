@@ -8,12 +8,13 @@ import 'package:e_commerce_graduation/features/auth/views/pages/create_account.d
 import 'package:e_commerce_graduation/features/auth/views/pages/forget_password_page.dart';
 import 'package:e_commerce_graduation/features/auth/views/pages/sign_in_page.dart';
 import 'package:e_commerce_graduation/core/models/product_response.dart';
+import 'package:e_commerce_graduation/features/auth/views/pages/verify_account.dart';
 import 'package:e_commerce_graduation/features/home/views/pages/home_page.dart';
 import 'package:e_commerce_graduation/features/product_details/cubit/product_details_cubit.dart';
 import 'package:e_commerce_graduation/features/product_details/views/pages/product_details_page.dart';
 import 'package:e_commerce_graduation/features/profile/profile_cubit/cubit/profile_cubit.dart';
 import 'package:e_commerce_graduation/features/profile/views/pages/account_page.dart';
-import 'package:e_commerce_graduation/features/profile/views/pages/change_password_profile.dart';
+import 'package:e_commerce_graduation/core/widgets/change_password_profile.dart';
 import 'package:e_commerce_graduation/features/profile/views/pages/lang_page.dart';
 import 'package:e_commerce_graduation/features/profile/views/pages/profile_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -47,6 +48,15 @@ class AppRouter {
                 ));
       case AppRoutes.languagePage:
         return MaterialPageRoute(builder: (_) => const LangPage());
+
+      case AppRoutes.verifyEmail:
+        final args = settings.arguments as Map<String, dynamic>;
+        return MaterialPageRoute(
+          builder: (_) => VerifyAccount(
+            email: args['email'],
+            pageType: args['pageType'],
+          ),
+        );
       case AppRoutes.addressPage:
         return MaterialPageRoute(
             builder: (_) => BlocProvider(
@@ -64,10 +74,11 @@ class AppRouter {
                   child: const NewAddressPage(),
                 ));
       case AppRoutes.changePassword:
+        final String? email = settings.arguments as String?;
         return MaterialPageRoute(
             builder: (_) => BlocProvider(
-                  create: (context) => ProfileCubit(),
-                  child: const ChangePasswordProfile(),
+                  create: (context) => AuthCubit(),
+                  child: ChangePasswordProfile(email: email),
                 ));
       case AppRoutes.accountPage:
         return MaterialPageRoute(

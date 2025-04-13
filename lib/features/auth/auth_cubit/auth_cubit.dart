@@ -1,9 +1,8 @@
-import 'package:e_commerce_graduation/core/models/user_data.dart';
-import 'package:e_commerce_graduation/core/services/firestore_services.dart';
-import 'package:e_commerce_graduation/core/utils/api_pathes.dart';
+import 'dart:developer';
+
+import 'package:e_commerce_graduation/core/secure_storage.dart';
 import 'package:e_commerce_graduation/features/auth/services/auth_services.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -13,136 +12,202 @@ class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthInitial());
 
   final AuthServices authServices = AuthServicesImpl();
-  final fireStoreServices = FirestoreServices.instance;
+  final secureStorage = SecureStorage();
 
   // Create Account
-  Future<void> createAccount({
-    required String email,
-    required String password,
-    required String fName,
-    required String lName,
-    required String phone,
-    required String birthDate,
-  }) async {
+  Future<void> createAccount(
+      {required String email,
+      required String password,
+      required String fName,
+      required String lName,
+      required String phone,
+      required String birthDate}) async {
     emit(AuthLoading());
     try {
-      final result =
-          await authServices.registerWithEmailAndPassword(email, password);
+      final result = await authServices.registerWithEmailAndPassword(
+        name: "$fName $lName",
+        email: email,
+        password: password,
+        phone: phone,
+        birthOfDate: birthDate,
+      );
       if (result) {
-        await _saveUserData(email, fName, lName, phone, birthDate);
+        // await _saveUserData(email, fName, lName, phone, birthDate);
         emit(CreatingAccoutSuccess());
       }
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        debugPrint('The password provided is too weak.');
-        return emit(AuthError(S.current.weak_password));
-      } else if (e.code == 'email-already-in-use') {
-        debugPrint('The account already exists for that email.');
-        return emit(AuthError(S.current.account_exists));
-      }
+    } on Exception catch (e) {
+      emit(AuthError(e.toString().replaceFirst('Exception: ', '')));
     } catch (e) {
       debugPrint(e.toString());
-      emit(AuthError(e.toString()));
+      emit(AuthError("An unexpected error occurred. Please try again."));
     }
-  }
-
-  // save user date
-  Future<void> _saveUserData(
-    String email,
-    String fName,
-    String lName,
-    String phone,
-    String birthDate,
-  ) async {
-    final currentUser = authServices.getCurrentUser();
-    final userData = UserData(
-        uid: currentUser!.uid,
-        email: email,
-        firstName: fName,
-        lasttName: lName,
-        birthDate: birthDate,
-        phoneNumber: phone,
-        createdAt: DateTime.now().toIso8601String());
-    await fireStoreServices.setData(
-      path: ApiPathes.users(userData.uid),
-      data: userData.toMap(),
-    );
   }
 
   // Login Account
   Future<void> loginAccount(String email, String password) async {
     emit(AuthLoading());
     try {
-      final result =
+      final isLoginSuccessful =
           await authServices.loginWithEmailAndPassword(email, password);
-      if (result) {
-        if (authServices.getCurrentUser()!.emailVerified) {
-          emit(AuthSuccess());
-        } else {
-          emit(AuthErrorVerification());
-        }
+      if (isLoginSuccessful) {
+        // if (authServices.getCurrentUser()!.emailVerified) {
+        emit(AuthSuccess());
+        // } else {
+        //   emit(AuthErrorVerification());
+        // }
+        log('Login successful');
       } else {
+        log('Login failed');
         emit(AuthError(S.current.error_login));
       }
+    } on Exception catch (e) {
+      log('Login failed: $e');
+      emit(AuthError(e.toString().replaceFirst('Exception: ', '')));
     } catch (e) {
+      log('Login failed: $e');
       return emit(AuthError(S.current.error_login));
     }
   }
 
+  // get user Login or not
+  Future<bool> isUserLogin() async {
+    final isLogin = await secureStorage.readSecureData("isLogin") == "true";
+    return isLogin;
+  }
+
   // checkout account
-  void checkAuth() {
-    final user = authServices.getCurrentUser();
-    if (user != null && user.emailVerified) {
+  void checkAuth() async {
+    // final user = await authServices.getUserProfile();
+    // if (user != null) {
+    //   emit(AuthSuccess());
+    // }
+    final isLogin = await isUserLogin();
+    log(isLogin.toString());
+    if (isLogin) {
       emit(AuthSuccess());
     }
   }
 
-  // send email verification
-  void sendEmailVerification() {
+  // void siginWithGoogle() async {
+  //   emit(SigningWithGoogle());
+  //   try {
+  //     final result = await authServices.signinWithGoogle();
+  //     if (result.user != null) {
+  //       emit(SigningWithGoogleSuccess());
+  //     } else {
+  //       emit(SigningWithGoogleError(S.current.error_login));
+  //     }
+  //   } catch (e) {
+  //     emit(SigningWithGoogleError(S.current.error_login));
+  //   }
+  // }
+  void signinWithGoogle() async {
+    emit(SigningWithGoogle()); // Emitting an initial loading state
+    // try {
+    final response = await authServices.signinWithGoogle();
+
+    // Check if the response contains a 'token' or some success flag
+    //   if (response) {
+    //     emit(SigningWithGoogleSuccess(response)); // Emit success state with response data
+    //   } else {
+    //     emit(SigningWithGoogleError('Invalid response or no token found'));
+    //   }
+    // } on Exception catch (e) {
+    //   log('Google sign-in failed: $e');
+    //   emit(SigningWithGoogleError(S.current.error_login)); // Emit error state
+    // } catch (e) {
+    //   log('Unknown error: $e');
+    //   emit(SigningWithGoogleError(S.current.error_login)); // Emit error state
+    // }
+  }
+
+  void sendEmailForgetPassword(String emailText) async {
+    emit(OTPCodeSending());
     try {
-      authServices.sendEmailVerification();
+      await authServices.sendEmailForgetPassword(emailText);
+      emit(OTPCodeSent());
+    } on Exception catch (e) {
+      emit(OTPCodeSendingError(e.toString().replaceFirst('Exception: ', '')));
     } catch (e) {
-      emit(AuthError(e.toString()));
+      emit(OTPCodeSendingError(
+          "An unexpected error occurred. Please try again."));
     }
   }
 
-  // sign out
-  void signOut() async {
-    emit(LoggingOut());
+  void verifyOtpCode(String code, String email) async {
+    emit(VerifyEmailLoading());
     try {
-      await authServices.signoutFromGoogle();
-      await authServices.signOut();
-      emit(LoggedOut());
-    } catch (e) {
-      emit(LogoutError(e.toString()));
-    }
-  }
-
-  void siginWithGoogle() async {
-    emit(SigningWithGoogle());
-    try {
-      final result = await authServices.signinWithGoogle();
-      if (result.user != null) {
-        emit(SigningWithGoogleSuccess());
+      final result = await authServices.verifyOtpCode(code, email);
+      log(result.toString());
+      if (result) {
+        log('Verification successful');
+        emit(VerifyOTPCodeSuccess());
       } else {
-        emit(SigningWithGoogleError(S.current.error_login));
+        emit(VerifyEmailError(S.current.error_verification_code));
       }
+    } on Exception catch (e) {
+      log('Error verifying email: $e');
+      emit(VerifyEmailError(S.current.error_verification_code));
     } catch (e) {
-      emit(SigningWithGoogleError(S.current.error_login));
+      log('Error verifying email: $e');
+      emit(VerifyEmailError(S.current.error_verification_code));
     }
   }
 
-  void updatePassword(String emailText) async {
-    emit(UpdatingPassword());
+  // UpdatePassword Function
+  Future<void> updatePassword(
+      {required String newPassword, required String? email}) async {
+    final String finalEmail =
+        email ?? (await authServices.getUserProfile())?.email ?? '';
+
+    emit(UpdateingPassword());
     try {
-      await authServices.updatePassword(emailText);
-      emit(PasswordUpdated());
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'invalid-email') {
-        emit(PasswordUpdateError(S.current.invalid_email));
+      final response = await authServices.resetPasword(finalEmail, newPassword);
+      log(response.toString());
+      if (response) {
+        emit(UpdatePasswordSuccess());
+      } else {
+        log('Failed to update password');
+        emit(UpdatePasswordError(message: "Failed to update password"));
       }
     } catch (e) {
-      emit(PasswordUpdateError(S.current.error_reset_password));
+      log('Failed to update password');
+      log(e.toString());
+      emit(UpdatePasswordError(message: e.toString()));
+    }
+  }
+
+  // Active Account
+  void activeAccount(String code, String email) async {
+    emit(VerifyEmailLoading());
+    try {
+      final result = await authServices.verifyEmail(code, email);
+      if (result) {
+        emit(VerifyEmailSuccess());
+      } else {
+        emit(VerifyEmailError(S.current.error_verification_code));
+      }
+    } catch (e) {
+      log('Error verifying email: $e');
+      emit(VerifyEmailError(S.current.error_verification_code));
+    }
+  }
+
+  // resend OtpCode
+  void resendOtpCode(String email) async {
+    emit(ResendOTPCodeLoading());
+    log("OTP resend started");
+    try {
+      await authServices.resendOtpCode(email);
+      log("OTP resend success");
+      emit(ResendOTPCodeSuccess());
+    } on Exception catch (e) {
+      log("OTP resend error: $e");
+      emit(ResendOTPCodeError(e.toString().replaceFirst('Exception: ', '')));
+    } catch (e) {
+      log("Unexpected error: $e");
+      emit(ResendOTPCodeError(
+          "An unexpected error occurred. Please try again."));
     }
   }
 }

@@ -1,4 +1,4 @@
-import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
 import 'package:e_commerce_graduation/core/widgets/my_button1.dart';
 import 'package:e_commerce_graduation/core/widgets/my_text_form_field.dart';
@@ -85,42 +85,32 @@ class ForgetPasswordPage extends StatelessWidget {
                     if (value!.isEmpty) {
                       return S.of(context).empty_cell;
                     }
+                    if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
+                      return S.of(context).invalid_email;
+                    }
                     return null;
                   }),
               SizedBox(height: 20.h),
               BlocConsumer<AuthCubit, AuthState>(
                 bloc: authCubit,
                 listenWhen: (previous, current) =>
-                    current is PasswordUpdateError ||
-                    current is PasswordUpdated,
+                    current is OTPCodeSendingError || current is OTPCodeSent,
                 listener: (context, state) {
-                  if (state is PasswordUpdated) {
-                    AwesomeDialog(
-                      context: context,
-                      dialogType: DialogType.success,
-                      animType: AnimType.rightSlide,
-                      headerAnimationLoop: false,
-                      title: S.of(context).check_your_mail,
-                      desc: S.of(context).password_instruction,
-                      titleTextStyle: FontHelper.fontText(
-                          size: 20.sp,
-                          weight: FontWeight.w600,
-                          color: Colors.black,
-                          context: context),
-                      descTextStyle: FontHelper.fontText(
-                          size: 15.sp,
-                          weight: FontWeight.w600,
-                          color: Colors.black,
-                          context: context),
-                      btnOkOnPress: () {
-                        Navigator.pop(context);
+                  if (state is OTPCodeSent) {
+                    Navigator.pushReplacementNamed(
+                      context,
+                      AppRoutes.verifyEmail,
+                      arguments: {
+                        "email": emailController.text,
+                        "pageType": "forgetPassword",
                       },
-                    ).show();
+                    );
                   }
-                  if (state is PasswordUpdateError) {
+                  if (state is OTPCodeSendingError) {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       content: Text(
                         state.message,
+                        textAlign: TextAlign.left,
                         style: FontHelper.fontText(
                             size: 15.sp,
                             weight: FontWeight.w600,
@@ -136,16 +126,17 @@ class ForgetPasswordPage extends StatelessWidget {
                   }
                 },
                 buildWhen: (previous, current) =>
-                    current is UpdatingPassword ||
-                    current is PasswordUpdated ||
-                    current is PasswordUpdateError,
+                    current is OTPCodeSending ||
+                    current is OTPCodeSent ||
+                    current is OTPCodeSendingError,
                 builder: (context, state) {
-                  if (state is UpdatingPassword) {
+                  if (state is OTPCodeSending) {
                     return MyButton1(
                         width: double.infinity,
                         height: 48.h,
                         buttonTitle: S.of(context).loading,
-                        onTap: () {});
+                        isLoading: true,
+                        onTap: null);
                   }
                   return MyButton1(
                       width: double.infinity,
@@ -153,8 +144,9 @@ class ForgetPasswordPage extends StatelessWidget {
                       buttonTitle: S.of(context).reset_password,
                       onTap: () {
                         if (formKey.currentState!.validate()) {
-                          authCubit.updatePassword(emailController.text);
-                          emailController.clear();
+                          authCubit
+                              .sendEmailForgetPassword(emailController.text);
+                          // emailController.clear();
                         }
                       });
                 },

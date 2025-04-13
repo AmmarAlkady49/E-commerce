@@ -146,5 +146,20 @@
     "description": "الوصف",
     "no_description": "لا يوجد وصف لهذا المنتج",
     "reviews": "تقيم",
-    "no_reviews": "لا يوجد تقييمات لهذا المنتج"
+    "no_reviews": "لا يوجد تقييمات لهذا المنتج",
+    "verify_email_1": "ادخل كود التحقق",
+    "verify_email_2": "أدخل كود التحقق الذي تم إرساله إلى بريدك الإلكتروني",
+    "verify_email_3": "إعادة إرسال",
+    "verify_email_4": "لم يصلك كود؟",
+    "error_verification_code": "خطأ في كود التحقق، يرجى المحاولة مرة أخرى",
+    "verify_email_successfully": "تم التحقق من بريدك الإلكتروني بنجاح",
+    "verify_otp_code_successfully": "تم التحقق من الكود بنجاح",
+    "assign_new_password": "تعيين كلمة مرور جديدة",
+    "assign_new_password_desc": "يرجى إدخال كلمة المرور الجديدة لتعيينها لحسابك.",
+    "new_password": "كلمة مرور جديدة",
+    "confirm_password": "تأكيد كلمة المرور",
+    "error_reset_password": "خطأ في استعادة كلمة المرور، يرجى المحاولة مرة أخرى",
+    "reset_password_successfully": "تم تغير كلمة المرور بنجاح",
+    "resend_otp_code_successfully": "تم اعادة ارسال الكود بنجاح"
+
 }

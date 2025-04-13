@@ -48,6 +48,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "هل انت متاكد من حذف كل المنتجات من العربة؟",
     ),
     "area": MessageLookupByLibrary.simpleMessage("المنطقة"),
+    "assign_new_password": MessageLookupByLibrary.simpleMessage(
+      "تعيين كلمة مرور جديدة",
+    ),
+    "assign_new_password_desc": MessageLookupByLibrary.simpleMessage(
+      "يرجى إدخال كلمة المرور الجديدة لتعيينها لحسابك.",
+    ),
     "bahrain": MessageLookupByLibrary.simpleMessage("البحرين"),
     "behera": MessageLookupByLibrary.simpleMessage("البحيرة"),
     "best_seller": MessageLookupByLibrary.simpleMessage("المنتجات المبيعة"),
@@ -116,7 +122,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "حدث خطأ اثناء تسجيل الدخول",
     ),
     "error_reset_password": MessageLookupByLibrary.simpleMessage(
-      "حدث خطأ اثناء استعادة كلمة المرور",
+      "خطأ في استعادة كلمة المرور، يرجى المحاولة مرة أخرى",
+    ),
+    "error_verification_code": MessageLookupByLibrary.simpleMessage(
+      "خطأ في كود التحقق، يرجى المحاولة مرة أخرى",
     ),
     "female": MessageLookupByLibrary.simpleMessage("انثى"),
     "filter": MessageLookupByLibrary.simpleMessage("تصفية"),
@@ -162,6 +171,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "most_popular": MessageLookupByLibrary.simpleMessage("المنتجات الشائعة"),
     "name": MessageLookupByLibrary.simpleMessage("الاسم"),
     "new_arrival": MessageLookupByLibrary.simpleMessage("المنتجات الجديدة🔥"),
+    "new_password": MessageLookupByLibrary.simpleMessage("كلمة مرور جديدة"),
     "no_description": MessageLookupByLibrary.simpleMessage(
       "لا يوجد وصف لهذا المنتج",
     ),
@@ -222,8 +232,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "profile": MessageLookupByLibrary.simpleMessage("الحساب"),
     "qatar": MessageLookupByLibrary.simpleMessage("قطر"),
     "remember_me": MessageLookupByLibrary.simpleMessage("تذكرني"),
+    "resend_otp_code_successfully": MessageLookupByLibrary.simpleMessage(
+      "تم اعادة ارسال الكود بنجاح",
+    ),
     "reset_password": MessageLookupByLibrary.simpleMessage(
       "استعادة كلمة المرور",
+    ),
+    "reset_password_successfully": MessageLookupByLibrary.simpleMessage(
+      "تم تغير كلمة المرور بنجاح",
     ),
     "reviews": MessageLookupByLibrary.simpleMessage("تقيم"),
     "saudi_arabia": MessageLookupByLibrary.simpleMessage("السعودية"),
@@ -254,6 +270,18 @@ class MessageLookup extends MessageLookupByLibrary {
     "type_your_address": MessageLookupByLibrary.simpleMessage("ادخل عنوانك"),
     "verify_email": MessageLookupByLibrary.simpleMessage(
       "تحقق من بريدك الالكتروني",
+    ),
+    "verify_email_1": MessageLookupByLibrary.simpleMessage("ادخل كود التحقق"),
+    "verify_email_2": MessageLookupByLibrary.simpleMessage(
+      "أدخل كود التحقق الذي تم إرساله إلى بريدك الإلكتروني",
+    ),
+    "verify_email_3": MessageLookupByLibrary.simpleMessage("إعادة إرسال"),
+    "verify_email_4": MessageLookupByLibrary.simpleMessage("لم يصلك كود؟"),
+    "verify_email_successfully": MessageLookupByLibrary.simpleMessage(
+      "تم التحقق من بريدك الإلكتروني بنجاح",
+    ),
+    "verify_otp_code_successfully": MessageLookupByLibrary.simpleMessage(
+      "تم التحقق من الكود بنجاح",
     ),
     "weak_password": MessageLookupByLibrary.simpleMessage("كلمة المرور ضعيفة"),
     "you_can_add_items": MessageLookupByLibrary.simpleMessage(
