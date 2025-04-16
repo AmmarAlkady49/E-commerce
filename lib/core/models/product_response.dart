@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 class ProductItemModel {
   final String? id;
   final String? title;
@@ -89,6 +90,7 @@ class Rating {
 }
 
 class ProductResponse {
+  final int? productID;
   final String? name;
   final String? description;
   final double? price;
@@ -100,9 +102,11 @@ class ProductResponse {
   final int? reviewCount;
   // final List<String>? reviews;
   final List<Photos> photos;
+  final bool? isFavorite;
 
   ProductResponse(
-      {required this.name,
+      {required this.productID,
+      required this.name,
       required this.description,
       required this.price,
       required this.categoryName,
@@ -112,10 +116,12 @@ class ProductResponse {
       required this.rating,
       required this.reviewCount,
       // required this.reviews,
-      required this.photos});
+      required this.photos,
+      this.isFavorite = false});
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
+      'productID': productID,
       'name': name,
       'description': description,
       'price': price,
@@ -132,6 +138,7 @@ class ProductResponse {
 
   factory ProductResponse.fromMap(Map<String, dynamic> map) {
     return ProductResponse(
+      productID: map['productID'] != null ? map['productID'] as int : null,
       name: map['name'] != null ? map['name'] as String : null,
       description:
           map['description'] != null ? map['description'] as String : null,
@@ -161,6 +168,36 @@ class ProductResponse {
           ? List<Photos>.from(
               (map['photos'] as List).map((e) => Photos.fromMap(e)))
           : [],
+    );
+  }
+
+  ProductResponse copyWith({
+    int? productID,
+    String? name,
+    String? description,
+    double? price,
+    String? categoryName,
+    String? subCategoryName,
+    String? brandName,
+    int? stockQuantity,
+    double? rating,
+    int? reviewCount,
+    List<Photos>? photos,
+    bool? isFavorite,
+  }) {
+    return ProductResponse(
+      productID: productID ?? this.productID,
+      name: name ?? this.name,
+      description: description ?? this.description,
+      price: price ?? this.price,
+      categoryName: categoryName ?? this.categoryName,
+      subCategoryName: subCategoryName ?? this.subCategoryName,
+      brandName: brandName ?? this.brandName,
+      stockQuantity: stockQuantity ?? this.stockQuantity,
+      rating: rating ?? this.rating,
+      reviewCount: reviewCount ?? this.reviewCount,
+      photos: photos ?? this.photos,
+      isFavorite: isFavorite ?? this.isFavorite,
     );
   }
 }

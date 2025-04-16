@@ -9,19 +9,32 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class FavoritesPage extends StatelessWidget {
+class FavoritesPage extends StatefulWidget {
   const FavoritesPage({super.key});
 
   @override
+  State<FavoritesPage> createState() => _FavoritesPageState();
+}
+
+class _FavoritesPageState extends State<FavoritesPage> {
+  late FavoritesCubit favoritesCubit;
+
+  @override
+  void initState() {
+    super.initState();
+    favoritesCubit = BlocProvider.of<FavoritesCubit>(context);
+    favoritesCubit.getFavoriteProducts();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final favoritesCubit = BlocProvider.of<FavoritesCubit>(context);
     return BlocConsumer<FavoritesCubit, FavoritesState>(
       bloc: favoritesCubit,
       listenWhen: (previous, current) =>
           current is SetFavoriteItemLoaded || current is UpdateFavoritePage,
       listener: (context, state) {
         if (state is SetFavoriteItemLoaded || state is UpdateFavoritePage) {
-          // favoritesCubit.getFavoriteProducts();
+          favoritesCubit.getFavoriteProducts();
         }
       },
       buildWhen: (previous, current) =>
@@ -92,7 +105,7 @@ class FavoritesPage extends StatelessWidget {
                                     ),
                                     ElevatedButton(
                                       onPressed: () {
-                                        // favoritesCubit.clearFavorites();
+                                        favoritesCubit.clearFavorites();
                                         Navigator.pop(context);
                                       },
                                       style: ElevatedButton.styleFrom(
@@ -133,7 +146,7 @@ class FavoritesPage extends StatelessWidget {
                             ? EmptyFavoriteProducts()
                             : NotEmptyFavoriteProducts(
                                 favoriteProducts: state.favoriteProducts)
-                        : SizedBox.shrink(),
+                        : const SizedBox.shrink(),
           ),
         );
       },

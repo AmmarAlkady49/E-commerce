@@ -47,12 +47,26 @@ class _TextFormFieldAddressPageState extends State<TextFormFieldAddressPage> {
             if (value.isEmpty) {
               return S.of(context).empty_cell;
             }
-            if (value.length < 6) {
-              return S.of(context).invalid_name;
+            if (widget.title == S.of(context).postal_code &&
+                    value.length != 5 ||
+                widget.title == S.of(context).address && value.length < 5) {
+              return widget.title == S.of(context).postal_code
+                  ? S.of(context).invalid_postal_code
+                  : S.of(context).invalid_name;
+            }
+            if (widget.title == S.of(context).postal_code &&
+                !RegExp(r'^[0-9]+$').hasMatch(value)) {
+              return S.of(context).invalid_postal_code;
             }
             return null;
           },
           controller: widget.controller,
+          maxLength: widget.title == S.of(context).postal_code ? 5 : null,
+          maxLines: 1,
+          keyboardType: widget.title == S.of(context).postal_code
+              ? TextInputType.number
+              : TextInputType.text,
+          textInputAction: TextInputAction.next,
           decoration: InputDecoration(
               hintText: widget.hintText,
               errorStyle: FontHelper.fontText(

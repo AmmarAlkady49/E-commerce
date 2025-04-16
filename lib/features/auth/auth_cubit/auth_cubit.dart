@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:e_commerce_graduation/core/secure_storage.dart';
 import 'package:e_commerce_graduation/features/auth/services/auth_services.dart';
+import 'package:e_commerce_graduation/features/profile/services/profile_page_services.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,6 +13,7 @@ class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthInitial());
 
   final AuthServices authServices = AuthServicesImpl();
+  final ProfilePageServices profilePageServices = ProfilePageServicesimpl();
   final secureStorage = SecureStorage();
 
   // Create Account
@@ -50,6 +52,12 @@ class AuthCubit extends Cubit<AuthState> {
       final isLoginSuccessful =
           await authServices.loginWithEmailAndPassword(email, password);
       if (isLoginSuccessful) {
+        final userData = await profilePageServices.getUserData();
+        // Save user data to secure storage
+        await secureStorage.saveSecureData("isLogin", "true");
+        await secureStorage.saveSecureData("email", userData.email!);
+        await secureStorage.saveSecureData("name", userData.name!);
+        await secureStorage.saveSecureData("userId", userData.id!);
         // if (authServices.getCurrentUser()!.emailVerified) {
         emit(AuthSuccess());
         // } else {
@@ -102,22 +110,20 @@ class AuthCubit extends Cubit<AuthState> {
   //   }
   // }
   void signinWithGoogle() async {
-    emit(SigningWithGoogle()); // Emitting an initial loading state
-    // try {
+    emit(SigningWithGoogle());
+    try {
+      final response = await authServices.signinWithGoogle();
 
-    // Check if the response contains a 'token' or some success flag
-    //   if (response) {
-    //     emit(SigningWithGoogleSuccess(response)); // Emit success state with response data
-    //   } else {
-    //     emit(SigningWithGoogleError('Invalid response or no token found'));
-    //   }
-    // } on Exception catch (e) {
-    //   log('Google sign-in failed: $e');
-    //   emit(SigningWithGoogleError(S.current.error_login)); // Emit error state
-    // } catch (e) {
-    //   log('Unknown error: $e');
-    //   emit(SigningWithGoogleError(S.current.error_login)); // Emit error state
-    // }
+      // log('Google sign-in successful: ${response.email}');
+      emit(SigningWithGoogleSuccess());
+    } on Exception catch (e) {
+      log('Google sign-in errorrrrr: $e');
+      emit(
+          SigningWithGoogleError(e.toString().replaceFirst('Exception: ', '')));
+    } catch (e) {
+      log('Google sign-in errorororor: $e');
+      emit(SigningWithGoogleError(e.toString()));
+    }
   }
 
   void sendEmailForgetPassword(String emailText) async {

@@ -1,6 +1,7 @@
 import 'package:e_commerce_graduation/core/models/product_response.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
 import 'package:e_commerce_graduation/features/favorites/cubit/favorites_cubit.dart';
+import 'package:e_commerce_graduation/features/favorites/model/favorite_item_model.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AddToCartButtonFavPage extends StatelessWidget {
-  final ProductItemModel productItem;
+  final FavoriteItemModel productItem;
   const AddToCartButtonFavPage({super.key, required this.productItem});
 
   get favortiePageCubit => null;
@@ -31,11 +32,11 @@ class AddToCartButtonFavPage extends StatelessWidget {
       bloc: favortiePageCubit,
       buildWhen: (previous, current) =>
           (current is AddProductToCartLoading &&
-              current.productId == productItem.id) ||
+              current.productId == productItem.productId) ||
           (current is AddProductToCartLoaded &&
-              current.productId == productItem.id) ||
+              current.productId == productItem.productId) ||
           (current is AddProductToCartError &&
-              current.productId == productItem.id),
+              current.productId == productItem.productId),
       builder: (context, state) {
         return TextButton(
           style: ButtonStyle(

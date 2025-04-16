@@ -16,7 +16,7 @@ final class AddNewAddressError extends AddressState {
 final class GettingAddresses extends AddressState {}
 
 final class GetAddressesSucess extends AddressState {
-  final List<AddressModel> addresses;
+  final AddressModel addresses;
   GetAddressesSucess({required this.addresses});
 }
 

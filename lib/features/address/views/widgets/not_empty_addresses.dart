@@ -10,8 +10,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class NotEmptyAddresses extends StatelessWidget {
-  final List<AddressModel> addresses;
-  const NotEmptyAddresses({super.key, required this.addresses});
+  final AddressModel address;
+  const NotEmptyAddresses({super.key, required this.address});
 
   @override
   Widget build(BuildContext context) {
@@ -50,27 +50,18 @@ class NotEmptyAddresses extends StatelessWidget {
           ),
         ),
         SizedBox(height: 12.h),
-        ListView.separated(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: addresses.length,
-          separatorBuilder: (context, index) => SizedBox(height: 12.h),
-          itemBuilder: (context, index) => AddressCardItem(
-            address: addresses[index],
-          ),
-        ),
+        AddressCardItem(address: address),
         Spacer(),
-        Visibility(
-          visible: addresses.length < 3,
-          child: MyButton1(
-              width: double.infinity,
-              height: 48.h,
-              buttonTitle: S.of(context).add_new_address,
-              onTap: () {
-                // Navigator.pushNamed(context, AppRoutes.newAddressPage)
-                    // .then((value) => addressCubit.getAllAddresses());
-              }),
-        ),
+        MyButton1(
+            width: double.infinity,
+            height: 48.h,
+            buttonTitle: S.of(context).edit_address,
+            onTap: () {
+              addressCubit.deleteAddress();
+              Navigator.pushNamed(context, AppRoutes.newAddressPage).then(
+                (value) => addressCubit.getAllAddresses(),
+              );
+            }),
         SizedBox(height: 32.h),
       ],
     );

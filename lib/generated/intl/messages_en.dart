@@ -97,6 +97,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "dont_forget_new_password": MessageLookupByLibrary.simpleMessage(
       "Don\'t forget your new password",
     ),
+    "edit_address": MessageLookupByLibrary.simpleMessage("Edit Address"),
     "edit_profile": MessageLookupByLibrary.simpleMessage("Edit Profile"),
     "egypt": MessageLookupByLibrary.simpleMessage("Egypt"),
     "email": MessageLookupByLibrary.simpleMessage("Email"),
@@ -119,6 +120,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "enter_your_password": MessageLookupByLibrary.simpleMessage(
       "Enter your password",
+    ),
+    "enter_your_postal_code": MessageLookupByLibrary.simpleMessage(
+      "Enter your postal code",
     ),
     "error_login": MessageLookupByLibrary.simpleMessage(
       "Error login, please try again",
@@ -149,6 +153,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "invalid_email": MessageLookupByLibrary.simpleMessage("Invalid email"),
     "invalid_name": MessageLookupByLibrary.simpleMessage("Invalid name"),
     "invalid_phone": MessageLookupByLibrary.simpleMessage("Invalid phone"),
+    "invalid_postal_code": MessageLookupByLibrary.simpleMessage(
+      "Invalid postal code",
+    ),
     "language": MessageLookupByLibrary.simpleMessage("Language"),
     "last_name": MessageLookupByLibrary.simpleMessage("Last Name"),
     "lets_go_shopping": MessageLookupByLibrary.simpleMessage(
@@ -175,6 +182,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "no_favorite_item": MessageLookupByLibrary.simpleMessage(
       "No favorite item\'s found",
+    ),
+    "no_matching_products": MessageLookupByLibrary.simpleMessage(
+      "No matching products found.",
     ),
     "no_reviews": MessageLookupByLibrary.simpleMessage("No reviews yet"),
     "no_saved_addresses": MessageLookupByLibrary.simpleMessage(
@@ -224,6 +234,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "please_select_axact_address": MessageLookupByLibrary.simpleMessage(
       "Please select the exact address where you would like to receive your orders to ensure fast and smooth delivery.",
     ),
+    "postal_code": MessageLookupByLibrary.simpleMessage("Postal Code"),
+    "postal_code_desc": MessageLookupByLibrary.simpleMessage(
+      "Please enter your postal code to ensure fast and smooth delivery.",
+    ),
     "preferences": MessageLookupByLibrary.simpleMessage("Preferences"),
     "product": MessageLookupByLibrary.simpleMessage("Product"),
     "products": MessageLookupByLibrary.simpleMessage("Products"),
@@ -242,6 +256,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "save": MessageLookupByLibrary.simpleMessage("Save"),
     "save_changes": MessageLookupByLibrary.simpleMessage("Save changes"),
     "search": MessageLookupByLibrary.simpleMessage("Search"),
+    "search_in_your_favorite": MessageLookupByLibrary.simpleMessage(
+      "Search in your favorite",
+    ),
     "search_something": MessageLookupByLibrary.simpleMessage(
       "Search something...",
     ),

@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerce_graduation/core/models/product_response.dart';
+import 'package:e_commerce_graduation/core/utils/helper_functions.dart';
 import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
 import 'package:e_commerce_graduation/features/product_details/cubit/product_details_cubit.dart';
 import 'package:flutter/material.dart';
@@ -14,13 +15,6 @@ class CustomAppBarProductDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final productDetailsCubit = BlocProvider.of<ProductDetailsCubit>(context);
-    String fixGoogleDriveUrl(String url) {
-      if (url.contains('drive.google.com') && url.contains('open?id=')) {
-        final fileId = url.split('id=').last;
-        return 'https://drive.google.com/uc?export=view&id=$fileId';
-      }
-      return url;
-    }
 
     return SliverAppBar(
       expandedHeight: 300.h,
@@ -109,7 +103,8 @@ class CustomAppBarProductDetails extends StatelessWidget {
           padding: EdgeInsets.only(top: 36.h, bottom: 8.h),
           child: CachedNetworkImage(
             imageUrl: product.photos.isNotEmpty
-                ? fixGoogleDriveUrl(product.photos.first.imageURL!)
+                ? HelperFunctions.fixGoogleDriveUrl(
+                    product.photos.first.imageURL!)
                 : 'https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=',
             fit: BoxFit.contain,
           ),

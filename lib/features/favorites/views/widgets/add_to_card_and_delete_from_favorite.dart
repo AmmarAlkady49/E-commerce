@@ -1,6 +1,7 @@
 import 'package:e_commerce_graduation/core/models/product_response.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
 import 'package:e_commerce_graduation/features/favorites/cubit/favorites_cubit.dart';
+import 'package:e_commerce_graduation/features/favorites/model/favorite_item_model.dart';
 import 'package:e_commerce_graduation/features/favorites/views/widgets/add_to_cart_button_fav_page.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,7 +10,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AddToCardAndDeleteFromFavorite extends StatelessWidget {
-  final ProductItemModel productItem;
+  final FavoriteItemModel productItem;
   const AddToCardAndDeleteFromFavorite({super.key, required this.productItem});
 
   @override
@@ -48,7 +49,8 @@ class AddToCardAndDeleteFromFavorite extends StatelessWidget {
                       ),
                       child: InkWell(
                         onTap: () {
-                          // favortiePageCubit.setFavoriteItem(productItem);
+                          favortiePageCubit.deleteFavoriteProduct(
+                              productItem.productId.toString());
                           Navigator.of(context).pop();
                         },
                         borderRadius: BorderRadius.circular(12.r),

@@ -39,46 +39,46 @@ class _BottomNavBarState extends State<BottomNavBar> {
         _selectedIndex = 0;
       }),
       child: Scaffold(
-        body: _selectedIndex == 3
-            ? BlocProvider(
-                create: (context) => ProfileCubit(),
-                child: screenOptions.elementAt(_selectedIndex))
-            : _selectedIndex == 0
-                ? MultiBlocProvider(providers: [
-                    BlocProvider(
-                      create: (context) {
-                        final cubit = HomeCubit();
-                        // cubit.getUserData();
-                        cubit.getAllProducts();
-                        return cubit;
-                      },
-                    ),
-                    BlocProvider(
-                      create: (context) {
-                        final cubit = FavoritesCubit();
-                        return cubit;
-                      },
-                    ),
-                  ], child: screenOptions.elementAt(_selectedIndex))
-                : _selectedIndex == 2
-                    ? BlocProvider(
-                        create: (context) {
-                          final cubit = FavoritesCubit();
-                          // cubit.getFavoriteProducts();
-                          return cubit;
-                        },
-                        child: screenOptions.elementAt(_selectedIndex))
-                    : _selectedIndex == 1
-                        ? BlocProvider(
-                            create: (context) {
-                              final cubit = CartCubit();
-                              // cubit.getCartItems();
-                              return cubit;
-                            },
-                            child: screenOptions.elementAt(_selectedIndex))
-                        : screenOptions.elementAt(_selectedIndex),
+        body: screenOptions.elementAt(_selectedIndex),
+        // _selectedIndex == 3
+        //     ? BlocProvider(
+        //         create: (context) => ProfileCubit(),
+        //         child: screenOptions.elementAt(_selectedIndex))
+        //     : _selectedIndex == 0
+        //         ? MultiBlocProvider(providers: [
+        //             BlocProvider(
+        //               create: (context) {
+        //                 final cubit = HomeCubit();
+        //                 cubit.getAllProducts();
+        //                 return cubit;
+        //               },
+        //             ),
+        //             BlocProvider(
+        //               create: (context) {
+        //                 final cubit = FavoritesCubit();
+        //                 return cubit;
+        //               },
+        //             ),
+        //           ], child: screenOptions.elementAt(_selectedIndex))
+        //         : _selectedIndex == 2
+        //             ? BlocProvider(
+        //                 create: (context) {
+        //                   final cubit = FavoritesCubit();
+        //                   cubit.getFavoriteProducts();
+        //                   return cubit;
+        //                 },
+        //                 child: screenOptions.elementAt(_selectedIndex))
+        //             : _selectedIndex == 1
+        //                 ? BlocProvider(
+        //                     create: (context) {
+        //                       final cubit = CartCubit();
+        //                       // cubit.getCartItems();
+        //                       return cubit;
+        //                     },
+        //                     child: screenOptions.elementAt(_selectedIndex))
+        //                 : screenOptions.elementAt(_selectedIndex),
         bottomNavigationBar: Container(
-          height: 90.h,
+          height: 85.h,
           decoration: BoxDecoration(
             border: BorderDirectional(
                 top: BorderSide(color: Colors.black12, width: 1)),
@@ -86,11 +86,12 @@ class _BottomNavBarState extends State<BottomNavBar> {
             boxShadow: [
               BoxShadow(
                 blurRadius: 20,
-                color: Colors.black.withValues(alpha: 0.1),
+                color: Colors.black.withValues(alpha: 0.15),
               )
             ],
           ),
           child: SafeArea(
+            bottom: true,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15.0),
               child: GNav(
@@ -99,7 +100,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
                     weight: FontWeight.w700,
                     color: Colors.white,
                     context: context),
-                hoverColor: Colors.grey[100]!,
+                hoverColor: Colors.grey[200]!,
                 gap: 8.w,
                 iconSize: 24,
                 padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 10.h),

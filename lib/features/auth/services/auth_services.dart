@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:e_commerce_graduation/core/models/customer_data.dart';
 import 'package:e_commerce_graduation/core/secure_storage.dart';
 import 'package:e_commerce_graduation/core/utils/app_constants.dart';
+import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 abstract class AuthServices {
@@ -20,14 +21,21 @@ abstract class AuthServices {
   Future<bool> resendOtpCode(String email);
   Future<bool> resetPasword(String email, String password);
   Future<void> signoutFromGoogle();
-  Future<GoogleSignInAccount?> signinWithGoogle();
+  Future<void> signinWithGoogle();
   Future<bool> sendEmailForgetPassword(String emailText);
 }
 
 class AuthServicesImpl implements AuthServices {
   final aDio = Dio();
   final secureStorage = SecureStorage();
-
+  final GoogleSignIn _googleSignIn = GoogleSignIn(
+    scopes: [
+      'email',
+      'profile',
+      'openid', // needed for ID token
+    ],
+    clientId: AppConstants.googleClientId,
+  );
   @override
   Future<bool> loginWithEmailAndPassword(String email, String password) async {
     try {
@@ -97,15 +105,19 @@ class AuthServicesImpl implements AuthServices {
     }
   }
 
- 
-
   @override
   Future<CustomerData?> getUserProfile() async {
     try {
       final getUserProfileResponse = await aDio.get(
         "${AppConstants.baseUrl}${AppConstants.accountProfile}",
+        options: Options(
+          headers: {
+            "Authorization":
+                "Bearer ${await secureStorage.readSecureData('token')}",
+          },
+        ),
       );
-      log(getUserProfileResponse.data);
+      // log(getUserProfileResponse.data);
       return getUserProfileResponse.data['message'] != null
           ? CustomerData.fromMap(getUserProfileResponse.data['message'])
           : null;
@@ -133,13 +145,49 @@ class AuthServicesImpl implements AuthServices {
   //   return await FirebaseAuth.instance.signInWithCredential(credential);
   // }
   @override
-  Future<GoogleSignInAccount?> signinWithGoogle() async {
-    final GoogleSignInAccount? _googleSignIn = await GoogleSignIn().signIn();
+  Future<void> signinWithGoogle() async {
+    final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+    if (googleUser == null) {
+      return Future.error('Google sign-in aborted');
+    }
+    final GoogleSignInAuthentication googleAuth =
+        await googleUser.authentication;
+
+    final String? idToken = googleAuth.idToken;
+
+    if (idToken == null) {
+      throw Exception('Failed to get ID token');
+    }
+    final apiResponse = await aDio.post(
+      "${AppConstants.baseUrl}${AppConstants.mobileGoogleLogin}",
+      data: {
+        "idToken": idToken,
+      },
+      options: Options(
+        validateStatus: (status) => status != null && status < 500,
+      ),
+    );
+    log(apiResponse.data);
+    if (apiResponse.statusCode == 200) {
+      log('Google sign-in successful: ${apiResponse.data}');
+      final responseMessage = apiResponse.data;
+      if (responseMessage != null) {
+        await secureStorage.saveSecureData('token', responseMessage['token']);
+        await secureStorage.saveSecureData('isLogin', 'true');
+        await secureStorage.saveSecureData('email', googleUser.email);
+        await secureStorage.saveSecureData('id', googleUser.id);
+      }
+    } else if (apiResponse.statusCode == 400) {
+      throw Exception(apiResponse.data['message'] ?? 'Failed to login');
+    } else {
+      log('Failed to login: ${apiResponse.statusCode}');
+      throw Exception('Failed to login: ${apiResponse.statusCode}');
+    }
   }
 
   @override
   Future<void> signoutFromGoogle() {
-    return GoogleSignIn().signOut();
+    return _googleSignIn.signOut();
   }
 
   @override

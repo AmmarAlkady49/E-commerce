@@ -1125,6 +1125,16 @@ class S {
     );
   }
 
+  /// `Edit Address`
+  String get edit_address {
+    return Intl.message(
+      'Edit Address',
+      name: 'edit_address',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Please select the exact address where you would like to receive your orders to ensure fast and smooth delivery.`
   String get please_select_axact_address {
     return Intl.message(
@@ -1280,6 +1290,61 @@ class S {
     return Intl.message(
       'Resend OTP code successfully',
       name: 'resend_otp_code_successfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Postal Code`
+  String get postal_code {
+    return Intl.message('Postal Code', name: 'postal_code', desc: '', args: []);
+  }
+
+  /// `Please enter your postal code to ensure fast and smooth delivery.`
+  String get postal_code_desc {
+    return Intl.message(
+      'Please enter your postal code to ensure fast and smooth delivery.',
+      name: 'postal_code_desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your postal code`
+  String get enter_your_postal_code {
+    return Intl.message(
+      'Enter your postal code',
+      name: 'enter_your_postal_code',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid postal code`
+  String get invalid_postal_code {
+    return Intl.message(
+      'Invalid postal code',
+      name: 'invalid_postal_code',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No matching products found.`
+  String get no_matching_products {
+    return Intl.message(
+      'No matching products found.',
+      name: 'no_matching_products',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search in your favorite`
+  String get search_in_your_favorite {
+    return Intl.message(
+      'Search in your favorite',
+      name: 'search_in_your_favorite',
       desc: '',
       args: [],
     );

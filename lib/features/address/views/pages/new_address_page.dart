@@ -2,7 +2,6 @@ import 'package:e_commerce_graduation/core/utils/themes/app_bar_default_theme.da
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
 import 'package:e_commerce_graduation/core/widgets/my_button1.dart';
 import 'package:e_commerce_graduation/features/address/cubit/address_cubit.dart';
-import 'package:e_commerce_graduation/features/address/models/address_model.dart';
 import 'package:e_commerce_graduation/features/address/views/widgets/custom_drop_down_button.dart';
 import 'package:e_commerce_graduation/features/address/views/widgets/text_form_field_address_page.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
@@ -22,6 +21,15 @@ class _NewAddressPageState extends State<NewAddressPage> {
   String? _selectedCountry;
   String? _selectedCite;
   TextEditingController addressController = TextEditingController();
+  TextEditingController postalCodeController = TextEditingController();
+
+  @override
+  void dispose() {
+    addressController.dispose();
+    postalCodeController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final List<String> countries = [
@@ -52,13 +60,14 @@ class _NewAddressPageState extends State<NewAddressPage> {
             child: Column(
               children: [
                 SizedBox(height: 16.h),
-                SvgPicture.asset('assets/images/other/map.svg'),
+                SvgPicture.asset('assets/images/other/map.svg',
+                    width: 100.w, height: 100.h),
                 SizedBox(height: 12.h),
                 Text(
                   S.of(context).choose_your_location,
                   style: FontHelper.fontText(
                     context: context,
-                    size: 22.sp,
+                    size: 23.sp,
                     weight: FontWeight.w600,
                     color: Colors.black,
                   ),
@@ -69,7 +78,7 @@ class _NewAddressPageState extends State<NewAddressPage> {
                   textAlign: TextAlign.center,
                   style: FontHelper.fontText(
                       context: context,
-                      size: 16.sp,
+                      size: 14.sp,
                       weight: FontWeight.w500,
                       color: Colors.black54),
                 ),
@@ -102,8 +111,32 @@ class _NewAddressPageState extends State<NewAddressPage> {
                   formKey: formKey,
                   controller: addressController,
                 ),
+                SizedBox(height: 8.h),
+                TextFormFieldAddressPage(
+                  title: S.of(context).postal_code,
+                  hintText: S.of(context).enter_your_postal_code,
+                  formKey: formKey,
+                  controller: postalCodeController,
+                ),
                 SizedBox(height: 18.h),
-                BlocBuilder<AddressCubit, AddressState>(
+                BlocConsumer<AddressCubit, AddressState>(
+                  listenWhen: (previous, current) =>
+                      current is AddNewAddressSucess ||
+                      current is AddNewAddressError,
+                  listener: (context, state) {
+                    if (state is AddNewAddressSucess) {
+                      addressCubit.getAllAddresses();
+                      Navigator.pop(context);
+                    }
+                    if (state is AddNewAddressError) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(state.message),
+                          backgroundColor: Colors.red,
+                        ),
+                      );
+                    }
+                  },
                   bloc: addressCubit,
                   buildWhen: (previous, current) =>
                       current is AddingNewAddress ||
@@ -125,17 +158,14 @@ class _NewAddressPageState extends State<NewAddressPage> {
                       buttonTitle: S.of(context).save,
                       onTap: () {
                         if (formKey.currentState!.validate()) {
-                          // addressCubit.addNewAddress(
-                          //   AddressModel(
-                          //     id: DateTime.now().toIso8601String(),
-                          //     country: _selectedCountry ?? S.of(context).egypt,
-                          //     city: _selectedCite ?? S.of(context).alexandria,
-                          //     area: addressController.text,
-                          //     // isDefault: false,
-                          //   ),
-                          // );
-                          Navigator.pop(context);
-                          addressController.clear();
+                          addressCubit.addNewAddress(
+                            country: _selectedCountry ?? S.of(context).egypt,
+                            city: _selectedCite ?? S.of(context).alexandria,
+                            address: addressController.text,
+                            postalCode: postalCodeController.text,
+                          );
+                          // addressController.clear();
+                          // postalCodeController.clear();
                         }
                       },
                     );

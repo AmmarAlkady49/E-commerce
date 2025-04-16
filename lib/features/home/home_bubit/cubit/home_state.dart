@@ -7,9 +7,9 @@ final class HomeInitial extends HomeState {}
 final class HomeAppBarLoading extends HomeState {}
 
 final class HomeAppBarLoaded extends HomeState {
-  final UserData userData;
+  final String userName;
 
-  HomeAppBarLoaded(this.userData);
+  HomeAppBarLoaded(this.userName);
 }
 
 final class HomeAppBarError extends HomeState {

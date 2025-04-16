@@ -9,6 +9,9 @@ import 'package:e_commerce_graduation/features/auth/views/pages/forget_password_
 import 'package:e_commerce_graduation/features/auth/views/pages/sign_in_page.dart';
 import 'package:e_commerce_graduation/core/models/product_response.dart';
 import 'package:e_commerce_graduation/features/auth/views/pages/verify_account.dart';
+import 'package:e_commerce_graduation/features/cart/cubit/cart_cubit.dart';
+import 'package:e_commerce_graduation/features/favorites/cubit/favorites_cubit.dart';
+import 'package:e_commerce_graduation/features/home/home_bubit/cubit/home_cubit.dart';
 import 'package:e_commerce_graduation/features/home/views/pages/home_page.dart';
 import 'package:e_commerce_graduation/features/product_details/cubit/product_details_cubit.dart';
 import 'package:e_commerce_graduation/features/product_details/views/pages/product_details_page.dart';
@@ -39,11 +42,26 @@ class AppRouter {
       case AppRoutes.home:
         return MaterialPageRoute(builder: (_) => const HomePage());
       case AppRoutes.bottomNavBar:
-        return MaterialPageRoute(builder: (_) => const BottomNavBar());
+        return MaterialPageRoute(
+            builder: (context) => MultiBlocProvider(
+                  providers: [
+                    BlocProvider<FavoritesCubit>(
+                        create: (context) =>
+                            FavoritesCubit()..getFavoriteProducts()),
+                    BlocProvider<HomeCubit>(
+                        create: (context) => HomeCubit(
+                              favoritesCubit: context.read<FavoritesCubit>(),
+                            )..getAllProducts()),
+                    BlocProvider<CartCubit>(create: (context) => CartCubit()),
+                    BlocProvider<ProfileCubit>(
+                        create: (context) => ProfileCubit()),
+                  ],
+                  child: const BottomNavBar(),
+                ));
       case AppRoutes.profile:
         return MaterialPageRoute(
             builder: (_) => BlocProvider(
-                  create: (context) => ProfileCubit(),
+                  create: (_) => ProfileCubit(),
                   child: const ProfilePage(),
                 ));
       case AppRoutes.languagePage:
@@ -62,7 +80,7 @@ class AppRouter {
             builder: (_) => BlocProvider(
                   create: (context) {
                     final cubit = AddressCubit();
-                    // cubit.getAllAddresses();
+                    cubit.getAllAddresses();
                     return cubit;
                   },
                   child: const AddressPage(),

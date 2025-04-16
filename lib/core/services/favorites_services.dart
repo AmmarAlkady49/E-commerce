@@ -1,5 +1,3 @@
-import 'package:e_commerce_graduation/core/models/product_response.dart';
-import 'package:e_commerce_graduation/core/utils/api_pathes.dart';
 
 abstract class FavoritesServices {
   // Future<void> addFavorite(String userId, ProductResponse productId);

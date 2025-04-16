@@ -8,12 +8,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:shimmer/shimmer.dart';
 
-class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
+class HomeAppBar extends StatelessWidget {
   final TabController tabController;
   const HomeAppBar({super.key, required this.tabController});
 
-  @override
-  Size get preferredSize => Size.fromHeight(110.h);
+  // @override
+  // Size get preferredSize => Size.fromHeight(110.h);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           forceMaterialTransparency: true,
           automaticallyImplyLeading: false,
           flexibleSpace: Padding(
-            padding: EdgeInsets.only(top: 32.0.h),
+            padding: EdgeInsets.only(top: 8.0.h),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -77,7 +77,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                                 )
                               : state is HomeAppBarLoaded
                                   ? Text(
-                                      '${S.of(context).hi}, ${state.userData.firstName}',
+                                      '${S.of(context).hi}, ${state.userName}',
                                       style: FontHelper.fontText(
                                           size: 15.sp,
                                           weight: FontWeight.w700,

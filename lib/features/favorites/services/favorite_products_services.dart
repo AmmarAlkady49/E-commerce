@@ -1,37 +1,101 @@
-import 'package:e_commerce_graduation/core/models/add_to_cart_model.dart';
-import 'package:e_commerce_graduation/core/models/product_response.dart';
-import 'package:e_commerce_graduation/core/utils/api_pathes.dart';
+import 'package:dio/dio.dart';
+
+import 'package:e_commerce_graduation/core/utils/app_constants.dart';
+import 'package:e_commerce_graduation/features/favorites/model/favorite_item_model.dart';
 
 abstract class FavoriteProductsServices {
-  // Future<List<ProductItemModel>> getFavoriteProducts(String userId);
-  // Future<void> addFavoriteProduct(String userId, ProductItemModel product);
-  // Future<void> removeFavoriteProduct(String userId, ProductItemModel product);
+  Future<List<FavoriteItemModel>> getFavoriteProducts(String userId);
+  Future<bool> addFavoriteProduct(String userId, String productId);
+  Future<bool> removeFavoriteProduct(String userId, String productId);
   // Future<void> addToProduct(String userId, AddToCartModel product);
-  // Future<void> removeAllProducts(String userId);
+  Future<bool> removeAllProducts(String userId);
 }
 
 class FavoriteProductsServicesImpl implements FavoriteProductsServices {
-  // @override
-  // Future<List<ProductItemModel>> getFavoriteProducts(String userId) async {
-  //   return await _firestoreServices.getCollection(
-  //       path: ApiPathes.favoriteProducts(userId),
-  //       builder: (data, documentId) => ProductItemModel.fromMap(data));
-  // }
+  final aDio = Dio();
+  @override
+  Future<List<FavoriteItemModel>> getFavoriteProducts(String userId) async {
+    try {
+      final apiResponse = await aDio.get(
+        "${AppConstants.baseUrl}${AppConstants.getWishlist}/${userId}w",
+        options: Options(
+          validateStatus: (status) => status != null && status < 500,
+        ),
+      );
 
-  // @override
-  // Future<void> addFavoriteProduct(
-  //     String userId, ProductItemModel product) async {
-  //   await _firestoreServices.setData(
-  //       path: ApiPathes.favoriteProduct(userId, product.id!),
-  //       data: product.toMap());
-  // }
+      if (apiResponse.statusCode == 200) {
+        final items = apiResponse.data['items'];
 
-  // @override
-  // Future<void> removeFavoriteProduct(
-  //     String userId, ProductItemModel product) async {
-  //   await _firestoreServices.deleteData(
-  //       path: ApiPathes.favoriteProduct(userId, product.id!));
-  // }
+        if (items is List) {
+          return items
+              .map((item) =>
+                  FavoriteItemModel.fromMap(item as Map<String, dynamic>))
+              .toList();
+        } else {
+          return [];
+        }
+      } else {
+        throw Exception(
+            'Failed to load favorite products: status ${apiResponse.statusCode}');
+      }
+    } catch (e) {
+      throw Exception('Failed to load favorite products: $e');
+    }
+  }
+
+  @override
+  Future<bool> addFavoriteProduct(String userId, String productId) async {
+    try {
+      final apiResponse = await aDio.post(
+          "${AppConstants.baseUrl}${AppConstants.addToWishlist}",
+          data: {
+            "productId": productId,
+          },
+          options: Options(
+            validateStatus: (status) => status != null && status < 500,
+          ),
+          queryParameters: {
+            "wishlistId": "${userId}w",
+          });
+
+      if (apiResponse.statusCode == 200) {
+        return true;
+      } else if (apiResponse.statusCode == 400) {
+        return false;
+      } else {
+        throw Exception(
+            'Failed to add favorite product: status ${apiResponse.statusCode}');
+      }
+    } catch (e) {
+      throw Exception('Failed to add favorite product: $e');
+    }
+  }
+
+  @override
+  Future<bool> removeFavoriteProduct(String userId, String productId) async {
+    try {
+      final apiResponse = await aDio
+          .delete("${AppConstants.baseUrl}${AppConstants.removeFromWishlist}",
+              options: Options(
+                validateStatus: (status) => status != null && status < 500,
+              ),
+              queryParameters: {
+            "wishlistId": "${userId}w",
+            "productId": productId,
+          });
+
+      if (apiResponse.statusCode == 200) {
+        return true;
+      } else if (apiResponse.statusCode == 400) {
+        return false;
+      } else {
+        throw Exception(
+            'Failed to remove favorite product: status ${apiResponse.statusCode}');
+      }
+    } catch (e) {
+      throw Exception('Failed to remove favorite product: $e');
+    }
+  }
 
   // @override
   // Future<void> addToProduct(String userId, AddToCartModel product) async {
@@ -39,9 +103,21 @@ class FavoriteProductsServicesImpl implements FavoriteProductsServices {
   //       path: ApiPathes.cartItem(userId, product.id), data: product.toMap());
   // }
 
-  // @override
-  // Future<void> removeAllProducts(String userId) async {
-  //   await _firestoreServices.deleteCollection(
-  //       path: ApiPathes.favoriteProducts(userId));
-  // }
+  @override
+  Future<bool> removeAllProducts(String userId) async {
+    final apiResponse = await aDio.delete(
+      "${AppConstants.baseUrl}${AppConstants.clearWishlist}/${userId}w",
+      options: Options(
+        validateStatus: (status) => status != null && status < 500,
+      ),
+    );
+    if (apiResponse.statusCode == 200) {
+      return true;
+    } else if (apiResponse.statusCode == 400) {
+      return false;
+    } else {
+      throw Exception(
+          'Failed to remove all favorite products: status ${apiResponse.statusCode}');
+    }
+  }
 }

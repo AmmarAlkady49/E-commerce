@@ -31,8 +31,8 @@ final class LogoutError extends AuthState {
 final class SigningWithGoogle extends AuthState {}
 
 final class SigningWithGoogleSuccess extends AuthState {
-  final Map<String, dynamic> data;
-  SigningWithGoogleSuccess(this.data);
+  // final GoogleSignInAccount data;
+  SigningWithGoogleSuccess();
 }
 
 final class SigningWithGoogleError extends AuthState {

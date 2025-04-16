@@ -25,12 +25,24 @@ final class SetFavoriteItemError extends FavoritesState {
 
 final class FavoriteProductsLoading extends FavoritesState {}
 
+final class UnFavoriteProductSuccess extends FavoritesState {
+  final String productId;
+
+  UnFavoriteProductSuccess({required this.productId});
+}
+
 final class UpdateFavoritePage extends FavoritesState {}
 
 final class FavoriteProductsLoaded extends FavoritesState {
-  final List<ProductItemModel> favoriteProducts;
+  final List<FavoriteItemModel> favoriteProducts;
 
   FavoriteProductsLoaded({required this.favoriteProducts});
+}
+
+final class SearchFavoriteProductEmpty extends FavoritesState {
+  final String message;
+
+  SearchFavoriteProductEmpty({required this.message});
 }
 
 final class FavoriteProductsError extends FavoritesState {
@@ -56,4 +68,25 @@ final class AddProductToCartError extends FavoritesState {
   final String productId;
 
   AddProductToCartError({required this.message, required this.productId});
+}
+
+
+final class SetFavoriteLoading extends FavoritesState {
+  final String productId;
+
+  SetFavoriteLoading({required this.productId});
+}
+
+final class SetFavoriteSuccess extends FavoritesState {
+  final bool isFavorite;
+  final String productId;
+
+  SetFavoriteSuccess({required this.isFavorite, required this.productId});
+}
+
+final class SetFavoriteError extends FavoritesState {
+  final String error;
+  final String productId;
+
+  SetFavoriteError({required this.error, required this.productId});
 }

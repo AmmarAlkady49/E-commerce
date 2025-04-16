@@ -18,9 +18,7 @@ class AddressCardItem extends StatelessWidget {
         backgroundColor: Colors.white,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12.r),
-          side: BorderSide(
-              color: address.isDefault ? Color(0xff1D61E7) : Colors.black12,
-              width: 1.2),
+          side: BorderSide(color: Color(0xff1D61E7), width: 2),
         ),
       ),
       onPressed: () {
@@ -42,12 +40,13 @@ class AddressCardItem extends StatelessWidget {
                 alignment: Alignment.topLeft,
                 child: InkWell(
                   onTap: () {
-                    // addressCubit.deleteAddress(address.id);
+                    addressCubit.deleteAddress();
                   },
                   borderRadius: BorderRadius.circular(50.r),
                   child: Padding(
                     padding: EdgeInsets.all(2.0.r),
-                    child: const Icon(Icons.clear, color: Colors.black87),
+                    child:
+                        Icon(Icons.clear, color: Colors.black87, size: 18.sp),
                   ),
                 ),
               ),
@@ -58,19 +57,15 @@ class AddressCardItem extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: Colors.white,
                     shape: BoxShape.circle,
-                    border: Border.all(
-                        color: address.isDefault
-                            ? Color(0xff1D61E7)
-                            : Colors.black12,
-                        width: 3.0),
+                    border: Border.all(color: Color(0xff1D61E7), width: 2.0),
                   ),
                   child: Image.asset(
                     'assets/images/other/location.png',
-                    height: 65.h,
-                    width: 65.w,
+                    height: 60.h,
+                    width: 60.w,
                   ),
                 ),
-                SizedBox(width: 8.w),
+                SizedBox(width: 12.w),
                 Flexible(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -84,9 +79,9 @@ class AddressCardItem extends StatelessWidget {
                             color: Colors.black),
                       ),
                       Text(
-                        "${address.city}, ${address.area}",
+                        "${address.city}, ${address.address}",
                         overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
+                        maxLines: 3,
                         style: FontHelper.fontText(
                             size: 15.sp,
                             context: context,

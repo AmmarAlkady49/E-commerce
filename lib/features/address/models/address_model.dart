@@ -2,15 +2,15 @@ class AddressModel {
   final String id;
   final String country;
   final String city;
-  final String area;
-  final bool isDefault;
+  final String address;
+  final String postalCode;
 
   AddressModel({
     required this.id,
     required this.country,
     required this.city,
-    required this.area,
-    this.isDefault = false,
+    required this.address,
+    required this.postalCode,
   });
 
   Map<String, dynamic> toMap() {
@@ -18,8 +18,8 @@ class AddressModel {
       'id': id,
       'country': country,
       'city': city,
-      'area': area,
-      'isDefault': isDefault
+      'address': address,
+      'postalCode': postalCode,
     };
   }
 
@@ -28,8 +28,8 @@ class AddressModel {
       id: map['id'] as String,
       country: map['country'] as String,
       city: map['city'] as String,
-      area: map['area'] as String,
-      isDefault: map['isDefault'] as bool,
+      address: map['address'] as String,
+      postalCode: map['postalCode'] as String,
     );
   }
 
@@ -37,15 +37,15 @@ class AddressModel {
     String? id,
     String? country,
     String? city,
-    String? area,
-    bool? isDefault,
+    String? address,
+    String? postalCode,
   }) {
     return AddressModel(
       id: id ?? this.id,
       country: country ?? this.country,
       city: city ?? this.city,
-      area: area ?? this.area,
-      isDefault: isDefault ?? this.isDefault,
+      address: address ?? this.address,
+      postalCode: postalCode ?? this.postalCode,
     );
   }
 }

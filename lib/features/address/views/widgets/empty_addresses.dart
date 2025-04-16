@@ -53,7 +53,7 @@ class EmptyAddresses extends StatelessWidget {
               onTap: () {
                 Navigator.pushNamed(context, AppRoutes.newAddressPage)
                     .then((_) {
-                  // addressCubit.getAllAddresses();
+                  addressCubit.getAllAddresses();
                 });
               },
             )

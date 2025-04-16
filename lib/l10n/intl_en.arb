@@ -142,6 +142,7 @@
     "no_saved_addresses": "No Saved Address",
     "you_havenot_saved_any_address": "You haven't saved an address yet. Add one now to receive your orders smoothly!",
     "add_new_address": "Add New Address",
+    "edit_address": "Edit Address",
     "please_select_axact_address": "Please select the exact address where you would like to receive your orders to ensure fast and smooth delivery.",
     "description": "Description",
     "no_description": "There is no description for this product",
@@ -160,5 +161,11 @@
     "confirm_password": "Confirm Password",
     "error_reset_password": "Error reset password, please try again",
     "reset_password_successfully": "Reset password successfully",
-    "resend_otp_code_successfully": "Resend OTP code successfully"
+    "resend_otp_code_successfully": "Resend OTP code successfully",
+    "postal_code": "Postal Code",
+    "postal_code_desc": "Please enter your postal code to ensure fast and smooth delivery.",
+    "enter_your_postal_code": "Enter your postal code",
+    "invalid_postal_code": "Invalid postal code",
+    "no_matching_products" : "No matching products found.",
+    "search_in_your_favorite" : "Search in your favorite"
 }

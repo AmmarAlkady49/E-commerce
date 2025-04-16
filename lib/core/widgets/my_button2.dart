@@ -22,6 +22,7 @@ class MyButton2 extends StatelessWidget {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text(
               state.message,
+              
               style: FontHelper.fontText(
                   size: 15.sp,
                   weight: FontWeight.w600,

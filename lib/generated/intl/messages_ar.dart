@@ -97,6 +97,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "dont_forget_new_password": MessageLookupByLibrary.simpleMessage(
       "لا تنسي كلمة المرور الجديدة",
     ),
+    "edit_address": MessageLookupByLibrary.simpleMessage("تعديل العنوان"),
     "edit_profile": MessageLookupByLibrary.simpleMessage("تعديل الحساب"),
     "egypt": MessageLookupByLibrary.simpleMessage("مصر"),
     "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
@@ -117,6 +118,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "enter_your_password": MessageLookupByLibrary.simpleMessage(
       "ادخل كلمة المرور",
+    ),
+    "enter_your_postal_code": MessageLookupByLibrary.simpleMessage(
+      "ادخل الرمز البريدي",
     ),
     "error_login": MessageLookupByLibrary.simpleMessage(
       "حدث خطأ اثناء تسجيل الدخول",
@@ -153,6 +157,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "invalid_phone": MessageLookupByLibrary.simpleMessage(
       "رقم الهاتف غير صحيح",
     ),
+    "invalid_postal_code": MessageLookupByLibrary.simpleMessage(
+      "الرمز البريدي غير صحيح",
+    ),
     "language": MessageLookupByLibrary.simpleMessage("اللغة"),
     "last_name": MessageLookupByLibrary.simpleMessage("الإسم الأخير"),
     "lets_go_shopping": MessageLookupByLibrary.simpleMessage("جاهز للتسوق ؟"),
@@ -177,6 +184,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "no_favorite_item": MessageLookupByLibrary.simpleMessage(
       "لا يوجد منتجات مفضلة",
+    ),
+    "no_matching_products": MessageLookupByLibrary.simpleMessage(
+      "لا توجد منتجات مطابقة.",
     ),
     "no_reviews": MessageLookupByLibrary.simpleMessage(
       "لا يوجد تقييمات لهذا المنتج",
@@ -226,6 +236,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "please_select_axact_address": MessageLookupByLibrary.simpleMessage(
       "يرجى اختيار العنوان الدقيق الذي ترغب في استلام طلباتك عليه لضمان توصيلها بسرعة وسهولة.",
     ),
+    "postal_code": MessageLookupByLibrary.simpleMessage("الرمز البريدي"),
+    "postal_code_desc": MessageLookupByLibrary.simpleMessage(
+      "يرجى إدخال الرمز البريدي الخاص بك لضمان توصيل سريع وسلس.",
+    ),
     "preferences": MessageLookupByLibrary.simpleMessage("التفضيلات"),
     "product": MessageLookupByLibrary.simpleMessage("منتج"),
     "products": MessageLookupByLibrary.simpleMessage("منتجات"),
@@ -246,6 +260,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "save": MessageLookupByLibrary.simpleMessage("حفظ"),
     "save_changes": MessageLookupByLibrary.simpleMessage("حفظ التعديلات"),
     "search": MessageLookupByLibrary.simpleMessage("البحث"),
+    "search_in_your_favorite": MessageLookupByLibrary.simpleMessage(
+      "إبحث في منتجاتك المفضلة",
+    ),
     "search_something": MessageLookupByLibrary.simpleMessage("إبحث عن شيء ..."),
     "see_all": MessageLookupByLibrary.simpleMessage("اظهار الكل"),
     "selecet_location": MessageLookupByLibrary.simpleMessage("اختر الموقع"),

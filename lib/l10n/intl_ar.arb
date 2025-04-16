@@ -142,6 +142,7 @@
     "no_saved_addresses": "لا يوجد عناوين محفوظة",
     "you_havenot_saved_any_address": "لم تقم بحفظ عنوانك بعد. أضف عنوانًا الآن لتلقي طلباتك بسلاسة!",
     "add_new_address": "اضافة عنوان جديد",
+    "edit_address": "تعديل العنوان",
     "please_select_axact_address": "يرجى اختيار العنوان الدقيق الذي ترغب في استلام طلباتك عليه لضمان توصيلها بسرعة وسهولة.",
     "description": "الوصف",
     "no_description": "لا يوجد وصف لهذا المنتج",
@@ -160,6 +161,11 @@
     "confirm_password": "تأكيد كلمة المرور",
     "error_reset_password": "خطأ في استعادة كلمة المرور، يرجى المحاولة مرة أخرى",
     "reset_password_successfully": "تم تغير كلمة المرور بنجاح",
-    "resend_otp_code_successfully": "تم اعادة ارسال الكود بنجاح"
-
+    "resend_otp_code_successfully": "تم اعادة ارسال الكود بنجاح",
+    "postal_code": "الرمز البريدي",
+    "postal_code_desc": "يرجى إدخال الرمز البريدي الخاص بك لضمان توصيل سريع وسلس.",
+    "enter_your_postal_code": "ادخل الرمز البريدي",
+    "invalid_postal_code": "الرمز البريدي غير صحيح",
+    "no_matching_products": "لا توجد منتجات مطابقة.",
+    "search_in_your_favorite": "إبحث في منتجاتك المفضلة"
 }

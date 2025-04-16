@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:e_commerce_graduation/core/utils/themes/app_bar_default_theme.dart';
 import 'package:e_commerce_graduation/features/address/cubit/address_cubit.dart';
 import 'package:e_commerce_graduation/features/address/views/widgets/empty_addresses.dart';
@@ -29,7 +31,7 @@ class AddressPage extends StatelessWidget {
             if (state is DeleteAddressSucess ||
                 state is AddNewAddressSucess ||
                 state is UpdateAddressSucess) {
-              // addressCubit.getAllAddresses();
+              addressCubit.getAllAddresses();
             }
           },
           buildWhen: (previous, current) =>
@@ -43,11 +45,14 @@ class AddressPage extends StatelessWidget {
               return Center(child: Text(state.message));
             } else if (state is GetAddressesSucess) {
               final addresses = state.addresses;
-              if (addresses.isEmpty) {
+              log("addresses: ${addresses.address}");
+              if (addresses.address == "null" ||
+                  addresses.city == "null" ||
+                  addresses.country == "null") {
                 return EmptyAddresses();
               } else {
                 return NotEmptyAddresses(
-                  addresses: addresses,
+                  address: addresses,
                 );
               }
             } else {

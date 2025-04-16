@@ -6,28 +6,14 @@ import 'package:e_commerce_graduation/features/home/model/parameter_request.dart
 import 'package:e_commerce_graduation/core/models/product_response.dart';
 
 abstract class HomePageServices {
-  // Future<UserData> getUserData();
   Future<List<ProductResponse>> getAllProducts();
-  // Future<void> addFavoriteProduct(String userId, ProductItemModel product);
+  // Future<bool> addFavoriteProduct(String userId, int productId);
   // Future<void> deleteFavoriteProduct(String userId, String productId);
   // Future<List<ProductItemModel>> getFavoriteProducts(String userId);
 }
 
 class HomePageServicesImpl implements HomePageServices {
   final aDio = Dio();
-
-  //get user data
-  // @override
-  // Future<UserData> getUserData() async {
-  //   final user = firebaseAuth.currentUser;
-  //   final UserData userData = await _firestoreServices.getDocument(
-  //     path: ApiPathes.users(user!.uid),
-  //     builder: (data, documentID) {
-  //       return UserData.fromMap(data);
-  //     },
-  //   );
-  //   return userData;
-  // }
 
   // get all products
   @override
@@ -54,11 +40,25 @@ class HomePageServicesImpl implements HomePageServices {
   }
 
   // @override
-  // Future<void> addFavoriteProduct(
-  //     String userId, ProductItemModel product) async {
-  //   await _firestoreServices.setData(
-  //       path: ApiPathes.favoriteProduct(userId, product.id!),
-  //       data: product.toMap());
+  // Future<bool> addFavoriteProduct(String userId, int productId) async {
+  //   try {
+  //     final response = await aDio
+  //         .post("${AppConstants.baseUrl}${AppConstants.addToWishlist}", data: {
+  //       "productId": productId,
+  //     }, queryParameters: {
+  //       "wishlistId": userId,
+  //     });
+  //     if (response.statusCode == 200) {
+  //       log("Product added to favorites successfully");
+  //       return true;
+  //     } else {
+  //       log("Error from home page services: ${response.statusCode}");
+  //       throw Exception('Failed to add product to favorites');
+  //     }
+  //   } catch (e) {
+  //     log("Error from home page services: $e");
+  //     throw Exception('Failed to add product to favorites: $e');
+  //   }
   // }
 
   // @override
