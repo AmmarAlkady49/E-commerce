@@ -167,5 +167,8 @@
     "enter_your_postal_code": "ادخل الرمز البريدي",
     "invalid_postal_code": "الرمز البريدي غير صحيح",
     "no_matching_products": "لا توجد منتجات مطابقة.",
-    "search_in_your_favorite": "إبحث في منتجاتك المفضلة"
+    "search_in_your_favorite": "إبحث في منتجاتك المفضلة",
+    "error_updating_quantity": "خطأ في تحديث الكمية، يرجى المحاولة مرة أخرى",
+    "change_address" : "تغيير العنوان"
+
 }

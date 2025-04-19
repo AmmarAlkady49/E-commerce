@@ -1,17 +1,17 @@
-import 'package:e_commerce_graduation/core/models/add_to_cart_model.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
+import 'package:e_commerce_graduation/features/cart/model/cart_response_body.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TotalSubtotalInfo extends StatelessWidget {
-  final List<AddToCartModel> cartItems;
+  final CartResponseBody cartItems;
   const TotalSubtotalInfo({super.key, required this.cartItems});
 
   @override
   Widget build(BuildContext context) {
-    final subTotalPrice = cartItems.map((e) => e.product.price! * e.quantity);
-    final int totalItems = cartItems.length;
+    // final subTotalPrice = cartItems.map((e) => e.product.price! * e.quantity);
+    final int totalItems = cartItems.items.length;
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 16.w),
       decoration: BoxDecoration(
@@ -57,7 +57,8 @@ class TotalSubtotalInfo extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "\$${subTotalPrice.reduce((a, b) => a + b).toStringAsFixed(2)}",
+                  // "\$${subTotalPrice.reduce((a, b) => a + b).toStringAsFixed(2)}",
+                  "\$${cartItems.subAmount}",
                   style: FontHelper.fontText(
                       context: context,
                       size: 15.sp,
@@ -105,7 +106,8 @@ class TotalSubtotalInfo extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "\$${subTotalPrice.reduce((a, b) => a + b).toStringAsFixed(2)}",
+                  // "\$${subTotalPrice.reduce((a, b) => a + b).toStringAsFixed(2)}",
+                  "\$${cartItems.subAmount}",
                   style: FontHelper.fontText(
                       context: context,
                       size: 17.sp,

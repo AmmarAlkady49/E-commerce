@@ -18,6 +18,8 @@ class MyTextFormField extends StatefulWidget {
   final TextInputAction? textInputAction;
   final bool? readOnly;
   final VoidCallback? onTap;
+  final Iterable<String>? autofillHints;
+  final Function()? onEditingComplete;
 
   const MyTextFormField(
       {super.key,
@@ -33,7 +35,8 @@ class MyTextFormField extends StatefulWidget {
       this.textInputAction,
       this.nextFocusNode,
       this.readOnly,
-      this.onTap});
+      this.onTap,
+      this.autofillHints,this.onEditingComplete});
 
   @override
   State<MyTextFormField> createState() => _MyTextFormFieldState();
@@ -55,6 +58,8 @@ class _MyTextFormFieldState extends State<MyTextFormField> {
             keyboardType: widget.textInputType,
             focusNode: widget.presentFocusNode,
             textInputAction: widget.textInputAction ?? TextInputAction.next,
+            autofillHints: widget.autofillHints,
+            onEditingComplete: widget.onEditingComplete,
             onFieldSubmitted: (value) {
               FocusScope.of(context).requestFocus(widget.nextFocusNode);
             },
@@ -119,6 +124,7 @@ class _MyTextFormFieldState extends State<MyTextFormField> {
                   : (widget.hint == S.of(context).birthday)
                       ? Icon(widget.suffIcon, color: Colors.grey)
                       : null,
+                      
             ),
           ),
         ],

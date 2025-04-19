@@ -55,6 +55,8 @@ class HomeCubit extends Cubit<HomeState> {
         return product.copyWith(isFavorite: isFavorite);
       }).toList();
       emit(LoadedHomeProducts(finalProducts));
+    } on Exception catch (e) {
+      emit(ErrorHomeProducts(e.toString()));
     } catch (e) {
       emit(ErrorHomeProducts(e.toString()));
 

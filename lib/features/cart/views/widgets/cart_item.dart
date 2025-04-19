@@ -1,22 +1,24 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:e_commerce_graduation/core/models/add_to_cart_model.dart';
+import 'package:e_commerce_graduation/core/utils/helper_functions.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
 import 'package:e_commerce_graduation/core/widgets/counter_container.dart';
 import 'package:e_commerce_graduation/features/cart/cubit/cart_cubit.dart';
+import 'package:e_commerce_graduation/features/cart/model/cart_item_model.dart';
 import 'package:e_commerce_graduation/features/cart/views/widgets/price_text.dart';
+import 'package:e_commerce_graduation/features/favorites/cubit/favorites_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CartItem extends StatelessWidget {
-  final AddToCartModel cartItem;
+  final CartItemModel cartItem;
   const CartItem({super.key, required this.cartItem});
 
   @override
   Widget build(BuildContext context) {
     final cartCubit = BlocProvider.of<CartCubit>(context);
-    final totalPrice = cartItem.product.price! * cartItem.quantity;
+    final totalPrice = cartItem.price * cartItem.quantity;
 
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 16.w),
@@ -42,8 +44,12 @@ class CartItem extends StatelessWidget {
               height: 100.h,
               width: 70.w,
               child: CachedNetworkImage(
-                imageUrl: cartItem.product.image!,
+                imageUrl: HelperFunctions.fixGoogleDriveUrl(cartItem.photo),
                 fit: BoxFit.contain,
+                errorWidget: (context, url, error) => const Icon(
+                  Icons.error,
+                  color: Colors.red,
+                ),
               ),
             ),
           ),
@@ -64,7 +70,7 @@ class CartItem extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            cartItem.product.title!,
+                            cartItem.name,
                             style: FontHelper.fontText(
                               size: 16.sp,
                               weight: FontWeight.w700,
@@ -75,7 +81,8 @@ class CartItem extends StatelessWidget {
                             overflow: TextOverflow.ellipsis,
                           ),
                           Text(
-                            cartItem.product.category!,
+                            // cartItem.category!,
+                            "category",
                             style: FontHelper.fontText(
                               size: 14.sp,
                               weight: FontWeight.w500,
@@ -87,22 +94,28 @@ class CartItem extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(left: 6.w),
+                      padding: EdgeInsets.only(left: 0.w),
                       child: BlocBuilder<CartCubit, CartState>(
                         bloc: cartCubit,
                         buildWhen: (previous, current) =>
                             current is CartItemUpdatedError ||
                             (current is CartItemDeleting &&
-                                current.productId == cartItem.id),
+                                current.productId ==
+                                    cartItem.productId.toString()),
                         builder: (context, state) {
                           if (state is CartItemDeleting &&
-                              state.productId == cartItem.id) {
+                              state.productId ==
+                                  cartItem.productId.toString()) {
                             return CupertinoActivityIndicator(
                                 color: Colors.black54);
                           }
                           return InkWell(
                             onTap: () {
-                              // cartCubit.deleteProductFromCart(cartItem);
+                              // cartCubit.deleteProductFromCart(
+                              //     cartItem.productId.toString(),);
+                              context.read<CartCubit>().deleteProductFromCart(
+                                  cartItem.productId.toString(),
+                                  context.read<FavoritesCubit>());
                             },
                             borderRadius: BorderRadius.circular(50.r),
                             child: Icon(

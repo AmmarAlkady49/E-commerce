@@ -1,11 +1,11 @@
-import 'package:e_commerce_graduation/core/models/add_to_cart_model.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
 import 'package:e_commerce_graduation/core/widgets/increment_decrement_button.dart';
+import 'package:e_commerce_graduation/features/cart/model/cart_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CounterContainer extends StatelessWidget {
-  final AddToCartModel cartItem;
+  final CartItemModel cartItem;
   const CounterContainer({super.key, required this.cartItem});
 
   @override
@@ -35,9 +35,9 @@ class CounterContainer extends StatelessWidget {
           Text(
             cartItem.quantity.toString(),
             style: FontHelper.fontText(
-              color: Colors.black,
+              color: Colors.black87,
               size: 16.sp,
-              weight: FontWeight.w600,
+              weight: FontWeight.w700,
               context: context,
             ),
           ),

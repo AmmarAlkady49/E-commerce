@@ -6,12 +6,14 @@ class FavoriteItemModel {
   final String name;
   final double price;
   final String photo;
+  final bool? isAddedToCart;
 
   FavoriteItemModel(
       {required this.productId,
       required this.name,
       required this.price,
-      required this.photo});
+      required this.photo,
+      this.isAddedToCart = false});
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -35,4 +37,20 @@ class FavoriteItemModel {
 
   factory FavoriteItemModel.fromJson(String source) =>
       FavoriteItemModel.fromMap(json.decode(source) as Map<String, dynamic>);
+
+  FavoriteItemModel copyWith({
+    int? productId,
+    String? name,
+    double? price,
+    String? photo,
+    bool? isAddedToCart,
+  }) {
+    return FavoriteItemModel(
+      productId: productId ?? this.productId,
+      name: name ?? this.name,
+      price: price ?? this.price,
+      photo: photo ?? this.photo,
+      isAddedToCart: isAddedToCart ?? this.isAddedToCart,
+    );
+  }
 }

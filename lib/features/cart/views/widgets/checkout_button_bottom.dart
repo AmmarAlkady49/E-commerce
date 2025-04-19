@@ -1,18 +1,18 @@
-import 'package:e_commerce_graduation/core/models/add_to_cart_model.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
+import 'package:e_commerce_graduation/features/cart/model/cart_response_body.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CheckoutButtonBottom extends StatelessWidget {
-  final List<AddToCartModel> cartItems;
+  final CartResponseBody cartItems;
   const CheckoutButtonBottom({super.key, required this.cartItems});
 
   @override
   Widget build(BuildContext context) {
-    final totalPrice = cartItems.map(
-      (e) => e.product.price! * e.quantity,
-    );
+    // final totalPrice = cartItems.map(
+    //   (e) => e.product.price! * e.quantity,
+    // );
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
       child: Container(
@@ -20,6 +20,14 @@ class CheckoutButtonBottom extends StatelessWidget {
         decoration: BoxDecoration(
           color: Color(0xff1D61E7).withValues(alpha: 0.8),
           borderRadius: BorderRadius.circular(30.r),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withValues(alpha: 0.5),
+              blurRadius: 5,
+              spreadRadius: 1,
+              offset: const Offset(0, 3),
+            ),
+          ],
         ),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -49,7 +57,8 @@ class CheckoutButtonBottom extends StatelessWidget {
                     padding:
                         EdgeInsets.symmetric(horizontal: 5.w, vertical: 3.h),
                     child: Text(
-                      '\$ ${totalPrice.reduce((a, b) => a + b).toStringAsFixed(1)}',
+                      // '\$ ${totalPrice.reduce((a, b) => a + b).toStringAsFixed(1)}',
+                      '\$ ${cartItems.subAmount}',
                       style: FontHelper.fontText(
                         context: context,
                         size: 14.sp,

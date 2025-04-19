@@ -28,7 +28,7 @@ class PriceText extends StatelessWidget {
             ),
           ),
           TextSpan(
-            text: totalPrice.toStringAsFixed(2),
+            text: totalPrice.toStringAsFixed(1),
             style: FontHelper.fontText(
               size: 20.sp,
               shadows: [

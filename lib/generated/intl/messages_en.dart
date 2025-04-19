@@ -63,6 +63,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
     "cart": MessageLookupByLibrary.simpleMessage("Cart"),
     "category": MessageLookupByLibrary.simpleMessage("Category"),
+    "change_address": MessageLookupByLibrary.simpleMessage("Change Address"),
     "change_password": MessageLookupByLibrary.simpleMessage("Change Password"),
     "change_password_successfully": MessageLookupByLibrary.simpleMessage(
       "Change password successfully",
@@ -129,6 +130,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "error_reset_password": MessageLookupByLibrary.simpleMessage(
       "Error reset password, please try again",
+    ),
+    "error_updating_quantity": MessageLookupByLibrary.simpleMessage(
+      "Error updating quantity, please try again",
     ),
     "error_verification_code": MessageLookupByLibrary.simpleMessage(
       "Error verification code, please try again",

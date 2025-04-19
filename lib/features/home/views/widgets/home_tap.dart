@@ -13,7 +13,30 @@ class HomeTap extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final homeCubit = BlocProvider.of<HomeCubit>(context);
-    return BlocBuilder<HomeCubit, HomeState>(
+    return BlocConsumer<HomeCubit, HomeState>(
+      listener: (context, state) {
+        if (state is ErrorHomeProducts) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(
+              state.error,
+              style: FontHelper.fontText(
+                  size: 15.sp,
+                  weight: FontWeight.w600,
+                  color: Colors.white,
+                  context: context),
+            ),
+            backgroundColor: Colors.redAccent,
+            behavior: SnackBarBehavior.floating,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(26),
+            ),
+          ));
+        }
+      },
+      listenWhen: (previous, current) =>
+          current is LoadingHomeProducts ||
+          current is LoadedHomeProducts ||
+          current is ErrorHomeProducts,
       bloc: homeCubit,
       buildWhen: (previous, current) =>
           current is LoadingHomeProducts ||

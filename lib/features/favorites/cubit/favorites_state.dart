@@ -47,6 +47,7 @@ final class SearchFavoriteProductEmpty extends FavoritesState {
 
 final class FavoriteProductsError extends FavoritesState {
   final String message;
+  
 
   FavoriteProductsError({required this.message});
 }

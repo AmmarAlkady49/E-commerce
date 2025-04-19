@@ -55,7 +55,7 @@ class NotEmptyAddresses extends StatelessWidget {
         MyButton1(
             width: double.infinity,
             height: 48.h,
-            buttonTitle: S.of(context).edit_address,
+            buttonTitle: S.of(context).change_address,
             onTap: () {
               addressCubit.deleteAddress();
               Navigator.pushNamed(context, AppRoutes.newAddressPage).then(

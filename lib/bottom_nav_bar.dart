@@ -3,9 +3,7 @@ import 'package:e_commerce_graduation/features/cart/cubit/cart_cubit.dart';
 import 'package:e_commerce_graduation/features/cart/views/pages/cart_page.dart';
 import 'package:e_commerce_graduation/features/favorites/cubit/favorites_cubit.dart';
 import 'package:e_commerce_graduation/features/favorites/views/pages/favorites_page.dart';
-import 'package:e_commerce_graduation/features/home/home_bubit/cubit/home_cubit.dart';
 import 'package:e_commerce_graduation/features/home/views/pages/home_page.dart';
-import 'package:e_commerce_graduation/features/profile/profile_cubit/cubit/profile_cubit.dart';
 import 'package:e_commerce_graduation/features/profile/views/pages/profile_page.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:flutter/material.dart';
@@ -31,6 +29,17 @@ class _BottomNavBarState extends State<BottomNavBar> {
     FavoritesPage(),
     ProfilePage(),
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    // مهم: تأكد إن Cubits اتعملها provide قبل الوصول هنا
+    Future.microtask(() {
+      context.read<FavoritesCubit>().getFavoriteProducts();
+      context.read<CartCubit>().getCartItems();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return PopScope(

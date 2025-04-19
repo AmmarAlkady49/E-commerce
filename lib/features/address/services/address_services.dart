@@ -1,5 +1,3 @@
-import 'package:e_commerce_graduation/core/utils/api_pathes.dart';
-import 'package:e_commerce_graduation/features/address/models/address_model.dart';
 
 abstract class AddressServices {
   // Future<void> addAddress(String userId, AddressModel address);

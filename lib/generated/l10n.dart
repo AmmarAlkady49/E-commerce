@@ -1349,6 +1349,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Error updating quantity, please try again`
+  String get error_updating_quantity {
+    return Intl.message(
+      'Error updating quantity, please try again',
+      name: 'error_updating_quantity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change Address`
+  String get change_address {
+    return Intl.message(
+      'Change Address',
+      name: 'change_address',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

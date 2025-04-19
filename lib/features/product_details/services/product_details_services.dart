@@ -1,9 +1,7 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
-import 'package:e_commerce_graduation/core/models/add_to_cart_model.dart';
 import 'package:e_commerce_graduation/core/models/product_response.dart';
-import 'package:e_commerce_graduation/core/utils/api_pathes.dart';
 import 'package:e_commerce_graduation/core/utils/app_constants.dart';
 
 abstract class ProductDetailsServices {

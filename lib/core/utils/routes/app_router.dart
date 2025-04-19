@@ -43,21 +43,32 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const HomePage());
       case AppRoutes.bottomNavBar:
         return MaterialPageRoute(
-            builder: (context) => MultiBlocProvider(
-                  providers: [
-                    BlocProvider<FavoritesCubit>(
-                        create: (context) =>
-                            FavoritesCubit()..getFavoriteProducts()),
-                    BlocProvider<HomeCubit>(
-                        create: (context) => HomeCubit(
-                              favoritesCubit: context.read<FavoritesCubit>(),
-                            )..getAllProducts()),
-                    BlocProvider<CartCubit>(create: (context) => CartCubit()),
-                    BlocProvider<ProfileCubit>(
-                        create: (context) => ProfileCubit()),
-                  ],
-                  child: const BottomNavBar(),
-                ));
+          builder: (context) {
+            return MultiBlocProvider(
+              providers: [
+                BlocProvider<FavoritesCubit>(
+                  create: (context) => FavoritesCubit()..getFavoriteProducts(),
+                ),
+                BlocProvider<CartCubit>(
+                  create: (context) => CartCubit(
+                      favoritesCubit: context.read<FavoritesCubit>(),
+                      )
+                    ..getCartItems(),
+                ),
+                BlocProvider<HomeCubit>(
+                  create: (context) => HomeCubit(
+                    favoritesCubit: context.read<FavoritesCubit>(),
+                  )..getAllProducts(),
+                ),
+                BlocProvider<ProfileCubit>(
+                  create: (context) => ProfileCubit(),
+                ),
+              ],
+              child: const BottomNavBar(),
+            );
+          },
+        );
+
       case AppRoutes.profile:
         return MaterialPageRoute(
             builder: (_) => BlocProvider(
@@ -117,9 +128,7 @@ class AppRouter {
                     cubit.getProductDetails(product.photos.first.productID!);
                     return cubit;
                   },
-                  child: ProductDetailsPage(
-                      // product: product,
-                      ),
+                  child: ProductDetailsPage(),
                 ));
 
       default:

@@ -30,6 +30,30 @@ class HomePageServicesImpl implements HomePageServices {
         return (responseProducts)
             .map((item) => ProductResponse.fromMap(item))
             .toList();
+      } else if (response.statusCode == 500) {
+        log("Server error: ${response.statusCode}");
+        throw Exception('Server error: ${response.statusCode}');
+      } else if (response.statusCode == 401) {
+        log("Unauthorized: ${response.statusCode}");
+        throw Exception('Unauthorized: ${response.statusCode}');
+      } else if (response.statusCode == 404) {
+        log("Not found: ${response.statusCode}");
+        throw Exception('Not found: ${response.statusCode}');
+      } else if (response.statusCode == 400) {
+        log("Bad request: ${response.statusCode}");
+        throw Exception('Bad request: ${response.statusCode}');
+      } else if (response.statusCode == 403) {
+        log("Forbidden: ${response.statusCode}");
+        throw Exception('Forbidden: ${response.statusCode}');
+      } else if (response.statusCode == 409) {
+        log("Conflict: ${response.statusCode}");
+        throw Exception('Conflict: ${response.statusCode}');
+      } else if (response.statusCode == 429) {
+        log("Too many requests: ${response.statusCode}");
+        throw Exception('Too many requests: ${response.statusCode}');
+      } else if (response.statusCode == 503) {
+        log("Service unavailable: ${response.statusCode}");
+        throw Exception('Service unavailable: ${response.statusCode}');
       } else {
         log("Error from home page services: ${response.statusCode}");
         throw Exception('Failed to load products');

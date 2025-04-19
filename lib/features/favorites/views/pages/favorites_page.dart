@@ -28,13 +28,34 @@ class _FavoritesPageState extends State<FavoritesPage> {
 
   @override
   Widget build(BuildContext context) {
+    // final favoritesCubit = BlocProvider.of<FavoritesCubit>(context);
     return BlocConsumer<FavoritesCubit, FavoritesState>(
       bloc: favoritesCubit,
       listenWhen: (previous, current) =>
-          current is SetFavoriteItemLoaded || current is UpdateFavoritePage,
+          current is SetFavoriteItemLoaded ||
+          current is UpdateFavoritePage ||
+          current is FavoriteProductsError,
       listener: (context, state) {
         if (state is SetFavoriteItemLoaded || state is UpdateFavoritePage) {
           favoritesCubit.getFavoriteProducts();
+        }
+        if (state is FavoriteProductsError) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(
+              state.message,
+              textAlign: TextAlign.end,
+              style: FontHelper.fontText(
+                  size: 15.sp,
+                  weight: FontWeight.w600,
+                  color: Colors.white,
+                  context: context),
+            ),
+            backgroundColor: Colors.redAccent,
+            behavior: SnackBarBehavior.floating,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(26),
+            ),
+          ));
         }
       },
       buildWhen: (previous, current) =>
@@ -139,14 +160,12 @@ class _FavoritesPageState extends State<FavoritesPage> {
                 ? Center(
                     child: CupertinoActivityIndicator(),
                   )
-                : state is FavoriteProductsError
-                    ? Center(child: Text(state.message))
-                    : state is FavoriteProductsLoaded
-                        ? state.favoriteProducts.isEmpty
-                            ? EmptyFavoriteProducts()
-                            : NotEmptyFavoriteProducts(
-                                favoriteProducts: state.favoriteProducts)
-                        : const SizedBox.shrink(),
+                : state is FavoriteProductsLoaded
+                    ? state.favoriteProducts.isEmpty
+                        ? EmptyFavoriteProducts()
+                        : NotEmptyFavoriteProducts(
+                            favoriteProducts: state.favoriteProducts)
+                    : const SizedBox.shrink(),
           ),
         );
       },

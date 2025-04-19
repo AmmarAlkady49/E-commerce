@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:e_commerce_graduation/core/secure_storage.dart';
 import 'package:e_commerce_graduation/core/services/app_services.dart';
 import 'package:e_commerce_graduation/features/address/models/address_model.dart';
 import 'package:e_commerce_graduation/features/address/services/address_services.dart';
@@ -14,6 +15,7 @@ class AddressCubit extends Cubit<AddressState> {
   final _profileAuthServices = ProfilePageServicesimpl();
   final _appServices = AppServicesImpl();
   final addressServices = AddressServicesImpl();
+  final secureStorage = SecureStorage();
 
   // add new address
   Future<void> addNewAddress(

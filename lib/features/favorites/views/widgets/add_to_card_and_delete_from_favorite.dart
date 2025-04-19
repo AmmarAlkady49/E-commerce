@@ -1,4 +1,3 @@
-import 'package:e_commerce_graduation/core/models/product_response.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
 import 'package:e_commerce_graduation/features/favorites/cubit/favorites_cubit.dart';
 import 'package:e_commerce_graduation/features/favorites/model/favorite_item_model.dart';
@@ -72,7 +71,7 @@ class AddToCardAndDeleteFromFavorite extends StatelessWidget {
               );
             },
             icon: Icon(CupertinoIcons.ellipsis,
-                color: Colors.black54, size: 20.sp)),
+                color: Colors.black54, size: 19.sp)),
       ],
     );
   }

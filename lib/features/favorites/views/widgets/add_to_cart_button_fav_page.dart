@@ -1,5 +1,5 @@
-import 'package:e_commerce_graduation/core/models/product_response.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
+import 'package:e_commerce_graduation/features/cart/cubit/cart_cubit.dart';
 import 'package:e_commerce_graduation/features/favorites/cubit/favorites_cubit.dart';
 import 'package:e_commerce_graduation/features/favorites/model/favorite_item_model.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
@@ -20,28 +20,38 @@ class AddToCartButtonFavPage extends StatelessWidget {
     return BlocConsumer<FavoritesCubit, FavoritesState>(
       listenWhen: (previous, current) => current is AddProductToCartLoaded,
       listener: (context, state) {
-        // if (State is AddProductToCartLoaded) {
-        //   ScaffoldMessenger.of(context).showSnackBar(
-        //     SnackBar(
-        //       content: Text(S.of(context).added),
-        //       duration: const Duration(seconds: 1),
-        //     ),
-        //   );
-        // }
+        if (State is AddProductToCartLoaded) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(
+              S.of(context).verify_email_successfully,
+              style: FontHelper.fontText(
+                  size: 15.sp,
+                  weight: FontWeight.w600,
+                  color: Colors.white,
+                  context: context),
+            ),
+            backgroundColor: Colors.green,
+            behavior: SnackBarBehavior.floating,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(26),
+            ),
+          ));
+        }
       },
       bloc: favortiePageCubit,
       buildWhen: (previous, current) =>
           (current is AddProductToCartLoading &&
-              current.productId == productItem.productId) ||
+              current.productId ==
+                  productItem.productId.toString().toString()) ||
           (current is AddProductToCartLoaded &&
-              current.productId == productItem.productId) ||
+              current.productId == productItem.productId.toString()) ||
           (current is AddProductToCartError &&
-              current.productId == productItem.productId),
+              current.productId == productItem.productId.toString()),
       builder: (context, state) {
         return TextButton(
           style: ButtonStyle(
-            backgroundColor:
-                WidgetStateProperty.all(state is AddProductToCartLoaded
+            backgroundColor: WidgetStateProperty.all(
+                state is AddProductToCartLoaded || productItem.isAddedToCart!
                     // ? Colors.green.withValues(alpha: 0.9)
                     ? Colors.grey.withValues(alpha: 0.9)
                     : Color(0xff1D61E7).withValues(alpha: 0.8)),
@@ -52,9 +62,16 @@ class AddToCartButtonFavPage extends StatelessWidget {
             ),
           ),
           onPressed: () {
-            // state is! AddProductToCartLoaded
-            //   ? favortiePageCubit.addToCart(productItem)
-            //   : null;
+            !productItem.isAddedToCart!
+                ? state is! AddProductToCartLoaded
+                    // ? favortiePageCubit.addToCart(
+                    //     productItem.productId.toString(), 1,)
+                    ? context.read<FavoritesCubit>().addToCart(
+                        productItem.productId.toString(),
+                        1,
+                        context.read<CartCubit>())
+                    : null
+                : null;
           },
           child: state is AddProductToCartLoading
               ? CupertinoActivityIndicator(color: Colors.white)
@@ -62,14 +79,17 @@ class AddToCartButtonFavPage extends StatelessWidget {
                   ? Text(S.of(context).added,
                       style: FontHelper.fontText(
                         color: Colors.white,
-                        size: 13.sp,
+                        size: 11.sp,
                         weight: FontWeight.w800,
                         context: context,
                       ))
-                  : Text(S.of(context).add_to_card2,
+                  : Text(
+                      productItem.isAddedToCart!
+                          ? S.of(context).added
+                          : S.of(context).add_to_card2,
                       style: FontHelper.fontText(
                         color: Colors.white,
-                        size: 13.sp,
+                        size: 11.sp,
                         weight: FontWeight.w800,
                         context: context,
                       )),

@@ -167,5 +167,7 @@
     "enter_your_postal_code": "Enter your postal code",
     "invalid_postal_code": "Invalid postal code",
     "no_matching_products" : "No matching products found.",
-    "search_in_your_favorite" : "Search in your favorite"
+    "search_in_your_favorite" : "Search in your favorite",
+    "error_updating_quantity" : "Error updating quantity, please try again",
+    "change_address" : "Change Address"
 }

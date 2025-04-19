@@ -27,4 +27,9 @@ class AppConstants {
   static const String getWishlist = '/Wishlist/get-wishlist-by-id';
   static const String removeFromWishlist = '/Wishlist/remove-item-from-wishlist';
   static const String clearWishlist = '/Wishlist/clear-wishlist';
+  static const String getCart = '/Cart/get-cart-by-id';
+  static const String removeCartItem = '/Cart/remove-item';
+  static const String deleteAllCartItems = '/Cart/delete-cart';
+  static const String updateProductQuantity = '/Cart/update-quantity';
+  static const String addProductToCart = '/Cart/add-to-cart';
 }

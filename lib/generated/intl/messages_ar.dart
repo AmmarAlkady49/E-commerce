@@ -63,6 +63,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "cancel": MessageLookupByLibrary.simpleMessage("الغاء"),
     "cart": MessageLookupByLibrary.simpleMessage("عربة تسوق"),
     "category": MessageLookupByLibrary.simpleMessage("مجموعات"),
+    "change_address": MessageLookupByLibrary.simpleMessage("تغيير العنوان"),
     "change_password": MessageLookupByLibrary.simpleMessage(
       "تغيير كلمة المرور",
     ),
@@ -127,6 +128,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "error_reset_password": MessageLookupByLibrary.simpleMessage(
       "خطأ في استعادة كلمة المرور، يرجى المحاولة مرة أخرى",
+    ),
+    "error_updating_quantity": MessageLookupByLibrary.simpleMessage(
+      "خطأ في تحديث الكمية، يرجى المحاولة مرة أخرى",
     ),
     "error_verification_code": MessageLookupByLibrary.simpleMessage(
       "خطأ في كود التحقق، يرجى المحاولة مرة أخرى",

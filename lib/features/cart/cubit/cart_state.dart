@@ -7,7 +7,7 @@ final class CartInitial extends CartState {}
 final class CartLoading extends CartState {}
 
 final class CartLoaded extends CartState {
-  final List<AddToCartModel> cartItems;
+  final CartResponseBody cartItems;
   CartLoaded(this.cartItems);
 }
 
@@ -30,7 +30,8 @@ final class CartItemDeletedError extends CartState {
 
 final class CartItemUpdating extends CartState {
   final String productId;
-  CartItemUpdating(this.productId);
+  final bool isIncrement;
+  CartItemUpdating(this.productId, this.isIncrement);
 }
 
 final class CartItemUpdated extends CartState {

@@ -22,7 +22,7 @@ class EmptyAddresses extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(
-              Iconsax.shopping_bag,
+              Iconsax.location,
               size: 50.sp,
               color: Colors.black,
             ),
