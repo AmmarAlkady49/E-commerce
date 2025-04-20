@@ -41,6 +41,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "already_have_an_account": MessageLookupByLibrary.simpleMessage(
       "هل لديك حساب بالفعل؟",
     ),
+    "apply_filters": MessageLookupByLibrary.simpleMessage("تطبيق التصفية"),
     "are_you_sure": MessageLookupByLibrary.simpleMessage(
       "هل انت متاكد من حذف كل المنتجات المفضلة؟",
     ),
@@ -80,6 +81,8 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "choose_your_location": MessageLookupByLibrary.simpleMessage("إختر موقعك"),
     "city": MessageLookupByLibrary.simpleMessage("المدينة"),
+    "clear_all": MessageLookupByLibrary.simpleMessage("مسح الكل"),
+    "clear_filters": MessageLookupByLibrary.simpleMessage("مسح التصفية"),
     "confirm_deletion": MessageLookupByLibrary.simpleMessage("تأكيد الحذف"),
     "confirm_password": MessageLookupByLibrary.simpleMessage(
       "تأكيد كلمة المرور",
@@ -101,6 +104,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "edit_address": MessageLookupByLibrary.simpleMessage("تعديل العنوان"),
     "edit_profile": MessageLookupByLibrary.simpleMessage("تعديل الحساب"),
     "egypt": MessageLookupByLibrary.simpleMessage("مصر"),
+    "egyption_currency": MessageLookupByLibrary.simpleMessage("ج.م"),
     "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
     "empty_cell": MessageLookupByLibrary.simpleMessage("الحقل فارغ"),
     "english": MessageLookupByLibrary.simpleMessage("En"),
@@ -137,6 +141,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "female": MessageLookupByLibrary.simpleMessage("انثى"),
     "filter": MessageLookupByLibrary.simpleMessage("تصفية"),
+    "filter_options": MessageLookupByLibrary.simpleMessage("خيارات التصفية"),
     "first_name": MessageLookupByLibrary.simpleMessage("الإسم الأول"),
     "forget_password2": MessageLookupByLibrary.simpleMessage(
       "نسيت كلمة المرور",
@@ -153,6 +158,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "حدث خطأ اثناء تسجيل الدخول بواسطة جوجل",
     ),
     "hi": MessageLookupByLibrary.simpleMessage("أهلآ"),
+    "highest_price": MessageLookupByLibrary.simpleMessage("الاعلى سعرا"),
     "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
     "invalid_email": MessageLookupByLibrary.simpleMessage(
       "البريد الالكتروني غير صحيح",
@@ -166,6 +172,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "language": MessageLookupByLibrary.simpleMessage("اللغة"),
     "last_name": MessageLookupByLibrary.simpleMessage("الإسم الأخير"),
+    "last_search": MessageLookupByLibrary.simpleMessage("البحث الأخير"),
     "lets_go_shopping": MessageLookupByLibrary.simpleMessage("جاهز للتسوق ؟"),
     "loading": MessageLookupByLibrary.simpleMessage("جاري التحميل..."),
     "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
@@ -174,12 +181,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "looks_like_you_havent_added": MessageLookupByLibrary.simpleMessage(
       "يبدو انك لم تقم بإضافة اي منتجات بعد",
     ),
+    "lowest_price": MessageLookupByLibrary.simpleMessage("الاقل سعرا"),
     "make_sure_to_choose_your_location": MessageLookupByLibrary.simpleMessage(
       "أدخل تفاصيل عنوانك لضمان وصول الطلب إلى باب منزلك",
     ),
     "male": MessageLookupByLibrary.simpleMessage("ذكر"),
     "mansoura": MessageLookupByLibrary.simpleMessage("المنصورة"),
-    "most_popular": MessageLookupByLibrary.simpleMessage("المنتجات الشائعة"),
+    "most_popular": MessageLookupByLibrary.simpleMessage("الاكثر شيوعا"),
+    "most_recent": MessageLookupByLibrary.simpleMessage("الاكثر حديثا"),
     "name": MessageLookupByLibrary.simpleMessage("الاسم"),
     "new_arrival": MessageLookupByLibrary.simpleMessage("المنتجات الجديدة🔥"),
     "new_password": MessageLookupByLibrary.simpleMessage("كلمة مرور جديدة"),
@@ -191,6 +200,13 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "no_matching_products": MessageLookupByLibrary.simpleMessage(
       "لا توجد منتجات مطابقة.",
+    ),
+    "no_products_found": MessageLookupByLibrary.simpleMessage(
+      "لا توجد منتجات مطابقة",
+    ),
+    "no_reatings": MessageLookupByLibrary.simpleMessage("لا توجد تقييمات"),
+    "no_recent_searches": MessageLookupByLibrary.simpleMessage(
+      "لا توجد نتائج بحث سابقه",
     ),
     "no_reviews": MessageLookupByLibrary.simpleMessage(
       "لا يوجد تقييمات لهذا المنتج",
@@ -264,9 +280,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "save": MessageLookupByLibrary.simpleMessage("حفظ"),
     "save_changes": MessageLookupByLibrary.simpleMessage("حفظ التعديلات"),
     "search": MessageLookupByLibrary.simpleMessage("البحث"),
+    "search_": MessageLookupByLibrary.simpleMessage("بحث..."),
     "search_in_your_favorite": MessageLookupByLibrary.simpleMessage(
       "إبحث في منتجاتك المفضلة",
     ),
+    "search_result_for": MessageLookupByLibrary.simpleMessage("نتايج البحث ل"),
     "search_something": MessageLookupByLibrary.simpleMessage("إبحث عن شيء ..."),
     "see_all": MessageLookupByLibrary.simpleMessage("اظهار الكل"),
     "selecet_location": MessageLookupByLibrary.simpleMessage("اختر الموقع"),
@@ -282,6 +300,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "التسجيل بواسطة جوجل",
     ),
     "someone_name": MessageLookupByLibrary.simpleMessage("عمار"),
+    "sort_by": MessageLookupByLibrary.simpleMessage("ترتيب حسب"),
     "street": MessageLookupByLibrary.simpleMessage("الشارع"),
     "submet": MessageLookupByLibrary.simpleMessage("حفظ"),
     "subtotal": MessageLookupByLibrary.simpleMessage("المجموع الفرعي"),

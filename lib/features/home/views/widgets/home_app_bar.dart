@@ -1,6 +1,8 @@
 import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
 import 'package:e_commerce_graduation/features/home/home_bubit/cubit/home_cubit.dart';
+import 'package:e_commerce_graduation/features/search/cubit/search_cubit.dart';
+import 'package:e_commerce_graduation/features/search/views/widgets/custome_search.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -97,7 +99,13 @@ class HomeAppBar extends StatelessWidget {
                       ),
                       const Spacer(),
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                         
+                          showSearch(
+                              context: context,
+                              delegate:
+                                  CustomeSearch(homeCubit: homeCubit));
+                        },
                         icon: Icon(Iconsax.search_normal_1,
                             color: Colors.black, size: 24.sp),
                       ),

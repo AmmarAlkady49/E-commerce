@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:e_commerce_graduation/features/home/home_bubit/cubit/home_cubit.dart';
 import 'package:e_commerce_graduation/features/home/views/widgets/categort_tap.dart';
 import 'package:e_commerce_graduation/features/home/views/widgets/home_app_bar.dart';
@@ -15,12 +17,14 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  
+
   @override
   void initState() {
     super.initState();
     context.read<HomeCubit>().getUserData();
     context.read<HomeCubit>().getAllProducts();
+    BlocProvider.of<HomeCubit>(context).getAllCategories();
+
     _tabController = TabController(length: 2, vsync: this);
   }
 

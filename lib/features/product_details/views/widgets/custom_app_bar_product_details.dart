@@ -101,13 +101,20 @@ class CustomAppBarProductDetails extends StatelessWidget {
       flexibleSpace: FlexibleSpaceBar(
         background: Padding(
           padding: EdgeInsets.only(top: 36.h, bottom: 8.h),
-          child: CachedNetworkImage(
-            imageUrl: product.photos.isNotEmpty
-                ? HelperFunctions.fixGoogleDriveUrl(
-                    product.photos.first.imageURL!)
-                : 'https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=',
-            fit: BoxFit.contain,
-          ),
+          child: product.photos != null && product.photos!.isNotEmpty
+              ? CachedNetworkImage(
+                  imageUrl: HelperFunctions.fixGoogleDriveUrl(
+                      product.photos!.first.imageURL!),
+                  fit: BoxFit.contain,
+                  height: 140.h,
+                  width: double.infinity,
+                )
+              : Image.asset(
+                  'assets/images/home_page/no_image_found.jpg',
+                  fit: BoxFit.contain,
+                  height: 140.h,
+                  width: double.infinity,
+                ),
         ),
       ),
     );

@@ -5,6 +5,7 @@ import 'package:e_commerce_graduation/core/models/product_response.dart';
 import 'package:e_commerce_graduation/core/secure_storage.dart';
 import 'package:e_commerce_graduation/features/favorites/cubit/favorites_cubit.dart';
 import 'package:e_commerce_graduation/features/favorites/services/favorite_products_services.dart';
+import 'package:e_commerce_graduation/features/home/model/category_model.dart';
 import 'package:e_commerce_graduation/features/home/services/home_page_services.dart';
 import 'package:e_commerce_graduation/features/profile/services/profile_page_services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,6 +21,10 @@ class HomeCubit extends Cubit<HomeState> {
   final FavoriteProductsServices _favoriteProductsServices =
       FavoriteProductsServicesImpl();
   final secureStorage = SecureStorage();
+
+  List<String> reacentSearches = [];
+  List<ProductResponse> searchResults = [];
+  List<CategoryModel> categoriesList = [];
 
   // Get UserData
   Future<CustomerData> getUserData() async {
@@ -85,6 +90,54 @@ class HomeCubit extends Cubit<HomeState> {
       emit(SetFavoriteSuccess(isFavorite: !isFavorite, productId: productId));
     } catch (e) {
       emit(SetFavoriteError(error: e.toString(), productId: productId));
+    }
+  }
+
+  Future<void> searchProducts(String query) async {
+    // emit(SearchLoading());
+    try {
+      final allProducts = await homeServices.getAllProducts();
+      searchResults = allProducts
+          .where((product) =>
+              product.name!.toLowerCase().contains(query.trim().toLowerCase()))
+          .toList();
+
+      addToRecentSearches(query);
+      emit(SearchLoaded(searchResults));
+    } catch (e) {
+      emit(SearchError("Something went wrong: ${e.toString()}"));
+    }
+  }
+
+  void addToRecentSearches(String query) {
+    if (query.trim().isEmpty) return;
+    reacentSearches.remove(query);
+    reacentSearches.insert(0, query);
+    if (reacentSearches.length > 10) {
+      reacentSearches = reacentSearches.sublist(0, 10);
+    }
+    emit(SearchRecentUpdated(reacentSearches));
+  }
+
+  void clearRecentSearches() {
+    reacentSearches.clear();
+    emit(SearchRecentUpdated(reacentSearches));
+  }
+
+  void removeSearchItem(String item) {
+    reacentSearches.remove(item);
+    emit(SearchRecentUpdated(reacentSearches));
+  }
+
+  void getAllCategories() async {
+    try {
+      categoriesList = await homeServices.getAllCategories();
+
+      emit(LoadedCategories(categoriesList));
+      log(categoriesList.length.toString());
+    } catch (e) {
+      log(e.toString());
+      emit(ErrorCategories(e.toString()));
     }
   }
 }

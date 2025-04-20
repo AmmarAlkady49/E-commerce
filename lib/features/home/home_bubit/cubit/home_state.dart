@@ -51,3 +51,35 @@ final class SetFavoriteError extends HomeState {
 
   SetFavoriteError({required this.error, required this.productId});
 }
+
+final class SearchLoading extends HomeState {}
+
+final class SearchLoaded extends HomeState {
+  final List<ProductResponse> searchResults;
+
+  SearchLoaded(this.searchResults);
+}
+
+final class SearchError extends HomeState {
+  final String message;
+
+  SearchError(this.message);
+}
+
+final class SearchRecentUpdated extends HomeState {
+  final List<String> recentSearches; // 👈 New state clas  s
+
+  SearchRecentUpdated(this.recentSearches);
+}
+
+final class LoadedCategories extends HomeState {
+  final List<CategoryModel> categories;
+
+  LoadedCategories(this.categories);
+}
+
+final class ErrorCategories extends HomeState {
+  final String error;
+
+  ErrorCategories(this.error);
+}

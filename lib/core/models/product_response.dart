@@ -1,3 +1,4 @@
+
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 class ProductItemModel {
   final String? id;
@@ -100,8 +101,8 @@ class ProductResponse {
   final int? stockQuantity;
   final double? rating;
   final int? reviewCount;
-  // final List<String>? reviews;
-  final List<Photos> photos;
+  final List<Review>? reviews;
+  final List<Photos>? photos;
   final bool? isFavorite;
 
   ProductResponse(
@@ -115,7 +116,7 @@ class ProductResponse {
       required this.stockQuantity,
       required this.rating,
       required this.reviewCount,
-      // required this.reviews,
+      required this.reviews,
       required this.photos,
       this.isFavorite = false});
 
@@ -131,8 +132,8 @@ class ProductResponse {
       'stockQuantity': stockQuantity,
       'rating': rating,
       'reviewCount': reviewCount,
-      // 'reviews': reviews,
-      'photos': photos.map((photo) => photo.toMap()).toList(),
+      'reviews': reviews?.map((review) => review.toMap()).toList(),
+      'photos': photos?.map((photo) => photo.toMap()).toList(),
     };
   }
 
@@ -163,7 +164,12 @@ class ProductResponse {
       reviewCount:
           map['reviewCount'] != null ? map['reviewCount'] as int : null,
       // reviews:
-      //     map['reviews'] != null ? List<String>.from(map['reviews']) : null,
+      //     map['reviews'] != null ? List<Review>.from(map['reviews']) : null,
+      reviews: map['reviews'] != null
+          ? List<Review>.from(
+              (map['reviews'] as List).map((e) => Review.fromMap(e)))
+          : [],
+
       photos: map['photos'] != null
           ? List<Photos>.from(
               (map['photos'] as List).map((e) => Photos.fromMap(e)))
@@ -183,6 +189,7 @@ class ProductResponse {
     double? rating,
     int? reviewCount,
     List<Photos>? photos,
+    List<Review>? reviews,
     bool? isFavorite,
   }) {
     return ProductResponse(
@@ -197,6 +204,7 @@ class ProductResponse {
       rating: rating ?? this.rating,
       reviewCount: reviewCount ?? this.reviewCount,
       photos: photos ?? this.photos,
+      reviews: reviews ?? this.reviews,
       isFavorite: isFavorite ?? this.isFavorite,
     );
   }
@@ -218,6 +226,34 @@ class Photos {
     return Photos(
       imageURL: map['imageURL'] != null ? map['imageURL'] as String : null,
       productID: map['productID'] != null ? map['productID'] as int : null,
+    );
+  }
+}
+
+class Review {
+  final String? name;
+  final String? reviewText;
+  final int? rating;
+  final String? reviewDate;
+  Review({this.name, this.reviewText, this.rating, this.reviewDate});
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'name': name,
+      'reviewText': reviewText,
+      'rating': rating,
+      'reviewDate': reviewDate,
+    };
+  }
+
+  factory Review.fromMap(Map<String, dynamic> map) {
+    return Review(
+      name: map['name'] != null ? map['name'] as String : null,
+      reviewText:
+          map['reviewText'] != null ? map['reviewText'] as String : null,
+      rating: map['rating'] != null ? map['rating'] as int : null,
+      reviewDate:
+          map['reviewDate'] != null ? map['reviewDate'] as String : null,
     );
   }
 }

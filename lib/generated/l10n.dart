@@ -1369,6 +1369,126 @@ class S {
       args: [],
     );
   }
+
+  /// `Clear All`
+  String get clear_all {
+    return Intl.message('Clear All', name: 'clear_all', desc: '', args: []);
+  }
+
+  /// `Last Search`
+  String get last_search {
+    return Intl.message('Last Search', name: 'last_search', desc: '', args: []);
+  }
+
+  /// `Search...`
+  String get search_ {
+    return Intl.message('Search...', name: 'search_', desc: '', args: []);
+  }
+
+  /// `EGP`
+  String get egyption_currency {
+    return Intl.message('EGP', name: 'egyption_currency', desc: '', args: []);
+  }
+
+  /// `No ratings yet`
+  String get no_reatings {
+    return Intl.message(
+      'No ratings yet',
+      name: 'no_reatings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search result for`
+  String get search_result_for {
+    return Intl.message(
+      'Search result for',
+      name: 'search_result_for',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No recent searches`
+  String get no_recent_searches {
+    return Intl.message(
+      'No recent searches',
+      name: 'no_recent_searches',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No products found`
+  String get no_products_found {
+    return Intl.message(
+      'No products found',
+      name: 'no_products_found',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Filter Options`
+  String get filter_options {
+    return Intl.message(
+      'Filter Options',
+      name: 'filter_options',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Clear Filters`
+  String get clear_filters {
+    return Intl.message(
+      'Clear Filters',
+      name: 'clear_filters',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Apply Filters`
+  String get apply_filters {
+    return Intl.message(
+      'Apply Filters',
+      name: 'apply_filters',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sort by`
+  String get sort_by {
+    return Intl.message('Sort by', name: 'sort_by', desc: '', args: []);
+  }
+
+  /// `Most Recent`
+  String get most_recent {
+    return Intl.message('Most Recent', name: 'most_recent', desc: '', args: []);
+  }
+
+  /// `Lowest Price`
+  String get lowest_price {
+    return Intl.message(
+      'Lowest Price',
+      name: 'lowest_price',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Highest Price`
+  String get highest_price {
+    return Intl.message(
+      'Highest Price',
+      name: 'highest_price',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

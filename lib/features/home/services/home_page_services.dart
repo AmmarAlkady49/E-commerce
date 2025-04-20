@@ -2,11 +2,13 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:e_commerce_graduation/core/utils/app_constants.dart';
+import 'package:e_commerce_graduation/features/home/model/category_model.dart';
 import 'package:e_commerce_graduation/features/home/model/parameter_request.dart';
 import 'package:e_commerce_graduation/core/models/product_response.dart';
 
 abstract class HomePageServices {
   Future<List<ProductResponse>> getAllProducts();
+  Future<List<CategoryModel>> getAllCategories();
   // Future<bool> addFavoriteProduct(String userId, int productId);
   // Future<void> deleteFavoriteProduct(String userId, String productId);
   // Future<List<ProductItemModel>> getFavoriteProducts(String userId);
@@ -60,6 +62,20 @@ class HomePageServicesImpl implements HomePageServices {
       }
     } catch (e) {
       rethrow;
+    }
+  }
+
+  @override
+  Future<List<CategoryModel>> getAllCategories() async {
+    final apiResponse = await aDio
+        .get("${AppConstants.baseUrl}${AppConstants.getAllCategories}");
+
+    if (apiResponse.statusCode == 200) {
+      return (apiResponse.data['data'] as List<dynamic>)
+          .map((item) => CategoryModel.fromMap(item as Map<String, dynamic>))
+          .toList();
+    } else {
+      throw Exception('Failed to load categories');
     }
   }
 

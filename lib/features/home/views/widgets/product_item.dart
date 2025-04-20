@@ -4,6 +4,7 @@ import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
 import 'package:e_commerce_graduation/core/models/product_response.dart';
 import 'package:e_commerce_graduation/features/home/home_bubit/cubit/home_cubit.dart';
+import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -51,9 +52,9 @@ class ProductItem extends StatelessWidget {
                     height: 125.h,
                     width: double.infinity,
                     child: CachedNetworkImage(
-                      imageUrl: product.photos.isNotEmpty
+                      imageUrl: product.photos!.isNotEmpty
                           ? HelperFunctions.fixGoogleDriveUrl(
-                              product.photos.first.imageURL!)
+                              product.photos!.first.imageURL!)
                           : 'https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=',
                       fit: BoxFit.contain,
                     ),
@@ -84,13 +85,24 @@ class ProductItem extends StatelessWidget {
                       weight: FontWeight.w600,
                       color: Colors.black45),
                 ),
+                // Text(
+                //   "${product.price.toString()}\$",
+                //   style: FontHelper.fontText(
+                //       context: context,
+                //       size: 18.sp,
+                //       weight: FontWeight.w800,
+                //       color: Colors.red.shade600),
+                // ),
+                const SizedBox(height: 4),
                 Text(
-                  "${product.price.toString()}\$",
+                  '${product.price} ${S.of(context).egyption_currency}',
                   style: FontHelper.fontText(
-                      context: context,
-                      size: 18.sp,
-                      weight: FontWeight.w800,
-                      color: Colors.red.shade600),
+                    context: context,
+                    size: 16.sp,
+                    weight: FontWeight.w700,
+                    color: Colors.green.shade700,
+                    // color: Colors.red.shade600,
+                  ),
                 ),
               ],
             ),
@@ -163,7 +175,7 @@ class ProductItem extends StatelessWidget {
                         child: InkWell(
                             onTap: () async {
                               await homeCubit.setFavortie(
-                                  product.photos.first.productID.toString());
+                                  product.photos!.first.productID.toString());
                             },
                             child: product.isFavorite!
                                 // child: true

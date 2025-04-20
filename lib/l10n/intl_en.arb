@@ -169,5 +169,21 @@
     "no_matching_products" : "No matching products found.",
     "search_in_your_favorite" : "Search in your favorite",
     "error_updating_quantity" : "Error updating quantity, please try again",
-    "change_address" : "Change Address"
+    "change_address" : "Change Address",
+    "clear_all" : "Clear All",
+    "last_search" : "Last Search",
+    "search_" : "Search...",
+    "egyption_currency" : "EGP",
+    "no_reatings" : "No ratings yet",
+    "search_result_for" : "Search result for",
+    "no_recent_searches" : "No recent searches",
+    "no_products_found" : "No products found",
+    "filter_options" : "Filter Options",
+    "clear_filters" : "Clear Filters",
+    "apply_filters" : "Apply Filters",
+    "sort_by" : "Sort by",
+    "most_popular" : "Most Popular",
+    "most_recent" : "Most Recent",
+    "lowest_price" : "Lowest Price",
+    "highest_price" : "Highest Price"
 }

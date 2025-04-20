@@ -32,4 +32,5 @@ class AppConstants {
   static const String deleteAllCartItems = '/Cart/delete-cart';
   static const String updateProductQuantity = '/Cart/update-quantity';
   static const String addProductToCart = '/Cart/add-to-cart';
+  static const String getAllCategories = '/Category/get-all-categories';
 }

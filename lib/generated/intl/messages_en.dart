@@ -41,6 +41,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "already_have_an_account": MessageLookupByLibrary.simpleMessage(
       "Already have an account?",
     ),
+    "apply_filters": MessageLookupByLibrary.simpleMessage("Apply Filters"),
     "are_you_sure": MessageLookupByLibrary.simpleMessage(
       "Are you sure you want to delete all Favorite products?",
     ),
@@ -78,6 +79,8 @@ class MessageLookup extends MessageLookupByLibrary {
       "Choose your location",
     ),
     "city": MessageLookupByLibrary.simpleMessage("City"),
+    "clear_all": MessageLookupByLibrary.simpleMessage("Clear All"),
+    "clear_filters": MessageLookupByLibrary.simpleMessage("Clear Filters"),
     "confirm_deletion": MessageLookupByLibrary.simpleMessage(
       "Confirm Deletion",
     ),
@@ -101,6 +104,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "edit_address": MessageLookupByLibrary.simpleMessage("Edit Address"),
     "edit_profile": MessageLookupByLibrary.simpleMessage("Edit Profile"),
     "egypt": MessageLookupByLibrary.simpleMessage("Egypt"),
+    "egyption_currency": MessageLookupByLibrary.simpleMessage("EGP"),
     "email": MessageLookupByLibrary.simpleMessage("Email"),
     "empty_cell": MessageLookupByLibrary.simpleMessage("Empty cell"),
     "english": MessageLookupByLibrary.simpleMessage(" ع "),
@@ -139,6 +143,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "female": MessageLookupByLibrary.simpleMessage("Female"),
     "filter": MessageLookupByLibrary.simpleMessage("Filter"),
+    "filter_options": MessageLookupByLibrary.simpleMessage("Filter Options"),
     "first_name": MessageLookupByLibrary.simpleMessage("First Name"),
     "forget_password2": MessageLookupByLibrary.simpleMessage("Forget Password"),
     "forgot_password": MessageLookupByLibrary.simpleMessage(
@@ -153,6 +158,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Google sign-in aborted",
     ),
     "hi": MessageLookupByLibrary.simpleMessage("Hi"),
+    "highest_price": MessageLookupByLibrary.simpleMessage("Highest Price"),
     "home": MessageLookupByLibrary.simpleMessage("Home"),
     "invalid_email": MessageLookupByLibrary.simpleMessage("Invalid email"),
     "invalid_name": MessageLookupByLibrary.simpleMessage("Invalid name"),
@@ -162,6 +168,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "language": MessageLookupByLibrary.simpleMessage("Language"),
     "last_name": MessageLookupByLibrary.simpleMessage("Last Name"),
+    "last_search": MessageLookupByLibrary.simpleMessage("Last Search"),
     "lets_go_shopping": MessageLookupByLibrary.simpleMessage(
       "Let\'s go shopping",
     ),
@@ -172,12 +179,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "looks_like_you_havent_added": MessageLookupByLibrary.simpleMessage(
       "Looks like you haven\'t added anything to your cart yet",
     ),
+    "lowest_price": MessageLookupByLibrary.simpleMessage("Lowest Price"),
     "make_sure_to_choose_your_location": MessageLookupByLibrary.simpleMessage(
       "Enter your address details to ensure your order reaches your doorstep.",
     ),
     "male": MessageLookupByLibrary.simpleMessage("Male"),
     "mansoura": MessageLookupByLibrary.simpleMessage("Mansoura"),
     "most_popular": MessageLookupByLibrary.simpleMessage("Most Popular"),
+    "most_recent": MessageLookupByLibrary.simpleMessage("Most Recent"),
     "name": MessageLookupByLibrary.simpleMessage("Name"),
     "new_arrival": MessageLookupByLibrary.simpleMessage("New Arrival🔥"),
     "new_password": MessageLookupByLibrary.simpleMessage("New Password"),
@@ -189,6 +198,13 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "no_matching_products": MessageLookupByLibrary.simpleMessage(
       "No matching products found.",
+    ),
+    "no_products_found": MessageLookupByLibrary.simpleMessage(
+      "No products found",
+    ),
+    "no_reatings": MessageLookupByLibrary.simpleMessage("No ratings yet"),
+    "no_recent_searches": MessageLookupByLibrary.simpleMessage(
+      "No recent searches",
     ),
     "no_reviews": MessageLookupByLibrary.simpleMessage("No reviews yet"),
     "no_saved_addresses": MessageLookupByLibrary.simpleMessage(
@@ -260,8 +276,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "save": MessageLookupByLibrary.simpleMessage("Save"),
     "save_changes": MessageLookupByLibrary.simpleMessage("Save changes"),
     "search": MessageLookupByLibrary.simpleMessage("Search"),
+    "search_": MessageLookupByLibrary.simpleMessage("Search..."),
     "search_in_your_favorite": MessageLookupByLibrary.simpleMessage(
       "Search in your favorite",
+    ),
+    "search_result_for": MessageLookupByLibrary.simpleMessage(
+      "Search result for",
     ),
     "search_something": MessageLookupByLibrary.simpleMessage(
       "Search something...",
@@ -280,6 +300,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Sign Up with Google",
     ),
     "someone_name": MessageLookupByLibrary.simpleMessage("John Doe"),
+    "sort_by": MessageLookupByLibrary.simpleMessage("Sort by"),
     "street": MessageLookupByLibrary.simpleMessage("Street"),
     "submet": MessageLookupByLibrary.simpleMessage("Submit"),
     "subtotal": MessageLookupByLibrary.simpleMessage("Subtotal"),

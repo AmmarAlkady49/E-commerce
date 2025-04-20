@@ -169,6 +169,22 @@
     "no_matching_products": "لا توجد منتجات مطابقة.",
     "search_in_your_favorite": "إبحث في منتجاتك المفضلة",
     "error_updating_quantity": "خطأ في تحديث الكمية، يرجى المحاولة مرة أخرى",
-    "change_address" : "تغيير العنوان"
-
+    "change_address": "تغيير العنوان",
+    "clear_all": "مسح الكل",
+    "last_search": "البحث الأخير",
+    "search_": "بحث...",
+    "egyption_currency": "ج.م",
+    "no_reatings": "لا توجد تقييمات",
+    "search_result_for": "نتايج البحث ل",
+    "no_recent_searches": "لا توجد نتائج بحث سابقه",
+    "no_products_found": "لا توجد منتجات مطابقة",
+    "filter_options" : "خيارات التصفية",
+    "clear_filters" : "مسح التصفية",
+    "apply_filters" : "تطبيق التصفية",
+    "sort_by" : "ترتيب حسب",
+    "most_popular" : "الاكثر شيوعا",
+    "most_recent" : "الاكثر حديثا",
+    "lowest_price" : "الاقل سعرا",
+    "highest_price" : "الاعلى سعرا"
+    
 }

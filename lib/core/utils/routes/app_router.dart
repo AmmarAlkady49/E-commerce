@@ -51,18 +51,20 @@ class AppRouter {
                 ),
                 BlocProvider<CartCubit>(
                   create: (context) => CartCubit(
-                      favoritesCubit: context.read<FavoritesCubit>(),
-                      )
-                    ..getCartItems(),
+                    favoritesCubit: context.read<FavoritesCubit>(),
+                  )..getCartItems(),
+                ),
+                BlocProvider<ProfileCubit>(
+                  create: (context) => ProfileCubit(),
                 ),
                 BlocProvider<HomeCubit>(
                   create: (context) => HomeCubit(
                     favoritesCubit: context.read<FavoritesCubit>(),
                   )..getAllProducts(),
                 ),
-                BlocProvider<ProfileCubit>(
-                  create: (context) => ProfileCubit(),
-                ),
+                // BlocProvider<SearchCubit>(
+                //   create: (context) => SearchCubit(),
+                // )
               ],
               child: const BottomNavBar(),
             );
@@ -125,7 +127,7 @@ class AppRouter {
             builder: (_) => BlocProvider(
                   create: (context) {
                     final cubit = ProductDetailsCubit();
-                    cubit.getProductDetails(product.photos.first.productID!);
+                    cubit.getProductDetails(product.productID!);
                     return cubit;
                   },
                   child: ProductDetailsPage(),
