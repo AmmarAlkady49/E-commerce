@@ -23,10 +23,7 @@ final class SetProductFavoriteError extends ProductDetailsState {
 }
 
 final class SetProductFavoriteLoading extends ProductDetailsState {
-  final String productId;
-  SetProductFavoriteLoading({
-    required this.productId,
-  });
+  SetProductFavoriteLoading();
 }
 
 final class ProductAddingToCart extends ProductDetailsState {}

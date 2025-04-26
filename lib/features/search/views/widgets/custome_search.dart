@@ -1,7 +1,6 @@
-import 'dart:developer';
-
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
 import 'package:e_commerce_graduation/features/home/home_bubit/cubit/home_cubit.dart';
+import 'package:e_commerce_graduation/features/search/views/widgets/main_filter_page.dart';
 import 'package:e_commerce_graduation/features/search/views/widgets/product_search_item.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:flutter/cupertino.dart';
@@ -99,97 +98,25 @@ class CustomeSearch extends SearchDelegate {
               onPressed: () {
                 showModalBottomSheet(
                   context: context,
+                  backgroundColor: Colors.white,
+                  isScrollControlled: true,
+                  isDismissible: true,
                   shape: RoundedRectangleBorder(
                     borderRadius:
-                        BorderRadius.vertical(top: Radius.circular(20.r)),
+                        BorderRadius.vertical(top: Radius.circular(20)),
                   ),
-                  backgroundColor: Colors.white,
-                  isScrollControlled: true, // in case your content is big
                   builder: (context) {
-                    return Padding(
-                      padding: EdgeInsets.all(16.w),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Center(
-                            child: Container(
-                              width: 40.w,
-                              height: 4.h,
-                              margin: EdgeInsets.only(bottom: 12.h),
-                              decoration: BoxDecoration(
-                                color: Colors.grey.shade400,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
+                    return SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.65,
+                      child: Navigator(
+                        onGenerateInitialRoutes:
+                            (navigatorContext, initialRoute) {
+                          return [
+                            MaterialPageRoute(
+                              builder: (navigatorContext) => MainFilterPage(),
                             ),
-                          ),
-                          Text(
-                            S
-                                .of(context)
-                                .filter_options, // Make sure to localize this string
-                            style: FontHelper.fontText(
-                              context: context,
-                              size: 18.sp,
-                              weight: FontWeight.bold,
-                              color: Colors.black,
-                            ),
-                          ),
-                          SizedBox(height: 16.h),
-                          // Example filters
-
-                          Text("Category"),
-                          Wrap(
-                            spacing: 8,
-                            children: state is LoadedCategories
-                                ? List.generate(
-                                    state.categories.length,
-                                    (index) {
-                                      final category = state.categories[index];
-                                      final isSelected = homeCubit
-                                          .categoriesList
-                                          .contains(category);
-
-                                      return ChoiceChip(
-                                        label: Text(category.name),
-                                        selected: isSelected,
-                                        // onSelected: (_) {
-                                        //   homeCubit.toggleCategorySelection(
-                                        //       category);
-                                        // },
-                                      );
-                                    },
-                                  )
-                                : [Text("Loading...")],
-                          ),
-
-                          SizedBox(height: 20.h),
-                          ElevatedButton(
-                            onPressed: () {
-                              Navigator.pop(context); // Close modal
-                              // Trigger filter logic
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.black87,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12.r),
-                              ),
-                            ),
-                            child: Center(
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(vertical: 12.h),
-                                child: Text(
-                                  S.of(context).apply_filters,
-                                  style: FontHelper.fontText(
-                                    context: context,
-                                    size: 14.sp,
-                                    weight: FontWeight.bold,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          )
-                        ],
+                          ];
+                        },
                       ),
                     );
                   },
@@ -225,7 +152,7 @@ class CustomeSearch extends SearchDelegate {
   @override
   Widget buildResults(BuildContext context) {
     // return SizedBox.shrink();
-    homeCubit.searchProducts(query); // 👈 تشغيل البحث
+    homeCubit.searchProducts(query: query);
 
     return Container(
       decoration: BoxDecoration(color: Colors.grey.shade50),
@@ -262,34 +189,37 @@ class CustomeSearch extends SearchDelegate {
             }
             return Padding(
               padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 16.h),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    '${S.of(context).search_result_for} "$query" (${state.searchResults.length})',
-                    style: FontHelper.fontText(
-                        size: 16.sp,
-                        weight: FontWeight.w600,
-                        color: Colors.black,
-                        context: context),
-                  ),
-                  SizedBox(height: 16.h),
-                  GridView.builder(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisSpacing: 15,
-                            crossAxisCount: 2,
-                            mainAxisExtent: 300,
-                            mainAxisSpacing: 15),
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemBuilder: (context, index) => ProductSearchItem(
-                      product: state.searchResults[index],
-                      homeCubit: homeCubit,
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '${S.of(context).search_result_for} "$query" (${state.searchResults.length})',
+                      style: FontHelper.fontText(
+                          size: 16.sp,
+                          weight: FontWeight.w600,
+                          color: Colors.black,
+                          context: context),
                     ),
-                    itemCount: state.searchResults.length,
-                  )
-                ],
+                    SizedBox(height: 16.h),
+                    GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisSpacing: 15,
+                              crossAxisCount: 2,
+                              mainAxisExtent: 300,
+                              mainAxisSpacing: 15),
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) => ProductSearchItem(
+                        product: state.searchResults[index],
+                        homeCubit: homeCubit,
+                      ),
+                      itemCount: state.searchResults.length,
+                    ),
+                    SizedBox(height: 24.h),
+                  ],
+                ),
               ),
             );
           } else if (state is SearchError) {

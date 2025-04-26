@@ -2,6 +2,11 @@ import 'package:e_commerce_graduation/core/utils/routes/app_router.dart';
 import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
 import 'package:e_commerce_graduation/core/utils/app_constants.dart';
 import 'package:e_commerce_graduation/features/auth/auth_cubit/auth_cubit.dart';
+import 'package:e_commerce_graduation/features/cart/cubit/cart_cubit.dart';
+import 'package:e_commerce_graduation/features/favorites/cubit/favorites_cubit.dart';
+import 'package:e_commerce_graduation/features/home/home_bubit/cubit/home_cubit.dart';
+import 'package:e_commerce_graduation/features/order/cubit/order_cubit.dart';
+import 'package:e_commerce_graduation/features/profile/profile_cubit/cubit/profile_cubit.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -37,42 +42,64 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
-        return BlocProvider(
-          create: (context) {
-            final cubit = AuthCubit();
-            cubit.checkAuth();
-            return cubit;
-          },
-          child: Builder(builder: (context) {
-            final authCubit = BlocProvider.of<AuthCubit>(context);
-            return BlocBuilder<AuthCubit, AuthState>(
-              bloc: authCubit,
-              buildWhen: (previous, current) =>
-                  current is AuthSuccess || current is AuthInitial,
-              builder: (context, state) {
-                return MaterialApp(
-                  title: AppConstants.appTitle,
-                  debugShowCheckedModeBanner: false,
-                  localizationsDelegates: [
-                    S.delegate,
-                    GlobalMaterialLocalizations.delegate,
-                    GlobalWidgetsLocalizations.delegate,
-                    GlobalCupertinoLocalizations.delegate,
-                  ],
-                  supportedLocales: S.delegate.supportedLocales,
-                  locale: Locale(lang),
-                  theme: ThemeData(
-                    colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-                    useMaterial3: true,
-                  ),
-                  initialRoute: (state is AuthSuccess && rememberMe)
-                      ? AppRoutes.bottomNavBar
-                      : AppRoutes.login,
-                  onGenerateRoute: AppRouter.onGenerateRoute,
-                );
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider<AuthCubit>(
+              create: (context) {
+                final cubit = AuthCubit();
+                cubit.checkAuth();
+                return cubit;
               },
-            );
-          }),
+            ),
+            BlocProvider<FavoritesCubit>(
+              create: (context) => FavoritesCubit()..getFavoriteProducts(),
+            ),
+            BlocProvider<CartCubit>(
+              create: (context) => CartCubit(
+                favoritesCubit: context.read<FavoritesCubit>(),
+              )..getCartItems(),
+            ),
+            BlocProvider<ProfileCubit>(
+              create: (context) => ProfileCubit(),
+            ),
+            BlocProvider<HomeCubit>(
+              create: (context) => HomeCubit(
+                favoritesCubit: context.read<FavoritesCubit>(),
+              )..getAllProducts(),
+            ),
+          ],
+          child: Builder(
+            builder: (context) {
+              final authCubit = context.read<AuthCubit>();
+              return BlocBuilder<AuthCubit, AuthState>(
+                bloc: authCubit,
+                buildWhen: (previous, current) =>
+                    current is AuthSuccess || current is AuthInitial,
+                builder: (context, state) {
+                  return MaterialApp(
+                    title: AppConstants.appTitle,
+                    debugShowCheckedModeBanner: false,
+                    localizationsDelegates: [
+                      S.delegate,
+                      GlobalMaterialLocalizations.delegate,
+                      GlobalWidgetsLocalizations.delegate,
+                      GlobalCupertinoLocalizations.delegate,
+                    ],
+                    supportedLocales: S.delegate.supportedLocales,
+                    locale: Locale(lang),
+                    theme: ThemeData(
+                      colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+                      useMaterial3: true,
+                    ),
+                    initialRoute: (state is AuthSuccess && rememberMe)
+                        ? AppRoutes.bottomNavBar
+                        : AppRoutes.login,
+                    onGenerateRoute: AppRouter.onGenerateRoute,
+                  );
+                },
+              );
+            },
+          ),
         );
       },
     );

@@ -990,6 +990,11 @@ class S {
     return Intl.message('Street', name: 'street', desc: '', args: []);
   }
 
+  /// `Street`
+  String get street2 {
+    return Intl.message('Street', name: 'street2', desc: '', args: []);
+  }
+
   /// `Area`
   String get area {
     return Intl.message('Area', name: 'area', desc: '', args: []);
@@ -1488,6 +1493,181 @@ class S {
       desc: '',
       args: [],
     );
+  }
+
+  /// `My Orders`
+  String get my_orders {
+    return Intl.message('My Orders', name: 'my_orders', desc: '', args: []);
+  }
+
+  /// `Confirm Order`
+  String get confirm_order {
+    return Intl.message(
+      'Confirm Order',
+      name: 'confirm_order',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Order Confirmed`
+  String get order_confirmed {
+    return Intl.message(
+      'Order Confirmed',
+      name: 'order_confirmed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Order Details`
+  String get order_details {
+    return Intl.message(
+      'Order Details',
+      name: 'order_details',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Order Status`
+  String get order_status {
+    return Intl.message(
+      'Order Status',
+      name: 'order_status',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment Process`
+  String get payment_process {
+    return Intl.message(
+      'Payment Process',
+      name: 'payment_process',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Address`
+  String get the_address {
+    return Intl.message('Address', name: 'the_address', desc: '', args: []);
+  }
+
+  /// `Delivery to`
+  String get delivery_to {
+    return Intl.message('Delivery to', name: 'delivery_to', desc: '', args: []);
+  }
+
+  /// `No address found`
+  String get no_address_found {
+    return Intl.message(
+      'No address found',
+      name: 'no_address_found',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No orders found`
+  String get no_orders_found {
+    return Intl.message(
+      'No orders found',
+      name: 'no_orders_found',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Quantity`
+  String get quantity {
+    return Intl.message('Quantity', name: 'quantity', desc: '', args: []);
+  }
+
+  /// `Confirm and Pay`
+  String get confirm_and_pay {
+    return Intl.message(
+      'Confirm and Pay',
+      name: 'confirm_and_pay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose Delivery Method`
+  String get choose_delivery_method {
+    return Intl.message(
+      'Choose Delivery Method',
+      name: 'choose_delivery_method',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Standard Delivery`
+  String get standard_delivery {
+    return Intl.message(
+      'Standard Delivery',
+      name: 'standard_delivery',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Express Delivery`
+  String get express_delivery {
+    return Intl.message(
+      'Express Delivery',
+      name: 'express_delivery',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `business days`
+  String get business_days {
+    return Intl.message(
+      'business days',
+      name: 'business_days',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Order`
+  String get order {
+    return Intl.message('Order', name: 'order', desc: '', args: []);
+  }
+
+  /// `Number`
+  String get number {
+    return Intl.message('Number', name: 'number', desc: '', args: []);
+  }
+
+  /// `Order created successfully`
+  String get order_created_successfully {
+    return Intl.message(
+      'Order created successfully',
+      name: 'order_created_successfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error creating order, please try again`
+  String get error_creating_order {
+    return Intl.message(
+      'Error creating order, please try again',
+      name: 'error_creating_order',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Price`
+  String get price {
+    return Intl.message('Price', name: 'price', desc: '', args: []);
   }
 }
 

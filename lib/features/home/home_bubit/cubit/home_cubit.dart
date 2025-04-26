@@ -1,11 +1,11 @@
 import 'dart:developer';
 
-import 'package:e_commerce_graduation/core/models/customer_data.dart';
 import 'package:e_commerce_graduation/core/models/product_response.dart';
 import 'package:e_commerce_graduation/core/secure_storage.dart';
 import 'package:e_commerce_graduation/features/favorites/cubit/favorites_cubit.dart';
 import 'package:e_commerce_graduation/features/favorites/services/favorite_products_services.dart';
 import 'package:e_commerce_graduation/features/home/model/category_model.dart';
+import 'package:e_commerce_graduation/features/home/model/parameter_request.dart';
 import 'package:e_commerce_graduation/features/home/services/home_page_services.dart';
 import 'package:e_commerce_graduation/features/profile/services/profile_page_services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,13 +21,12 @@ class HomeCubit extends Cubit<HomeState> {
   final FavoriteProductsServices _favoriteProductsServices =
       FavoriteProductsServicesImpl();
   final secureStorage = SecureStorage();
-
   List<String> reacentSearches = [];
   List<ProductResponse> searchResults = [];
   List<CategoryModel> categoriesList = [];
 
   // Get UserData
-  Future<CustomerData> getUserData() async {
+  Future<String> getUserData() async {
     emit(HomeAppBarLoading());
     try {
       final userName = await secureStorage.readSecureData('name');
@@ -39,9 +38,9 @@ class HomeCubit extends Cubit<HomeState> {
       return userName;
     } catch (e) {
       emit(HomeAppBarError(e.toString()));
+      log("failed to get user data");
+      throw Exception('Failed to fetch user data');
     }
-    log("failed to get user data");
-    throw Exception('Failed to fetch user data');
   }
 
   // Get All Products
@@ -50,7 +49,12 @@ class HomeCubit extends Cubit<HomeState> {
 
     try {
       final userId = await secureStorage.readSecureData('userId');
-      final products = await homeServices.getAllProducts();
+      final ParameterRequest parameterRequest = ParameterRequest(
+        pagenum: 1,
+        maxpagesize: 10,
+        pagesize: 10,
+      );
+      final products = await homeServices.getAllProducts(parameterRequest);
       final favoriteProducts =
           await _favoriteProductsServices.getFavoriteProducts(userId);
       final List<ProductResponse> finalProducts = products.map((product) {
@@ -89,14 +93,32 @@ class HomeCubit extends Cubit<HomeState> {
       }
       emit(SetFavoriteSuccess(isFavorite: !isFavorite, productId: productId));
     } catch (e) {
+      log("error in set favorite: ${e.toString()}");
       emit(SetFavoriteError(error: e.toString(), productId: productId));
     }
   }
 
-  Future<void> searchProducts(String query) async {
+  Future<void> searchProducts(
+      {required String query,
+      String? category,
+      String? subcategory,
+      String? brand,
+      double? minPrice,
+      double? maxPrice}) async {
     // emit(SearchLoading());
     try {
-      final allProducts = await homeServices.getAllProducts();
+      final parameterRequest = ParameterRequest(
+        pagenum: 1,
+        maxpagesize: 25,
+        pagesize: 25,
+        search: query,
+        categoryCode: category,
+        subCategoryCode: subcategory,
+        brandCode: brand,
+        minPrice: minPrice,
+        maxPrice: maxPrice,
+      );
+      final allProducts = await homeServices.getAllProducts(parameterRequest);
       searchResults = allProducts
           .where((product) =>
               product.name!.toLowerCase().contains(query.trim().toLowerCase()))

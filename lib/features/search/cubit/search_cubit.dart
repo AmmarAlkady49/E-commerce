@@ -1,5 +1,3 @@
-import 'package:e_commerce_graduation/core/models/product_response.dart';
-import 'package:e_commerce_graduation/features/home/services/home_page_services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'search_state.dart';

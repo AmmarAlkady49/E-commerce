@@ -28,6 +28,7 @@ class CartCubit extends Cubit<CartState> {
     final String user = await secureStorage.readSecureData('userId');
     try {
       final cartItems = await _cartServices.getCartItems(user);
+      log(cartItems.id.toString());
       emit(CartLoaded(cartItems));
       cartItemsStored = cartItems.items;
       hasFetchedCart = true;

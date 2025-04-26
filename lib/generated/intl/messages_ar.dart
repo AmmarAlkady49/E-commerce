@@ -60,6 +60,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "best_seller": MessageLookupByLibrary.simpleMessage("المنتجات المبيعة"),
     "birthday": MessageLookupByLibrary.simpleMessage("تاريخ الميلاد"),
     "building": MessageLookupByLibrary.simpleMessage("البناء"),
+    "business_days": MessageLookupByLibrary.simpleMessage("أيام العمل"),
     "cairo": MessageLookupByLibrary.simpleMessage("القاهرة"),
     "cancel": MessageLookupByLibrary.simpleMessage("الغاء"),
     "cart": MessageLookupByLibrary.simpleMessage("عربة تسوق"),
@@ -76,6 +77,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "checkout": MessageLookupByLibrary.simpleMessage("إتمام الشراء"),
     "checkout2": MessageLookupByLibrary.simpleMessage("إتمام الشراء"),
+    "choose_delivery_method": MessageLookupByLibrary.simpleMessage(
+      "اختر طريقة التوصيل",
+    ),
     "choose_the_address": MessageLookupByLibrary.simpleMessage(
       "اختر العنوان الذي تود استلام طلباتك عليه.",
     ),
@@ -83,7 +87,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "city": MessageLookupByLibrary.simpleMessage("المدينة"),
     "clear_all": MessageLookupByLibrary.simpleMessage("مسح الكل"),
     "clear_filters": MessageLookupByLibrary.simpleMessage("مسح التصفية"),
+    "confirm_and_pay": MessageLookupByLibrary.simpleMessage("تأكيد و دفع"),
     "confirm_deletion": MessageLookupByLibrary.simpleMessage("تأكيد الحذف"),
+    "confirm_order": MessageLookupByLibrary.simpleMessage("تأكيد الطلب"),
     "confirm_password": MessageLookupByLibrary.simpleMessage(
       "تأكيد كلمة المرور",
     ),
@@ -94,6 +100,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "create_account": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
     "delete": MessageLookupByLibrary.simpleMessage("حذف"),
     "delete_all": MessageLookupByLibrary.simpleMessage("حذف الكل"),
+    "delivery_to": MessageLookupByLibrary.simpleMessage("توصيل الى"),
     "desc_verify_email": MessageLookupByLibrary.simpleMessage(
       "يرجى التحقق من بريدك الالكتروني للتحقق من حسابك",
     ),
@@ -127,6 +134,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "enter_your_postal_code": MessageLookupByLibrary.simpleMessage(
       "ادخل الرمز البريدي",
     ),
+    "error_creating_order": MessageLookupByLibrary.simpleMessage(
+      "خطأ في انشاء الطلب، يرجى المحاولة مرة أخرى",
+    ),
     "error_login": MessageLookupByLibrary.simpleMessage(
       "حدث خطأ اثناء تسجيل الدخول",
     ),
@@ -139,6 +149,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "error_verification_code": MessageLookupByLibrary.simpleMessage(
       "خطأ في كود التحقق، يرجى المحاولة مرة أخرى",
     ),
+    "express_delivery": MessageLookupByLibrary.simpleMessage("التوصيل السريع"),
     "female": MessageLookupByLibrary.simpleMessage("انثى"),
     "filter": MessageLookupByLibrary.simpleMessage("تصفية"),
     "filter_options": MessageLookupByLibrary.simpleMessage("خيارات التصفية"),
@@ -187,11 +198,15 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "male": MessageLookupByLibrary.simpleMessage("ذكر"),
     "mansoura": MessageLookupByLibrary.simpleMessage("المنصورة"),
-    "most_popular": MessageLookupByLibrary.simpleMessage("الاكثر شيوعا"),
+    "most_popular": MessageLookupByLibrary.simpleMessage("المنتجات الشائعة"),
     "most_recent": MessageLookupByLibrary.simpleMessage("الاكثر حديثا"),
+    "my_orders": MessageLookupByLibrary.simpleMessage("طلباتي"),
     "name": MessageLookupByLibrary.simpleMessage("الاسم"),
     "new_arrival": MessageLookupByLibrary.simpleMessage("المنتجات الجديدة🔥"),
     "new_password": MessageLookupByLibrary.simpleMessage("كلمة مرور جديدة"),
+    "no_address_found": MessageLookupByLibrary.simpleMessage(
+      "لا يوجد عنوان محفوظ",
+    ),
     "no_description": MessageLookupByLibrary.simpleMessage(
       "لا يوجد وصف لهذا المنتج",
     ),
@@ -201,6 +216,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "no_matching_products": MessageLookupByLibrary.simpleMessage(
       "لا توجد منتجات مطابقة.",
     ),
+    "no_orders_found": MessageLookupByLibrary.simpleMessage("لا توجد طلبات"),
     "no_products_found": MessageLookupByLibrary.simpleMessage(
       "لا توجد منتجات مطابقة",
     ),
@@ -212,11 +228,19 @@ class MessageLookup extends MessageLookupByLibrary {
       "لا يوجد تقييمات لهذا المنتج",
     ),
     "no_saved_addresses": MessageLookupByLibrary.simpleMessage(
-      "لا يوجد عناوين محفوظة",
+      "لا يوجد عنوان محفوظ",
     ),
     "notification": MessageLookupByLibrary.simpleMessage("الاشعارات"),
+    "number": MessageLookupByLibrary.simpleMessage("رقم"),
     "or": MessageLookupByLibrary.simpleMessage("أو"),
     "or_login_with": MessageLookupByLibrary.simpleMessage("أو من خلال"),
+    "order": MessageLookupByLibrary.simpleMessage("طلب"),
+    "order_confirmed": MessageLookupByLibrary.simpleMessage("تم تأكيد الطلب"),
+    "order_created_successfully": MessageLookupByLibrary.simpleMessage(
+      "تم انشاء الطلب بنجاح",
+    ),
+    "order_details": MessageLookupByLibrary.simpleMessage("تفاصيل الطلب"),
+    "order_status": MessageLookupByLibrary.simpleMessage("حالة الطلب"),
     "other": MessageLookupByLibrary.simpleMessage("اخرى"),
     "palestine": MessageLookupByLibrary.simpleMessage("فلسطين"),
     "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
@@ -248,6 +272,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "password_uppercase": MessageLookupByLibrary.simpleMessage(
       "تحتوي علي حرف كبير (A-Z)",
     ),
+    "payment_process": MessageLookupByLibrary.simpleMessage("عملية الدفع"),
     "personal_info": MessageLookupByLibrary.simpleMessage("المعلومات الشخصية"),
     "phone": MessageLookupByLibrary.simpleMessage("الهاتف"),
     "please_enter_a_search_term": MessageLookupByLibrary.simpleMessage(
@@ -261,10 +286,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "يرجى إدخال الرمز البريدي الخاص بك لضمان توصيل سريع وسلس.",
     ),
     "preferences": MessageLookupByLibrary.simpleMessage("التفضيلات"),
+    "price": MessageLookupByLibrary.simpleMessage("السعر"),
     "product": MessageLookupByLibrary.simpleMessage("منتج"),
     "products": MessageLookupByLibrary.simpleMessage("منتجات"),
     "profile": MessageLookupByLibrary.simpleMessage("الحساب"),
     "qatar": MessageLookupByLibrary.simpleMessage("قطر"),
+    "quantity": MessageLookupByLibrary.simpleMessage("الكمية"),
     "remember_me": MessageLookupByLibrary.simpleMessage("تذكرني"),
     "resend_otp_code_successfully": MessageLookupByLibrary.simpleMessage(
       "تم اعادة ارسال الكود بنجاح",
@@ -301,11 +328,14 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "someone_name": MessageLookupByLibrary.simpleMessage("عمار"),
     "sort_by": MessageLookupByLibrary.simpleMessage("ترتيب حسب"),
+    "standard_delivery": MessageLookupByLibrary.simpleMessage("التوصيل العادي"),
     "street": MessageLookupByLibrary.simpleMessage("الشارع"),
+    "street2": MessageLookupByLibrary.simpleMessage("شارع"),
     "submet": MessageLookupByLibrary.simpleMessage("حفظ"),
     "subtotal": MessageLookupByLibrary.simpleMessage("المجموع الفرعي"),
     "suez": MessageLookupByLibrary.simpleMessage("السويس"),
     "tanta": MessageLookupByLibrary.simpleMessage("طنطا"),
+    "the_address": MessageLookupByLibrary.simpleMessage("العنوان"),
     "total_amount": MessageLookupByLibrary.simpleMessage("المبلغ الكلي"),
     "type_your_address": MessageLookupByLibrary.simpleMessage("ادخل عنوانك"),
     "verify_email": MessageLookupByLibrary.simpleMessage(

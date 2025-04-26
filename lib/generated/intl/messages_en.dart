@@ -60,6 +60,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "best_seller": MessageLookupByLibrary.simpleMessage("Best Seller"),
     "birthday": MessageLookupByLibrary.simpleMessage("Birth Day"),
     "building": MessageLookupByLibrary.simpleMessage("Building"),
+    "business_days": MessageLookupByLibrary.simpleMessage("business days"),
     "cairo": MessageLookupByLibrary.simpleMessage("Cairo"),
     "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
     "cart": MessageLookupByLibrary.simpleMessage("Cart"),
@@ -72,6 +73,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "check_your_mail": MessageLookupByLibrary.simpleMessage("Check your mail"),
     "checkout": MessageLookupByLibrary.simpleMessage("Checkout"),
     "checkout2": MessageLookupByLibrary.simpleMessage("Checkout"),
+    "choose_delivery_method": MessageLookupByLibrary.simpleMessage(
+      "Choose Delivery Method",
+    ),
     "choose_the_address": MessageLookupByLibrary.simpleMessage(
       "Choose the address where you would like to receive your orders.",
     ),
@@ -81,9 +85,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "city": MessageLookupByLibrary.simpleMessage("City"),
     "clear_all": MessageLookupByLibrary.simpleMessage("Clear All"),
     "clear_filters": MessageLookupByLibrary.simpleMessage("Clear Filters"),
+    "confirm_and_pay": MessageLookupByLibrary.simpleMessage("Confirm and Pay"),
     "confirm_deletion": MessageLookupByLibrary.simpleMessage(
       "Confirm Deletion",
     ),
+    "confirm_order": MessageLookupByLibrary.simpleMessage("Confirm Order"),
     "confirm_password": MessageLookupByLibrary.simpleMessage(
       "Confirm Password",
     ),
@@ -94,6 +100,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "create_account": MessageLookupByLibrary.simpleMessage("Create Account"),
     "delete": MessageLookupByLibrary.simpleMessage("Delete"),
     "delete_all": MessageLookupByLibrary.simpleMessage("Delete All"),
+    "delivery_to": MessageLookupByLibrary.simpleMessage("Delivery to"),
     "desc_verify_email": MessageLookupByLibrary.simpleMessage(
       "Please check your email to verify your account",
     ),
@@ -129,6 +136,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "enter_your_postal_code": MessageLookupByLibrary.simpleMessage(
       "Enter your postal code",
     ),
+    "error_creating_order": MessageLookupByLibrary.simpleMessage(
+      "Error creating order, please try again",
+    ),
     "error_login": MessageLookupByLibrary.simpleMessage(
       "Error login, please try again",
     ),
@@ -140,6 +150,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "error_verification_code": MessageLookupByLibrary.simpleMessage(
       "Error verification code, please try again",
+    ),
+    "express_delivery": MessageLookupByLibrary.simpleMessage(
+      "Express Delivery",
     ),
     "female": MessageLookupByLibrary.simpleMessage("Female"),
     "filter": MessageLookupByLibrary.simpleMessage("Filter"),
@@ -187,9 +200,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "mansoura": MessageLookupByLibrary.simpleMessage("Mansoura"),
     "most_popular": MessageLookupByLibrary.simpleMessage("Most Popular"),
     "most_recent": MessageLookupByLibrary.simpleMessage("Most Recent"),
+    "my_orders": MessageLookupByLibrary.simpleMessage("My Orders"),
     "name": MessageLookupByLibrary.simpleMessage("Name"),
     "new_arrival": MessageLookupByLibrary.simpleMessage("New Arrival🔥"),
     "new_password": MessageLookupByLibrary.simpleMessage("New Password"),
+    "no_address_found": MessageLookupByLibrary.simpleMessage(
+      "No address found",
+    ),
     "no_description": MessageLookupByLibrary.simpleMessage(
       "There is no description for this product",
     ),
@@ -199,6 +216,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "no_matching_products": MessageLookupByLibrary.simpleMessage(
       "No matching products found.",
     ),
+    "no_orders_found": MessageLookupByLibrary.simpleMessage("No orders found"),
     "no_products_found": MessageLookupByLibrary.simpleMessage(
       "No products found",
     ),
@@ -211,8 +229,16 @@ class MessageLookup extends MessageLookupByLibrary {
       "No Saved Address",
     ),
     "notification": MessageLookupByLibrary.simpleMessage("Notification"),
+    "number": MessageLookupByLibrary.simpleMessage("Number"),
     "or": MessageLookupByLibrary.simpleMessage("Or"),
     "or_login_with": MessageLookupByLibrary.simpleMessage("Or login with"),
+    "order": MessageLookupByLibrary.simpleMessage("Order"),
+    "order_confirmed": MessageLookupByLibrary.simpleMessage("Order Confirmed"),
+    "order_created_successfully": MessageLookupByLibrary.simpleMessage(
+      "Order created successfully",
+    ),
+    "order_details": MessageLookupByLibrary.simpleMessage("Order Details"),
+    "order_status": MessageLookupByLibrary.simpleMessage("Order Status"),
     "other": MessageLookupByLibrary.simpleMessage("Other"),
     "palestine": MessageLookupByLibrary.simpleMessage("Palestine"),
     "password": MessageLookupByLibrary.simpleMessage("Password"),
@@ -244,6 +270,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "password_uppercase": MessageLookupByLibrary.simpleMessage(
       "At least 1 uppercase letter (A-Z)",
     ),
+    "payment_process": MessageLookupByLibrary.simpleMessage("Payment Process"),
     "personal_info": MessageLookupByLibrary.simpleMessage(
       "Personal information",
     ),
@@ -259,10 +286,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "Please enter your postal code to ensure fast and smooth delivery.",
     ),
     "preferences": MessageLookupByLibrary.simpleMessage("Preferences"),
+    "price": MessageLookupByLibrary.simpleMessage("Price"),
     "product": MessageLookupByLibrary.simpleMessage("Product"),
     "products": MessageLookupByLibrary.simpleMessage("Products"),
     "profile": MessageLookupByLibrary.simpleMessage("Profile"),
     "qatar": MessageLookupByLibrary.simpleMessage("Qatar"),
+    "quantity": MessageLookupByLibrary.simpleMessage("Quantity"),
     "remember_me": MessageLookupByLibrary.simpleMessage("Remember me"),
     "resend_otp_code_successfully": MessageLookupByLibrary.simpleMessage(
       "Resend OTP code successfully",
@@ -301,11 +330,16 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "someone_name": MessageLookupByLibrary.simpleMessage("John Doe"),
     "sort_by": MessageLookupByLibrary.simpleMessage("Sort by"),
+    "standard_delivery": MessageLookupByLibrary.simpleMessage(
+      "Standard Delivery",
+    ),
     "street": MessageLookupByLibrary.simpleMessage("Street"),
+    "street2": MessageLookupByLibrary.simpleMessage("Street"),
     "submet": MessageLookupByLibrary.simpleMessage("Submit"),
     "subtotal": MessageLookupByLibrary.simpleMessage("Subtotal"),
     "suez": MessageLookupByLibrary.simpleMessage("Suez"),
     "tanta": MessageLookupByLibrary.simpleMessage("Tanta"),
+    "the_address": MessageLookupByLibrary.simpleMessage("Address"),
     "total_amount": MessageLookupByLibrary.simpleMessage("Total amount"),
     "type_your_address": MessageLookupByLibrary.simpleMessage(
       "Type your address",

@@ -17,18 +17,17 @@ class BodyOfProductDetails extends StatelessWidget {
         decoration: BoxDecoration(
           color: Color(0xfffefffe),
           borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(40.r), topRight: Radius.circular(40.r)),
+              topLeft: Radius.circular(30.r), topRight: Radius.circular(30.r)),
         ),
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 18.0.w, vertical: 24.h),
+          padding: EdgeInsets.symmetric(horizontal: 12.0.w, vertical: 18.h),
           child: SingleChildScrollView(
             physics: const NeverScrollableScrollPhysics(),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                SizedBox(width: double.infinity),
                 Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: Localizations.localeOf(context).languageCode == 'en'
                       ? [
@@ -39,8 +38,9 @@ class BodyOfProductDetails extends StatelessWidget {
                             child: Text(
                               product.name!,
                               textAlign: TextAlign.right,
+                              // textAlign: TextAlign.end,
                               style: FontHelper.fontText(
-                                size: 18.sp,
+                                size: 17.sp,
                                 weight: FontWeight.w700,
                                 color: Colors.black,
                                 context: context,
@@ -54,7 +54,7 @@ class BodyOfProductDetails extends StatelessWidget {
                             child: Text(
                               product.name!,
                               style: FontHelper.fontText(
-                                size: 18.sp,
+                                size: 17.sp,
                                 weight: FontWeight.w700,
                                 color: Colors.black,
                                 context: context,
@@ -66,7 +66,7 @@ class BodyOfProductDetails extends StatelessWidget {
                 ),
                 SizedBox(height: 8.h),
                 RateingSection(product: product),
-                SizedBox(height: 4.h),
+                SizedBox(height: 12.h),
                 DescriptionWidget(description: product.description),
               ],
             ),

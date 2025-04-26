@@ -22,10 +22,12 @@ class ProductItem extends StatelessWidget {
     final homeCubit = BlocProvider.of<HomeCubit>(context);
     return InkWell(
       onTap: () {
-        Navigator.of(context).pushNamed(
-          AppRoutes.productPage,
-          arguments: product,
-        );
+        Navigator.of(context)
+            .pushNamed(
+              AppRoutes.productPage,
+              arguments: product,
+            )
+            .then((value) => homeCubit.getAllProducts());
       },
       borderRadius: BorderRadius.circular(12.r),
       child: Container(
@@ -46,21 +48,35 @@ class ProductItem extends StatelessWidget {
           children: [
             Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: SizedBox(
-                    height: 125.h,
-                    width: double.infinity,
-                    child: CachedNetworkImage(
-                      imageUrl: product.photos!.isNotEmpty
-                          ? HelperFunctions.fixGoogleDriveUrl(
-                              product.photos!.first.imageURL!)
-                          : 'https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=',
-                      fit: BoxFit.contain,
-                    ),
+                Container(
+                  height: 125.h,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade100,
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(12.r),
+                        topRight: Radius.circular(12.r)),
+                    border: Border.all(color: Colors.grey.shade200),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: product.photos != null && product.photos!.isNotEmpty
+                        ? CachedNetworkImage(
+                            imageUrl: HelperFunctions.fixGoogleDriveUrl(
+                                product.photos!.first.imageURL!),
+                            fit: BoxFit.contain,
+                            height: 140.h,
+                            width: double.infinity,
+                          )
+                        : Image.network(
+                            'https://as2.ftcdn.net/v2/jpg/03/24/14/35/1000_F_324143588_Jk9uwkSlhuSEyrGWkuQT7MM6mFbCayIj.jpg',
+                            fit: BoxFit.fitHeight,
+                            height: 20.h,
+                            // width: double.infinity,
+                          ),
                   ),
                 ),
-                SizedBox(height: 2.h),
+                SizedBox(height: 4.h),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 8.w),
                   child: Text(
@@ -76,7 +92,7 @@ class ProductItem extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
-                SizedBox(height: 0.h),
+                SizedBox(height: 4.h),
                 Text(
                   product.categoryName ?? 'other',
                   style: FontHelper.fontText(
@@ -85,15 +101,7 @@ class ProductItem extends StatelessWidget {
                       weight: FontWeight.w600,
                       color: Colors.black45),
                 ),
-                // Text(
-                //   "${product.price.toString()}\$",
-                //   style: FontHelper.fontText(
-                //       context: context,
-                //       size: 18.sp,
-                //       weight: FontWeight.w800,
-                //       color: Colors.red.shade600),
-                // ),
-                const SizedBox(height: 4),
+                const SizedBox(height: 2),
                 Text(
                   '${product.price} ${S.of(context).egyption_currency}',
                   style: FontHelper.fontText(
@@ -135,7 +143,8 @@ class ProductItem extends StatelessWidget {
                                 padding: const EdgeInsets.all(3.0),
                                 child: InkWell(
                                     onTap: () async {
-                                      // await homeCubit.setFavortie(product);
+                                      await homeCubit.setFavortie(
+                                          product.productID.toString());
                                     },
                                     child: Icon(
                                       CupertinoIcons.heart_fill,
@@ -154,7 +163,8 @@ class ProductItem extends StatelessWidget {
                                 padding: const EdgeInsets.all(3.0),
                                 child: InkWell(
                                     onTap: () async {
-                                      // await homeCubit.setFavortie(product);
+                                      await homeCubit.setFavortie(
+                                          product.productID.toString());
                                     },
                                     child: Icon(
                                       CupertinoIcons.heart,

@@ -49,7 +49,7 @@ class AddToCartButton extends StatelessWidget {
                       color: status == "added" ? Colors.black45 : Colors.white,
                       weight: FontWeight.w700,
                       context: context,
-                      size: 16.sp,
+                      size: 15.sp,
                     ),
                   ),
                 SizedBox(width: 8.w),

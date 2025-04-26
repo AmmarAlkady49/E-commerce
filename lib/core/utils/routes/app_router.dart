@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:e_commerce_graduation/bottom_nav_bar.dart';
 import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
 import 'package:e_commerce_graduation/features/address/cubit/address_cubit.dart';
@@ -10,9 +12,12 @@ import 'package:e_commerce_graduation/features/auth/views/pages/sign_in_page.dar
 import 'package:e_commerce_graduation/core/models/product_response.dart';
 import 'package:e_commerce_graduation/features/auth/views/pages/verify_account.dart';
 import 'package:e_commerce_graduation/features/cart/cubit/cart_cubit.dart';
+import 'package:e_commerce_graduation/features/order/cubit/order_cubit.dart';
+import 'package:e_commerce_graduation/features/order/views/pages/confirm_order_page.dart';
 import 'package:e_commerce_graduation/features/favorites/cubit/favorites_cubit.dart';
-import 'package:e_commerce_graduation/features/home/home_bubit/cubit/home_cubit.dart';
 import 'package:e_commerce_graduation/features/home/views/pages/home_page.dart';
+import 'package:e_commerce_graduation/features/order/views/pages/my_order_page.dart';
+import 'package:e_commerce_graduation/features/order/views/pages/payment_webview_page.dart';
 import 'package:e_commerce_graduation/features/product_details/cubit/product_details_cubit.dart';
 import 'package:e_commerce_graduation/features/product_details/views/pages/product_details_page.dart';
 import 'package:e_commerce_graduation/features/profile/profile_cubit/cubit/profile_cubit.dart';
@@ -42,34 +47,7 @@ class AppRouter {
       case AppRoutes.home:
         return MaterialPageRoute(builder: (_) => const HomePage());
       case AppRoutes.bottomNavBar:
-        return MaterialPageRoute(
-          builder: (context) {
-            return MultiBlocProvider(
-              providers: [
-                BlocProvider<FavoritesCubit>(
-                  create: (context) => FavoritesCubit()..getFavoriteProducts(),
-                ),
-                BlocProvider<CartCubit>(
-                  create: (context) => CartCubit(
-                    favoritesCubit: context.read<FavoritesCubit>(),
-                  )..getCartItems(),
-                ),
-                BlocProvider<ProfileCubit>(
-                  create: (context) => ProfileCubit(),
-                ),
-                BlocProvider<HomeCubit>(
-                  create: (context) => HomeCubit(
-                    favoritesCubit: context.read<FavoritesCubit>(),
-                  )..getAllProducts(),
-                ),
-                // BlocProvider<SearchCubit>(
-                //   create: (context) => SearchCubit(),
-                // )
-              ],
-              child: const BottomNavBar(),
-            );
-          },
-        );
+        return MaterialPageRoute(builder: (_) => const BottomNavBar());
 
       case AppRoutes.profile:
         return MaterialPageRoute(
@@ -79,6 +57,27 @@ class AppRouter {
                 ));
       case AppRoutes.languagePage:
         return MaterialPageRoute(builder: (_) => const LangPage());
+      case AppRoutes.paymentWebviewPage:
+        // final args = settings.arguments as Map<String, dynamic>;
+        final String paymentUrl = settings.arguments as String;
+        return MaterialPageRoute(
+            builder: (_) => PaymentWebviewPage(paymentUrl: paymentUrl));
+      case AppRoutes.confirmOrderPage:
+        return MaterialPageRoute(
+            builder: (_) => BlocProvider(
+                  create: (context) => OrderCubit(
+                      cartCubit: context.read<CartCubit>(),
+                      favoritesCubit: context.read<FavoritesCubit>()),
+                  child: const ConfirmOrderPage(),
+                ));
+      case AppRoutes.myOrderPage:
+        return MaterialPageRoute(
+            builder: (_) => BlocProvider(
+                  create: (context) => OrderCubit(
+                      cartCubit: context.read<CartCubit>(),
+                      favoritesCubit: context.read<FavoritesCubit>()),
+                  child: const MyOrderPage(),
+                ));
 
       case AppRoutes.verifyEmail:
         final args = settings.arguments as Map<String, dynamic>;
@@ -122,16 +121,21 @@ class AppRouter {
                   child: const AccountPage(),
                 ));
       case AppRoutes.productPage:
-        final ProductResponse product = settings.arguments as ProductResponse;
+        final product = settings.arguments as ProductResponse;
         return MaterialPageRoute(
-            builder: (_) => BlocProvider(
-                  create: (context) {
-                    final cubit = ProductDetailsCubit();
-                    cubit.getProductDetails(product.productID!);
-                    return cubit;
-                  },
-                  child: ProductDetailsPage(),
-                ));
+          builder: (context) {
+            final cartCubit = context.read<CartCubit>();
+            final favoriteCubit = context.read<FavoritesCubit>();
+            final productDetailsCubit = ProductDetailsCubit(
+                cartCubit: cartCubit, favoritesCubit: favoriteCubit)
+              ..getProductDetails(product.productID!);
+
+            return BlocProvider.value(
+              value: productDetailsCubit,
+              child: ProductDetailsPage(),
+            );
+          },
+        );
 
       default:
         debugPrint('No route defined for ${settings.name}');

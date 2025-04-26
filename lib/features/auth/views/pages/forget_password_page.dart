@@ -46,112 +46,114 @@ class ForgetPasswordPage extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 24.0.h),
         child: Form(
           key: formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(width: double.infinity),
-              Text(
-                S.of(context).forget_password2,
-                style: FontHelper.fontText(
-                    size: 18.sp,
-                    weight: FontWeight.w800,
-                    color: Colors.black,
-                    context: context),
-              ),
-              SizedBox(
-                height: 6.h,
-              ),
-              Text(
-                S.of(context).enter_your_email_to_reset,
-                style: FontHelper.fontText(
-                    size: 16.sp,
-                    weight: FontWeight.w500,
-                    color: Colors.black45,
-                    context: context),
-              ),
-              SizedBox(height: 24.h),
-              Text('${S.of(context).your_email}:',
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(width: double.infinity),
+                Text(
+                  S.of(context).forget_password2,
                   style: FontHelper.fontText(
-                      size: 15.sp,
-                      weight: FontWeight.w700,
+                      size: 18.sp,
+                      weight: FontWeight.w800,
                       color: Colors.black,
-                      context: context)),
-              SizedBox(height: 8.h),
-              MyTextFormField(
-                  width: double.infinity,
-                  hint: S.of(context).enter_your_email,
-                  controller: emailController,
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return S.of(context).empty_cell;
+                      context: context),
+                ),
+                SizedBox(
+                  height: 6.h,
+                ),
+                Text(
+                  S.of(context).enter_your_email_to_reset,
+                  style: FontHelper.fontText(
+                      size: 16.sp,
+                      weight: FontWeight.w500,
+                      color: Colors.black45,
+                      context: context),
+                ),
+                SizedBox(height: 24.h),
+                Text('${S.of(context).your_email}:',
+                    style: FontHelper.fontText(
+                        size: 15.sp,
+                        weight: FontWeight.w700,
+                        color: Colors.black,
+                        context: context)),
+                SizedBox(height: 8.h),
+                MyTextFormField(
+                    width: double.infinity,
+                    hint: S.of(context).enter_your_email,
+                    controller: emailController,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return S.of(context).empty_cell;
+                      }
+                      if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
+                        return S.of(context).invalid_email;
+                      }
+                      return null;
+                    }),
+                SizedBox(height: 20.h),
+                BlocConsumer<AuthCubit, AuthState>(
+                  bloc: authCubit,
+                  listenWhen: (previous, current) =>
+                      current is OTPCodeSendingError || current is OTPCodeSent,
+                  listener: (context, state) {
+                    if (state is OTPCodeSent) {
+                      Navigator.pushReplacementNamed(
+                        context,
+                        AppRoutes.verifyEmail,
+                        arguments: {
+                          "email": emailController.text,
+                          "pageType": "forgetPassword",
+                        },
+                      );
                     }
-                    if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
-                      return S.of(context).invalid_email;
+                    if (state is OTPCodeSendingError) {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text(
+                          state.message,
+                          textAlign: TextAlign.left,
+                          style: FontHelper.fontText(
+                              size: 15.sp,
+                              weight: FontWeight.w600,
+                              color: Colors.white,
+                              context: context),
+                        ),
+                        backgroundColor: Colors.redAccent,
+                        behavior: SnackBarBehavior.floating,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(26),
+                        ),
+                      ));
                     }
-                    return null;
-                  }),
-              SizedBox(height: 20.h),
-              BlocConsumer<AuthCubit, AuthState>(
-                bloc: authCubit,
-                listenWhen: (previous, current) =>
-                    current is OTPCodeSendingError || current is OTPCodeSent,
-                listener: (context, state) {
-                  if (state is OTPCodeSent) {
-                    Navigator.pushReplacementNamed(
-                      context,
-                      AppRoutes.verifyEmail,
-                      arguments: {
-                        "email": emailController.text,
-                        "pageType": "forgetPassword",
-                      },
-                    );
-                  }
-                  if (state is OTPCodeSendingError) {
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: Text(
-                        state.message,
-                        textAlign: TextAlign.left,
-                        style: FontHelper.fontText(
-                            size: 15.sp,
-                            weight: FontWeight.w600,
-                            color: Colors.white,
-                            context: context),
-                      ),
-                      backgroundColor: Colors.redAccent,
-                      behavior: SnackBarBehavior.floating,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(26),
-                      ),
-                    ));
-                  }
-                },
-                buildWhen: (previous, current) =>
-                    current is OTPCodeSending ||
-                    current is OTPCodeSent ||
-                    current is OTPCodeSendingError,
-                builder: (context, state) {
-                  if (state is OTPCodeSending) {
+                  },
+                  buildWhen: (previous, current) =>
+                      current is OTPCodeSending ||
+                      current is OTPCodeSent ||
+                      current is OTPCodeSendingError,
+                  builder: (context, state) {
+                    if (state is OTPCodeSending) {
+                      return MyButton1(
+                          width: double.infinity,
+                          height: 48.h,
+                          buttonTitle: S.of(context).loading,
+                          isLoading: true,
+                          onTap: null);
+                    }
                     return MyButton1(
                         width: double.infinity,
                         height: 48.h,
-                        buttonTitle: S.of(context).loading,
-                        isLoading: true,
-                        onTap: null);
-                  }
-                  return MyButton1(
-                      width: double.infinity,
-                      height: 48.h,
-                      buttonTitle: S.of(context).reset_password,
-                      onTap: () {
-                        if (formKey.currentState!.validate()) {
-                          authCubit
-                              .sendEmailForgetPassword(emailController.text);
-                          // emailController.clear();
-                        }
-                      });
-                },
-              ),
-            ],
+                        buttonTitle: S.of(context).reset_password,
+                        onTap: () {
+                          if (formKey.currentState!.validate()) {
+                            authCubit
+                                .sendEmailForgetPassword(emailController.text);
+                            // emailController.clear();
+                          }
+                        });
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),

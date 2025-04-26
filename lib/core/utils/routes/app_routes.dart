@@ -13,6 +13,7 @@ class AppRoutes {
   static const String newAddressPage = '/new_address_page';
   static const String verifyEmail = '/verify_email_page';
   static const String assignNewPassword = '/assign_new_password_page';
-
+  static const String confirmOrderPage = '/checkout_page';
+  static const String myOrderPage = '/my_orders_page';
+  static const String paymentWebviewPage = '/payment_webview_page';
 }
-

@@ -53,7 +53,7 @@ class ProductSearchItem extends StatelessWidget {
                         width: double.infinity,
                       )
                     : Image.asset(
-                        'assets/images/home_page/no_image_found.jpg',
+                        'assets/images/home_page/no_image_placeholder.png',
                         fit: BoxFit.contain,
                         height: 140.h,
                         width: double.infinity,

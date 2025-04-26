@@ -33,4 +33,9 @@ class AppConstants {
   static const String updateProductQuantity = '/Cart/update-quantity';
   static const String addProductToCart = '/Cart/add-to-cart';
   static const String getAllCategories = '/Category/get-all-categories';
+  static const String createOrder = '/Order/create-order';
+  static const String getAllOrders = '/Order/get-all-orders-for-user';
+  static const String createOrderWithPayment = '/Payment/create-order-with-payment';
+  static const String paymentCallback = '/Payment/callback';
+  static const String getOrderStatus = '/Order/get-order-status-by-id';
 }

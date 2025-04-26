@@ -40,15 +40,30 @@ class CartItem extends StatelessWidget {
           // Product Image
           Padding(
             padding: const EdgeInsets.all(4.0),
-            child: SizedBox(
-              height: 100.h,
-              width: 70.w,
-              child: CachedNetworkImage(
-                imageUrl: HelperFunctions.fixGoogleDriveUrl(cartItem.photo),
-                fit: BoxFit.contain,
-                errorWidget: (context, url, error) => const Icon(
-                  Icons.error,
-                  color: Colors.red,
+            child: Container(
+              height: 90.h,
+              width: 80.w,
+              decoration: BoxDecoration(
+                color: Colors.grey.shade200,
+                borderRadius: BorderRadius.circular(12.r),
+                border: Border.all(color: Colors.grey.shade300),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withValues(alpha: 0.3),
+                    blurRadius: 5,
+                    spreadRadius: 1,
+                  ),
+                ],
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(12.r),
+                child: CachedNetworkImage(
+                  imageUrl: HelperFunctions.fixGoogleDriveUrl(cartItem.photo),
+                  fit: BoxFit.contain,
+                  errorWidget: (context, url, error) => const Icon(
+                    Icons.error,
+                    color: Colors.red,
+                  ),
                 ),
               ),
             ),

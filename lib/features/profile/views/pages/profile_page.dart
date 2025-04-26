@@ -20,11 +20,9 @@ class ProfilePage extends StatelessWidget {
     final authServices = AuthServicesImpl();
     return Scaffold(
       appBar: AppBarDefaultTheme(
-        title: S.of(context).settings,
-        needLeadingButton: false,
-      ),
+          title: S.of(context).settings, needLeadingButton: false),
       body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 18.0.h),
+          padding: EdgeInsets.symmetric(horizontal: 16.0.w),
           child: BlocConsumer<ProfileCubit, ProfileState>(
             bloc: profileCubit,
             listenWhen: (previous, current) =>
@@ -60,75 +58,86 @@ class ProfilePage extends StatelessWidget {
                 return CircularProgressIndicator();
               }
               return SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(width: double.infinity),
-                    Text(
-                      S.of(context).general,
-                      style: FontHelper.fontText(
-                          size: 18.sp,
-                          weight: FontWeight.w700,
-                          color: Colors.black,
-                          context: context),
-                    ),
-                    SizedBox(height: 12.h),
-                    MyListTile(
-                        onTap: () {
-                          Navigator.of(context)
-                              .pushNamed(AppRoutes.accountPage);
-                        },
-                        title: S.of(context).personal_info,
-                        leadingIcon: Iconsax.user),
-                    SizedBox(height: 12.h),
-                    MyListTile(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 18.h),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // SizedBox(width: double.infinity),
+                      Text(
+                        S.of(context).general,
+                        style: FontHelper.fontText(
+                            size: 18.sp,
+                            weight: FontWeight.w700,
+                            color: Colors.black,
+                            context: context),
+                      ),
+                      SizedBox(height: 12.h),
+                      MyListTile(
+                          onTap: () {
+                            Navigator.of(context)
+                                .pushNamed(AppRoutes.accountPage);
+                          },
+                          title: S.of(context).personal_info,
+                          leadingIcon: Iconsax.user),
+                      SizedBox(height: 12.h),
+                      MyListTile(
+                          onTap: () async {
+                            Navigator.of(context)
+                                .pushNamed(AppRoutes.forgotPassword);
+                          },
+                          title: S.of(context).change_password,
+                          leadingIcon: Iconsax.lock4),
+                      SizedBox(height: 12.h),
+                      MyListTile(
+                          onTap: () async {
+                            Navigator.of(context)
+                                .pushNamed(AppRoutes.myOrderPage);
+                          },
+                          title: S.of(context).my_orders,
+                          leadingIcon: Iconsax.box),
+                      SizedBox(height: 12.h),
+                      MyListTile(
+                          onTap: () {
+                            authServices.getUserProfile();
+                          },
+                          title: S.of(context).notification,
+                          leadingIcon: Iconsax.notification),
+                      SizedBox(height: 18.h),
+                      Text(
+                        S.of(context).preferences,
+                        style: FontHelper.fontText(
+                            size: 18.sp,
+                            weight: FontWeight.w700,
+                            color: Colors.black,
+                            context: context),
+                      ),
+                      SizedBox(height: 12.h),
+                      MyListTile(
+                          onTap: () {
+                            Navigator.of(context)
+                                .pushNamed(AppRoutes.languagePage);
+                          },
+                          title: S.of(context).language,
+                          leadingIcon: Iconsax.language_square),
+                      SizedBox(height: 12.h),
+                      MyListTile(
+                          onTap: () {
+                            Navigator.of(context)
+                                .pushNamed(AppRoutes.addressPage);
+                          },
+                          title: S.of(context).address,
+                          leadingIcon: Iconsax.location),
+                      SizedBox(height: 12.h),
+                      LogOutButton(
+                        leadingIcon: Iconsax.logout,
+                        title: S.of(context).logout,
                         onTap: () async {
-                          Navigator.of(context)
-                              .pushNamed(AppRoutes.forgotPassword);
+                          await profileCubit.logout();
                         },
-                        title: S.of(context).change_password,
-                        leadingIcon: Iconsax.lock4),
-                    SizedBox(height: 12.h),
-                    MyListTile(
-                        onTap: () {
-                          authServices.getUserProfile();
-                        },
-                        title: S.of(context).notification,
-                        leadingIcon: Iconsax.notification),
-                    SizedBox(height: 18.h),
-                    Text(
-                      S.of(context).preferences,
-                      style: FontHelper.fontText(
-                          size: 18.sp,
-                          weight: FontWeight.w700,
-                          color: Colors.black,
-                          context: context),
-                    ),
-                    SizedBox(height: 12.h),
-                    MyListTile(
-                        onTap: () {
-                          Navigator.of(context)
-                              .pushNamed(AppRoutes.languagePage);
-                        },
-                        title: S.of(context).language,
-                        leadingIcon: Iconsax.language_square),
-                    SizedBox(height: 12.h),
-                    MyListTile(
-                        onTap: () {
-                          Navigator.of(context)
-                              .pushNamed(AppRoutes.addressPage);
-                        },
-                        title: S.of(context).address,
-                        leadingIcon: Iconsax.location),
-                    SizedBox(height: 12.h),
-                    LogOutButton(
-                      leadingIcon: Iconsax.logout,
-                      title: S.of(context).logout,
-                      onTap: () async {
-                        await profileCubit.logout();
-                      },
-                    )
-                  ],
+                      )
+                    ],
+                  ),
                 ),
               );
             },
