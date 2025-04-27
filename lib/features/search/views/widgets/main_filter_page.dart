@@ -1,7 +1,12 @@
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
+import 'package:e_commerce_graduation/core/widgets/my_button1.dart';
+import 'package:e_commerce_graduation/features/home/home_bubit/cubit/home_cubit.dart';
 import 'package:e_commerce_graduation/features/search/views/widgets/categories_filter_page.dart';
+import 'package:e_commerce_graduation/features/search/views/widgets/sort_by_name.dart';
+import 'package:e_commerce_graduation/features/search/views/widgets/sort_by_price.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MainFilterPage extends StatelessWidget {
@@ -9,6 +14,7 @@ class MainFilterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final homeCubit = context.read<HomeCubit>();
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -61,7 +67,7 @@ class MainFilterPage extends StatelessWidget {
             // البراندات
             ListTile(
               title: Text(
-                S.of(context).price,
+                S.of(context).filter_by_price,
                 style: FontHelper.fontText(
                     context: context,
                     size: 16.sp,
@@ -72,18 +78,17 @@ class MainFilterPage extends StatelessWidget {
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) =>
-                        CategoriesFilterPage(), // صفحة الأقسام
+                    builder: (context) => SortByPrice(), 
                   ),
                 );
               },
             ),
             Divider(),
 
-            // الألوان
+            // sort by name
             ListTile(
               title: Text(
-                S.of(context).category,
+                S.of(context).sort_by,
                 style: FontHelper.fontText(
                     context: context,
                     size: 16.sp,
@@ -94,30 +99,37 @@ class MainFilterPage extends StatelessWidget {
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) =>
-                        CategoriesFilterPage(), // صفحة الأقسام
+                    builder: (context) => SortByName(), // صفحة الأقسام
                   ),
                 );
               },
             ),
             Divider(),
-
-            // الأسعار (ممكن هنا تحطهم كبادجات زي الصورة اللي بعتهالي)
-            SizedBox(height: 20),
-            Text(
-              'السعر',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: [
-                FilterChip(label: Text('0-100 ج.م'), onSelected: (_) {}),
-                FilterChip(label: Text('100-200 ج.م'), onSelected: (_) {}),
-                FilterChip(label: Text('200-300 ج.م'), onSelected: (_) {}),
-                FilterChip(label: Text('300-600 ج.م'), onSelected: (_) {}),
-                FilterChip(label: Text('600-1000 ج.م'), onSelected: (_) {}),
-              ],
+            SizedBox(height: 20.h),
+            BlocBuilder<HomeCubit, HomeState>(
+              bloc: homeCubit,
+              buildWhen: (previous, current) =>
+                  current is FilterLoading ||
+                  current is FilterLoaded ||
+                  current is FilterError,
+              builder: (context, state) {
+                if (state is FilterLoading) {
+                  return MyButton1(
+                    width: double.infinity,
+                    height: 55,
+                    buttonTitle: S.of(context).loading,
+                    onTap: null,
+                    isLoading: true,
+                  );
+                }
+                return MyButton1(
+                    width: double.infinity,
+                    height: 55,
+                    buttonTitle: S.of(context).apply_filters,
+                    onTap: () {
+                      homeCubit.filterProducts();
+                    });
+              },
             ),
           ],
         ),

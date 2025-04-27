@@ -83,3 +83,23 @@ final class ErrorCategories extends HomeState {
 
   ErrorCategories(this.error);
 }
+
+final class SetMinMaxPrice extends HomeState {}
+final class FilterLoading extends HomeState {}
+final class FilterLoaded extends HomeState {
+  final List<ProductResponse> filteredProducts;
+
+  FilterLoaded(this.filteredProducts);
+}
+final class FilterError extends HomeState {
+  final String error;
+
+  FilterError(this.error);
+}
+
+final class SetSelectedCategoryCode extends HomeState {
+  final String selectedCategoryCode;
+
+  SetSelectedCategoryCode(this.selectedCategoryCode);
+}
+

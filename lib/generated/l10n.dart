@@ -1669,6 +1669,91 @@ class S {
   String get price {
     return Intl.message('Price', name: 'price', desc: '', args: []);
   }
+
+  /// `filter by price`
+  String get filter_by_price {
+    return Intl.message(
+      'filter by price',
+      name: 'filter_by_price',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sort by name`
+  String get sort_by_name {
+    return Intl.message(
+      'Sort by name',
+      name: 'sort_by_name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Min Price`
+  String get min_price {
+    return Intl.message('Min Price', name: 'min_price', desc: '', args: []);
+  }
+
+  /// `Max Price`
+  String get max_price {
+    return Intl.message('Max Price', name: 'max_price', desc: '', args: []);
+  }
+
+  /// `Apply`
+  String get apply {
+    return Intl.message('Apply', name: 'apply', desc: '', args: []);
+  }
+
+  /// `Please enter a valid value`
+  String get please_enter_a_valid_value {
+    return Intl.message(
+      'Please enter a valid value',
+      name: 'please_enter_a_valid_value',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Max must be greater than min`
+  String get max_must_be_greater_than_min {
+    return Intl.message(
+      'Max must be greater than min',
+      name: 'max_must_be_greater_than_min',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sort by rating`
+  String get sort_by_rating {
+    return Intl.message(
+      'Sort by rating',
+      name: 'sort_by_rating',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sort price low to high`
+  String get sort_price_low_to_high {
+    return Intl.message(
+      'Sort price low to high',
+      name: 'sort_price_low_to_high',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sort price high to low`
+  String get sort_price_high_to_low {
+    return Intl.message(
+      'Sort price high to low',
+      name: 'sort_price_high_to_low',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

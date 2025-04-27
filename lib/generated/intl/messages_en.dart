@@ -41,6 +41,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "already_have_an_account": MessageLookupByLibrary.simpleMessage(
       "Already have an account?",
     ),
+    "apply": MessageLookupByLibrary.simpleMessage("Apply"),
     "apply_filters": MessageLookupByLibrary.simpleMessage("Apply Filters"),
     "are_you_sure": MessageLookupByLibrary.simpleMessage(
       "Are you sure you want to delete all Favorite products?",
@@ -156,6 +157,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "female": MessageLookupByLibrary.simpleMessage("Female"),
     "filter": MessageLookupByLibrary.simpleMessage("Filter"),
+    "filter_by_price": MessageLookupByLibrary.simpleMessage("filter by price"),
     "filter_options": MessageLookupByLibrary.simpleMessage("Filter Options"),
     "first_name": MessageLookupByLibrary.simpleMessage("First Name"),
     "forget_password2": MessageLookupByLibrary.simpleMessage("Forget Password"),
@@ -198,6 +200,11 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "male": MessageLookupByLibrary.simpleMessage("Male"),
     "mansoura": MessageLookupByLibrary.simpleMessage("Mansoura"),
+    "max_must_be_greater_than_min": MessageLookupByLibrary.simpleMessage(
+      "Max must be greater than min",
+    ),
+    "max_price": MessageLookupByLibrary.simpleMessage("Max Price"),
+    "min_price": MessageLookupByLibrary.simpleMessage("Min Price"),
     "most_popular": MessageLookupByLibrary.simpleMessage("Most Popular"),
     "most_recent": MessageLookupByLibrary.simpleMessage("Most Recent"),
     "my_orders": MessageLookupByLibrary.simpleMessage("My Orders"),
@@ -278,6 +285,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "please_enter_a_search_term": MessageLookupByLibrary.simpleMessage(
       "Please enter a search term",
     ),
+    "please_enter_a_valid_value": MessageLookupByLibrary.simpleMessage(
+      "Please enter a valid value",
+    ),
     "please_select_axact_address": MessageLookupByLibrary.simpleMessage(
       "Please select the exact address where you would like to receive your orders to ensure fast and smooth delivery.",
     ),
@@ -330,6 +340,14 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "someone_name": MessageLookupByLibrary.simpleMessage("John Doe"),
     "sort_by": MessageLookupByLibrary.simpleMessage("Sort by"),
+    "sort_by_name": MessageLookupByLibrary.simpleMessage("Sort by name"),
+    "sort_by_rating": MessageLookupByLibrary.simpleMessage("Sort by rating"),
+    "sort_price_high_to_low": MessageLookupByLibrary.simpleMessage(
+      "Sort price high to low",
+    ),
+    "sort_price_low_to_high": MessageLookupByLibrary.simpleMessage(
+      "Sort price low to high",
+    ),
     "standard_delivery": MessageLookupByLibrary.simpleMessage(
       "Standard Delivery",
     ),

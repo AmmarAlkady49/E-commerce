@@ -7,7 +7,8 @@ import 'package:e_commerce_graduation/features/home/model/parameter_request.dart
 import 'package:e_commerce_graduation/core/models/product_response.dart';
 
 abstract class HomePageServices {
-  Future<List<ProductResponse>> getAllProducts( ParameterRequest parameterRequest);
+  Future<List<ProductResponse>> getAllProducts(
+      ParameterRequest parameterRequest);
   Future<List<CategoryModel>> getAllCategories();
   // Future<bool> addFavoriteProduct(String userId, int productId);
   // Future<void> deleteFavoriteProduct(String userId, String productId);
@@ -19,12 +20,13 @@ class HomePageServicesImpl implements HomePageServices {
 
   // get all products
   @override
-  Future<List<ProductResponse>> getAllProducts(ParameterRequest  parameterRequest) async {
+  Future<List<ProductResponse>> getAllProducts(
+      ParameterRequest parameterRequest) async {
     try {
       final response = await aDio.get(
           "${AppConstants.baseUrl}${AppConstants.getAllProducts}",
           queryParameters: parameterRequest.toMap());
-              
+
       final responseProducts = response.data['data'] as List<dynamic>;
       if (response.statusCode == 200) {
         log(responseProducts.toString());
@@ -70,15 +72,11 @@ class HomePageServicesImpl implements HomePageServices {
         .get("${AppConstants.baseUrl}${AppConstants.getAllCategories}");
 
     if (apiResponse.statusCode == 200) {
-      return (apiResponse.data['data'] as List<dynamic>)
+      return (apiResponse.data as List)
           .map((item) => CategoryModel.fromMap(item as Map<String, dynamic>))
           .toList();
     } else {
       throw Exception('Failed to load categories');
     }
   }
-  // 
 }
-
-
-

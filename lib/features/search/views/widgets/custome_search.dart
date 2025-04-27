@@ -1,5 +1,6 @@
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
 import 'package:e_commerce_graduation/features/home/home_bubit/cubit/home_cubit.dart';
+import 'package:e_commerce_graduation/features/search/views/widgets/category_list_view_widget.dart';
 import 'package:e_commerce_graduation/features/search/views/widgets/main_filter_page.dart';
 import 'package:e_commerce_graduation/features/search/views/widgets/product_search_item.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
@@ -18,6 +19,8 @@ class CustomeSearch extends SearchDelegate {
         appBarTheme: AppBarTheme(
           backgroundColor: Colors.white,
           elevation: 0,
+          shadowColor: Colors.black54,
+          surfaceTintColor: Colors.white,
           shape: Border(
               bottom: BorderSide(color: Colors.grey.shade200, width: 1.0)),
           toolbarHeight: 55.h,
@@ -107,7 +110,7 @@ class CustomeSearch extends SearchDelegate {
                   ),
                   builder: (context) {
                     return SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.65,
+                      height: MediaQuery.of(context).size.height * 0.55,
                       child: Navigator(
                         onGenerateInitialRoutes:
                             (navigatorContext, initialRoute) {
@@ -149,87 +152,102 @@ class CustomeSearch extends SearchDelegate {
     );
   }
 
+  // bool _hasSearched = false;
   @override
   Widget buildResults(BuildContext context) {
-    // return SizedBox.shrink();
+    // if (!_hasSearched) {
     homeCubit.searchProducts(query: query);
+    //   _hasSearched = true;
+    // }
 
     return Container(
-      decoration: BoxDecoration(color: Colors.grey.shade50),
-      child: BlocBuilder<HomeCubit, HomeState>(
-        bloc: homeCubit,
-        buildWhen: (previous, current) =>
-            current is SearchLoaded ||
-            current is SearchError ||
-            current is SearchLoading,
-        builder: (context, state) {
-          if (state is SearchLoading) {
-            return Center(child: CupertinoActivityIndicator());
-          } else if (state is SearchLoaded) {
-            if (state.searchResults.isEmpty) {
-              return Center(
-                child: Column(
-                  children: [
-                    SizedBox(height: 50.h),
-                    Icon(CupertinoIcons.search,
-                        size: 75, color: Colors.black54),
-                    SizedBox(height: 4.h),
-                    Text(
-                      S.of(context).no_products_found,
-                      style: FontHelper.fontText(
-                        size: 16.sp,
-                        weight: FontWeight.w600,
-                        color: Colors.black54,
-                        context: context,
+        decoration: BoxDecoration(color: Colors.grey.shade50),
+        child: BlocBuilder<HomeCubit, HomeState>(
+          bloc: homeCubit,
+          buildWhen: (previous, current) =>
+              current is SearchLoaded ||
+              current is SearchError ||
+              current is SearchLoading ||
+              current is FilterLoaded ||
+              current is FilterError ||
+              current is FilterLoading,
+          builder: (context, state) {
+            if (state is SearchLoading || state is FilterLoading) {
+              return const Center(child: CupertinoActivityIndicator());
+            } else if (state is SearchLoaded || state is FilterLoaded) {
+              final products = homeCubit.searchResults;
+
+              if (products.isEmpty) {
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(CupertinoIcons.search,
+                          size: 75, color: Colors.black54),
+                      SizedBox(height: 8.h),
+                      Text(
+                        S.of(context).no_products_found,
+                        style: FontHelper.fontText(
+                          size: 16.sp,
+                          weight: FontWeight.w600,
+                          color: Colors.black54,
+                          context: context,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              );
-            }
-            return Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 16.h),
-              child: SingleChildScrollView(
+                    ],
+                  ),
+                );
+              }
+
+              return SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      '${S.of(context).search_result_for} "$query" (${state.searchResults.length})',
-                      style: FontHelper.fontText(
+                    SizedBox(height: 16.h),
+                    CategoryListViewWidget(),
+                    SizedBox(height: 16.h),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 8.w),
+                      child: Text(
+                        '${S.of(context).search_result_for} "$query" (${products.length})',
+                        style: FontHelper.fontText(
                           size: 16.sp,
-                          weight: FontWeight.w600,
+                          weight: FontWeight.w700,
                           color: Colors.black,
-                          context: context),
+                          context: context,
+                        ),
+                      ),
                     ),
                     SizedBox(height: 16.h),
-                    GridView.builder(
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisSpacing: 15,
-                              crossAxisCount: 2,
-                              mainAxisExtent: 300,
-                              mainAxisSpacing: 15),
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) => ProductSearchItem(
-                        product: state.searchResults[index],
-                        homeCubit: homeCubit,
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 8.w),
+                      child: GridView.builder(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisSpacing: 15,
+                                crossAxisCount: 2,
+                                mainAxisExtent: 300,
+                                mainAxisSpacing: 15),
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) => ProductSearchItem(
+                          product: products[index],
+                          homeCubit: homeCubit,
+                        ),
+                        itemCount: products.length,
                       ),
-                      itemCount: state.searchResults.length,
                     ),
                     SizedBox(height: 24.h),
                   ],
                 ),
-              ),
-            );
-          } else if (state is SearchError) {
-            return Center(child: Text(state.message));
-          } else {
-            return const SizedBox.shrink();
-          }
-        },
-      ),
-    );
+              );
+            } else if (state is SearchError || state is FilterError) {
+              return Center(child: Text('Something went wrong'));
+            } else {
+              return const SizedBox.shrink();
+            }
+          },
+        ));
   }
 
   @override

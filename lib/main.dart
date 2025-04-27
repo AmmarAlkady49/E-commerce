@@ -5,7 +5,6 @@ import 'package:e_commerce_graduation/features/auth/auth_cubit/auth_cubit.dart';
 import 'package:e_commerce_graduation/features/cart/cubit/cart_cubit.dart';
 import 'package:e_commerce_graduation/features/favorites/cubit/favorites_cubit.dart';
 import 'package:e_commerce_graduation/features/home/home_bubit/cubit/home_cubit.dart';
-import 'package:e_commerce_graduation/features/order/cubit/order_cubit.dart';
 import 'package:e_commerce_graduation/features/profile/profile_cubit/cubit/profile_cubit.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:flutter/material.dart';

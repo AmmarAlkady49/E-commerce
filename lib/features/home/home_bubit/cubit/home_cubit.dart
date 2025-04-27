@@ -24,7 +24,17 @@ class HomeCubit extends Cubit<HomeState> {
   List<String> reacentSearches = [];
   List<ProductResponse> searchResults = [];
   List<CategoryModel> categoriesList = [];
+  String? currentSearchQuery;
+ int selectedCategoryIndex = 0;
 
+  bool isFiltering = false;
+
+  double? _minPrice;
+  double? _maxPrice;
+  String? categoryCode;
+  String? subCategoryCode;
+  String? brandCode;
+  String? _sortBy;
   // Get UserData
   Future<String> getUserData() async {
     emit(HomeAppBarLoading());
@@ -98,36 +108,73 @@ class HomeCubit extends Cubit<HomeState> {
     }
   }
 
-  Future<void> searchProducts(
-      {required String query,
-      String? category,
-      String? subcategory,
-      String? brand,
-      double? minPrice,
-      double? maxPrice}) async {
-    // emit(SearchLoading());
+  void setMinMaxPrice(double min, double max) {
+    log("min: $min max: $max");
+    _minPrice = min;
+    _maxPrice = max;
+    emit(SetMinMaxPrice());
+    log("min price: $_minPrice max price: $_maxPrice");
+  }
+
+  void setSortBy({required String sortBy}) {
+    if (sortBy == "asc_price") {
+      _sortBy = "PriceAsc";
+    } else if (sortBy == "desc_price") {
+      _sortBy = "PriceDesc";
+    } else if (sortBy == "asc_rating") {
+      _sortBy = "Rating";
+    }
+  }
+
+  Future<void> searchProducts({required String query}) async {
+    isFiltering = false;
+    emit(SearchLoading());
     try {
       final parameterRequest = ParameterRequest(
         pagenum: 1,
-        maxpagesize: 25,
-        pagesize: 25,
+        maxpagesize: 30,
+        pagesize: 30,
         search: query,
-        categoryCode: category,
-        subCategoryCode: subcategory,
-        brandCode: brand,
-        minPrice: minPrice,
-        maxPrice: maxPrice,
       );
       final allProducts = await homeServices.getAllProducts(parameterRequest);
       searchResults = allProducts
           .where((product) =>
               product.name!.toLowerCase().contains(query.trim().toLowerCase()))
           .toList();
-
+      log("search results: ${searchResults.length}");
+      currentSearchQuery = query;
       addToRecentSearches(query);
       emit(SearchLoaded(searchResults));
     } catch (e) {
+      log("error in search products: ${e.toString()}");
       emit(SearchError("Something went wrong: ${e.toString()}"));
+    }
+  }
+
+  void filterProducts(
+      {String? category, String? subcategory, String? brand}) async {
+    isFiltering = true;
+
+    emit(FilterLoading());
+    final parameterRequest = ParameterRequest(
+      pagenum: 1,
+      maxpagesize: 30,
+      pagesize: 30,
+      categoryCode: category,
+      subCategoryCode: subcategory,
+      brandCode: brand,
+      search: currentSearchQuery,
+      sort: _sortBy,
+      minPrice: _minPrice,
+      maxPrice: _maxPrice,
+    );
+    try {
+      final products = await homeServices.getAllProducts(parameterRequest);
+      searchResults = products;
+      emit(FilterLoaded(searchResults));
+    } catch (e) {
+      log("error in filter products: ${e.toString()}");
+      emit(FilterError("Something went wrong: ${e.toString()}"));
     }
   }
 
@@ -158,8 +205,42 @@ class HomeCubit extends Cubit<HomeState> {
       emit(LoadedCategories(categoriesList));
       log(categoriesList.length.toString());
     } catch (e) {
-      log(e.toString());
+      log(" error in get all categories: ${e.toString()}");
       emit(ErrorCategories(e.toString()));
     }
   }
+
+  Future<void> getProductsByCategory(String categoryCode) async {
+    emit(FilterLoading());
+    try {
+      final userId = await secureStorage.readSecureData('userId');
+      final ParameterRequest parameterRequest = ParameterRequest(
+        pagenum: 1,
+        maxpagesize: 30,
+        pagesize: 30,
+        categoryCode: categoryCode,
+      );
+      final products = await homeServices.getAllProducts(parameterRequest);
+      final favoriteProducts =
+          await _favoriteProductsServices.getFavoriteProducts(userId);
+      final List<ProductResponse> finalProducts = products.map((product) {
+        final isFavorite = favoriteProducts.any(
+          (item) => item.productId == product.productID,
+        );
+        return product.copyWith(isFavorite: isFavorite);
+      }).toList();
+
+      searchResults = finalProducts; // ✨ add this line
+
+      emit(FilterLoaded(finalProducts));
+    } on Exception catch (e) {
+      emit(FilterError(e.toString()));
+    } catch (e) {
+      emit(FilterError(e.toString()));
+    }
+  }
+void setSelectedCategoryIndex(int index) {
+  selectedCategoryIndex = index;
+  emit(SetSelectedCategoryCode(index.toString()));
+}
 }

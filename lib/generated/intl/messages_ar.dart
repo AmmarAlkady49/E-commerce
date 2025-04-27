@@ -41,6 +41,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "already_have_an_account": MessageLookupByLibrary.simpleMessage(
       "هل لديك حساب بالفعل؟",
     ),
+    "apply": MessageLookupByLibrary.simpleMessage("تطبيق"),
     "apply_filters": MessageLookupByLibrary.simpleMessage("تطبيق التصفية"),
     "are_you_sure": MessageLookupByLibrary.simpleMessage(
       "هل انت متاكد من حذف كل المنتجات المفضلة؟",
@@ -152,6 +153,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "express_delivery": MessageLookupByLibrary.simpleMessage("التوصيل السريع"),
     "female": MessageLookupByLibrary.simpleMessage("انثى"),
     "filter": MessageLookupByLibrary.simpleMessage("تصفية"),
+    "filter_by_price": MessageLookupByLibrary.simpleMessage("تصفية حسب السعر"),
     "filter_options": MessageLookupByLibrary.simpleMessage("خيارات التصفية"),
     "first_name": MessageLookupByLibrary.simpleMessage("الإسم الأول"),
     "forget_password2": MessageLookupByLibrary.simpleMessage(
@@ -198,6 +200,11 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "male": MessageLookupByLibrary.simpleMessage("ذكر"),
     "mansoura": MessageLookupByLibrary.simpleMessage("المنصورة"),
+    "max_must_be_greater_than_min": MessageLookupByLibrary.simpleMessage(
+      "يجب أن يكون الحد الأقصى أكبر من الحد الأدنى",
+    ),
+    "max_price": MessageLookupByLibrary.simpleMessage("أكبر سعر"),
+    "min_price": MessageLookupByLibrary.simpleMessage("أقل سعر "),
     "most_popular": MessageLookupByLibrary.simpleMessage("المنتجات الشائعة"),
     "most_recent": MessageLookupByLibrary.simpleMessage("الاكثر حديثا"),
     "my_orders": MessageLookupByLibrary.simpleMessage("طلباتي"),
@@ -278,6 +285,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "please_enter_a_search_term": MessageLookupByLibrary.simpleMessage(
       "الرجاء ادخال كلمة بحث",
     ),
+    "please_enter_a_valid_value": MessageLookupByLibrary.simpleMessage(
+      "يرجى إدخال قيمة صحيحة",
+    ),
     "please_select_axact_address": MessageLookupByLibrary.simpleMessage(
       "يرجى اختيار العنوان الدقيق الذي ترغب في استلام طلباتك عليه لضمان توصيلها بسرعة وسهولة.",
     ),
@@ -328,6 +338,16 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "someone_name": MessageLookupByLibrary.simpleMessage("عمار"),
     "sort_by": MessageLookupByLibrary.simpleMessage("ترتيب حسب"),
+    "sort_by_name": MessageLookupByLibrary.simpleMessage("ترتيب حسب الاسم"),
+    "sort_by_rating": MessageLookupByLibrary.simpleMessage(
+      " ترتيب حسب التقييم",
+    ),
+    "sort_price_high_to_low": MessageLookupByLibrary.simpleMessage(
+      "ترتيب السعر من الأعلى إلى الأقل",
+    ),
+    "sort_price_low_to_high": MessageLookupByLibrary.simpleMessage(
+      "ترتيب السعر من الأقل إلى الأعلى",
+    ),
     "standard_delivery": MessageLookupByLibrary.simpleMessage("التوصيل العادي"),
     "street": MessageLookupByLibrary.simpleMessage("الشارع"),
     "street2": MessageLookupByLibrary.simpleMessage("شارع"),

@@ -204,7 +204,16 @@
     "number": "رقم",
     "order_created_successfully": "تم انشاء الطلب بنجاح",
     "error_creating_order": "خطأ في انشاء الطلب، يرجى المحاولة مرة أخرى",
-    "price": "السعر"
-
-
+    "price": "السعر",
+    "filter_by_price": "تصفية حسب السعر",
+    "sort_by_name": "ترتيب حسب الاسم",
+    "min_price": "أقل سعر ",
+    "max_price": "أكبر سعر",
+    "apply": "تطبيق",
+    "please_enter_a_valid_value": "يرجى إدخال قيمة صحيحة",
+    "max_must_be_greater_than_min": "يجب أن يكون الحد الأقصى أكبر من الحد الأدنى",
+    "sort_by": "ترتيب حسب",
+    "sort_by_rating": " ترتيب حسب التقييم",
+    "sort_price_low_to_high": "ترتيب السعر من الأقل إلى الأعلى",
+    "sort_price_high_to_low": "ترتيب السعر من الأعلى إلى الأقل"
 }

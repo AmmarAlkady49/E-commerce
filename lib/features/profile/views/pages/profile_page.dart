@@ -2,6 +2,7 @@ import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
 import 'package:e_commerce_graduation/core/utils/themes/app_bar_default_theme.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
 import 'package:e_commerce_graduation/features/auth/services/auth_services.dart';
+import 'package:e_commerce_graduation/features/home/services/home_page_services.dart';
 import 'package:e_commerce_graduation/features/profile/profile_cubit/cubit/profile_cubit.dart';
 import 'package:e_commerce_graduation/features/profile/views/widgets/log_out_button.dart';
 import 'package:e_commerce_graduation/features/profile/views/widgets/my_list_tile.dart';
@@ -17,7 +18,8 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final profileCubit = BlocProvider.of<ProfileCubit>(context);
-    final authServices = AuthServicesImpl();
+    // final authServices = AuthServicesImpl();
+    final homeServices = HomePageServicesImpl();
     return Scaffold(
       appBar: AppBarDefaultTheme(
           title: S.of(context).settings, needLeadingButton: false),
@@ -99,7 +101,7 @@ class ProfilePage extends StatelessWidget {
                       SizedBox(height: 12.h),
                       MyListTile(
                           onTap: () {
-                            authServices.getUserProfile();
+                            homeServices.getAllCategories();
                           },
                           title: S.of(context).notification,
                           leadingIcon: Iconsax.notification),

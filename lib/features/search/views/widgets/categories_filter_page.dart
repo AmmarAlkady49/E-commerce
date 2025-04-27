@@ -1,18 +1,20 @@
+import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
+import 'package:e_commerce_graduation/core/widgets/my_button1.dart';
+import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CategoriesFilterPage extends StatelessWidget {
   const CategoriesFilterPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Padding(
+    return SingleChildScrollView(
+      child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
           children: [
-            // الخط اللي فوق
             Center(
               child: Container(
                 width: 40,
@@ -24,52 +26,23 @@ class CategoriesFilterPage extends StatelessWidget {
                 ),
               ),
             ),
-
-            // عنوان الصفحة
-            Row(
-              children: [
-                IconButton(
-                  icon: Icon(Icons.arrow_back_ios_new),
-                  onPressed: () {
-                    Navigator.of(context).pop(); // رجوع للصفحة اللي قبلها
-                  },
-                ),
-                SizedBox(width: 8),
-                Text(
-                  'الأقسام',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-              ],
+            Text(
+              S.of(context).category,
+              style: FontHelper.fontText(
+                  context: context,
+                  size: 20.sp,
+                  weight: FontWeight.bold,
+                  color: Colors.black),
             ),
-
             const SizedBox(height: 20),
-
-            // قائمة الأقسام
-            Expanded(
-              child: ListView.separated(
-                itemCount: 5, // عدد الأقسام (مثال)
-                separatorBuilder: (context, index) => Divider(),
-                itemBuilder: (context, index) {
-                  // مثال على أقسام
-                  final categories = [
-                    'كتب',
-                    'تصنيفات الصيف',
-                    'ملابس',
-                    'أجهزة كهربائية',
-                    'أدوات منزلية'
-                  ];
-                  final categoryName = categories[index];
-
-                  return ListTile(
-                    title: Text(categoryName),
-                    trailing: Icon(Icons.add),
-                    onTap: () {
-                      // هنا ممكن تعمل select للفلتر
-                    },
-                  );
-                },
-              ),
-            ),
+            MyButton1(
+                width: double.infinity,
+                height: 50,
+                buttonTitle: S.of(context).apply_filters,
+                onTap: () {
+                  Navigator.pop(context); // Close modal
+                  // Trigger filter logic
+                }),
           ],
         ),
       ),
