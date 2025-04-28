@@ -25,15 +25,13 @@ class HomeCubit extends Cubit<HomeState> {
   List<ProductResponse> searchResults = [];
   List<CategoryModel> categoriesList = [];
   String? currentSearchQuery;
- int selectedCategoryIndex = 0;
+  int selectedCategoryIndex = 0;
 
   bool isFiltering = false;
 
   double? _minPrice;
   double? _maxPrice;
   String? categoryCode;
-  String? subCategoryCode;
-  String? brandCode;
   String? _sortBy;
   // Get UserData
   Future<String> getUserData() async {
@@ -128,8 +126,10 @@ class HomeCubit extends Cubit<HomeState> {
 
   Future<void> searchProducts({required String query}) async {
     isFiltering = false;
+    resetFilters();
     emit(SearchLoading());
     try {
+      final userId = await secureStorage.readSecureData('userId');
       final parameterRequest = ParameterRequest(
         pagenum: 1,
         maxpagesize: 30,
@@ -141,28 +141,36 @@ class HomeCubit extends Cubit<HomeState> {
           .where((product) =>
               product.name!.toLowerCase().contains(query.trim().toLowerCase()))
           .toList();
+      final favoriteProducts =
+          await _favoriteProductsServices.getFavoriteProducts(userId);
+      final List<ProductResponse> finalProducts = searchResults.map((product) {
+        final isFavorite = favoriteProducts.any(
+          (item) => item.productId == product.productID,
+        );
+        return product.copyWith(isFavorite: isFavorite);
+      }).toList();
+
+      searchResults = finalProducts;
       log("search results: ${searchResults.length}");
       currentSearchQuery = query;
       addToRecentSearches(query);
-      emit(SearchLoaded(searchResults));
+      emit(SearchLoaded(finalProducts));
     } catch (e) {
       log("error in search products: ${e.toString()}");
       emit(SearchError("Something went wrong: ${e.toString()}"));
     }
   }
 
-  void filterProducts(
-      {String? category, String? subcategory, String? brand}) async {
+  void filterProducts() async {
     isFiltering = true;
+    final userId = await secureStorage.readSecureData('userId');
 
     emit(FilterLoading());
     final parameterRequest = ParameterRequest(
       pagenum: 1,
       maxpagesize: 30,
       pagesize: 30,
-      categoryCode: category,
-      subCategoryCode: subcategory,
-      brandCode: brand,
+      categoryCode: categoryCode,
       search: currentSearchQuery,
       sort: _sortBy,
       minPrice: _minPrice,
@@ -170,8 +178,20 @@ class HomeCubit extends Cubit<HomeState> {
     );
     try {
       final products = await homeServices.getAllProducts(parameterRequest);
-      searchResults = products;
-      emit(FilterLoaded(searchResults));
+      final favoriteProducts =
+          await _favoriteProductsServices.getFavoriteProducts(userId);
+      final List<ProductResponse> finalProducts = products.map((product) {
+        final isFavorite = favoriteProducts.any(
+          (item) => item.productId == product.productID,
+        );
+        return product.copyWith(isFavorite: isFavorite);
+      }).toList();
+
+      searchResults = finalProducts;
+      log("search results: ${searchResults.length}");
+      log("category: $categoryCode max: $_maxPrice min: $_minPrice sort: $_sortBy");
+      log("filter results: ${finalProducts.length}");
+      emit(FilterLoaded(finalProducts));
     } catch (e) {
       log("error in filter products: ${e.toString()}");
       emit(FilterError("Something went wrong: ${e.toString()}"));
@@ -202,6 +222,12 @@ class HomeCubit extends Cubit<HomeState> {
     try {
       categoriesList = await homeServices.getAllCategories();
 
+      categoriesList.removeWhere(
+          (category) => category.name.toLowerCase() == "no category");
+
+      categoriesList.insert(
+          0, CategoryModel(categoryCode: '', name: "كل الفئات"));
+
       emit(LoadedCategories(categoriesList));
       log(categoriesList.length.toString());
     } catch (e) {
@@ -210,7 +236,8 @@ class HomeCubit extends Cubit<HomeState> {
     }
   }
 
-  Future<void> getProductsByCategory(String categoryCode) async {
+  Future<void> getProductsByCategory(String categoryCode,
+      {String? query}) async {
     emit(FilterLoading());
     try {
       final userId = await secureStorage.readSecureData('userId');
@@ -219,6 +246,10 @@ class HomeCubit extends Cubit<HomeState> {
         maxpagesize: 30,
         pagesize: 30,
         categoryCode: categoryCode,
+        search: currentSearchQuery,
+        sort: _sortBy,
+        minPrice: _minPrice,
+        maxPrice: _maxPrice,
       );
       final products = await homeServices.getAllProducts(parameterRequest);
       final favoriteProducts =
@@ -230,7 +261,7 @@ class HomeCubit extends Cubit<HomeState> {
         return product.copyWith(isFavorite: isFavorite);
       }).toList();
 
-      searchResults = finalProducts; // ✨ add this line
+      searchResults = finalProducts;
 
       emit(FilterLoaded(finalProducts));
     } on Exception catch (e) {
@@ -239,8 +270,22 @@ class HomeCubit extends Cubit<HomeState> {
       emit(FilterError(e.toString()));
     }
   }
-void setSelectedCategoryIndex(int index) {
-  selectedCategoryIndex = index;
-  emit(SetSelectedCategoryCode(index.toString()));
-}
+
+  void setSelectedCategoryIndex(int index) {
+    selectedCategoryIndex = index;
+    if (index == 0) {
+      categoryCode = null;
+    } else {
+      categoryCode = categoriesList[index].categoryCode;
+    }
+    emit(SetSelectedCategoryCode(index.toString()));
+  }
+
+  void resetFilters() {
+    _minPrice = null;
+    _maxPrice = null;
+    categoryCode = null;
+    _sortBy = null;
+    emit(FiltersReset());
+  }
 }

@@ -1,7 +1,6 @@
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
 import 'package:e_commerce_graduation/core/widgets/my_button1.dart';
 import 'package:e_commerce_graduation/features/home/home_bubit/cubit/home_cubit.dart';
-import 'package:e_commerce_graduation/features/search/views/widgets/categories_filter_page.dart';
 import 'package:e_commerce_graduation/features/search/views/widgets/sort_by_name.dart';
 import 'package:e_commerce_graduation/features/search/views/widgets/sort_by_price.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
@@ -42,27 +41,27 @@ class MainFilterPage extends StatelessWidget {
             ),
             const SizedBox(height: 20),
 
-            // أقسام
-            ListTile(
-              title: Text(
-                S.of(context).category,
-                style: FontHelper.fontText(
-                    context: context,
-                    size: 16.sp,
-                    weight: FontWeight.w700,
-                    color: Colors.black),
-              ),
-              trailing: Icon(Icons.chevron_right_rounded, size: 30.sp),
-              onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) =>
-                        CategoriesFilterPage(), // صفحة الأقسام
-                  ),
-                );
-              },
-            ),
-            Divider(),
+            // // أقسام
+            // ListTile(
+            //   title: Text(
+            //     S.of(context).category,
+            //     style: FontHelper.fontText(
+            //         context: context,
+            //         size: 16.sp,
+            //         weight: FontWeight.w700,
+            //         color: Colors.black),
+            //   ),
+            //   trailing: Icon(Icons.chevron_right_rounded, size: 30.sp),
+            //   onTap: () {
+            //     Navigator.of(context).push(
+            //       MaterialPageRoute(
+            //         builder: (context) =>
+            //             CategoriesFilterPage(), // صفحة الأقسام
+            //       ),
+            //     );
+            //   },
+            // ),
+            // Divider(),
 
             // البراندات
             ListTile(
@@ -78,7 +77,7 @@ class MainFilterPage extends StatelessWidget {
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => SortByPrice(), 
+                    builder: (context) => SortByPrice(),
                   ),
                 );
               },
@@ -106,8 +105,24 @@ class MainFilterPage extends StatelessWidget {
             ),
             Divider(),
             SizedBox(height: 20.h),
-            BlocBuilder<HomeCubit, HomeState>(
+            BlocConsumer<HomeCubit, HomeState>(
               bloc: homeCubit,
+              listenWhen: (previous, current) =>
+                  current is FilterLoading ||
+                  current is FilterLoaded ||
+                  current is FilterError,
+              listener: (context, state) {
+                if (state is FilterLoaded) {
+                  Navigator.of(context, rootNavigator: true).pop();
+                } else if (state is FilterError) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(state.error),
+                      backgroundColor: Colors.red,
+                    ),
+                  );
+                }
+              },
               buildWhen: (previous, current) =>
                   current is FilterLoading ||
                   current is FilterLoaded ||

@@ -103,3 +103,5 @@ final class SetSelectedCategoryCode extends HomeState {
   SetSelectedCategoryCode(this.selectedCategoryCode);
 }
 
+
+final class FiltersReset extends HomeState {}

@@ -11,20 +11,26 @@ class CategoryListViewWidget extends StatefulWidget {
   State<CategoryListViewWidget> createState() => _CategoryListViewWidgetState();
 }
 
+int selectedIndex = 0;
+
 class _CategoryListViewWidgetState extends State<CategoryListViewWidget> {
-  int selectedIndex = 0; // track selected category
+  @override
+  void initState() {
+    super.initState();
+    selectedIndex = 0;
+  }
 
   @override
   Widget build(BuildContext context) {
     final categoriesList = context.read<HomeCubit>().categoriesList;
     return Container(
-      height: 35.h,
-      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 6),
+      height: MediaQuery.of(context).size.height * 0.065,
+      padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 6),
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.shade400,
+            color: Colors.grey.shade300,
             blurRadius: 3,
             offset: const Offset(0, 3),
           ),
@@ -33,21 +39,19 @@ class _CategoryListViewWidgetState extends State<CategoryListViewWidget> {
       child: Center(
         child: ListView.separated(
           separatorBuilder: (context, index) => const SizedBox(width: 20),
-          itemCount: categoriesList.length,
+          itemCount: 10,
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
             return GestureDetector(
               onTap: () {
-                // context.read<HomeCubit>().setSelectedCategoryCode(
-                //     categoriesList[index].categoryCode);
-
-                context.read<HomeCubit>().selectedCategoryIndex = index;
+                // context.read<HomeCubit>().selectedCategoryIndex = index;
+                context.read<HomeCubit>().setSelectedCategoryIndex(index);
                 setState(() {
                   selectedIndex = index;
                 });
-                context
-                    .read<HomeCubit>()
-                    .getProductsByCategory(categoriesList[index].categoryCode);
+                context.read<HomeCubit>().getProductsByCategory(
+                    categoriesList[index].categoryCode,
+                    query: context.read<HomeCubit>().currentSearchQuery);
               },
               child: buildCategoryItem(
                 categoriesList[index].name,
@@ -71,7 +75,7 @@ Widget buildCategoryItem(String categoryName,
         alignment: Alignment.bottomCenter,
         children: [
           Padding(
-            padding: const EdgeInsets.only(bottom: 8),
+            padding: EdgeInsets.only(bottom: 8.h, top: 5.h),
             child: Text(
               categoryName,
               style: FontHelper.fontText(

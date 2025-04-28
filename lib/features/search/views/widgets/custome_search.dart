@@ -1,7 +1,7 @@
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
 import 'package:e_commerce_graduation/features/home/home_bubit/cubit/home_cubit.dart';
 import 'package:e_commerce_graduation/features/search/views/widgets/category_list_view_widget.dart';
-import 'package:e_commerce_graduation/features/search/views/widgets/main_filter_page.dart';
+import 'package:e_commerce_graduation/features/search/views/widgets/filter_icon_button.dart';
 import 'package:e_commerce_graduation/features/search/views/widgets/product_search_item.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:flutter/cupertino.dart';
@@ -32,7 +32,7 @@ class CustomeSearch extends SearchDelegate {
               color: Colors.black54,
               context: context),
           filled: true,
-          fillColor: Colors.grey.shade100,
+          fillColor: Colors.grey.shade200,
           contentPadding: EdgeInsets.symmetric(horizontal: 10.w),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.r),
@@ -54,9 +54,10 @@ class CustomeSearch extends SearchDelegate {
 
   @override
   TextStyle? get searchFieldStyle => TextStyle(
-        fontSize: 16.sp,
-        fontWeight: FontWeight.w500,
+        fontSize: 15.sp,
+        fontWeight: FontWeight.w600,
         color: Colors.black,
+        fontFamily: 'cairo',
       );
 
   @override
@@ -76,58 +77,6 @@ class CustomeSearch extends SearchDelegate {
               query = '';
               showSuggestions(context);
             }),
-      ),
-      Padding(
-        padding: EdgeInsets.only(left: 4.w),
-        child: BlocBuilder<HomeCubit, HomeState>(
-          bloc: homeCubit,
-          buildWhen: (previous, current) => current is LoadedCategories,
-          builder: (context, state) {
-            return IconButton(
-              style: ButtonStyle(
-                backgroundColor: WidgetStateProperty.all(
-                  Color(0xff1D61E7).withAlpha(730),
-                ),
-                shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(13.r),
-                  ),
-                ),
-              ),
-              icon: const Icon(
-                CupertinoIcons.slider_horizontal_3,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                showModalBottomSheet(
-                  context: context,
-                  backgroundColor: Colors.white,
-                  isScrollControlled: true,
-                  isDismissible: true,
-                  shape: RoundedRectangleBorder(
-                    borderRadius:
-                        BorderRadius.vertical(top: Radius.circular(20)),
-                  ),
-                  builder: (context) {
-                    return SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.55,
-                      child: Navigator(
-                        onGenerateInitialRoutes:
-                            (navigatorContext, initialRoute) {
-                          return [
-                            MaterialPageRoute(
-                              builder: (navigatorContext) => MainFilterPage(),
-                            ),
-                          ];
-                        },
-                      ),
-                    );
-                  },
-                );
-              },
-            );
-          },
-        ),
       ),
     ];
   }
@@ -152,102 +101,113 @@ class CustomeSearch extends SearchDelegate {
     );
   }
 
-  // bool _hasSearched = false;
   @override
   Widget buildResults(BuildContext context) {
-    // if (!_hasSearched) {
     homeCubit.searchProducts(query: query);
-    //   _hasSearched = true;
-    // }
 
     return Container(
-        decoration: BoxDecoration(color: Colors.grey.shade50),
-        child: BlocBuilder<HomeCubit, HomeState>(
-          bloc: homeCubit,
-          buildWhen: (previous, current) =>
-              current is SearchLoaded ||
-              current is SearchError ||
-              current is SearchLoading ||
-              current is FilterLoaded ||
-              current is FilterError ||
-              current is FilterLoading,
-          builder: (context, state) {
-            if (state is SearchLoading || state is FilterLoading) {
-              return const Center(child: CupertinoActivityIndicator());
-            } else if (state is SearchLoaded || state is FilterLoaded) {
-              final products = homeCubit.searchResults;
+      height: MediaQuery.of(context).size.height,
+      decoration: BoxDecoration(color: Colors.grey.shade100),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            CategoryListViewWidget(),
+            BlocBuilder<HomeCubit, HomeState>(
+              bloc: homeCubit,
+              buildWhen: (previous, current) =>
+                  current is SearchLoaded ||
+                  current is SearchError ||
+                  current is SearchLoading ||
+                  current is FilterLoaded ||
+                  current is FilterError ||
+                  current is FilterLoading ||
+                  current is LoadedCategories,
+              builder: (context, state) {
+                if (state is SearchLoading || state is FilterLoading) {
+                  return SizedBox(
+                    height: MediaQuery.of(context).size.height -
+                        AppBar().preferredSize.height -
+                        60.h,
+                    child: const Center(child: CupertinoActivityIndicator()),
+                  );
+                } else if (state is SearchLoaded || state is FilterLoaded) {
+                  final products = homeCubit.searchResults;
 
-              if (products.isEmpty) {
-                return Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(CupertinoIcons.search,
-                          size: 75, color: Colors.black54),
-                      SizedBox(height: 8.h),
-                      Text(
-                        S.of(context).no_products_found,
-                        style: FontHelper.fontText(
-                          size: 16.sp,
-                          weight: FontWeight.w600,
-                          color: Colors.black54,
-                          context: context,
-                        ),
+                  if (products.isEmpty) {
+                    return Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(height: 50.h),
+                          Icon(CupertinoIcons.search,
+                              size: 75, color: Colors.black54),
+                          SizedBox(height: 8.h),
+                          Text(
+                            S.of(context).no_products_found,
+                            style: FontHelper.fontText(
+                              size: 16.sp,
+                              weight: FontWeight.w600,
+                              color: Colors.black54,
+                              context: context,
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                );
-              }
+                    );
+                  }
 
-              return SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 16.h),
-                    CategoryListViewWidget(),
-                    SizedBox(height: 16.h),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 8.w),
-                      child: Text(
-                        '${S.of(context).search_result_for} "$query" (${products.length})',
-                        style: FontHelper.fontText(
-                          size: 16.sp,
-                          weight: FontWeight.w700,
-                          color: Colors.black,
-                          context: context,
+                  return Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 12.w),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(height: 8.h),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              '${S.of(context).search_result_for} "$query" (${products.length})',
+                              style: FontHelper.fontText(
+                                size: 16.sp,
+                                weight: FontWeight.w700,
+                                color: Colors.black,
+                                context: context,
+                              ),
+                            ),
+                            FilterIconButton(),
+                          ],
                         ),
-                      ),
-                    ),
-                    SizedBox(height: 16.h),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 8.w),
-                      child: GridView.builder(
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisSpacing: 15,
-                                crossAxisCount: 2,
-                                mainAxisExtent: 300,
-                                mainAxisSpacing: 15),
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemBuilder: (context, index) => ProductSearchItem(
-                          product: products[index],
-                          homeCubit: homeCubit,
+                        SizedBox(height: 6.h),
+                        GridView.builder(
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisSpacing: 15,
+                                  crossAxisCount: 2,
+                                  mainAxisExtent: 300,
+                                  mainAxisSpacing: 15),
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) => ProductSearchItem(
+                            product: products[index],
+                            homeCubit: homeCubit,
+                          ),
+                          itemCount: products.length,
                         ),
-                        itemCount: products.length,
-                      ),
+                        SizedBox(height: 24.h),
+                      ],
                     ),
-                    SizedBox(height: 24.h),
-                  ],
-                ),
-              );
-            } else if (state is SearchError || state is FilterError) {
-              return Center(child: Text('Something went wrong'));
-            } else {
-              return const SizedBox.shrink();
-            }
-          },
-        ));
+                  );
+                } else if (state is SearchError || state is FilterError) {
+                  return Center(child: Text('Something went wrong'));
+                } else {
+                  return const SizedBox.shrink();
+                }
+              },
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   @override
