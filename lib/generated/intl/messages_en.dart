@@ -330,6 +330,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "settings": MessageLookupByLibrary.simpleMessage("Settings"),
     "shipping": MessageLookupByLibrary.simpleMessage("Shipping"),
     "shipping_fees": MessageLookupByLibrary.simpleMessage("Shipping fees"),
+    "shop_by_brand": MessageLookupByLibrary.simpleMessage("Shop by Brand"),
+    "shop_by_category": MessageLookupByLibrary.simpleMessage(
+      "Shop by Category",
+    ),
     "show_less": MessageLookupByLibrary.simpleMessage("Show Less"),
     "show_more": MessageLookupByLibrary.simpleMessage("Show More"),
     "sign_in": MessageLookupByLibrary.simpleMessage("Sign in to your Account"),

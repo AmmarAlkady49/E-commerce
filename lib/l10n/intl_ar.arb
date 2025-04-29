@@ -215,5 +215,7 @@
     "sort_by": "ترتيب حسب",
     "sort_by_rating": " ترتيب حسب التقييم",
     "sort_price_low_to_high": "ترتيب السعر من الأقل إلى الأعلى",
-    "sort_price_high_to_low": "ترتيب السعر من الأعلى إلى الأقل"
+    "sort_price_high_to_low": "ترتيب السعر من الأعلى إلى الأقل",
+    "shop_by_category": "تسوق حسب الفئة",
+    "shop_by_brand": "تسوق حسب البراند"
 }

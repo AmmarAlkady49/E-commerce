@@ -215,6 +215,8 @@
     "sort_by": "Sort by",
     "sort_by_rating": "Sort by rating",
     "sort_price_low_to_high": "Sort price low to high",
-    "sort_price_high_to_low": "Sort price high to low"
+    "sort_price_high_to_low": "Sort price high to low",
+    "shop_by_category": "Shop by Category",
+    "shop_by_brand": "Shop by Brand"
 
 }

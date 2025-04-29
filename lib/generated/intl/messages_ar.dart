@@ -328,6 +328,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "settings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
     "shipping": MessageLookupByLibrary.simpleMessage("الشحن"),
     "shipping_fees": MessageLookupByLibrary.simpleMessage("رسوم الشحن"),
+    "shop_by_brand": MessageLookupByLibrary.simpleMessage("تسوق حسب البراند"),
+    "shop_by_category": MessageLookupByLibrary.simpleMessage("تسوق حسب الفئة"),
     "show_less": MessageLookupByLibrary.simpleMessage("اظهار أقل"),
     "show_more": MessageLookupByLibrary.simpleMessage("اظهار المزيد"),
     "sign_in": MessageLookupByLibrary.simpleMessage("تسجيل الدخول للحساب"),

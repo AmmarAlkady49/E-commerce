@@ -85,12 +85,15 @@ final class ErrorCategories extends HomeState {
 }
 
 final class SetMinMaxPrice extends HomeState {}
+
 final class FilterLoading extends HomeState {}
+
 final class FilterLoaded extends HomeState {
   final List<ProductResponse> filteredProducts;
 
   FilterLoaded(this.filteredProducts);
 }
+
 final class FilterError extends HomeState {
   final String error;
 
@@ -103,5 +106,39 @@ final class SetSelectedCategoryCode extends HomeState {
   SetSelectedCategoryCode(this.selectedCategoryCode);
 }
 
-
 final class FiltersReset extends HomeState {}
+
+final class GetAllCategoriesForHomePage extends HomeState {
+  final List<Map<String, String>> categories;
+
+  GetAllCategoriesForHomePage(this.categories);
+}
+
+final class GetAllCategoriesForHomePageError extends HomeState {
+  final String error;
+
+  GetAllCategoriesForHomePageError(this.error);
+}
+
+final class GetAllCategoriesForHomePageLoading extends HomeState {}
+
+
+final class GetProductsByCategoryForHomePageLoading extends HomeState {}
+
+final class GetAllCategoriesForHomePageSuccess extends HomeState {
+  final List<CategoryModel> categories;
+
+  GetAllCategoriesForHomePageSuccess(this.categories);
+}
+
+final class GetProductsByCategoryForHomePage extends HomeState {
+  final List<ProductResponse> products;
+
+  GetProductsByCategoryForHomePage(this.products);
+}
+
+final class GetProductsByCategoryForHomePageError extends HomeState {
+  final String error;
+
+  GetProductsByCategoryForHomePageError(this.error);
+}

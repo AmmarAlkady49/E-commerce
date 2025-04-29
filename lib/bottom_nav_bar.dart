@@ -33,7 +33,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
   @override
   void initState() {
     super.initState();
-    // مهم: تأكد إن Cubits اتعملها provide قبل الوصول هنا
     Future.microtask(() {
       context.read<FavoritesCubit>().getFavoriteProducts();
       context.read<CartCubit>().getCartItems();

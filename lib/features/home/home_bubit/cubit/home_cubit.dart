@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:e_commerce_graduation/core/models/product_response.dart';
 import 'package:e_commerce_graduation/core/secure_storage.dart';
+import 'package:e_commerce_graduation/core/utils/helper_functions.dart';
 import 'package:e_commerce_graduation/features/favorites/cubit/favorites_cubit.dart';
 import 'package:e_commerce_graduation/features/favorites/services/favorite_products_services.dart';
 import 'package:e_commerce_graduation/features/home/model/category_model.dart';
@@ -287,5 +288,50 @@ class HomeCubit extends Cubit<HomeState> {
     categoryCode = null;
     _sortBy = null;
     emit(FiltersReset());
+  }
+
+  void getAllCategoriesForHomePage() async {
+    emit(GetAllCategoriesForHomePageLoading());
+    try {
+      categoriesList = await homeServices.getAllCategories();
+
+      final returnedCategoriesList = categoriesList
+          .map((category) =>
+              HelperFunctions.getAllCategoriesForHomePage(category))
+          .toList();
+
+      emit(GetAllCategoriesForHomePage(returnedCategoriesList));
+    } catch (e) {
+      log("error in get all categories: ${e.toString()}");
+      emit(GetAllCategoriesForHomePageError(e.toString()));
+    }
+  }
+
+  void getProductsByCategoryForHomePage(String categoryCode) async {
+    emit(GetProductsByCategoryForHomePageLoading());
+    try {
+      final userId = await secureStorage.readSecureData('userId');
+      final ParameterRequest parameterRequest = ParameterRequest(
+        pagenum: 1,
+        maxpagesize: 10,
+        pagesize: 10,
+        categoryCode: categoryCode,
+      );
+      final products = await homeServices.getAllProducts(parameterRequest);
+      final favoriteProducts =
+          await _favoriteProductsServices.getFavoriteProducts(userId);
+      final List<ProductResponse> finalProducts = products.map((product) {
+        final isFavorite = favoriteProducts.any(
+          (item) => item.productId == product.productID,
+        );
+        return product.copyWith(isFavorite: isFavorite);
+      }).toList();
+
+      emit(GetProductsByCategoryForHomePage(finalProducts));
+      log("category code: $categoryCode products: ${finalProducts.length}");
+    } catch (e) {
+      log("error in get products by category for home page: ${e.toString()}");
+      emit(GetProductsByCategoryForHomePageError(e.toString()));
+    }
   }
 }
