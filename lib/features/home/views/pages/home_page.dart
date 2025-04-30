@@ -1,5 +1,4 @@
 import 'package:e_commerce_graduation/features/home/home_bubit/cubit/home_cubit.dart';
-import 'package:e_commerce_graduation/features/home/views/widgets/categort_tap.dart';
 import 'package:e_commerce_graduation/features/home/views/widgets/home_app_bar.dart';
 import 'package:e_commerce_graduation/features/home/views/widgets/home_tap.dart';
 import 'package:flutter/material.dart';
