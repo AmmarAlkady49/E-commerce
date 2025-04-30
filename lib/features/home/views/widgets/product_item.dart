@@ -12,9 +12,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProductItem extends StatelessWidget {
   final ProductResponse product;
+  final bool isForCategoroesProducts;
+  final String? categoryCode;
+  final String? categoryCode2;
   const ProductItem({
     super.key,
     required this.product,
+    this.isForCategoroesProducts = false,
+    this.categoryCode,
+    this.categoryCode2,
   });
 
   @override
@@ -27,7 +33,10 @@ class ProductItem extends StatelessWidget {
               AppRoutes.productPage,
               arguments: product,
             )
-            .then((value) => homeCubit.getAllProducts());
+            .then((value) => isForCategoroesProducts
+                ? homeCubit.getProductsByCategoryForHomePage(
+                    categoryCode!, categoryCode2!)
+                : homeCubit.getAllProducts());
       },
       borderRadius: BorderRadius.circular(12.r),
       child: Container(
@@ -68,11 +77,11 @@ class ProductItem extends StatelessWidget {
                             height: 140.h,
                             width: double.infinity,
                           )
-                        : Image.network(
-                            'https://as2.ftcdn.net/v2/jpg/03/24/14/35/1000_F_324143588_Jk9uwkSlhuSEyrGWkuQT7MM6mFbCayIj.jpg',
-                            fit: BoxFit.fitHeight,
-                            height: 20.h,
-                            // width: double.infinity,
+                        : Image.asset(
+                            'assets/images/home_page/no_image_placeholder.png',
+                            fit: BoxFit.contain,
+                            height: 140.h,
+                            width: double.infinity,
                           ),
                   ),
                 ),
@@ -95,6 +104,7 @@ class ProductItem extends StatelessWidget {
                 SizedBox(height: 4.h),
                 Text(
                   product.categoryName ?? 'other',
+                  textAlign: TextAlign.center,
                   style: FontHelper.fontText(
                       context: context,
                       size: 14.sp,
@@ -184,8 +194,8 @@ class ProductItem extends StatelessWidget {
                         padding: const EdgeInsets.all(3.0),
                         child: InkWell(
                             onTap: () async {
-                              await homeCubit.setFavortie(
-                                  product.photos!.first.productID.toString());
+                              await homeCubit
+                                  .setFavortie(product.productID.toString());
                             },
                             child: product.isFavorite!
                                 // child: true

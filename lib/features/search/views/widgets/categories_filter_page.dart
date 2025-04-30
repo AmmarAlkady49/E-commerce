@@ -40,8 +40,7 @@ class CategoriesFilterPage extends StatelessWidget {
                 height: 50,
                 buttonTitle: S.of(context).apply_filters,
                 onTap: () {
-                  Navigator.pop(context); // Close modal
-                  // Trigger filter logic
+                  Navigator.pop(context); 
                 }),
           ],
         ),

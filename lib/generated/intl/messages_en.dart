@@ -302,6 +302,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "profile": MessageLookupByLibrary.simpleMessage("Profile"),
     "qatar": MessageLookupByLibrary.simpleMessage("Qatar"),
     "quantity": MessageLookupByLibrary.simpleMessage("Quantity"),
+    "recommended": MessageLookupByLibrary.simpleMessage("Recommended"),
+    "recommended_for_you": MessageLookupByLibrary.simpleMessage(
+      "Recommended for you",
+    ),
     "remember_me": MessageLookupByLibrary.simpleMessage("Remember me"),
     "resend_otp_code_successfully": MessageLookupByLibrary.simpleMessage(
       "Resend OTP code successfully",

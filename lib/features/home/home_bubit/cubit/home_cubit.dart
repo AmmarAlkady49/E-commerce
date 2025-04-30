@@ -25,6 +25,7 @@ class HomeCubit extends Cubit<HomeState> {
   List<String> reacentSearches = [];
   List<ProductResponse> searchResults = [];
   List<CategoryModel> categoriesList = [];
+
   String? currentSearchQuery;
   int selectedCategoryIndex = 0;
 
@@ -298,8 +299,8 @@ class HomeCubit extends Cubit<HomeState> {
       final returnedCategoriesList = categoriesList
           .map((category) =>
               HelperFunctions.getAllCategoriesForHomePage(category))
+          .where((categoryMap) => categoryMap.isNotEmpty)
           .toList();
-
       emit(GetAllCategoriesForHomePage(returnedCategoriesList));
     } catch (e) {
       log("error in get all categories: ${e.toString()}");
@@ -307,16 +308,17 @@ class HomeCubit extends Cubit<HomeState> {
     }
   }
 
-  void getProductsByCategoryForHomePage(String categoryCode) async {
+  void getProductsByCategoryForHomePage(
+      String categoryCode, String? categoryCode2) async {
     emit(GetProductsByCategoryForHomePageLoading());
     try {
       final userId = await secureStorage.readSecureData('userId');
       final ParameterRequest parameterRequest = ParameterRequest(
-        pagenum: 1,
-        maxpagesize: 10,
-        pagesize: 10,
-        categoryCode: categoryCode,
-      );
+          pagenum: 1,
+          maxpagesize: 10,
+          pagesize: 10,
+          categoryCode: categoryCode,
+          categoryCode2: categoryCode2);
       final products = await homeServices.getAllProducts(parameterRequest);
       final favoriteProducts =
           await _favoriteProductsServices.getFavoriteProducts(userId);
@@ -329,6 +331,35 @@ class HomeCubit extends Cubit<HomeState> {
 
       emit(GetProductsByCategoryForHomePage(finalProducts));
       log("category code: $categoryCode products: ${finalProducts.length}");
+    } catch (e) {
+      log("error in get products by category for home page: ${e.toString()}");
+      emit(GetProductsByCategoryForHomePageError(e.toString()));
+    }
+  }
+
+  void searchForProductsInCategory(String categoryCode, String? categoryCode2, String query) async {
+    emit(GetProductsByCategoryForHomePageLoading());
+    try {
+      final userId = await secureStorage.readSecureData('userId');
+      final ParameterRequest parameterRequest = ParameterRequest(
+        pagenum: 1,
+        maxpagesize: 10,
+        pagesize: 10,
+        categoryCode: categoryCode,
+        categoryCode2: categoryCode2,
+        search: query,
+      );
+      final products = await homeServices.getAllProducts(parameterRequest);
+      final favoriteProducts =
+          await _favoriteProductsServices.getFavoriteProducts(userId);
+      final List<ProductResponse> finalProducts = products.map((product) {
+        final isFavorite = favoriteProducts.any(
+          (item) => item.productId == product.productID,
+        );
+        return product.copyWith(isFavorite: isFavorite);
+      }).toList();
+
+      emit(GetProductsByCategoryForHomePage(finalProducts));
     } catch (e) {
       log("error in get products by category for home page: ${e.toString()}");
       emit(GetProductsByCategoryForHomePageError(e.toString()));

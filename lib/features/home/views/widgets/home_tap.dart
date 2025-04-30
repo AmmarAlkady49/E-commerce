@@ -1,5 +1,6 @@
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
 import 'package:e_commerce_graduation/features/home/views/widgets/grid_view_for_categories.dart';
+import 'package:e_commerce_graduation/features/home/views/widgets/recommended_products.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,7 +13,7 @@ class HomeTap extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+          padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 16.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -35,6 +36,8 @@ class HomeTap extends StatelessWidget {
               ),
               SizedBox(height: 12.h),
               GridViewForCategories(),
+              SizedBox(height: 12.h),
+              RecommendedProducts(),
             ],
           ),
         ),

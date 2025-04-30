@@ -117,25 +117,29 @@ class HelperFunctions {
         return {
           'name': 'أرز و مكرونة و بقوليات',
           'categoryCode': categoryItem.categoryCode,
-          'imageUrl': 'https://drive.google.com/file/d/1LT176UypGKqmwsolo8IR-VPQFpyqkUql/view?usp=sharing',
+          'imageUrl':
+              'https://drive.google.com/file/d/1LT176UypGKqmwsolo8IR-VPQFpyqkUql/view?usp=sharing',
         };
       case 'اخري':
         return {
           'name': 'أكثر',
           'categoryCode': categoryItem.categoryCode,
-          'imageUrl': 'https://drive.google.com/file/d/1_r-RddCnTVuo-8flYAfvWoRZdycyahKZ/view?usp=sharing',
-        };
-      case 'ادوات مطبخ':
-        return {
-          'name': 'ادوات مطبخ',
-          'categoryCode': categoryItem.categoryCode,
+          'categoryCode2': "NotFoundC",
           'imageUrl':
-              'https://drive.google.com/file/d/1G48PU2qQAECySUTUsgXiRoSuFybeeGGE/view?usp=sharing',
+              'https://drive.google.com/file/d/1_r-RddCnTVuo-8flYAfvWoRZdycyahKZ/view?usp=sharing',
         };
+      // case 'ادوات مطبخ':
+      //   return {
+      //     'name': 'ادوات مطبخ',
+      //     'categoryCode': categoryItem.categoryCode,
+      //     'imageUrl':
+      //         'https://drive.google.com/file/d/1G48PU2qQAECySUTUsgXiRoSuFybeeGGE/view?usp=sharing',
+      //   };
       case 'ادوات مكتبية':
         return {
           'name': 'ادوات مكتبية',
           'categoryCode': categoryItem.categoryCode,
+          'categoryCode2': "U594M0",
           'imageUrl':
               'https://drive.google.com/file/d/1SqWCG59YW1YGqAYEohc88UkXKEbDpRMI/view?usp=sharing',
         };
@@ -148,11 +152,19 @@ class HelperFunctions {
         };
       case 'خضروات':
         return {
-          'name': 'خضروات',
+          'name': 'فاكهة و خضروات',
           'categoryCode': categoryItem.categoryCode,
+          'categoryCode2': "J366R0",
           'imageUrl':
               'https://drive.google.com/file/d/1pQmkC_UAaEYVAFeiT5_uVH9Dv5_LCSIv/view?usp=sharing',
         };
+      // case 'فاكهة':
+      //   return {
+      //     'name': 'فاكهة',
+      //     'categoryCode': categoryItem.categoryCode,
+      //     'imageUrl':
+      //         'https://drive.google.com/file/d/1dY7lL4-ci_oCA2PbI9ypYW5CA3x7cuRU/view?usp=sharing',
+      //   };
       case 'دخان':
         return {
           'name': 'دخان',
@@ -181,13 +193,6 @@ class HelperFunctions {
           'imageUrl':
               'https://drive.google.com/file/d/1MO_kScL__fSWTMrAfqEWKennDY1hyK6O/view?usp=sharing',
         };
-      case 'فاكهة':
-        return {
-          'name': 'فاكهة',
-          'categoryCode': categoryItem.categoryCode,
-          'imageUrl':
-              'https://drive.google.com/file/d/1dY7lL4-ci_oCA2PbI9ypYW5CA3x7cuRU/view?usp=sharing',
-        };
       case 'مأكولات بحرية':
         return {
           'name': 'مأكولات بحرية',
@@ -213,13 +218,15 @@ class HelperFunctions {
         return {
           'name': 'مستلزمات المطبخ',
           'categoryCode': categoryItem.categoryCode,
+          'categoryCode2': "U829D0",
           'imageUrl':
               'https://drive.google.com/file/d/1WYcbzvjSdRulOWcGSolglvWdFDEzhG6k/view?usp=sharing',
         };
-      case 'مستلزمات منزلية	':
+      case 'مستلزمات منزلية':
         return {
-          'name': 'مستلزمات منزلية	',
+          'name': 'مستلزمات منزلية',
           'categoryCode': categoryItem.categoryCode,
+          'categoryCode2': "W389K0",
           'imageUrl':
               'https://drive.google.com/file/d/1XM3zwLL0Kl8mV54pDG8rMqyTjx64LUXr/view?usp=sharing',
         };
@@ -237,13 +244,13 @@ class HelperFunctions {
           'imageUrl':
               'https://drive.google.com/file/d/1wltBW1O7FOHfERd-D2s7j8pdtOGXv_i0/view?usp=sharing',
         };
-      case 'مكونات الطبخ':
-        return {
-          'name': 'مكونات الطبخ',
-          'categoryCode': categoryItem.categoryCode,
-          'imageUrl':
-              'https://drive.google.com/file/d/1C1DKNp0jSbY5fZv5sx6kR8scHMcMX-Pe/view?usp=sharing',
-        };
+      // case 'مكونات الطبخ':
+      //   return {
+      //     'name': 'مكونات الطبخ',
+      //     'categoryCode': categoryItem.categoryCode,
+      //     'imageUrl':
+      //         'https://drive.google.com/file/d/1C1DKNp0jSbY5fZv5sx6kR8scHMcMX-Pe/view?usp=sharing',
+      //   };
       case 'منتجات ألبان و بيض':
         return {
           'name': 'منتجات ألبان و بيض',
@@ -251,27 +258,28 @@ class HelperFunctions {
           'imageUrl':
               'https://drive.google.com/file/d/1hwbKzYAmqFAmq9Kz4sqMzfo5F8HY7J3Y/view?usp=sharing',
         };
-      case 'منتجات سريعة التحضير و سكر':
-        return {
-          'name': 'منتجات سريعة التحضير و سكر',
-          'categoryCode': categoryItem.categoryCode,
-          'imageUrl':
-              'https://drive.google.com/file/d/1G48PU2qQAECySUTUsgXiRoSuFybeeGGE/view?usp=sharing',
-        };
+      // case 'منتجات سريعة التحضير و سكر':
+      //   return {
+      //     'name': 'منتجات سريعة التحضير و سكر',
+      //     'categoryCode': categoryItem.categoryCode,
+      //     'imageUrl':
+      //         'https://drive.google.com/file/d/1G48PU2qQAECySUTUsgXiRoSuFybeeGGE/view?usp=sharing',
+      //   };
       case 'منتجات فطور غذائية':
         return {
-          'name': 'منتجات فطور غذائية',
+          'name': 'منتجات غذائية',
           'categoryCode': categoryItem.categoryCode,
+          'categoryCode2': "G555I0",
           'imageUrl':
               'https://drive.google.com/file/d/1tiQg18uaHW8bwZSn7XU_LhxfHe4fXjVq/view?usp=sharing',
         };
-      case 'منتجات مكتبية':
-        return {
-          'name': 'منتجات مكتبية',
-          'categoryCode': categoryItem.categoryCode,
-          'imageUrl':
-              'https://drive.google.com/file/d/1j2HjeFc7t1WRUzcniZoz9S-VjhkahEpc/view?usp=sharing',
-        };
+      // case 'منتجات مكتبية':
+      //   return {
+      //     'name': 'منتجات مكتبية',
+      //     'categoryCode': categoryItem.categoryCode,
+      //     'imageUrl':
+      //         'https://drive.google.com/file/d/1j2HjeFc7t1WRUzcniZoz9S-VjhkahEpc/view?usp=sharing',
+      //   };
       case 'منظفات':
         return {
           'name': 'منظفات',
@@ -279,13 +287,13 @@ class HelperFunctions {
           'imageUrl':
               'https://drive.google.com/file/d/1kSeFNrsaBntfxTN_9cMIvzkgx3hQC4EY/view?usp=sharing',
         };
-      case 'no category':
-        return {
-          'name': 'لا يوجد فئة',
-          'categoryCode': categoryItem.categoryCode,
-          'imageUrl':
-              'https://drive.google.com/file/d/1_r-RddCnTVuo-8flYAfvWoRZdycyahKZ/view?usp=sharing',
-        };
+      // case 'no category':
+      //   return {
+      //     // 'name': 'لا يوجد فئة',
+      //     // 'categoryCode': categoryItem.categoryCode,
+      //     // 'imageUrl':
+      //     //     'https://drive.google.com/file/d/1_r-RddCnTVuo-8flYAfvWoRZdycyahKZ/view?usp=sharing',
+      //   };
 
       default:
         return {};

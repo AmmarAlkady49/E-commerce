@@ -269,7 +269,7 @@ class InfoCard extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 6.h),
       child: InkWell(
-        onTap: onTap,
+        onTap: title == S.of(context).email ? null : onTap,
         child: Row(
           children: [
             Column(
@@ -298,7 +298,9 @@ class InfoCard extends StatelessWidget {
             Icon(
               Icons.chevron_right_rounded,
               size: 32.sp,
-              color: Color(0xff1D61E7),
+              color: title == S.of(context).email
+                  ? Colors.black38
+                  : Color(0xff1D61E7),
             ),
           ],
         ),

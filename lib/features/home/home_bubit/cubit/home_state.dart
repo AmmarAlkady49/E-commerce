@@ -142,3 +142,5 @@ final class GetProductsByCategoryForHomePageError extends HomeState {
 
   GetProductsByCategoryForHomePageError(this.error);
 }
+
+

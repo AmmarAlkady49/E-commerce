@@ -1774,6 +1774,21 @@ class S {
       args: [],
     );
   }
+
+  /// `Recommended for you`
+  String get recommended_for_you {
+    return Intl.message(
+      'Recommended for you',
+      name: 'recommended_for_you',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recommended`
+  String get recommended {
+    return Intl.message('Recommended', name: 'recommended', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

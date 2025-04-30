@@ -4,6 +4,7 @@ class ParameterRequest {
   final int pagesize;
   final String? sort;
   final String? categoryCode;
+  final String? categoryCode2;
   final String? search;
   final String? subCategoryCode;
   final String? brandCode;
@@ -15,6 +16,7 @@ class ParameterRequest {
     required this.pagesize,
     this.sort,
     this.categoryCode,
+    this.categoryCode2,
     this.search,
     this.subCategoryCode,
     this.brandCode,
@@ -29,6 +31,7 @@ class ParameterRequest {
       'pagesize': pagesize,
       'sort': sort,
       'categoryCode': categoryCode,
+      'categoryCode2': categoryCode2,
       'search': search,
       'subCategoryCode': subCategoryCode,
       'brandCode': brandCode,
@@ -44,6 +47,7 @@ class ParameterRequest {
       pagesize: map['pagesize'] as int,
       sort: map['sort'] as String?,
       categoryCode: map['categoryCode'] as String?,
+      categoryCode2: map['categoryCode2'] as String?,
       search: map['search'] as String?,
       subCategoryCode: map['subCategoryCode'] as String?,
       brandCode: map['brandCode'] as String?,

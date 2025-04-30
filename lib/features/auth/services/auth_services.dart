@@ -28,12 +28,12 @@ class AuthServicesImpl implements AuthServices {
   final aDio = Dio();
   final secureStorage = SecureStorage();
   final GoogleSignIn _googleSignIn = GoogleSignIn(
+    clientId: AppConstants.googleClientId,
     scopes: [
       'email',
       'profile',
-      'openid', // needed for ID token
+      'openid',
     ],
-    clientId: AppConstants.googleClientId,
   );
   @override
   Future<bool> loginWithEmailAndPassword(String email, String password) async {

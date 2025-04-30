@@ -17,13 +17,10 @@ class CustomeSearch extends SearchDelegate {
   ThemeData appBarTheme(BuildContext context) {
     return ThemeData(
         appBarTheme: AppBarTheme(
-          backgroundColor: Colors.white,
-          elevation: 0,
-          shadowColor: Colors.black54,
-          surfaceTintColor: Colors.white,
-          shape: Border(
-              bottom: BorderSide(color: Colors.grey.shade200, width: 1.0)),
-          toolbarHeight: 55.h,
+          backgroundColor: Color(0xff1D61E7),
+          elevation: 4,
+          shadowColor: Colors.black,
+          toolbarHeight: 57.h,
         ),
         inputDecorationTheme: InputDecorationTheme(
           hintStyle: FontHelper.fontText(
@@ -32,21 +29,21 @@ class CustomeSearch extends SearchDelegate {
               color: Colors.black54,
               context: context),
           filled: true,
-          fillColor: Colors.grey.shade200,
+          fillColor: Colors.white,
           contentPadding: EdgeInsets.symmetric(horizontal: 10.w),
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10.r),
+            borderRadius: BorderRadius.circular(12.r),
             borderSide: BorderSide.none,
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10.r),
+            borderRadius: BorderRadius.circular(12.r),
             borderSide: BorderSide(
-              color: Colors.black45,
+              color: Colors.black12,
               width: 1.0,
             ),
           ),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10.r),
+            borderRadius: BorderRadius.circular(12.r),
             borderSide: BorderSide.none,
           ),
         ));
@@ -62,7 +59,6 @@ class CustomeSearch extends SearchDelegate {
 
   @override
   List<Widget>? buildActions(BuildContext context) {
-    // log(homeCubit.categoriesList.length.toString());
     return [
       Padding(
         padding: EdgeInsets.only(left: 8.w),
@@ -71,7 +67,7 @@ class CustomeSearch extends SearchDelegate {
             child: Padding(
               padding:
                   EdgeInsets.only(left: 4.w, top: 4.w, bottom: 4.w, right: 4.w),
-              child: const Icon(Icons.clear, color: Colors.black87),
+              child: const Icon(Icons.clear, color: Colors.white),
             ),
             onTap: () {
               query = '';
@@ -93,7 +89,7 @@ class CustomeSearch extends SearchDelegate {
       ),
       icon: const Icon(
         Icons.arrow_back_ios_new_rounded,
-        color: Colors.black87,
+        color: Colors.white,
       ),
       onPressed: () {
         close(context, null);

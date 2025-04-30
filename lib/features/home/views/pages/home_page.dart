@@ -1,5 +1,3 @@
-
-
 import 'package:e_commerce_graduation/features/home/home_bubit/cubit/home_cubit.dart';
 import 'package:e_commerce_graduation/features/home/views/widgets/categort_tap.dart';
 import 'package:e_commerce_graduation/features/home/views/widgets/home_app_bar.dart';
@@ -14,9 +12,8 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage>
-    with SingleTickerProviderStateMixin {
-  late TabController _tabController;
+class _HomePageState extends State<HomePage> {
+  // late TabController _tabController;
 
   @override
   void initState() {
@@ -25,38 +22,23 @@ class _HomePageState extends State<HomePage>
     context.read<HomeCubit>().getAllProducts();
     BlocProvider.of<HomeCubit>(context).getAllCategories();
 
-    _tabController = TabController(length: 2, vsync: this);
-  }
-
-  @override
-  void dispose() {
-    _tabController.dispose();
-
-    super.dispose();
+    // _tabController = TabController(length: 2, vsync: this);
   }
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        body: SafeArea(
-          child: NestedScrollView(
-            controller: ScrollController(),
-            headerSliverBuilder: (context, innerBoxIsScrolled) => [
-              SliverToBoxAdapter(
-                child: HomeAppBar(tabController: _tabController),
-              ),
-            ],
-            body: TabBarView(
-              controller: _tabController,
-              children: const [
-                HomeTap(),
-                CategoryTap(),
-              ],
+    return Scaffold(
+      backgroundColor: Colors.white,
+      // appBar: HomeAppBar(),
+      body: SafeArea(
+        child: NestedScrollView(
+          controller: ScrollController(),
+          headerSliverBuilder: (context, innerBoxIsScrolled) => [
+            SliverToBoxAdapter(
+              child: HomeAppBar(),
             ),
-          ),
+          ],
+          body: HomeTap(),
         ),
       ),
     );

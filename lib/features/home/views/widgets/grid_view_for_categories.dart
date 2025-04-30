@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerce_graduation/core/utils/helper_functions.dart';
+import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
 import 'package:e_commerce_graduation/features/home/home_bubit/cubit/home_cubit.dart';
 import 'package:flutter/material.dart';
@@ -24,8 +25,30 @@ class _GridViewForCategoriesState extends State<GridViewForCategories> {
   @override
   Widget build(BuildContext context) {
     final homeCubit = BlocProvider.of<HomeCubit>(context);
-    return BlocBuilder<HomeCubit, HomeState>(
+    return BlocConsumer<HomeCubit, HomeState>(
       bloc: homeCubit,
+      listenWhen: (previous, current) =>
+          current is GetProductsByCategoryForHomePageError ||
+          current is GetProductsByCategoryForHomePage,
+      listener: (context, state) {
+        if (state is GetProductsByCategoryForHomePageError) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                state.error,
+                style: FontHelper.fontText(
+                  size: 14.sp,
+                  weight: FontWeight.w700,
+                  color: Colors.red,
+                  context: context,
+                ),
+              ),
+              backgroundColor: Colors.white,
+              duration: const Duration(seconds: 2),
+            ),
+          );
+        }
+      },
       buildWhen: (previous, current) =>
           current is GetAllCategoriesForHomePageLoading ||
           current is GetAllCategoriesForHomePage ||
@@ -56,23 +79,41 @@ class _GridViewForCategoriesState extends State<GridViewForCategories> {
               itemCount: state.categories.length,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                childAspectRatio: 1.4,
+                childAspectRatio: 1.3,
               ),
               itemBuilder: (_, index) {
                 return Column(
                   children: [
                     InkWell(
                       onTap: () {
-                        homeCubit.getProductsByCategoryForHomePage(
-                            state.categories[index]['categoryCode'] ?? "");
+                        Navigator.pushNamed(
+                          context,
+                          AppRoutes.productsByCategoryPage,
+                          arguments: {
+                            'categoryCode': state.categories[index]
+                                ['categoryCode'],
+                            'categoryCode2': state.categories[index]
+                                ['categoryCode2'],
+                            'categoryName': state.categories[index]['name'],
+                          },
+                        );
                       },
                       borderRadius: BorderRadius.circular(12.r),
                       child: Container(
                         height: 80.h,
                         width: 90.w,
                         decoration: BoxDecoration(
-                          color: Color(0xff1D61E7).withAlpha(40),
-                          borderRadius: BorderRadius.circular(12.r),
+                          color: Colors.grey.shade200,
+                          borderRadius: BorderRadius.all(Radius.circular(12.r)),
+                          border: Border.all(color: Colors.grey.shade300),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.shade300,
+                              spreadRadius: 1,
+                              blurRadius: 5,
+                              offset: const Offset(0, 3),
+                            ),
+                          ],
                         ),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),

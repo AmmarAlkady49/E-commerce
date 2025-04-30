@@ -16,4 +16,5 @@ class AppRoutes {
   static const String confirmOrderPage = '/checkout_page';
   static const String myOrderPage = '/my_orders_page';
   static const String paymentWebviewPage = '/payment_webview_page';
+  static const String productsByCategoryPage = '/products_by_category_page';
 }

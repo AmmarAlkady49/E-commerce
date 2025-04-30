@@ -10,6 +10,7 @@ import 'package:e_commerce_graduation/features/auth/views/pages/sign_in_page.dar
 import 'package:e_commerce_graduation/core/models/product_response.dart';
 import 'package:e_commerce_graduation/features/auth/views/pages/verify_account.dart';
 import 'package:e_commerce_graduation/features/cart/cubit/cart_cubit.dart';
+import 'package:e_commerce_graduation/features/home/views/widgets/products_by_category.dart';
 import 'package:e_commerce_graduation/features/order/cubit/order_cubit.dart';
 import 'package:e_commerce_graduation/features/order/views/pages/confirm_order_page.dart';
 import 'package:e_commerce_graduation/features/favorites/cubit/favorites_cubit.dart';
@@ -46,6 +47,14 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const HomePage());
       case AppRoutes.bottomNavBar:
         return MaterialPageRoute(builder: (_) => const BottomNavBar());
+      case AppRoutes.productsByCategoryPage:
+        final args = settings.arguments as Map<String, dynamic>;
+        return MaterialPageRoute(
+            builder: (context) => ProductsByCategory(
+                  categoryCode: args['categoryCode'],
+                  categoryCode2: args['categoryCode2'] ?? null,
+                  categoryName: args['categoryName'],
+                ));
 
       case AppRoutes.profile:
         return MaterialPageRoute(
@@ -56,7 +65,6 @@ class AppRouter {
       case AppRoutes.languagePage:
         return MaterialPageRoute(builder: (_) => const LangPage());
       case AppRoutes.paymentWebviewPage:
-        // final args = settings.arguments as Map<String, dynamic>;
         final String paymentUrl = settings.arguments as String;
         return MaterialPageRoute(
             builder: (_) => PaymentWebviewPage(paymentUrl: paymentUrl));
