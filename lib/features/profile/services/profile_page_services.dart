@@ -14,10 +14,7 @@ abstract class ProfilePageServices {
 }
 
 class ProfilePageServicesimpl implements ProfilePageServices {
-  // final _firestoreServices = FirestoreServices.instance;
   final secureStorage = SecureStorage();
-  // final String tooken =
-  //     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkFETUlOMSIsImVtYWlsIjoiQURNSU4xQGdtYWlsLmNvbSIsIm5hbWVpZCI6ImU2MjFmN2JhYTg2ODRmZjlhZCIsInJvbGUiOiJBZG1pbiIsIm5iZiI6MTc0NDE4MDg0NCwiZXhwIjoxNzQ0Nzg1NjQ0LCJpYXQiOjE3NDQxODA4NDQsImlzcyI6Imh0dHBzOi8vZWNvbW1lcmNlYXBpLWR2ZTllZGJiYXNneGJmZzkudWFlbm9ydGgtMDEuYXp1cmV3ZWJzaXRlcy5uZXQvIn0.F0k-ek5u0znhYlvjZqmFqVoEABfBoe_QdE1T4m7MSFM";
   final aDio = Dio();
   @override
   Future<void> signOut() async {
@@ -31,11 +28,14 @@ class ProfilePageServicesimpl implements ProfilePageServices {
       ),
     );
     await secureStorage.deleteSecureData('token');
+    await secureStorage.saveSecureData("isLogin", "false");
   }
 
   @override
   Future<void> signoutFromGoogle() async {
     await GoogleSignIn().signOut();
+    await secureStorage.deleteSecureData('token');
+    await secureStorage.saveSecureData("isLogin", "false");
   }
 
   @override

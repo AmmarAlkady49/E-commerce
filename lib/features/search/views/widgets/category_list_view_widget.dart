@@ -39,7 +39,7 @@ class _CategoryListViewWidgetState extends State<CategoryListViewWidget> {
       child: Center(
         child: ListView.separated(
           separatorBuilder: (context, index) => const SizedBox(width: 20),
-          itemCount: 10,
+          itemCount: 12,
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
             return GestureDetector(

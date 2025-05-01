@@ -1,5 +1,6 @@
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
 import 'package:e_commerce_graduation/features/home/views/widgets/grid_view_for_categories.dart';
+import 'package:e_commerce_graduation/features/home/views/widgets/image_slider.dart';
 import 'package:e_commerce_graduation/features/home/views/widgets/recommended_products.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:flutter/material.dart';
@@ -11,12 +12,17 @@ class HomeTap extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // backgroundColor: Colors.grey.shade200,
+      // backgroundColor: Color.fromARGB(255, 248, 244, 244),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 16.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(height: 8.h),
+              ImageSlider(),
+              SizedBox(height: 12.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

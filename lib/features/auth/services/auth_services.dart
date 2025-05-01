@@ -28,7 +28,9 @@ class AuthServicesImpl implements AuthServices {
   final aDio = Dio();
   final secureStorage = SecureStorage();
   final GoogleSignIn _googleSignIn = GoogleSignIn(
-    clientId: AppConstants.googleClientId,
+    // clientId: AppConstants.googleClientId,
+    clientId:
+        '563886842859-ekb482r8dm27fp0kedd20plsbela73hp.apps.googleusercontent.com',
     scopes: [
       'email',
       'profile',
@@ -147,7 +149,7 @@ class AuthServicesImpl implements AuthServices {
   Future<void> signinWithGoogle() async {
     final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
     if (googleUser == null) {
-      return Future.error('Google sign-in aborted');
+      throw Exception('xxxxxxxxxxxxD Google sign-in aborted');
     }
     final GoogleSignInAuthentication googleAuth =
         await googleUser.authentication;
@@ -170,13 +172,20 @@ class AuthServicesImpl implements AuthServices {
     if (apiResponse.statusCode == 200) {
       log('Google sign-in successful: ${apiResponse.data}');
       final responseMessage = apiResponse.data;
-      if (responseMessage != null) {
-        await secureStorage.saveSecureData('token', responseMessage['token']);
-        await secureStorage.saveSecureData('isLogin', 'true');
-        await secureStorage.saveSecureData('email', googleUser.email);
-        await secureStorage.saveSecureData('id', googleUser.id);
-      }
+      log('responseMessage: $responseMessage');
+      // if (responseMessage != null) {
+      //   await secureStorage.saveSecureData('token', responseMessage['token']);
+      //   await secureStorage.saveSecureData('isLogin', 'true');
+      //   await secureStorage.saveSecureData('email', googleUser.email);
+      //   await secureStorage.saveSecureData('id', googleUser.id);
+      // }
     } else if (apiResponse.statusCode == 400) {
+      throw Exception(apiResponse.data['message'] ?? 'Failed to login');
+    } else if (apiResponse.statusCode == 401) {
+      throw Exception(apiResponse.data['message'] ?? 'Failed to login');
+    } else if (apiResponse.statusCode == 403) {
+      throw Exception(apiResponse.data['message'] ?? 'Failed to login');
+    } else if (apiResponse.statusCode == 404) {
       throw Exception(apiResponse.data['message'] ?? 'Failed to login');
     } else {
       log('Failed to login: ${apiResponse.statusCode}');

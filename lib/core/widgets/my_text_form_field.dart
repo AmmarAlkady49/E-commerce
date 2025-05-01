@@ -20,23 +20,27 @@ class MyTextFormField extends StatefulWidget {
   final VoidCallback? onTap;
   final Iterable<String>? autofillHints;
   final Function()? onEditingComplete;
+  final bool disFocus;
 
-  const MyTextFormField(
-      {super.key,
-      required this.width,
-      this.preIcon,
-      this.prefix,
-      this.suffIcon,
-      required this.hint,
-      this.textInputType,
-      this.controller,
-      required this.validator,
-      this.presentFocusNode,
-      this.textInputAction,
-      this.nextFocusNode,
-      this.readOnly,
-      this.onTap,
-      this.autofillHints,this.onEditingComplete});
+  const MyTextFormField({
+    super.key,
+    required this.width,
+    this.preIcon,
+    this.prefix,
+    this.suffIcon,
+    required this.hint,
+    this.textInputType,
+    this.controller,
+    required this.validator,
+    this.presentFocusNode,
+    this.textInputAction,
+    this.nextFocusNode,
+    this.readOnly,
+    this.onTap,
+    this.autofillHints,
+    this.onEditingComplete,
+    this.disFocus = false,
+  });
 
   @override
   State<MyTextFormField> createState() => _MyTextFormFieldState();
@@ -61,7 +65,9 @@ class _MyTextFormFieldState extends State<MyTextFormField> {
             autofillHints: widget.autofillHints,
             onEditingComplete: widget.onEditingComplete,
             onFieldSubmitted: (value) {
-              FocusScope.of(context).requestFocus(widget.nextFocusNode);
+              widget.disFocus
+                  ? FocusScope.of(context).unfocus()
+                  : FocusScope.of(context).requestFocus(widget.nextFocusNode);
             },
             style: (widget.hint == S.of(context).password ||
                     widget.hint == S.of(context).confirm_password)
@@ -71,7 +77,10 @@ class _MyTextFormFieldState extends State<MyTextFormField> {
                     color: Colors.black,
                   )
                 : FontHelper.fontText(
-                    size: 15.sp, weight: FontWeight.w500, color: Colors.black,context: context),
+                    size: 15.sp,
+                    weight: FontWeight.w500,
+                    color: Colors.black,
+                    context: context),
             obscureText: ((widget.hint == S.of(context).password ||
                     widget.hint == S.of(context).confirm_password)
                 ? true && ishidden
@@ -98,10 +107,14 @@ class _MyTextFormFieldState extends State<MyTextFormField> {
               errorStyle: FontHelper.fontText(
                   size: 12.sp,
                   weight: FontWeight.w500,
-                  color: Colors.red.shade800,context: context),
+                  color: Colors.red.shade800,
+                  context: context),
               hintText: widget.hint,
               hintStyle: FontHelper.fontText(
-                  size: 15.sp, weight: FontWeight.w500, color: Colors.grey,context: context),
+                  size: 15.sp,
+                  weight: FontWeight.w500,
+                  color: Colors.grey,
+                  context: context),
               prefixIcon: widget.prefix != null
                   ? Padding(
                       padding: EdgeInsets.only(left: 12.0.w, right: 8.0.w),
@@ -124,7 +137,6 @@ class _MyTextFormFieldState extends State<MyTextFormField> {
                   : (widget.hint == S.of(context).birthday)
                       ? Icon(widget.suffIcon, color: Colors.grey)
                       : null,
-                      
             ),
           ),
         ],

@@ -109,6 +109,7 @@ class _ContainerOfTheSigninWidgetState
                     },
                     presentFocusNode: passwordFocusNode,
                     nextFocusNode: null,
+                    disFocus: true,
                   ),
                   SizedBox(height: 0.h),
                   SizedBox(

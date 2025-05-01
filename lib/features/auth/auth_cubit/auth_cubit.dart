@@ -90,7 +90,7 @@ class AuthCubit extends Cubit<AuthState> {
     //   emit(AuthSuccess());
     // }
     final isLogin = await isUserLogin();
-    log(isLogin.toString());
+    log(" isLogin ${isLogin.toString()}");
     if (isLogin) {
       emit(AuthSuccess());
     }
@@ -112,9 +112,9 @@ class AuthCubit extends Cubit<AuthState> {
   void signinWithGoogle() async {
     emit(SigningWithGoogle());
     try {
-      final response = await authServices.signinWithGoogle();
+      await authServices.signinWithGoogle();
 
-      // log('Google sign-in successful: ${response}');
+      log('Google sign-in successful:');
       emit(SigningWithGoogleSuccess());
     } on Exception catch (e) {
       log('Google sign-in errorrrrr: $e');

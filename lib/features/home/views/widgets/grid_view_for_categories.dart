@@ -104,6 +104,9 @@ class _GridViewForCategoriesState extends State<GridViewForCategories> {
                         width: 90.w,
                         decoration: BoxDecoration(
                           color: Colors.grey.shade200,
+                          // color: Color(0xff1D61E7).withAlpha(40),
+                          // color: Color(0xff1D61E7).withValues(alpha: 0.3),
+                          // color: Color(0xffE9DFC3),
                           borderRadius: BorderRadius.all(Radius.circular(12.r)),
                           border: Border.all(color: Colors.grey.shade300),
                           boxShadow: [
