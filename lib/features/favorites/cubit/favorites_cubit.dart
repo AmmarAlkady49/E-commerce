@@ -23,7 +23,7 @@ class FavoritesCubit extends Cubit<FavoritesState> {
   final CartServices cartServices = CartServicesImpl();
 
   // get favorite products
-  Future<void> getFavoriteProducts() async {
+  Future<void> getFavoriteProducts(BuildContext context) async {
     if (hasFetchedFavorites) {
       log('🔥 getFavoriteProducts already called, skipping...');
       return;
@@ -45,6 +45,12 @@ class FavoritesCubit extends Cubit<FavoritesState> {
       favoriteProductsStored = favoriteProducts;
       hasFetchedFavorites = true;
       emit(FavoriteProductsLoaded(favoriteProducts: finalFavoriteProducts));
+    } on Exception catch (e) {
+      if (e.toString().contains('429')) {
+        emit(FavoriteProductsError(message: S.of(context).too_many_requests));
+      } else {
+        emit(FavoriteProductsError(message: e.toString()));
+      }
     } catch (e) {
       log('Error getting favorite products: $e');
       emit(FavoriteProductsError(message: e.toString()));
@@ -79,7 +85,8 @@ class FavoritesCubit extends Cubit<FavoritesState> {
   }
 
   // add to cart
-  Future<void> addToCart(String productId, int quantity,CartCubit cartCubit) async {
+  Future<void> addToCart(
+      String productId, int quantity, CartCubit cartCubit) async {
     emit(AddProductToCartLoading(productId: productId));
     try {
       final userId = await secureStorage.readSecureData('userId');

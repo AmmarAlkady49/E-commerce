@@ -366,6 +366,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "suez": MessageLookupByLibrary.simpleMessage("Suez"),
     "tanta": MessageLookupByLibrary.simpleMessage("Tanta"),
     "the_address": MessageLookupByLibrary.simpleMessage("Address"),
+    "too_many_requests": MessageLookupByLibrary.simpleMessage(
+      "Too many requests, please try again later",
+    ),
     "total_amount": MessageLookupByLibrary.simpleMessage("Total amount"),
     "type_your_address": MessageLookupByLibrary.simpleMessage(
       "Type your address",

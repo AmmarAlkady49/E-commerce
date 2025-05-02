@@ -34,7 +34,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   void initState() {
     super.initState();
     Future.microtask(() {
-      context.read<FavoritesCubit>().getFavoriteProducts();
+      context.read<FavoritesCubit>().getFavoriteProducts(context);
       context.read<CartCubit>().getCartItems();
     });
   }

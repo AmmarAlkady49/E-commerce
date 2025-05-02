@@ -34,6 +34,8 @@ class FavoriteProductsServicesImpl implements FavoriteProductsServices {
         } else {
           return [];
         }
+      } else if (apiResponse.statusCode == 429) {
+        throw Exception('Too many requests: (${apiResponse.statusCode})');
       } else {
         throw Exception(
             'Failed to load favorite products: status ${apiResponse.statusCode}');

@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:iconsax/iconsax.dart';
 
 class FavoritesPage extends StatefulWidget {
   const FavoritesPage({super.key});
@@ -23,7 +24,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
   void initState() {
     super.initState();
     favoritesCubit = BlocProvider.of<FavoritesCubit>(context);
-    favoritesCubit.getFavoriteProducts();
+    favoritesCubit.getFavoriteProducts(context);
   }
 
   @override
@@ -37,7 +38,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
           current is FavoriteProductsError,
       listener: (context, state) {
         if (state is SetFavoriteItemLoaded || state is UpdateFavoritePage) {
-          favoritesCubit.getFavoriteProducts();
+          favoritesCubit.getFavoriteProducts(context);
         }
         if (state is FavoriteProductsError) {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -165,7 +166,42 @@ class _FavoritesPageState extends State<FavoritesPage> {
                         ? EmptyFavoriteProducts()
                         : NotEmptyFavoriteProducts(
                             favoriteProducts: state.favoriteProducts)
-                    : const SizedBox.shrink(),
+                    : state is FavoriteProductsError
+                        ? RefreshIndicator(
+                            onRefresh: () {
+                              return favoritesCubit
+                                  .getFavoriteProducts(context);
+                            },
+                            child: SingleChildScrollView(
+                              physics: const AlwaysScrollableScrollPhysics(),
+                              child: Container(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.75,
+                                alignment: Alignment.center,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      CupertinoIcons.xmark_octagon_fill,
+                                      size: 50.sp,
+                                      color: Colors.red.shade500,
+                                    ),
+                                    SizedBox(height: 4.h),
+                                    Text(
+                                      state.message,
+                                      textAlign: TextAlign.center,
+                                      style: FontHelper.fontText(
+                                          context: context,
+                                          size: 15.sp,
+                                          weight: FontWeight.w600,
+                                          color: Colors.black),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          )
+                        : const SizedBox.shrink(),
           ),
         );
       },

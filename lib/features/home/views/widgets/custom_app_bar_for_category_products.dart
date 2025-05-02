@@ -23,7 +23,6 @@ class CustomAppBarForCategoryProducts extends StatefulWidget
 class _CustomAppBarForCategoryProductsState
     extends State<CustomAppBarForCategoryProducts> {
   late TextEditingController _searchController;
-
   @override
   void initState() {
     super.initState();
@@ -94,7 +93,7 @@ class _CustomAppBarForCategoryProductsState
           weight: FontWeight.w600,
           color: Colors.black87,
         ),
-        onSubmitted: (value) {
+        onSubmitted: (value) async {
           homeCubit.searchForProductsInCategory(
               widget.categoryCode!, widget.categoryCode2, value);
         },

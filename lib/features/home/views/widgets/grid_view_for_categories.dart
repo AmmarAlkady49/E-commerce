@@ -3,6 +3,7 @@ import 'package:e_commerce_graduation/core/utils/helper_functions.dart';
 import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
 import 'package:e_commerce_graduation/features/home/home_bubit/cubit/home_cubit.dart';
+import 'package:e_commerce_graduation/features/home/views/widgets/grid_view_for_categories_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -55,7 +56,8 @@ class _GridViewForCategoriesState extends State<GridViewForCategories> {
           current is GetAllCategoriesForHomePageError,
       builder: (context, state) {
         if (state is GetAllCategoriesForHomePageLoading) {
-          return const Center(child: CircularProgressIndicator());
+          // return const Center(child: CircularProgressIndicator());
+          return GridViewForCategoriesLoading();
         }
         if (state is GetAllCategoriesForHomePageError) {
           return Center(

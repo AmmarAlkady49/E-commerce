@@ -1789,6 +1789,16 @@ class S {
   String get recommended {
     return Intl.message('Recommended', name: 'recommended', desc: '', args: []);
   }
+
+  /// `Too many requests, please try again later`
+  String get too_many_requests {
+    return Intl.message(
+      'Too many requests, please try again later',
+      name: 'too_many_requests',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

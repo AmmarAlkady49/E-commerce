@@ -360,6 +360,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "suez": MessageLookupByLibrary.simpleMessage("السويس"),
     "tanta": MessageLookupByLibrary.simpleMessage("طنطا"),
     "the_address": MessageLookupByLibrary.simpleMessage("العنوان"),
+    "too_many_requests": MessageLookupByLibrary.simpleMessage(
+      "لقد قمت بإرسال عدد كبير من الطلبات. يرجى المحاولة لاحقًا.",
+    ),
     "total_amount": MessageLookupByLibrary.simpleMessage("المبلغ الكلي"),
     "type_your_address": MessageLookupByLibrary.simpleMessage("ادخل عنوانك"),
     "verify_email": MessageLookupByLibrary.simpleMessage(
