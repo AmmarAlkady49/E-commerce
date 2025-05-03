@@ -301,6 +301,17 @@ class HomeCubit extends Cubit<HomeState> {
               HelperFunctions.getAllCategoriesForHomePage(category))
           .where((categoryMap) => categoryMap.isNotEmpty)
           .toList();
+
+      final categoryToMove = 'اخري';
+      final index = returnedCategoriesList.indexWhere(
+        (category) => category['name'] == categoryToMove,
+      );
+
+      if (index != -1) {
+        final movedCategory = returnedCategoriesList.removeAt(index);
+        returnedCategoriesList.add(movedCategory);
+      }
+
       emit(GetAllCategoriesForHomePage(returnedCategoriesList));
     } catch (e) {
       log("error in get all categories: ${e.toString()}");

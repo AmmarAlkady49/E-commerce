@@ -20,8 +20,6 @@ class _HomePageState extends State<HomePage> {
     context.read<HomeCubit>().getUserData();
     context.read<HomeCubit>().getAllProducts();
     BlocProvider.of<HomeCubit>(context).getAllCategories();
-
-    // _tabController = TabController(length: 2, vsync: this);
   }
 
   @override

@@ -195,6 +195,8 @@ class _ContainerOfTheSigninWidgetState
                           width: size.width * 0.8,
                           onTap: () async {
                             if (formKey.currentState!.validate()) {
+                              FocusScope.of(context).unfocus();
+
                               await cubit.loginAccount(emailController.text,
                                   passwordController.text);
                             }
@@ -207,6 +209,7 @@ class _ContainerOfTheSigninWidgetState
                         width: size.width * 0.8,
                         onTap: () async {
                           if (formKey.currentState!.validate()) {
+                            FocusScope.of(context).unfocus();
                             await cubit.loginAccount(
                                 emailController.text, passwordController.text);
                           }

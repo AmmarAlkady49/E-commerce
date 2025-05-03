@@ -56,7 +56,6 @@ class _GridViewForCategoriesState extends State<GridViewForCategories> {
           current is GetAllCategoriesForHomePageError,
       builder: (context, state) {
         if (state is GetAllCategoriesForHomePageLoading) {
-          // return const Center(child: CircularProgressIndicator());
           return GridViewForCategoriesLoading();
         }
         if (state is GetAllCategoriesForHomePageError) {
@@ -110,35 +109,40 @@ class _GridViewForCategoriesState extends State<GridViewForCategories> {
                           // color: Color(0xff1D61E7).withValues(alpha: 0.3),
                           // color: Color(0xffE9DFC3),
                           borderRadius: BorderRadius.all(Radius.circular(12.r)),
-                          border: Border.all(color: Colors.grey.shade300),
+                          border: Border.all(color: Colors.black12),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.grey.shade300,
+                              color: Colors.grey.shade400,
                               spreadRadius: 1,
                               blurRadius: 5,
-                              offset: const Offset(0, 3),
+                              offset: const Offset(1, 3),
                             ),
                           ],
                         ),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: CachedNetworkImage(
-                            imageUrl: HelperFunctions.fixGoogleDriveUrl2(
-                              state.categories[index]['imageUrl'] ??
-                                  "https://drive.google.com/file/d/1_r-RddCnTVuo-8flYAfvWoRZdycyahKZ/view?usp=sharing",
-                            ),
+                          // child: CachedNetworkImage(
+                          //   imageUrl: HelperFunctions.fixGoogleDriveUrl2(
+                          //     state.categories[index]['imageUrl'] ??
+                          //         "https://drive.google.com/file/d/1_r-RddCnTVuo-8flYAfvWoRZdycyahKZ/view?usp=sharing",
+                          //   ),
+                          //   fit: BoxFit.contain,
+                          //   errorWidget: (context, url, error) => const Icon(
+                          //     Icons.error,
+                          //     color: Colors.red,
+                          //   ),
+                          // ),
+                          child: Image.asset(
+                            state.categories[index]['imageUrl'] ??
+                                "assets/images/placeholder.png",
                             fit: BoxFit.contain,
-                            errorWidget: (context, url, error) => const Icon(
-                              Icons.error,
-                              color: Colors.red,
-                            ),
                           ),
                         ),
                       ),
                     ),
                     SizedBox(height: 8.h),
                     Text(
-                      state.categories[index]['name'] ?? "مش عارف منين",
+                      state.categories[index]['name'] ?? "مجهول",
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       textAlign: TextAlign.center,

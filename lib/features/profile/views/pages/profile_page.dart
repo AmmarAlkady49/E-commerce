@@ -18,7 +18,6 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final profileCubit = BlocProvider.of<ProfileCubit>(context);
     // final authServices = AuthServicesImpl();
-    final homeServices = HomePageServicesImpl();
     return Scaffold(
       appBar: AppBarDefaultTheme(
           title: S.of(context).settings, needLeadingButton: false),
@@ -100,7 +99,7 @@ class ProfilePage extends StatelessWidget {
                       SizedBox(height: 12.h),
                       MyListTile(
                           onTap: () {
-                            homeServices.getAllCategories();
+                            // homeServices.getAllCategories();
                           },
                           title: S.of(context).notification,
                           leadingIcon: Iconsax.notification),

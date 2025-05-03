@@ -48,6 +48,7 @@ flutter:
     - assets/images/auth/
     - assets/images/other/
     - assets/images/home_page/
+    - assets/images/categories/
   fonts:
     - family: rubic
       fonts:

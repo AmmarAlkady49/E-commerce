@@ -31,6 +31,12 @@ class _SearchSectionForFavoritePageState
         ],
       ),
       child: TextFormField(
+        style: FontHelper.fontText(
+          context: context,
+          size: 14.sp,
+          weight: FontWeight.w600,
+          color: Colors.black87,
+        ),
         decoration: InputDecoration(
           hintText: S.of(context).search_in_your_favorite,
           hintStyle: FontHelper.fontText(
@@ -38,7 +44,6 @@ class _SearchSectionForFavoritePageState
               size: 14.sp,
               weight: FontWeight.w600,
               color: Colors.black54),
-          // prefixIcon: Icon(Iconsax.search_normal_1, color: Colors.black87),
           suffixIcon: IconButton(
               onPressed: () {},
               icon: Icon(Iconsax.search_normal_1, color: Colors.black87)),
