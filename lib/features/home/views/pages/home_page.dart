@@ -19,14 +19,13 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     context.read<HomeCubit>().getUserData();
     context.read<HomeCubit>().getAllProducts();
-    BlocProvider.of<HomeCubit>(context).getAllCategories();
+    // BlocProvider.of<HomeCubit>(context).getAllCategories();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      // appBar: HomeAppBar(),
       body: SafeArea(
         child: NestedScrollView(
           controller: ScrollController(),

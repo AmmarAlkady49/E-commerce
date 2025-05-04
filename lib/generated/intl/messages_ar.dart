@@ -194,6 +194,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "looks_like_you_havent_added": MessageLookupByLibrary.simpleMessage(
       "يبدو انك لم تقم بإضافة اي منتجات بعد",
     ),
+    "lost_connection": MessageLookupByLibrary.simpleMessage(
+      "يبدو إن الاتصال بالإنترنت غير متوفر حاليًا 📡، يُرجى المحاولة مرة أخرى بعد استعادة الاتصال.",
+    ),
     "lowest_price": MessageLookupByLibrary.simpleMessage("الاقل سعرا"),
     "make_sure_to_choose_your_location": MessageLookupByLibrary.simpleMessage(
       "أدخل تفاصيل عنوانك لضمان وصول الطلب إلى باب منزلك",

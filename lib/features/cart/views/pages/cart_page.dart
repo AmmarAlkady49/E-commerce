@@ -127,10 +127,19 @@ class _CartPageState extends State<CartPage> {
       ),
       body: BlocConsumer<CartCubit, CartState>(
         listenWhen: (previous, current) =>
-            current is CartItemUpdated || current is CartItemDeleted,
+            current is CartItemUpdated ||
+            current is CartItemDeleted ||
+            current is CartItemDeletedError ||
+            current is CartItemUpdatedError ||
+            current is CartError,
         listener: (context, state) {
           if (state is CartItemUpdated || state is CartItemDeleted) {
             cartCubit.getCartItems();
+          }
+          if (state is CartItemUpdatedError ||
+              state is CartItemDeletedError ||
+              state is CartError) {
+            cartCubit.hasFetchedCart = false;
           }
         },
         bloc: cartCubit,

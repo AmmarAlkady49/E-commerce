@@ -55,14 +55,42 @@ class CheckoutButtonBottom extends StatelessWidget {
                 ),
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 3.h),
-                  child: Text(
-                    // '\$ ${totalPrice.reduce((a, b) => a + b).toStringAsFixed(1)}',
-                    '\$ ${cartItems.subAmount}',
-                    style: FontHelper.fontText(
-                      context: context,
-                      size: 14.sp,
-                      weight: FontWeight.w700,
-                      color: Colors.white,
+                  child: Text.rich(
+                    TextSpan(
+                      children: [
+                        TextSpan(
+                          text: "${cartItems.subAmount}",
+                          style: FontHelper.fontText(
+                            size: 15.sp,
+                            shadows: [
+                              const Shadow(
+                                color: Colors.black12,
+                                blurRadius: 5,
+                                offset: Offset(0, 3),
+                              ),
+                            ],
+                            weight: FontWeight.w700,
+                            color: Colors.white,
+                            context: context,
+                          ),
+                        ),
+                        TextSpan(
+                          text: " ${S.of(context).egyption_currency} ",
+                          style: FontHelper.fontText(
+                            size: 12.sp,
+                            shadows: [
+                              const Shadow(
+                                color: Colors.black12,
+                                blurRadius: 5,
+                                offset: Offset(0, 3),
+                              ),
+                            ],
+                            weight: FontWeight.w700,
+                            color: Colors.white,
+                            context: context,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),

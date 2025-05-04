@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:e_commerce_graduation/core/utils/themes/app_bar_default_theme.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
 import 'package:e_commerce_graduation/features/favorites/cubit/favorites_cubit.dart';
@@ -34,12 +36,19 @@ class _FavoritesPageState extends State<FavoritesPage> {
       listenWhen: (previous, current) =>
           current is SetFavoriteItemLoaded ||
           current is UpdateFavoritePage ||
-          current is FavoriteProductsError,
+          current is FavoriteProductsError ||
+          current is AddProductToCartError,
       listener: (context, state) {
         if (state is SetFavoriteItemLoaded || state is UpdateFavoritePage) {
           favoritesCubit.getFavoriteProducts(context);
         }
+        if (state is AddProductToCartError) {
+          log(state.message);
+          favoritesCubit.hasFetchedFavorites = false;
+        }
         if (state is FavoriteProductsError) {
+          log(state.message);
+          favoritesCubit.hasFetchedFavorites = false;
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text(
               state.message,

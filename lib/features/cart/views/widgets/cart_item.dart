@@ -96,7 +96,8 @@ class CartItem extends StatelessWidget {
                             overflow: TextOverflow.ellipsis,
                           ),
                           Text(
-                            // cartItem.category!,
+                            // cartItem.!,
+                            // S.of(context).shop_by_category,
                             "category",
                             style: FontHelper.fontText(
                               size: 14.sp,

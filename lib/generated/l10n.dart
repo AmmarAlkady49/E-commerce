@@ -1799,6 +1799,16 @@ class S {
       args: [],
     );
   }
+
+  /// `It seems that the internet connection is currently unavailable 📡. Please try again once the connection is restored.`
+  String get lost_connection {
+    return Intl.message(
+      'It seems that the internet connection is currently unavailable 📡. Please try again once the connection is restored.',
+      name: 'lost_connection',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
