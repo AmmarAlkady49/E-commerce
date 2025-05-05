@@ -1,3 +1,4 @@
+import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
 import 'package:e_commerce_graduation/features/home/home_bubit/cubit/home_cubit.dart';
 import 'package:e_commerce_graduation/features/search/views/widgets/category_list_view_widget.dart';
@@ -183,9 +184,14 @@ class CustomeSearch extends SearchDelegate {
                                   mainAxisSpacing: 15),
                           physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
-                          itemBuilder: (context, index) => ProductSearchItem(
-                            product: products[index],
-                            homeCubit: homeCubit,
+                          itemBuilder: (context, index) => InkWell(
+                            onTap: () => Navigator.pushNamed(
+                                context, AppRoutes.productPage,
+                                arguments: products[index]),
+                            child: ProductSearchItem(
+                              product: products[index],
+                              homeCubit: homeCubit,
+                            ),
                           ),
                           itemCount: products.length,
                         ),

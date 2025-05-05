@@ -220,24 +220,6 @@ class HomeCubit extends Cubit<HomeState> {
     emit(SearchRecentUpdated(reacentSearches));
   }
 
-  void getAllCategories() async {
-    try {
-      categoriesList = await homeServices.getAllCategories();
-
-      categoriesList.removeWhere(
-          (category) => category.name.toLowerCase() == "no category");
-
-      categoriesList.insert(
-          0, CategoryModel(categoryCode: '', name: "كل الفئات"));
-
-      emit(LoadedCategories(categoriesList));
-      log(categoriesList.length.toString());
-    } catch (e) {
-      log(" error in get all categories: ${e.toString()}");
-      emit(ErrorCategories(e.toString()));
-    }
-  }
-
   Future<void> getProductsByCategory(String categoryCode,
       {String? query}) async {
     emit(FilterLoading());
@@ -291,10 +273,33 @@ class HomeCubit extends Cubit<HomeState> {
     emit(FiltersReset());
   }
 
+  //   void getAllCategories() async {
+  //   try {
+  //     categoriesList = await homeServices.getAllCategories();
+
+  //     categoriesList.removeWhere(
+  //         (category) => category.name.toLowerCase() == "no category");
+
+  //     categoriesList.insert(
+  //         0, CategoryModel(categoryCode: '', name: "كل الفئات"));
+
+  //     emit(LoadedCategories(categoriesList));
+  //     log(categoriesList.length.toString());
+  //   } catch (e) {
+  //     log(" error in get all categories: ${e.toString()}");
+  //     emit(ErrorCategories(e.toString()));
+  //   }
+  // }
+
   void getAllCategoriesForHomePage() async {
     emit(GetAllCategoriesForHomePageLoading());
     try {
       categoriesList = await homeServices.getAllCategories();
+      categoriesList.removeWhere(
+          (category) => category.name.toLowerCase() == "no category");
+
+      categoriesList.insert(
+          0, CategoryModel(categoryCode: '', name: "كل الفئات"));
 
       final returnedCategoriesList = categoriesList
           .map((category) =>
@@ -302,15 +307,15 @@ class HomeCubit extends Cubit<HomeState> {
           .where((categoryMap) => categoryMap.isNotEmpty)
           .toList();
 
-      final categoryToMove = 'اخري';
-      final index = returnedCategoriesList.indexWhere(
-        (category) => category['name'] == categoryToMove,
-      );
+      // final categoryToMove = 'اخري';
+      // final index = returnedCategoriesList.indexWhere(
+      //   (category) => category['name'] == categoryToMove,
+      // );
 
-      if (index != -1) {
-        final movedCategory = returnedCategoriesList.removeAt(index);
-        returnedCategoriesList.add(movedCategory);
-      }
+      // if (index != -1) {
+      //   final movedCategory = returnedCategoriesList.removeAt(index);
+      //   returnedCategoriesList.add(movedCategory);
+      // }
 
       emit(GetAllCategoriesForHomePage(returnedCategoriesList));
     } catch (e) {

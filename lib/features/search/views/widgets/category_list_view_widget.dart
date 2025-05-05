@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
 import 'package:e_commerce_graduation/features/home/home_bubit/cubit/home_cubit.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +25,7 @@ class _CategoryListViewWidgetState extends State<CategoryListViewWidget> {
   @override
   Widget build(BuildContext context) {
     final categoriesList = context.read<HomeCubit>().categoriesList;
+    log(categoriesList.first.name);
     return Container(
       height: MediaQuery.of(context).size.height * 0.065,
       padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 6),

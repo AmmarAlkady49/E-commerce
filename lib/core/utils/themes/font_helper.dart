@@ -17,7 +17,8 @@ class FontHelper {
       shadows: shadows,
       fontStyle: isItalic == true ? FontStyle.italic : null,
       fontFamily:
-          Localizations.localeOf(context).languageCode == 'en' ? null : 'cairo',
+          // Localizations.localeOf(context).languageCode == 'en' ? null : 'cairo',
+          'cairo',
       decoration: decoration,
       decorationColor: Colors.white,
       decorationStyle: TextDecorationStyle.solid,

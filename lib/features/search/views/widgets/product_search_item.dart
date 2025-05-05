@@ -51,7 +51,12 @@ class ProductSearchItem extends StatelessWidget {
                         fit: BoxFit.contain,
                         height: 140.h,
                         width: double.infinity,
-                      )
+                        errorWidget: (context, url, error) => Image.asset(
+                              'assets/images/home_page/no_image_placeholder.png',
+                              fit: BoxFit.contain,
+                              height: 140.h,
+                              width: double.infinity,
+                            ))
                     : Image.asset(
                         'assets/images/home_page/no_image_placeholder.png',
                         fit: BoxFit.contain,
@@ -75,7 +80,6 @@ class ProductSearchItem extends StatelessWidget {
                     if (state is SetFavoriteLoading) {
                       return CupertinoActivityIndicator(color: Colors.black);
                     }
-
                     bool isFav = state is SetFavoriteSuccess
                         ? state.isFavorite
                         : product.isFavorite ?? false;
@@ -85,9 +89,20 @@ class ProductSearchItem extends StatelessWidget {
                         homeCubit.setFavortie(product.productID.toString());
                       },
                       borderRadius: BorderRadius.circular(13.r),
-                      child: Icon(
-                        isFav ? Icons.favorite : CupertinoIcons.heart,
-                        color: isFav ? Colors.red.shade600 : Colors.black87,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.circle,
+                          border: Border.all(color: Colors.black26),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(3.0),
+                          child: Icon(
+                            isFav ? Icons.favorite : CupertinoIcons.heart,
+                            color: isFav ? Colors.red.shade600 : Colors.black87,
+                            size: 20.sp,
+                          ),
+                        ),
                       ),
                     );
                   },
@@ -108,6 +123,16 @@ class ProductSearchItem extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
           ),
           SizedBox(height: 4.h),
+          Text(
+            product.categoryName ?? 'other',
+            textAlign: TextAlign.center,
+            style: FontHelper.fontText(
+                context: context,
+                size: 12.sp,
+                weight: FontWeight.w600,
+                color: Colors.black45),
+          ),
+          const SizedBox(height: 4),
           Text(
             '${product.price} ${S.of(context).egyption_currency}',
             style: FontHelper.fontText(
