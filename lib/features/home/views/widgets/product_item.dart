@@ -3,6 +3,7 @@ import 'package:e_commerce_graduation/core/utils/helper_functions.dart';
 import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
 import 'package:e_commerce_graduation/core/models/product_response.dart';
+import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
 import 'package:e_commerce_graduation/features/home/home_bubit/cubit/home_cubit.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:flutter/cupertino.dart';
@@ -57,45 +58,42 @@ class ProductItem extends StatelessWidget {
           children: [
             Column(
               children: [
-                Container(
+                SizedBox(
                   height: 125.h,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Colors.grey.shade100,
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(12.r),
-                        topRight: Radius.circular(12.r)),
-                    border: Border.all(color: Colors.grey.shade200),
-                  ),
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: product.photos != null && product.photos!.isNotEmpty
-                        ? CachedNetworkImage(
-                            imageUrl: HelperFunctions.fixGoogleDriveUrl(
-                                product.photos!.first.imageURL!),
-                            fit: BoxFit.contain,
-                            height: 140.h,
-                            width: double.infinity,
-                          )
-                        : Image.asset(
-                            'assets/images/home_page/no_image_placeholder.png',
-                            fit: BoxFit.contain,
-                            height: 140.h,
-                            width: double.infinity,
-                          ),
-                  ),
+                      padding: const EdgeInsets.all(8.0),
+                      child: product.photos!.isEmpty || product.photos == null
+                          ? Image.asset(
+                              'assets/images/home_page/no_image_placeholder.png',
+                              fit: BoxFit.contain,
+                              height: 140.h,
+                              width: double.infinity,
+                            )
+                          : CachedNetworkImage(
+                              imageUrl: HelperFunctions.fixGoogleDriveUrl(
+                                  product.photos!.first.imageURL!),
+                              errorWidget: (context, url, error) => Image.asset(
+                                'assets/images/home_page/no_image_placeholder.png',
+                                fit: BoxFit.contain,
+                                height: 140.h,
+                                width: double.infinity,
+                              ),
+                              fit: BoxFit.contain,
+                              height: 140.h,
+                              width: double.infinity,
+                            )),
                 ),
-                SizedBox(height: 4.h),
+                SizedBox(height: 6.h),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 8.w),
                   child: Text(
                     textAlign: TextAlign.center,
-                    textDirection: TextDirection.ltr,
+                    textDirection: TextDirection.rtl,
                     product.name ?? 'Item not found',
                     style: FontHelper.fontText(
                         context: context,
                         size: 14.sp,
-                        weight: FontWeight.w600,
+                        weight: FontWeight.w700,
                         color: Colors.black),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
@@ -111,22 +109,21 @@ class ProductItem extends StatelessWidget {
                       weight: FontWeight.w600,
                       color: Colors.black45),
                 ),
-                const SizedBox(height: 2),
+                const SizedBox(height: 4),
                 Text(
                   '${product.price} ${S.of(context).egyption_currency}',
                   style: FontHelper.fontText(
                     context: context,
                     size: 16.sp,
-                    weight: FontWeight.w700,
-                    color: Colors.green.shade700,
-                    // color: Colors.red.shade600,
+                    weight: FontWeight.w800,
+                    color: MyColor.kellyGreen3,
                   ),
                 ),
               ],
             ),
             Positioned(
-                top: 8.h,
-                right: 8.w,
+                top: 10.h,
+                right: 10.w,
                 child: BlocBuilder<HomeCubit, HomeState>(
                   bloc: homeCubit,
                   buildWhen: (previous, current) =>

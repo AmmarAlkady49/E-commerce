@@ -18,11 +18,18 @@ class DeliveryMethodSelector extends StatelessWidget {
             context.read<OrderCubit>().selectedDeliveryMethod;
 
         return Container(
-          padding: EdgeInsets.all(12.w),
+          padding: const EdgeInsets.all(12),
+          margin: EdgeInsets.symmetric(horizontal: 12.w),
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(12.r),
-            boxShadow: [BoxShadow(color: Colors.grey.shade300, blurRadius: 5)],
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withValues(alpha: 0.5),
+                blurRadius: 5,
+                spreadRadius: 1,
+              ),
+            ],
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -32,7 +39,7 @@ class DeliveryMethodSelector extends StatelessWidget {
                 style: FontHelper.fontText(
                   context: context,
                   size: 16.sp,
-                  weight: FontWeight.w600,
+                  weight: FontWeight.w700,
                   color: Colors.black,
                 ),
               ),

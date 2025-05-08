@@ -1,4 +1,5 @@
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
+import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,8 @@ class AddToCartButton extends StatelessWidget {
             style: ButtonStyle(
               backgroundColor: WidgetStateProperty.all(status == "added"
                   ? Colors.grey.shade300
-                  : Color.fromARGB(255, 52, 110, 225)),
+                  // : Color.fromARGB(255, 52, 110, 225)),
+                  : MyColor.kellyGreen3),
               shape: WidgetStateProperty.all(
                 RoundedRectangleBorder(
                   side: BorderSide(color: Colors.black12, width: 1.0),
@@ -33,7 +35,8 @@ class AddToCartButton extends StatelessWidget {
                 ),
               ),
               elevation: WidgetStateProperty.all(1.0),
-              overlayColor: WidgetStateProperty.all(Colors.blue.withAlpha(100)),
+              overlayColor:
+                  WidgetStateProperty.all(MyColor.kellyGreen3.withAlpha(100)),
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -85,7 +88,8 @@ class AddToCartButton extends StatelessWidget {
                 ),
               ),
               elevation: WidgetStateProperty.all(2),
-              overlayColor: WidgetStateProperty.all(Colors.blue.withAlpha(100)),
+              overlayColor:
+                  WidgetStateProperty.all(MyColor.kellyGreen3.withAlpha(100)),
             ),
           );
   }

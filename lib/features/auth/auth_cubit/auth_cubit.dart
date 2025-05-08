@@ -89,12 +89,13 @@ class AuthCubit extends Cubit<AuthState> {
     // if (user != null) {
     //   emit(AuthSuccess());
     // }
-    
+
     final isLogin = await isUserLogin();
     log(" isLogin ${isLogin.toString()}");
     if (isLogin) {
       emit(AuthSuccess());
-      log("AuthSuccess");
+    } else {
+      emit(AuthInitial());
     }
   }
 

@@ -1,6 +1,7 @@
 import 'package:e_commerce_graduation/core/utils/helper_functions.dart';
 import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
+import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
 import 'package:e_commerce_graduation/features/cart/model/cart_response_body.dart';
 import 'package:e_commerce_graduation/features/order/cubit/order_cubit.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
@@ -49,8 +50,20 @@ class PayButton extends StatelessWidget {
           current is CreatedOrderWithPayment ||
           current is CreatingOrderWithPaymentError,
       builder: (context, state) {
-        return SizedBox(
+        return Container(
           height: 48.h,
+          margin: EdgeInsets.symmetric(horizontal: 12.w),
+          decoration: BoxDecoration(
+            // color: Colors.white,
+            borderRadius: BorderRadius.circular(12.r),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withValues(alpha: 0.5),
+                blurRadius: 5,
+                spreadRadius: 1,
+              ),
+            ],
+          ),
           child: ElevatedButton(
             onPressed: () {
               // Navigator.of(context).pushNamed(AppRoutes.confirmOrderPage);
@@ -63,13 +76,13 @@ class PayButton extends StatelessWidget {
                 RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(50.r),
                   side: BorderSide(
-                    color: Color(0xff1D61E7).withAlpha(1000),
+                    color: MyColor.kellyGreen3.withAlpha(1000),
                     width: 1.0,
                   ),
                 ),
               ),
               backgroundColor: WidgetStateProperty.all(
-                  Color(0xff1D61E7).withValues(alpha: 0.8)),
+                  MyColor.kellyGreen3.withValues(alpha: 0.8)),
               elevation: WidgetStateProperty.all(4.0),
             ),
             child: Row(

@@ -1,5 +1,6 @@
 import 'package:e_commerce_graduation/core/models/product_response.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
+import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,7 +21,7 @@ class RateingSection extends StatelessWidget {
         //     : MainAxisSize.max,
         children: product.rating == null
             ? [
-                Icon(Icons.star, color: Colors.green, size: 18.sp),
+                Icon(Icons.star, color: MyColor.kellyGreen3, size: 18.sp),
                 SizedBox(width: 4.w),
                 Text(
                   S.of(context).no_reatings,
@@ -34,7 +35,7 @@ class RateingSection extends StatelessWidget {
               ]
             : Localizations.localeOf(context).languageCode == 'ar'
                 ? [
-                    Icon(Icons.star, color: Colors.green, size: 18.sp),
+                    Icon(Icons.star, color: MyColor.kellyGreen3, size: 18.sp),
                     SizedBox(width: 4.w),
                     Text(
                       product.rating.toString(),

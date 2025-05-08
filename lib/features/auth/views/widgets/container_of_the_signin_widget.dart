@@ -1,6 +1,7 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
+import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
 import 'package:e_commerce_graduation/core/widgets/my_button1.dart';
 import 'package:e_commerce_graduation/core/widgets/my_button2.dart';
 import 'package:e_commerce_graduation/core/widgets/my_or_devider.dart';
@@ -53,7 +54,7 @@ class _ContainerOfTheSigninWidgetState
             offset: const Offset(0, 0),
           ),
         ],
-        color: Colors.white,
+        color: MyColor.seasalt,
         borderRadius: BorderRadius.circular(20),
       ),
       child: Padding(
@@ -232,7 +233,7 @@ class _ContainerOfTheSigninWidgetState
                           style: FontHelper.fontText(
                               size: 14.sp,
                               weight: FontWeight.w700,
-                              color: Color(0xff1D61E7),
+                              color: MyColor.kellyGreen2,
                               context: context),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {

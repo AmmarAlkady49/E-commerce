@@ -38,6 +38,7 @@ class ProductSearchItem extends StatelessWidget {
           Stack(
             children: [
               Container(
+                height: 140.h,
                 decoration: BoxDecoration(
                   color: Colors.grey.shade100,
                   borderRadius: BorderRadius.circular(12.r),

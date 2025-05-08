@@ -1,4 +1,5 @@
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
+import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
 import 'package:e_commerce_graduation/features/favorites/cubit/favorites_cubit.dart';
 import 'package:e_commerce_graduation/features/favorites/model/favorite_item_model.dart';
 import 'package:e_commerce_graduation/features/favorites/views/widgets/favorite_product_item.dart';
@@ -30,16 +31,18 @@ class NotEmptyFavoriteProducts extends StatelessWidget {
               builder: (context, state) {
                 if (state is SearchFavoriteProductEmpty) {
                   return Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      SizedBox(height: 16.h),
                       Icon(Iconsax.close_circle,
-                          size: 50.sp, color: Colors.red.shade500),
+                          size: 50.sp, color: MyColor.poppy),
                       SizedBox(height: 4.h),
                       Text(
                         state.message,
                         style: FontHelper.fontText(
                             context: context,
                             size: 20.sp,
-                            weight: FontWeight.bold,
+                            weight: FontWeight.w700,
                             color: Colors.black87),
                       ),
                     ],

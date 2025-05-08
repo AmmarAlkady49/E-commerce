@@ -1,5 +1,6 @@
 import 'package:e_commerce_graduation/core/utils/helper_functions.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
+import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -40,8 +41,8 @@ class PriceText extends StatelessWidget {
                   offset: Offset(0, 3),
                 ),
               ],
-              weight: FontWeight.w800,
-              color: Color(0xff1D61E7),
+              weight: FontWeight.w700,
+              color: MyColor.kellyGreen3,
               context: context,
             ),
           ),

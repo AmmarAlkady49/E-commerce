@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:e_commerce_graduation/core/utils/themes/app_bar_default_theme.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
+import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
 import 'package:e_commerce_graduation/features/favorites/cubit/favorites_cubit.dart';
 import 'package:e_commerce_graduation/features/favorites/views/widgets/empty_favorite_products.dart';
 import 'package:e_commerce_graduation/features/favorites/views/widgets/not_empty_favorite_products.dart';
@@ -103,56 +104,56 @@ class _FavoritesPageState extends State<FavoritesPage> {
                                   context: context,
                                   size: 14.sp,
                                   weight: FontWeight.w600,
-                                  color: Colors.red.shade700)),
+                                  color: MyColor.poppy)),
                           onTap: () {
-                            Future.delayed(Duration(milliseconds: 200), () {
-                              showDialog(
-                                context: context,
-                                builder: (context) => AlertDialog(
-                                  title: Text(S.of(context).confirm_deletion,
+                            // Future.delayed(Duration(milliseconds: 200), () {
+                            showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                title: Text(S.of(context).confirm_deletion,
+                                    style: FontHelper.fontText(
+                                        context: context,
+                                        size: 18.sp,
+                                        weight: FontWeight.w700,
+                                        color: Colors.black87)),
+                                content: Text(S.of(context).are_you_sure,
+                                    style: FontHelper.fontText(
+                                        context: context,
+                                        size: 14.sp,
+                                        weight: FontWeight.w700,
+                                        color: Colors.black54)),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () => Navigator.pop(context),
+                                    child: Text(
+                                      S.of(context).cancel,
                                       style: FontHelper.fontText(
+                                          color: Colors.black,
                                           context: context,
-                                          size: 18.sp,
-                                          weight: FontWeight.w700,
-                                          color: Colors.black87)),
-                                  content: Text(S.of(context).are_you_sure,
+                                          size: 15.sp,
+                                          weight: FontWeight.w700),
+                                    ),
+                                  ),
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      favoritesCubit.clearFavorites();
+                                      Navigator.pop(context);
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                        backgroundColor: MyColor.poppy),
+                                    child: Text(
+                                      S.of(context).delete.toUpperCase(),
                                       style: FontHelper.fontText(
+                                          color: Colors.white,
                                           context: context,
-                                          size: 14.sp,
-                                          weight: FontWeight.w700,
-                                          color: Colors.black54)),
-                                  actions: [
-                                    TextButton(
-                                      onPressed: () => Navigator.pop(context),
-                                      child: Text(
-                                        S.of(context).cancel,
-                                        style: FontHelper.fontText(
-                                            color: Colors.black,
-                                            context: context,
-                                            size: 13.sp,
-                                            weight: FontWeight.w700),
-                                      ),
+                                          size: 15.sp,
+                                          weight: FontWeight.w700),
                                     ),
-                                    ElevatedButton(
-                                      onPressed: () {
-                                        favoritesCubit.clearFavorites();
-                                        Navigator.pop(context);
-                                      },
-                                      style: ElevatedButton.styleFrom(
-                                          backgroundColor: Colors.red),
-                                      child: Text(
-                                        S.of(context).delete.toUpperCase(),
-                                        style: FontHelper.fontText(
-                                            color: Colors.white,
-                                            context: context,
-                                            size: 13.sp,
-                                            weight: FontWeight.w700),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              );
-                            });
+                                  ),
+                                ],
+                              ),
+                            );
+                            // });
                           },
                         ),
                       ],
@@ -166,9 +167,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
               needLeadingButton: false,
             ),
             body: state is FavoriteProductsLoading
-                ? Center(
-                    child: CupertinoActivityIndicator(),
-                  )
+                ? Center(child: CupertinoActivityIndicator())
                 : state is FavoriteProductsLoaded
                     ? state.favoriteProducts.isEmpty
                         ? EmptyFavoriteProducts()

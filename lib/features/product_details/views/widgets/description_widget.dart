@@ -1,4 +1,5 @@
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
+import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -75,7 +76,7 @@ class _DescriptionWidgetState extends State<DescriptionWidget> {
               children: [
                 Icon(
                   isExpanded ? Icons.arrow_drop_up : Icons.arrow_drop_down,
-                  color: Color(0xff1D61E7),
+                  color: MyColor.kellyGreen3,
                 ),
                 Text(
                   isExpanded
@@ -83,7 +84,7 @@ class _DescriptionWidgetState extends State<DescriptionWidget> {
                       : S.of(context).show_more,
                   style: FontHelper.fontText(
                     size: 12.sp,
-                    color: Color(0xff1D61E7),
+                    color: MyColor.kellyGreen3,
                     context: context,
                     weight: FontWeight.w700,
                   ),

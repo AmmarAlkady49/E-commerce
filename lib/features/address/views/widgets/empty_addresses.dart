@@ -23,19 +23,19 @@ class EmptyAddresses extends StatelessWidget {
           children: [
             Icon(
               Iconsax.location,
-              size: 50.sp,
+              size: 55.sp,
               color: Colors.black,
             ),
-            SizedBox(height: 6.h),
+            SizedBox(height: 4.h),
             Text(
               S.of(context).no_saved_addresses,
               style: FontHelper.fontText(
-                  size: 20.sp,
+                  size: 22.sp,
                   weight: FontWeight.bold,
                   color: Colors.black,
                   context: context),
             ),
-            SizedBox(height: 6.h),
+            SizedBox(height: 4.h),
             Text(
               S.of(context).you_havenot_saved_any_address,
               textAlign: TextAlign.center,

@@ -1,4 +1,5 @@
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
+import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
 import 'package:e_commerce_graduation/features/cart/cubit/cart_cubit.dart';
 import 'package:e_commerce_graduation/features/favorites/cubit/favorites_cubit.dart';
 import 'package:e_commerce_graduation/features/favorites/model/favorite_item_model.dart';
@@ -54,7 +55,7 @@ class AddToCartButtonFavPage extends StatelessWidget {
                 state is AddProductToCartLoaded || productItem.isAddedToCart!
                     // ? Colors.green.withValues(alpha: 0.9)
                     ? Colors.grey.withValues(alpha: 0.9)
-                    : Color(0xff1D61E7).withValues(alpha: 0.8)),
+                    : MyColor.kellyGreen3),
             shape: WidgetStateProperty.all(
               RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.r),

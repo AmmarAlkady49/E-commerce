@@ -1,4 +1,5 @@
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
+import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconsax/iconsax.dart';
@@ -36,7 +37,7 @@ class _TextFormFieldChangePasswordState
           borderRadius: BorderRadius.circular(12.0.r),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Color(0xff1D61E7), width: 1.5),
+          borderSide: BorderSide(color: MyColor.kellyGreen, width: 1.5),
           borderRadius: BorderRadius.circular(12.0.r),
         ),
         errorBorder: OutlineInputBorder(

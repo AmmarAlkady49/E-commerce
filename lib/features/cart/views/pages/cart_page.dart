@@ -1,5 +1,6 @@
 import 'package:e_commerce_graduation/core/utils/themes/app_bar_default_theme.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
+import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
 import 'package:e_commerce_graduation/features/cart/cubit/cart_cubit.dart';
 import 'package:e_commerce_graduation/features/cart/views/widgets/empty_cart.dart';
 import 'package:e_commerce_graduation/features/cart/views/widgets/not_empty_cart.dart';
@@ -61,57 +62,58 @@ class _CartPageState extends State<CartPage> {
                               context: context,
                               size: 14.sp,
                               weight: FontWeight.w600,
-                              color: Colors.red.shade700)),
+                              color: MyColor.poppy)),
                       onTap: () {
-                        Future.delayed(Duration(milliseconds: 200), () {
-                          showDialog(
-                            context: context,
-                            builder: (context) => AlertDialog(
-                              title: Text(S.of(context).confirm_deletion,
+                        // Future.delayed(Duration(milliseconds: 200), () {
+                        showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                            title: Text(S.of(context).confirm_deletion,
+                                style: FontHelper.fontText(
+                                    context: context,
+                                    size: 18.sp,
+                                    weight: FontWeight.w700,
+                                    color: Colors.black87)),
+                            content: Text(S.of(context).are_you_sure2,
+                                style: FontHelper.fontText(
+                                    context: context,
+                                    size: 14.sp,
+                                    weight: FontWeight.w700,
+                                    color: Colors.black54)),
+                            actions: [
+                              TextButton(
+                                onPressed: () => Navigator.pop(context),
+                                child: Text(
+                                  S.of(context).cancel,
                                   style: FontHelper.fontText(
+                                      color: Colors.black,
                                       context: context,
-                                      size: 18.sp,
-                                      weight: FontWeight.w700,
-                                      color: Colors.black87)),
-                              content: Text(S.of(context).are_you_sure2,
-                                  style: FontHelper.fontText(
-                                      context: context,
-                                      size: 14.sp,
-                                      weight: FontWeight.w700,
-                                      color: Colors.black54)),
-                              actions: [
-                                TextButton(
-                                  onPressed: () => Navigator.pop(context),
-                                  child: Text(
-                                    S.of(context).cancel,
-                                    style: FontHelper.fontText(
-                                        color: Colors.black,
-                                        context: context,
-                                        size: 13.sp,
-                                        weight: FontWeight.w700),
-                                  ),
+                                      size: 15.sp,
+                                      weight: FontWeight.w700),
                                 ),
-                                ElevatedButton(
-                                  onPressed: () {
-                                    cartCubit.clearTheCart();
+                              ),
+                              ElevatedButton(
+                                onPressed: () {
+                                  cartCubit.clearTheCart();
 
-                                    Navigator.pop(context);
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.red),
-                                  child: Text(
-                                    S.of(context).delete.toUpperCase(),
-                                    style: FontHelper.fontText(
-                                        color: Colors.white,
-                                        context: context,
-                                        size: 13.sp,
-                                        weight: FontWeight.w700),
-                                  ),
+                                  Navigator.pop(context);
+                                },
+                                style: ElevatedButton.styleFrom(
+                                    backgroundColor: MyColor.poppy),
+                                child: Text(
+                                  S.of(context).delete.toUpperCase(),
+                                  style: FontHelper.fontText(
+                                      color: Colors.white,
+                                      context: context,
+                                      size: 15.sp,
+                                      weight: FontWeight.w700),
                                 ),
-                              ],
-                            ),
-                          );
-                        });
+                              ),
+                            ],
+                          ),
+                          // );
+                          // }
+                        );
                       },
                     ),
                   ],

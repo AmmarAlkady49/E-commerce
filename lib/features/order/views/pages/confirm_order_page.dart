@@ -1,4 +1,5 @@
 import 'package:e_commerce_graduation/core/utils/themes/app_bar_default_theme.dart';
+import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
 import 'package:e_commerce_graduation/features/order/cubit/order_cubit.dart';
 import 'package:e_commerce_graduation/features/order/views/widgets/address_container_widget.dart';
 import 'package:e_commerce_graduation/features/order/views/widgets/delivery_method_selector.dart';
@@ -31,13 +32,11 @@ class _ConfirmOrderPageState extends State<ConfirmOrderPage> {
   Widget build(BuildContext context) {
     final orderCubit = BlocProvider.of<OrderCubit>(context);
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 233, 233, 233),
+      backgroundColor: MyColor.seasalt,
       appBar: AppBarDefaultTheme(
-        title: S.of(context).payment_process,
-        needLeadingButton: true,
-      ),
+          title: S.of(context).payment_process, needLeadingButton: true),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 0.h),
+        padding: EdgeInsets.symmetric(horizontal: 0.w),
         child: BlocBuilder<OrderCubit, OrderState>(
           bloc: orderCubit,
           buildWhen: (previous, current) =>

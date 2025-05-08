@@ -80,41 +80,31 @@ class CustomAppBarProductDetails extends StatelessWidget {
       ],
       // backgroundColor: Colors.amber,
       // backgroundColor: Color(0xFFFDFEFF),
-      backgroundColor: Colors.grey.shade200,
+      backgroundColor: Colors.grey.shade300,
+      // backgroundColor: MyColor.white,
       flexibleSpace: FlexibleSpaceBar(
-        background: Stack(
-          fit: StackFit.expand,
-          children: [
-            Padding(
-              padding: EdgeInsets.only(top: 36.h, bottom: 18.h),
-              child: product.photos != null && product.photos!.isNotEmpty
-                  ? CachedNetworkImage(
-                      imageUrl: HelperFunctions.fixGoogleDriveUrl(
-                          product.photos!.first.imageURL!),
-                      fit: BoxFit.contain,
-                      height: 140.h,
-                      width: double.infinity,
-                    )
-                  : Image.asset(
-                      'assets/images/home_page/no_image_placeholder.png',
-                      fit: BoxFit.fitHeight,
-                      height: 100.h,
-                      // width: double.infinity,
-                    ),
-            ),
-            Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Colors.transparent,
-                    Colors.black26,
-                  ],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
+        background: Padding(
+          padding: EdgeInsets.only(top: 36.h, bottom: 18.h),
+          child: product.photos != null && product.photos!.isNotEmpty
+              ? CachedNetworkImage(
+                  imageUrl: HelperFunctions.fixGoogleDriveUrl(
+                      product.photos!.first.imageURL!),
+                  errorWidget: (context, url, error) => Image.asset(
+                    'assets/images/home_page/no_image_placeholder.png',
+                    fit: BoxFit.fitHeight,
+                    height: 100.h,
+                    // width: double.infinity,
+                  ),
+                  fit: BoxFit.contain,
+                  height: 140.h,
+                  width: double.infinity,
+                )
+              : Image.asset(
+                  'assets/images/home_page/no_image_placeholder.png',
+                  fit: BoxFit.fitHeight,
+                  height: 100.h,
+                  // width: double.infinity,
                 ),
-              ),
-            )
-          ],
         ),
       ),
     );

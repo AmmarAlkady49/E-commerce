@@ -1,4 +1,5 @@
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
+import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -23,22 +24,26 @@ class MyButton1 extends StatelessWidget {
       width: width,
       height: height,
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-            colors: isLoading == true
-                ? [
-                    const Color.fromARGB(255, 177, 177, 177),
-                    const Color.fromARGB(255, 91, 91, 91)
-                  ]
-                : [
-                    Color.fromARGB(255, 81, 138, 250),
-                    Color(0xff1D61E7),
-                  ],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withValues(alpha: 0.6),
+            spreadRadius: 1,
+            blurRadius: 5,
+            offset: const Offset(0, 5),
+          ),
+        ],
+        color: isLoading == true ? Colors.grey : MyColor.kellyGreen3,
         borderRadius: BorderRadius.circular(12),
       ),
       child: TextButton(
         onPressed: onTap,
+        style: ButtonStyle(
+          shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12.r),
+            ),
+          ),
+        ),
         child: Text(
           isLoading == true ? S.of(context).loading : buttonTitle,
           style: FontHelper.fontText(

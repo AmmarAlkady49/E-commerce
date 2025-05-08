@@ -28,6 +28,7 @@ class AddressContainerWidget extends StatelessWidget {
             if (state is GetAddressesSucess &&
                 state.addresses.address == "null") {
               return Container(
+                margin: EdgeInsets.symmetric(horizontal: 12.w),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(12.r),
@@ -51,7 +52,7 @@ class AddressContainerWidget extends StatelessWidget {
                           style: FontHelper.fontText(
                             context: context,
                             size: 16,
-                            weight: FontWeight.w700,
+                            weight: FontWeight.w800,
                             color: Colors.black,
                           ),
                         ),

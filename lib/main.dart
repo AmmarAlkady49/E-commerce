@@ -7,6 +7,7 @@ import 'package:e_commerce_graduation/features/favorites/cubit/favorites_cubit.d
 import 'package:e_commerce_graduation/features/home/home_bubit/cubit/home_cubit.dart';
 import 'package:e_commerce_graduation/features/profile/profile_cubit/cubit/profile_cubit.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
+import 'package:e_commerce_graduation/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,19 +15,26 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations(
-      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+
   SharedPreferences pref = await SharedPreferences.getInstance();
   String lang = pref.getString('lang') ?? 'ar';
-  bool rememberMe = pref.getBool("rememberMe") ?? false;
+  bool rememberMe = pref.getBool("rememberMe") ?? true;
+
   runApp(Phoenix(
-      child: MyApp(
-    lang: lang,
-    rememberMe: rememberMe,
-  )));
+    child: MyApp(lang: lang, rememberMe: rememberMe),
+  ));
+
+  // 👇 Move this here inside main
+  FlutterNativeSplash.remove();
 }
 
 class MyApp extends StatelessWidget {
@@ -65,39 +73,28 @@ class MyApp extends StatelessWidget {
             BlocProvider<HomeCubit>(
               create: (context) => HomeCubit(
                 favoritesCubit: context.read<FavoritesCubit>(),
-                // )..getAllProducts(),
               ),
             ),
           ],
           child: Builder(
             builder: (context) {
-              final authCubit = context.read<AuthCubit>();
-              return BlocBuilder<AuthCubit, AuthState>(
-                bloc: authCubit,
-                buildWhen: (previous, current) =>
-                    current is AuthSuccess || current is AuthInitial,
-                builder: (context, state) {
-                  return MaterialApp(
-                    title: AppConstants.appTitle,
-                    debugShowCheckedModeBanner: false,
-                    localizationsDelegates: [
-                      S.delegate,
-                      GlobalMaterialLocalizations.delegate,
-                      GlobalWidgetsLocalizations.delegate,
-                      GlobalCupertinoLocalizations.delegate,
-                    ],
-                    supportedLocales: S.delegate.supportedLocales,
-                    locale: Locale(lang),
-                    theme: ThemeData(
-                      colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-                      useMaterial3: true,
-                    ),
-                    initialRoute: (state is AuthSuccess && rememberMe)
-                        ? AppRoutes.bottomNavBar
-                        : AppRoutes.login,
-                    onGenerateRoute: AppRouter.onGenerateRoute,
-                  );
-                },
+              return MaterialApp(
+                title: AppConstants.appTitle,
+                debugShowCheckedModeBanner: false,
+                localizationsDelegates: [
+                  S.delegate,
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate,
+                ],
+                supportedLocales: S.delegate.supportedLocales,
+                locale: Locale(lang),
+                theme: ThemeData(
+                  colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+                  useMaterial3: true,
+                ),
+                home: SplashScreen(rememberMe: rememberMe),
+                onGenerateRoute: AppRouter.onGenerateRoute,
               );
             },
           ),

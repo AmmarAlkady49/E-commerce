@@ -1,3 +1,4 @@
+import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
 import 'package:e_commerce_graduation/features/search/views/widgets/main_filter_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,7 @@ class FilterIconButton extends StatelessWidget {
     return IconButton(
       style: ButtonStyle(
         backgroundColor:
-            WidgetStateProperty.all(Color(0xff1D61E7).withAlpha(200)),
+            WidgetStateProperty.all(MyColor.kellyGreen2.withAlpha(200)),
         shape: WidgetStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12.r),

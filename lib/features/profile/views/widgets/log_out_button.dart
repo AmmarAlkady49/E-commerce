@@ -1,4 +1,5 @@
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
+import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -26,14 +27,15 @@ class LogOutButton extends StatelessWidget {
       child: Row(
         children: [
           SizedBox(width: 8.w),
-          Icon(leadingIcon, size: 24.sp, color: Colors.red.shade700),
+          Icon(leadingIcon, size: 24.sp, color: MyColor.poppy),
           SizedBox(width: 12.w),
           Text(
             title,
             style: FontHelper.fontText(
                 size: 18.sp,
                 weight: FontWeight.w600,
-                color: Colors.red.shade700,context: context),
+                color: MyColor.poppy,
+                context: context),
           ),
         ],
       ),

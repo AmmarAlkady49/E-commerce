@@ -1,4 +1,5 @@
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
+import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -25,9 +26,9 @@ class DeliveryOptionTile extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(12.w),
         decoration: BoxDecoration(
-          color: isSelected ? Colors.blue.shade50 : Colors.white,
+          color: isSelected ? MyColor.kellyGreen3.withAlpha(50) : Colors.white,
           border: Border.all(
-            color: isSelected ? Colors.blue : Colors.grey.shade300,
+            color: isSelected ? MyColor.kellyGreen3 : Colors.grey.shade300,
             width: 2,
           ),
           borderRadius: BorderRadius.circular(12.r),
@@ -38,7 +39,7 @@ class DeliveryOptionTile extends StatelessWidget {
               isSelected
                   ? Icons.radio_button_checked
                   : Icons.radio_button_unchecked,
-              color: isSelected ? Colors.blue : Colors.grey,
+              color: isSelected ? MyColor.kellyGreen2 : Colors.grey,
             ),
             SizedBox(width: 12.w),
             Expanded(

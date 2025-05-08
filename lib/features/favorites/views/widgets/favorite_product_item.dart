@@ -2,8 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerce_graduation/core/utils/helper_functions.dart';
 import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
+import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
 import 'package:e_commerce_graduation/features/favorites/model/favorite_item_model.dart';
 import 'package:e_commerce_graduation/features/favorites/views/widgets/add_to_card_and_delete_from_favorite.dart';
+import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -32,7 +34,7 @@ class FavoriteProductItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(12.r),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withValues(alpha: 0.5),
+              color: Colors.grey.withValues(alpha: 0.4),
               spreadRadius: 1,
               blurRadius: 5,
               offset: const Offset(0, 3),
@@ -51,35 +53,42 @@ class FavoriteProductItem extends StatelessWidget {
                   width: double.infinity,
                   child: CachedNetworkImage(
                     imageUrl: HelperFunctions.fixGoogleDriveUrl(product.photo),
+                    errorWidget: (context, url, error) => Image.asset(
+                      'assets/images/home_page/no_image_placeholder.png',
+                      fit: BoxFit.contain,
+                      height: 140.h,
+                      width: double.infinity,
+                    ),
                     fit: BoxFit.contain,
                   ),
                 ),
               ),
-              SizedBox(height: 2.h),
+              SizedBox(height: 6.h),
               Text(
                 textAlign: TextAlign.center,
-                textDirection: TextDirection.ltr,
+                textDirection: TextDirection.rtl,
                 product.name,
                 style: FontHelper.fontText(
                     context: context,
-                    size: 14.sp,
-                    weight: FontWeight.w600,
+                    size: 13.sp,
+                    weight: FontWeight.w700,
                     color: Colors.black),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
-              SizedBox(height: 2.h),
+              SizedBox(height: 4.h),
               Text(
-                "${product.price.toString()}\$",
+                '${product.price} ${S.of(context).egyption_currency}',
                 style: FontHelper.fontText(
-                    context: context,
-                    size: 18.sp,
-                    weight: FontWeight.w800,
-                    color: Colors.red.shade600),
+                  context: context,
+                  size: 16.sp,
+                  weight: FontWeight.w800,
+                  color: MyColor.kellyGreen3,
+                ),
               ),
-              SizedBox(height: 2.h),
               Spacer(),
               AddToCardAndDeleteFromFavorite(productItem: product),
+              SizedBox(height: 4.h),
             ],
           ),
         ),

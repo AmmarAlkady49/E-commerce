@@ -1,9 +1,9 @@
-<svg width="375" height="397" viewBox="0 0 375 397" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg xmlns="http://www.w3.org/2000/svg" width="375" height="397" viewBox="0 0 375 397" fill="none" transform="matrix(1, 0, 0, 1, 0, 0)">
 <g clip-path="url(#clip0_42_1852)">
-<rect width="375" height="397" fill="#2567E8"/>
+<rect width="375" height="397" fill="#53b175"/>
 <g clip-path="url(#clip1_42_1852)">
-<mask id="mask0_42_1852" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="-321" y="-162" width="1040" height="692">
-<rect x="-321" y="-162" width="1040" height="692" fill="url(#paint0_diamond_42_1852)"/>
+<mask id="mask0_42_1852" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="-321" y="-162" width="1040" height="692" fill="#000000">
+<rect x="-321" y="-162" width="1040" height="692" fill="#ffffff"/>
 </mask>
 <g mask="url(#mask0_42_1852)">
 <g opacity="0.9">
@@ -96,46 +96,46 @@
 </g>
 <g opacity="0.1">
 <g clip-path="url(#clip2_42_1852)">
-<path d="M19.9103 -84.1694V778.817" stroke="white" stroke-width="0.654481"/>
-<path d="M61.7971 -84.1694V778.817" stroke="white" stroke-width="0.654481"/>
-<path d="M103.684 -84.1694V778.817" stroke="white" stroke-width="0.654481"/>
-<path d="M145.571 -84.1694V778.817" stroke="white" stroke-width="0.654481"/>
-<path d="M187.457 -84.1694V778.817" stroke="white" stroke-width="0.654481"/>
-<path d="M229.344 -84.1694V778.817" stroke="white" stroke-width="0.654481"/>
-<path d="M271.231 -84.1694V778.817" stroke="white" stroke-width="0.654481"/>
-<path d="M313.118 -84.1694V778.817" stroke="white" stroke-width="0.654481"/>
-<path d="M355.005 -84.1694V778.817" stroke="white" stroke-width="0.654481"/>
+<path d="M19.9103 -84.1694V778.817" stroke="white" stroke-width="0.654481" fill="#000000"/>
+<path d="M61.7971 -84.1694V778.817" stroke="white" stroke-width="0.654481" fill="#000000"/>
+<path d="M103.684 -84.1694V778.817" stroke="white" stroke-width="0.654481" fill="#000000"/>
+<path d="M145.571 -84.1694V778.817" stroke="white" stroke-width="0.654481" fill="#000000"/>
+<path d="M187.457 -84.1694V778.817" stroke="white" stroke-width="0.654481" fill="#000000"/>
+<path d="M229.344 -84.1694V778.817" stroke="white" stroke-width="0.654481" fill="#000000"/>
+<path d="M271.231 -84.1694V778.817" stroke="white" stroke-width="0.654481" fill="#000000"/>
+<path d="M313.118 -84.1694V778.817" stroke="white" stroke-width="0.654481" fill="#000000"/>
+<path d="M355.005 -84.1694V778.817" stroke="white" stroke-width="0.654481" fill="#000000"/>
 </g>
 <g clip-path="url(#clip3_42_1852)">
-<path d="M-315.184 41.4908L933 41.4908" stroke="white" stroke-width="0.654481"/>
-<path d="M-315.184 83.3776L933 83.3776" stroke="white" stroke-width="0.654481"/>
-<path d="M-315.184 125.264L933 125.264" stroke="white" stroke-width="0.654481"/>
-<path d="M-315.184 167.151L933 167.151" stroke="white" stroke-width="0.654481"/>
-<path d="M-315.184 209.038L933 209.038" stroke="white" stroke-width="0.654481"/>
-<path d="M-315.184 250.925L933 250.925" stroke="white" stroke-width="0.654481"/>
-<path d="M-315.184 292.811L933 292.811" stroke="white" stroke-width="0.654481"/>
-<path d="M-315.184 334.698L933 334.698" stroke="white" stroke-width="0.654481"/>
-<path d="M-315.184 376.585L933 376.585" stroke="white" stroke-width="0.654481"/>
+<path d="M-315.184 41.4908L933 41.4908" stroke="white" stroke-width="0.654481" fill="#000000"/>
+<path d="M-315.184 83.3776L933 83.3776" stroke="white" stroke-width="0.654481" fill="#000000"/>
+<path d="M-315.184 125.264L933 125.264" stroke="white" stroke-width="0.654481" fill="#000000"/>
+<path d="M-315.184 167.151L933 167.151" stroke="white" stroke-width="0.654481" fill="#000000"/>
+<path d="M-315.184 209.038L933 209.038" stroke="white" stroke-width="0.654481" fill="#000000"/>
+<path d="M-315.184 250.925L933 250.925" stroke="white" stroke-width="0.654481" fill="#000000"/>
+<path d="M-315.184 292.811L933 292.811" stroke="white" stroke-width="0.654481" fill="#000000"/>
+<path d="M-315.184 334.698L933 334.698" stroke="white" stroke-width="0.654481" fill="#000000"/>
+<path d="M-315.184 376.585L933 376.585" stroke="white" stroke-width="0.654481" fill="#000000"/>
 </g>
 </g>
 </g>
 </g>
 </g>
-<defs>
-<radialGradient id="paint0_diamond_42_1852" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(199 137.369) rotate(90) scale(376.812 876.393)">
-<stop stop-color="white"/>
-<stop offset="1" stop-color="#D9D9D9" stop-opacity="0"/>
+<defs fill="#000000">
+<radialGradient id="paint0_diamond_42_1852" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(199 137.369) rotate(90) scale(376.812 876.393)" fill="#000000">
+<stop stop-color="white" fill="#000000"/>
+<stop offset="1" stop-color="#D9D9D9" stop-opacity="0" fill="#000000"/>
 </radialGradient>
-<clipPath id="clip0_42_1852">
+<clipPath id="clip0_42_1852" fill="#000000">
 <rect width="375" height="397" fill="white"/>
 </clipPath>
-<clipPath id="clip1_42_1852">
+<clipPath id="clip1_42_1852" fill="#000000">
 <rect width="376" height="394" fill="white" transform="translate(-1 -7)"/>
 </clipPath>
-<clipPath id="clip2_42_1852">
+<clipPath id="clip2_42_1852" fill="#000000">
 <rect width="1248.18" height="806.841" fill="white" transform="translate(-315.184 -84.1694)"/>
 </clipPath>
-<clipPath id="clip3_42_1852">
+<clipPath id="clip3_42_1852" fill="#000000">
 <rect width="1248.18" height="806.841" fill="white" transform="translate(-315.184 -84.1694)"/>
 </clipPath>
 </defs>

@@ -1,4 +1,5 @@
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
+import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
 import 'package:e_commerce_graduation/features/address/cubit/address_cubit.dart';
 import 'package:e_commerce_graduation/features/address/models/address_model.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,7 @@ class AddressCardItem extends StatelessWidget {
         backgroundColor: Colors.white,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12.r),
-          side: BorderSide(color: Color(0xff1D61E7), width: 2),
+          side: BorderSide(color: MyColor.kellyGreen, width: 2),
         ),
       ),
       onPressed: () {
@@ -57,7 +58,7 @@ class AddressCardItem extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: Colors.white,
                     shape: BoxShape.circle,
-                    border: Border.all(color: Color(0xff1D61E7), width: 2.0),
+                    border: Border.all(color: MyColor.kellyGreen, width: 2.0),
                   ),
                   child: Image.asset(
                     'assets/images/other/location.png',

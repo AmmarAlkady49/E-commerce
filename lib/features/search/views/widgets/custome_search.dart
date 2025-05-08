@@ -1,5 +1,6 @@
 import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
+import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
 import 'package:e_commerce_graduation/features/home/home_bubit/cubit/home_cubit.dart';
 import 'package:e_commerce_graduation/features/search/views/widgets/category_list_view_widget.dart';
 import 'package:e_commerce_graduation/features/search/views/widgets/filter_icon_button.dart';
@@ -18,7 +19,7 @@ class CustomeSearch extends SearchDelegate {
   ThemeData appBarTheme(BuildContext context) {
     return ThemeData(
         appBarTheme: AppBarTheme(
-          backgroundColor: Color(0xff1D61E7),
+          backgroundColor: MyColor.kellyGreen3,
           elevation: 4,
           shadowColor: Colors.black,
           toolbarHeight: 57.h,
@@ -260,7 +261,7 @@ class CustomeSearch extends SearchDelegate {
                         style: FontHelper.fontText(
                           size: 12.sp,
                           weight: FontWeight.w700,
-                          color: Color(0xff1D61E7),
+                          color: MyColor.kellyGreen2,
                           context: context,
                         ),
                       ),

@@ -485,6 +485,11 @@ class S {
     return Intl.message('Category', name: 'category', desc: '', args: []);
   }
 
+  /// `Category`
+  String get category2 {
+    return Intl.message('Category', name: 'category2', desc: '', args: []);
+  }
+
   /// `General`
   String get general {
     return Intl.message('General', name: 'general', desc: '', args: []);

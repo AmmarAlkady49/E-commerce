@@ -35,15 +35,15 @@ class AddToCardAndDeleteFromFavorite extends StatelessWidget {
                 context: context,
                 builder: (BuildContext context) {
                   return Container(
-                      height: 80.h,
+                      height: 70.h,
                       width: double.infinity,
                       padding:
                           EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(12.r),
-                          topRight: Radius.circular(12.r),
+                          topLeft: Radius.circular(25.r),
+                          topRight: Radius.circular(25.r),
                         ),
                       ),
                       child: InkWell(

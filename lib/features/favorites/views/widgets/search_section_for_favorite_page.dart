@@ -6,16 +6,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconsax/iconsax.dart';
 
-class SearchSectionForFavoritePage extends StatefulWidget {
+class SearchSectionForFavoritePage extends StatelessWidget {
   const SearchSectionForFavoritePage({super.key});
 
-  @override
-  State<SearchSectionForFavoritePage> createState() =>
-      _SearchSectionForFavoritePageState();
-}
-
-class _SearchSectionForFavoritePageState
-    extends State<SearchSectionForFavoritePage> {
   @override
   Widget build(BuildContext context) {
     return Container(

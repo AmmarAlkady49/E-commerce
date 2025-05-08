@@ -1,4 +1,5 @@
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
+import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
 import 'package:e_commerce_graduation/features/home/views/widgets/grid_view_for_categories.dart';
 import 'package:e_commerce_graduation/features/home/views/widgets/image_slider.dart';
 import 'package:e_commerce_graduation/features/home/views/widgets/recommended_products.dart';
@@ -12,8 +13,7 @@ class HomeTap extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Colors.grey.shade200,
-      // backgroundColor: Color.fromARGB(255, 248, 244, 244),
+      backgroundColor: MyColor.white,
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 16.h),
@@ -22,27 +22,27 @@ class HomeTap extends StatelessWidget {
             children: [
               SizedBox(height: 8.h),
               ImageSlider(),
-              SizedBox(height: 12.h),
+              SizedBox(height: 8.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(S.of(context).shop_by_category,
                       style: FontHelper.fontText(
                           size: 17.sp,
-                          weight: FontWeight.w700,
+                          weight: FontWeight.w800,
                           color: Colors.black,
                           context: context)),
                   Text(S.of(context).see_all,
                       style: FontHelper.fontText(
                           size: 12.sp,
-                          weight: FontWeight.w700,
-                          color: Color(0xff1D61E7),
+                          weight: FontWeight.w800,
+                          color: MyColor.kellyGreen3,
                           context: context)),
                 ],
               ),
-              SizedBox(height: 12.h),
+              SizedBox(height: 8.h),
               GridViewForCategories(),
-              SizedBox(height: 12.h),
+              // SizedBox(height: 0.h),
               RecommendedProducts(),
             ],
           ),

@@ -1,5 +1,6 @@
 import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
+import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -38,7 +39,7 @@ class _RememberAndForgetLoginState extends State<RememberAndForgetLogin> {
           children: [
             Checkbox(
               value: isSelected,
-              activeColor: const Color(0xff1D61E7),
+              activeColor: MyColor.kellyGreen2,
               materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
               onChanged: (value) async {
                 setState(() {
@@ -55,7 +56,10 @@ class _RememberAndForgetLoginState extends State<RememberAndForgetLogin> {
             Text(
               S.of(context).remember_me,
               style: FontHelper.fontText(
-                  size: 13.sp, weight: FontWeight.w600, color: Colors.black,context: context),
+                  size: 13.sp,
+                  weight: FontWeight.w600,
+                  color: Colors.black,
+                  context: context),
             ),
           ],
         ),
@@ -69,7 +73,8 @@ class _RememberAndForgetLoginState extends State<RememberAndForgetLogin> {
             style: FontHelper.fontText(
                 size: 13.sp,
                 weight: FontWeight.w700,
-                color: const Color.fromARGB(255, 44, 103, 223),context: context),
+                color: MyColor.kellyGreen2,
+                context: context),
           ),
         ),
       ],

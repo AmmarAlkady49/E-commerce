@@ -18,14 +18,15 @@ class EmptyFavoriteProducts extends StatelessWidget {
             SizedBox(height: 30.h),
             Icon(
               CupertinoIcons.heart,
-              size: 50.sp,
+              size: 55.sp,
               color: Colors.black,
             ),
+            SizedBox(height: 4.h),
             Text(
               S.of(context).no_favorite_item,
               style: FontHelper.fontText(
                   context: context,
-                  size: 20.sp,
+                  size: 22.sp,
                   weight: FontWeight.bold,
                   color: Colors.black),
             ),

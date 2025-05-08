@@ -1,5 +1,6 @@
 import 'package:e_commerce_graduation/core/utils/themes/app_bar_default_theme.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
+import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
 import 'package:e_commerce_graduation/features/profile/profile_cubit/cubit/profile_cubit.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:flutter/cupertino.dart';
@@ -43,7 +44,7 @@ class AccountPage extends StatelessWidget {
                     child: Container(
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        border: Border.all(color: Colors.black, width: 1),
+                        border: Border.all(color: Colors.black45, width: 1),
                         color: Colors.grey.shade400,
                       ),
                       child: ClipPath(
@@ -64,10 +65,10 @@ class AccountPage extends StatelessWidget {
                       boxShadow: [
                         BoxShadow(
                             color: Colors.grey.shade400,
-                            blurRadius: 4,
-                            offset: const Offset(0, 2))
+                            blurRadius: 5,
+                            offset: const Offset(0, 3))
                       ],
-                      borderRadius: BorderRadius.circular(8.r),
+                      borderRadius: BorderRadius.circular(12.r),
                     ),
                     child: Column(
                       children: [
@@ -93,7 +94,7 @@ class AccountPage extends StatelessWidget {
                         Divider(),
                         InfoCard(
                           title: S.of(context).phone,
-                          data: "0${state.phone}",
+                          data: state.phone,
                           onTap: () {
                             showEditModalBottomSheet(
                                 context, S.of(context).phone, state.phone);
@@ -142,7 +143,7 @@ void showEditModalBottomSheet(
   showModalBottomSheet(
     context: context,
     isScrollControlled: true,
-    backgroundColor: Colors.white,
+    backgroundColor: MyColor.seasalt,
     builder: (context) {
       return Padding(
         padding: EdgeInsets.only(
@@ -151,7 +152,7 @@ void showEditModalBottomSheet(
         child: Container(
           padding: EdgeInsets.only(left: 16.w, right: 16.w, bottom: 32.h),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: MyColor.seasalt,
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(16.r),
               topRight: Radius.circular(16.r),
@@ -168,8 +169,8 @@ void showEditModalBottomSheet(
                   width: 50.w,
                   height: 4.h,
                   decoration: BoxDecoration(
-                      color: Color(0xff1D61E7),
-                      borderRadius: BorderRadius.circular(8.r)),
+                      color: MyColor.kellyGreen3,
+                      borderRadius: BorderRadius.circular(10.r)),
                 ),
               ),
               SizedBox(height: 12.h),
@@ -191,12 +192,12 @@ void showEditModalBottomSheet(
                     context: context),
                 decoration: InputDecoration(
                     border: OutlineInputBorder(
-                      borderSide: BorderSide(color: Color(0xff1D61E7)),
+                      borderSide: BorderSide(color: MyColor.kellyGreen3),
                       borderRadius: BorderRadius.circular(8.r),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderSide:
-                          BorderSide(color: Color(0xff1D61E7), width: 2),
+                          BorderSide(color: MyColor.kellyGreen3, width: 2),
                       borderRadius: BorderRadius.circular(8.r),
                     )),
               ),
@@ -230,9 +231,9 @@ void showEditModalBottomSheet(
                   },
                   style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.symmetric(vertical: 10.0.h),
-                    backgroundColor: Color(0xff1D61E7),
+                    backgroundColor: MyColor.kellyGreen2.withAlpha(200),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.r),
+                      borderRadius: BorderRadius.circular(10.r),
                     ),
                   ),
                   child: Text(
@@ -300,7 +301,7 @@ class InfoCard extends StatelessWidget {
               size: 32.sp,
               color: title == S.of(context).email
                   ? Colors.black38
-                  : Color(0xff1D61E7),
+                  : MyColor.kellyGreen3,
             ),
           ],
         ),

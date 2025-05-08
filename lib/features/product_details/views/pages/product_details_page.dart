@@ -38,7 +38,8 @@ class ProductDetailsPage extends StatelessWidget {
               final product = state.product;
               return Scaffold(
                   // backgroundColor: Colors.grey.shade200,
-                  backgroundColor: Colors.grey.shade400,
+                  backgroundColor: Colors.grey.shade300,
+                  // backgroundColor: MyColor.,
                   body: CustomScrollView(
                     slivers: [
                       CustomAppBarProductDetails(product: product),

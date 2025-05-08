@@ -1,4 +1,5 @@
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
+import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -21,10 +22,10 @@ class _ChooseLanguageButtonState extends State<ChooseLanguageButton> {
             backgroundColor: WidgetStateProperty.all(Colors.white),
             shape: WidgetStateProperty.all(RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12.r),
-                side:
-                    Localizations.localeOf(context).languageCode == widget.text
-                        ? const BorderSide(color: Color(0xff1D61E7), width: 1.5)
-                        : const BorderSide(color: Colors.black38, width: 1.0))),
+                side: Localizations.localeOf(context).languageCode ==
+                        widget.text
+                    ? const BorderSide(color: MyColor.kellyGreen3, width: 1.5)
+                    : const BorderSide(color: Colors.black38, width: 1.0))),
             padding: WidgetStateProperty.all(
                 EdgeInsets.symmetric(horizontal: 8.w, vertical: 10.h))),
         onPressed: () async {
@@ -49,7 +50,10 @@ class _ChooseLanguageButtonState extends State<ChooseLanguageButton> {
             Text(
               widget.text == 'en' ? 'English' : 'العربية',
               style: FontHelper.fontText(
-                  size: 20.sp, weight: FontWeight.w600, color: Colors.black,context: context),
+                  size: 20.sp,
+                  weight: FontWeight.w600,
+                  color: Colors.black,
+                  context: context),
             ),
             Spacer(),
             Icon(
@@ -58,7 +62,7 @@ class _ChooseLanguageButtonState extends State<ChooseLanguageButton> {
                   ? CupertinoIcons.checkmark_alt
                   : null,
               size: 28.sp,
-              color: Color(0xff1D61E7),
+              color: MyColor.kellyGreen3,
             ),
             SizedBox(width: 8.w),
           ],

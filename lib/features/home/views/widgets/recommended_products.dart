@@ -1,4 +1,5 @@
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
+import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
 import 'package:e_commerce_graduation/features/home/home_bubit/cubit/home_cubit.dart';
 import 'package:e_commerce_graduation/features/home/views/widgets/product_item.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
@@ -21,15 +22,15 @@ class RecommendedProducts extends StatelessWidget {
             Text(S.of(context).recommended_for_you,
                 style: FontHelper.fontText(
                     size: 17.sp,
-                    weight: FontWeight.w700,
+                    weight: FontWeight.w800,
                     color: Colors.black,
                     context: context)),
             const Spacer(),
             Text(S.of(context).see_all,
                 style: FontHelper.fontText(
                     size: 12.sp,
-                    weight: FontWeight.w700,
-                    color: Color(0xff1D61E7),
+                    weight: FontWeight.w800,
+                    color: MyColor.kellyGreen3,
                     context: context)),
           ],
         ),

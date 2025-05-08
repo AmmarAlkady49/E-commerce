@@ -1,5 +1,6 @@
 import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
+import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
 import 'package:e_commerce_graduation/core/widgets/my_button1.dart';
 import 'package:e_commerce_graduation/core/widgets/my_button2.dart';
 import 'package:e_commerce_graduation/core/widgets/my_or_devider.dart';
@@ -87,7 +88,7 @@ class _ContainerOfTheCreateAcountState
             offset: const Offset(0, 0),
           ),
         ],
-        color: Colors.white,
+        color: MyColor.seasalt,
         borderRadius: BorderRadius.circular(20),
       ),
       child: Padding(

@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerce_graduation/core/utils/helper_functions.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
+import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
 import 'package:e_commerce_graduation/features/cart/model/cart_item_model.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:flutter/material.dart';
@@ -13,9 +14,17 @@ class ListOfOderProducts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.symmetric(horizontal: 12.w),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12.r),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withValues(alpha: 0.5),
+            blurRadius: 5,
+            spreadRadius: 1,
+          ),
+        ],
       ),
       child: ListView.separated(
         shrinkWrap: true,
@@ -32,7 +41,7 @@ class ListOfOderProducts extends StatelessWidget {
               children: [
                 Container(
                   height: 80.h,
-                  width: 80.w,
+                  width: 90.w,
                   decoration: BoxDecoration(
                     color: Colors.grey.shade200,
                     borderRadius: BorderRadius.circular(12.r),
@@ -67,9 +76,11 @@ class ListOfOderProducts extends StatelessWidget {
                         cartItems[index].name,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.w600,
+                        style: FontHelper.fontText(
+                          context: context,
+                          size: 13.sp,
+                          weight: FontWeight.w700,
+                          color: Colors.black,
                         ),
                       ),
                       SizedBox(height: 4.h),
@@ -86,18 +97,20 @@ class ListOfOderProducts extends StatelessWidget {
                           text:
                               '${cartItems[index].price * cartItems[index].quantity} ',
                           style: FontHelper.fontText(
-                              context: context,
-                              size: 16.sp,
-                              weight: FontWeight.w700,
-                              color: Colors.green.shade600),
+                            context: context,
+                            size: 17.sp,
+                            weight: FontWeight.w800,
+                            color: MyColor.kellyGreen3,
+                          ),
                           children: [
                             TextSpan(
                               text: S.of(context).egyption_currency,
                               style: FontHelper.fontText(
-                                  context: context,
-                                  size: 16.sp,
-                                  weight: FontWeight.w700,
-                                  color: Colors.green.shade600),
+                                context: context,
+                                size: 16.sp,
+                                weight: FontWeight.w700,
+                                color: MyColor.kellyGreen3,
+                              ),
                             ),
                           ],
                         ),

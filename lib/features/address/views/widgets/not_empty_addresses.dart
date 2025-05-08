@@ -52,6 +52,7 @@ class NotEmptyAddresses extends StatelessWidget {
         SizedBox(height: 12.h),
         AddressCardItem(address: address),
         Spacer(),
+        // SizedBox(height: 32.h),
         MyButton1(
             width: double.infinity,
             height: 48.h,

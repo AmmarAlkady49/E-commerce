@@ -1,4 +1,5 @@
 import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
+import 'package:e_commerce_graduation/core/utils/themes/app_bar_default_theme.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
 import 'package:e_commerce_graduation/core/widgets/my_button1.dart';
 import 'package:e_commerce_graduation/core/widgets/my_text_form_field.dart';
@@ -18,30 +19,7 @@ class ForgetPasswordPage extends StatelessWidget {
     final authCubit = BlocProvider.of<AuthCubit>(context);
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xff1D61E7),
-        elevation: 4.0,
-        shadowColor: Colors.black,
-        toolbarHeight: 55.h,
-        centerTitle: true,
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back_ios_new_rounded,
-            color: Colors.white,
-          ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        title: Text(
-          S.of(context).forget_password2,
-          style: FontHelper.fontText(
-              size: 19.sp,
-              weight: FontWeight.w800,
-              color: Colors.white,
-              context: context),
-        ),
-      ),
+      appBar: AppBarDefaultTheme(title: S.of(context).forget_password2),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 24.0.h),
         child: Form(
@@ -59,9 +37,7 @@ class ForgetPasswordPage extends StatelessWidget {
                       color: Colors.black,
                       context: context),
                 ),
-                SizedBox(
-                  height: 6.h,
-                ),
+                SizedBox(height: 6.h),
                 Text(
                   S.of(context).enter_your_email_to_reset,
                   style: FontHelper.fontText(

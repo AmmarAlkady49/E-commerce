@@ -1,5 +1,6 @@
 import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
+import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
 import 'package:e_commerce_graduation/features/home/home_bubit/cubit/home_cubit.dart';
 import 'package:e_commerce_graduation/features/home/views/widgets/grid_view_for_categories_loading.dart';
 import 'package:flutter/material.dart';
@@ -102,7 +103,8 @@ class _GridViewForCategoriesState extends State<GridViewForCategories> {
                         height: 80.h,
                         width: 90.w,
                         decoration: BoxDecoration(
-                          color: Colors.grey.shade200,
+                          color: MyColor.seasalt,
+                          // color: Colors.grey.shade200,
                           // color: Color(0xff1D61E7).withAlpha(40),
                           // color: Color(0xff1D61E7).withValues(alpha: 0.3),
                           // color: Color(0xffE9DFC3),
@@ -119,20 +121,8 @@ class _GridViewForCategoriesState extends State<GridViewForCategories> {
                         ),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
-                          // child: CachedNetworkImage(
-                          //   imageUrl: HelperFunctions.fixGoogleDriveUrl2(
-                          //     state.categories[index]['imageUrl'] ??
-                          //         "https://drive.google.com/file/d/1_r-RddCnTVuo-8flYAfvWoRZdycyahKZ/view?usp=sharing",
-                          //   ),
-                          //   fit: BoxFit.contain,
-                          //   errorWidget: (context, url, error) => const Icon(
-                          //     Icons.error,
-                          //     color: Colors.red,
-                          //   ),
-                          // ),
                           child: Image.asset(
-                            state.categories[index]['imageUrl'] ??
-                                "assets/images/placeholder.png",
+                            state.categories[index]['imageUrl'] ?? "",
                             fit: BoxFit.contain,
                           ),
                         ),

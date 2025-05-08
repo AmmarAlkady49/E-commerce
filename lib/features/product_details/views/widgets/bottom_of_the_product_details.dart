@@ -1,5 +1,6 @@
 import 'package:e_commerce_graduation/core/models/product_response.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
+import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
 import 'package:e_commerce_graduation/features/product_details/cubit/product_details_cubit.dart';
 import 'package:e_commerce_graduation/features/product_details/views/widgets/add_to_cart_button.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
@@ -24,7 +25,8 @@ class BottomOfTheProductDetails extends StatelessWidget {
         return Container(
           height: 65.h,
           decoration: BoxDecoration(
-            color: Color(0xfffefffe),
+            // color: Color(0xfffefffe),
+            color: MyColor.white,
             // color: Colors.amber,
           ),
           child: Padding(
@@ -88,7 +90,7 @@ class BottomOfTheProductDetails extends StatelessWidget {
                               ),
                             ],
                             weight: FontWeight.w800,
-                            color: Color(0xff1D61E7),
+                            color: MyColor.kellyGreen3,
                             context: context,
                           ),
                         ),

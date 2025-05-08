@@ -34,10 +34,10 @@ class _NewAddressPageState extends State<NewAddressPage> {
   Widget build(BuildContext context) {
     final List<String> countries = [
       S.of(context).egypt,
-      S.of(context).palestine,
-      S.of(context).saudi_arabia,
-      S.of(context).qatar,
-      S.of(context).bahrain,
+      // S.of(context).palestine,
+      // S.of(context).saudi_arabia,
+      // S.of(context).qatar,
+      // S.of(context).bahrain,
     ];
     final List<String> cities = [
       S.of(context).alexandria,
@@ -61,14 +61,20 @@ class _NewAddressPageState extends State<NewAddressPage> {
               children: [
                 SizedBox(height: 16.h),
                 SvgPicture.asset('assets/images/other/map.svg',
-                    width: 100.w, height: 100.h),
+                    width: 75.w, height: 75.h),
                 SizedBox(height: 12.h),
                 Text(
                   S.of(context).choose_your_location,
                   style: FontHelper.fontText(
                     context: context,
-                    size: 23.sp,
+                    size: 24.sp,
                     weight: FontWeight.w600,
+                    shadows: const [
+                      Shadow(
+                          color: Colors.black12,
+                          blurRadius: 5,
+                          offset: Offset(0, 2))
+                    ],
                     color: Colors.black,
                   ),
                 ),
@@ -148,7 +154,7 @@ class _NewAddressPageState extends State<NewAddressPage> {
                         width: double.infinity,
                         height: 48.h,
                         buttonTitle: S.of(context).loading,
-                        onTap: () {},
+                        onTap: null,
                         isLoading: true,
                       );
                     }

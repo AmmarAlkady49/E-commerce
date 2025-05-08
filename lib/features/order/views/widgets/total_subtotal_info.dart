@@ -29,6 +29,7 @@ class TotalSubtotalInfo extends StatelessWidget {
       bloc: orderCubit,
       builder: (context, state) {
         return Container(
+          margin: EdgeInsets.symmetric(horizontal: 12.w),
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(12.r),

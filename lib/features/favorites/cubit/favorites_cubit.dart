@@ -68,6 +68,8 @@ class FavoritesCubit extends Cubit<FavoritesState> {
           message: S.of(context).no_matching_products));
     } else {
       emit(FavoriteProductsLoaded(favoriteProducts: filteredProducts));
+      //filteredProducts.clear();
+      hasFetchedFavorites = false;
     }
   }
 

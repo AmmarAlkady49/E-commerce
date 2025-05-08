@@ -1,11 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerce_graduation/core/utils/helper_functions.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
+import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
 import 'package:e_commerce_graduation/core/widgets/counter_container.dart';
 import 'package:e_commerce_graduation/features/cart/cubit/cart_cubit.dart';
 import 'package:e_commerce_graduation/features/cart/model/cart_item_model.dart';
 import 'package:e_commerce_graduation/features/cart/views/widgets/price_text.dart';
 import 'package:e_commerce_graduation/features/favorites/cubit/favorites_cubit.dart';
+import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,7 +26,8 @@ class CartItem extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 16.w),
       padding: EdgeInsets.all(8.r),
       decoration: BoxDecoration(
-        color: Colors.white,
+        borderRadius: BorderRadius.circular(12.r),
+        color: MyColor.white,
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withValues(alpha: 0.5),
@@ -32,7 +35,6 @@ class CartItem extends StatelessWidget {
             spreadRadius: 1,
           ),
         ],
-        borderRadius: BorderRadius.circular(12.r),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -49,7 +51,7 @@ class CartItem extends StatelessWidget {
                 border: Border.all(color: Colors.grey.shade300),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.withValues(alpha: 0.3),
+                    color: Colors.grey.withValues(alpha: 0.4),
                     blurRadius: 5,
                     spreadRadius: 1,
                   ),
@@ -98,10 +100,10 @@ class CartItem extends StatelessWidget {
                           Text(
                             // cartItem.!,
                             // S.of(context).shop_by_category,
-                            "category",
+                            "${S.of(context).category2} ...",
                             style: FontHelper.fontText(
                               size: 14.sp,
-                              weight: FontWeight.w500,
+                              weight: FontWeight.w600,
                               color: Colors.black45,
                               context: context,
                             ),
@@ -109,38 +111,34 @@ class CartItem extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 0.w),
-                      child: BlocBuilder<CartCubit, CartState>(
-                        bloc: cartCubit,
-                        buildWhen: (previous, current) =>
-                            current is CartItemUpdatedError ||
-                            (current is CartItemDeleting &&
-                                current.productId ==
-                                    cartItem.productId.toString()),
-                        builder: (context, state) {
-                          if (state is CartItemDeleting &&
-                              state.productId ==
-                                  cartItem.productId.toString()) {
-                            return CupertinoActivityIndicator(
-                                color: Colors.black54);
-                          }
-                          return InkWell(
-                            onTap: () {
-                              // cartCubit.deleteProductFromCart(
-                              //     cartItem.productId.toString(),);
-                              context.read<CartCubit>().deleteProductFromCart(
-                                  cartItem.productId.toString(),
-                                  context.read<FavoritesCubit>());
-                            },
-                            borderRadius: BorderRadius.circular(50.r),
-                            child: Icon(
-                              Icons.clear,
-                              color: Colors.black54,
-                            ),
-                          );
-                        },
-                      ),
+                    BlocBuilder<CartCubit, CartState>(
+                      bloc: cartCubit,
+                      buildWhen: (previous, current) =>
+                          current is CartItemUpdatedError ||
+                          (current is CartItemDeleting &&
+                              current.productId ==
+                                  cartItem.productId.toString()),
+                      builder: (context, state) {
+                        if (state is CartItemDeleting &&
+                            state.productId == cartItem.productId.toString()) {
+                          return CupertinoActivityIndicator(
+                              color: Colors.black54);
+                        }
+                        return InkWell(
+                          onTap: () {
+                            // cartCubit.deleteProductFromCart(
+                            //     cartItem.productId.toString(),);
+                            context.read<CartCubit>().deleteProductFromCart(
+                                cartItem.productId.toString(),
+                                context.read<FavoritesCubit>());
+                          },
+                          borderRadius: BorderRadius.circular(50.r),
+                          child: Icon(
+                            Icons.clear,
+                            color: Colors.black54,
+                          ),
+                        );
+                      },
                     ),
                   ],
                 ),

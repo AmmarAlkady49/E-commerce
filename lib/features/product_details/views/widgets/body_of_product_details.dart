@@ -1,5 +1,6 @@
 import 'package:e_commerce_graduation/core/models/product_response.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
+import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
 import 'package:e_commerce_graduation/features/product_details/views/widgets/counter_plus_minus.dart';
 import 'package:e_commerce_graduation/features/product_details/views/widgets/description_widget.dart';
 import 'package:e_commerce_graduation/features/product_details/views/widgets/rateing_section.dart';
@@ -15,7 +16,8 @@ class BodyOfProductDetails extends StatelessWidget {
     return SliverFillRemaining(
       child: Container(
         decoration: BoxDecoration(
-          color: Color(0xfffefffe),
+          // color: Color(0xfffefffe),
+          color: MyColor.white,
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(30.r), topRight: Radius.circular(30.r)),
         ),
@@ -64,9 +66,9 @@ class BodyOfProductDetails extends StatelessWidget {
                           CounterPlusMinus(),
                         ],
                 ),
-                SizedBox(height: 8.h),
+                SizedBox(height: 16.h),
                 RateingSection(product: product),
-                SizedBox(height: 12.h),
+                SizedBox(height: 4.h),
                 DescriptionWidget(description: product.description),
               ],
             ),

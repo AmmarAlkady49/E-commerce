@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
+import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
 import 'package:e_commerce_graduation/features/home/home_bubit/cubit/home_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -85,7 +86,7 @@ Widget buildCategoryItem(String categoryName,
                 context: context,
                 size: 14.sp,
                 weight: FontWeight.w700,
-                color: isSelected ? const Color(0xff1D61E7) : Colors.black54,
+                color: isSelected ? MyColor.kellyGreen2 : Colors.black54,
               ),
             ),
           ),
@@ -94,7 +95,7 @@ Widget buildCategoryItem(String categoryName,
             duration: const Duration(milliseconds: 300),
             height: 2.5,
             width: isSelected ? _calculateTextWidth(categoryName, context) : 0,
-            color: const Color(0xff1D61E7),
+            color: MyColor.kellyGreen2,
           ),
         ],
       ),

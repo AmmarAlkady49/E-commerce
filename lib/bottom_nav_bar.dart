@@ -1,4 +1,5 @@
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
+import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
 import 'package:e_commerce_graduation/core/widgets/build_lost_connection_widget.dart';
 import 'package:e_commerce_graduation/features/cart/cubit/cart_cubit.dart';
 import 'package:e_commerce_graduation/features/cart/views/pages/cart_page.dart';
@@ -51,7 +52,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
               _selectedIndex = 0;
             }),
         child: Scaffold(
-          // body: screenOptions.elementAt(_selectedIndex),
           body: OfflineBuilder(
             connectivityBuilder: (
               BuildContext context,
@@ -62,29 +62,32 @@ class _BottomNavBarState extends State<BottomNavBar> {
                   !connectivity.contains(ConnectivityResult.none);
 
               return Scaffold(
+                backgroundColor: MyColor.seasalt,
                 body: connected
                     ? screenOptions.elementAt(_selectedIndex)
                     : BuildLostConnectionWidget(),
-                // : screenOptions.elementAt(_selectedIndex),
                 bottomNavigationBar: connected
                     ? Container(
-                        height: 85.h,
                         decoration: BoxDecoration(
-                          border: BorderDirectional(
-                              top: BorderSide(color: Colors.black12, width: 1)),
-                          color: Colors.white,
+                          color: MyColor.seasalt,
+                          // borderRadius: BorderRadius.only(
+                          //     topLeft: Radius.circular(20.r),
+                          //     topRight: Radius.circular(20.r)),
+                          border:
+                              Border(top: BorderSide(color: Colors.black12)),
                           boxShadow: [
                             BoxShadow(
-                              blurRadius: 20,
-                              color: Colors.black.withValues(alpha: 0.15),
-                            )
+                              color: Colors.grey.withValues(alpha: 0.6),
+                              spreadRadius: 1,
+                              blurRadius: 5,
+                              offset: Offset(0, 3),
+                            ),
                           ],
                         ),
                         child: SafeArea(
                           bottom: true,
                           child: Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 15.0),
+                            padding: const EdgeInsets.all(15),
                             child: GNav(
                               textStyle: FontHelper.fontText(
                                   size: 14.sp,
@@ -97,8 +100,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
                               padding: EdgeInsets.symmetric(
                                   horizontal: 18.w, vertical: 10.h),
                               duration: Duration(milliseconds: 400),
-                              tabBackgroundColor:
-                                  Color(0xff1D61E7).withValues(alpha: 0.8),
+                              tabBackgroundColor: MyColor.kellyGreen3,
                               color: Colors.black54,
                               tabs: [
                                 GButton(

@@ -16,6 +16,7 @@ class ProfileCubit extends Cubit<ProfileState> {
   final AuthServices authServices = AuthServicesImpl();
   late CustomerData currentUserData;
   final secureStorage = SecureStorage();
+  bool activeNotifications = true;
 
   // LogOut Function
   Future<void> logout() async {
@@ -31,6 +32,11 @@ class ProfileCubit extends Cubit<ProfileState> {
     } catch (e) {
       emit(ProfileLogOutError(message: e.toString()));
     }
+  }
+
+  // active Notifications Function
+  Future<void> activeNotification() async {
+   activeNotifications = !activeNotifications;
   }
 
   // GetUserData Function

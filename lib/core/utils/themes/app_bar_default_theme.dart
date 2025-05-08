@@ -1,4 +1,5 @@
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
+import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -16,7 +17,7 @@ class AppBarDefaultTheme extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Color(0xff1D61E7),
+      backgroundColor: MyColor.kellyGreen3,
       elevation: 4.0,
       shadowColor: Colors.black,
       toolbarHeight: 55.h,

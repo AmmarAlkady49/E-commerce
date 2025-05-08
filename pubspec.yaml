@@ -18,6 +18,7 @@ dependencies:
   flutter_bloc: ^9.1.0
   flutter_localizations:
     sdk: flutter
+  flutter_native_splash: ^2.4.4
   flutter_offline: ^4.0.0
   flutter_phoenix: ^1.1.1
   flutter_screenutil: ^5.9.3

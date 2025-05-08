@@ -24,6 +24,7 @@ import 'package:e_commerce_graduation/features/profile/views/pages/account_page.
 import 'package:e_commerce_graduation/core/widgets/change_password_profile.dart';
 import 'package:e_commerce_graduation/features/profile/views/pages/lang_page.dart';
 import 'package:e_commerce_graduation/features/profile/views/pages/profile_page.dart';
+import 'package:e_commerce_graduation/splash_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -109,8 +110,14 @@ class AppRouter {
                   create: (context) => AddressCubit(),
                   child: const NewAddressPage(),
                 ));
+      case AppRoutes.splash:
+        final bool rememberMe = settings.arguments as bool;
+        return MaterialPageRoute(
+          builder: (_) => SplashScreen(rememberMe: rememberMe),
+        );
       case AppRoutes.changePassword:
         final String? email = settings.arguments as String?;
+
         return MaterialPageRoute(
             builder: (_) => BlocProvider(
                   create: (context) => AuthCubit(),

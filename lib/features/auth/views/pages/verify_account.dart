@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
+import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
 import 'package:e_commerce_graduation/features/auth/auth_cubit/auth_cubit.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:flutter/cupertino.dart';
@@ -69,7 +70,7 @@ class _VerifyAccountState extends State<VerifyAccount> {
         borderRadius: BorderRadius.circular(8.r),
         border: Border.all(
           color:
-              isFocused ? Colors.blueAccent : Colors.black12, // ← هنا التغيير
+              isFocused ? MyColor.kellyGreen3 : Colors.black12, // ← هنا التغيير
           width: 2,
         ),
       ),
@@ -286,7 +287,7 @@ class _VerifyAccountState extends State<VerifyAccount> {
                             style: FontHelper.fontText(
                                 size: 13.sp,
                                 weight: FontWeight.w700,
-                                color: const Color(0xff1D61E7),
+                                color: MyColor.kellyGreen,
                                 context: context),
                           ),
                         ],

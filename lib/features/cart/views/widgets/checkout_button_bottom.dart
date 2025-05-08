@@ -1,5 +1,6 @@
 import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
+import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
 import 'package:e_commerce_graduation/features/cart/model/cart_response_body.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:flutter/material.dart';
@@ -21,16 +22,9 @@ class CheckoutButtonBottom extends StatelessWidget {
           },
           style: ButtonStyle(
             shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(50.r),
-                side: BorderSide(
-                  color: Color(0xff1D61E7).withAlpha(1000),
-                  width: 1.0,
-                ),
-              ),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.r)),
             ),
-            backgroundColor: WidgetStateProperty.all(
-                Color(0xff1D61E7).withValues(alpha: 0.8)),
+            backgroundColor: WidgetStateProperty.all(MyColor.kellyGreen3),
             elevation: WidgetStateProperty.all(4.0),
           ),
           child: Row(
@@ -50,7 +44,7 @@ class CheckoutButtonBottom extends StatelessWidget {
               ),
               Container(
                 decoration: BoxDecoration(
-                  color: Color(0xff1D61E7).withAlpha(1000),
+                  color: MyColor.kellyGreen2.withAlpha(125),
                   borderRadius: BorderRadius.circular(10.r),
                 ),
                 child: Padding(

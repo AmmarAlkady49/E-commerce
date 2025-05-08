@@ -18,13 +18,14 @@ class EmptyCart extends StatelessWidget {
             SizedBox(height: 30.h),
             Icon(
               Iconsax.shopping_bag,
-              size: 50.sp,
+              size: 55.sp,
               color: Colors.black,
             ),
+            SizedBox(height: 4.h),
             Text(
               S.of(context).your_cart_is_empty,
               style: FontHelper.fontText(
-                  size: 20.sp,
+                  size: 22.sp,
                   weight: FontWeight.bold,
                   color: Colors.black,
                   context: context),

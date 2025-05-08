@@ -1,4 +1,5 @@
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
+import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
 import 'package:e_commerce_graduation/features/home/home_bubit/cubit/home_cubit.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:flutter/material.dart';
@@ -42,7 +43,7 @@ class _CustomAppBarForCategoryProductsState
   Widget build(BuildContext context) {
     final homeCubit = BlocProvider.of<HomeCubit>(context);
     return AppBar(
-      backgroundColor: const Color(0xff1D61E7),
+      backgroundColor: MyColor.kellyGreen3,
       elevation: 4.0,
       shadowColor: Colors.black,
       toolbarHeight: 55.h,

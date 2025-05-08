@@ -66,6 +66,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "cancel": MessageLookupByLibrary.simpleMessage("الغاء"),
     "cart": MessageLookupByLibrary.simpleMessage("عربة تسوق"),
     "category": MessageLookupByLibrary.simpleMessage("مجموعات"),
+    "category2": MessageLookupByLibrary.simpleMessage("فئة"),
     "change_address": MessageLookupByLibrary.simpleMessage("تغيير العنوان"),
     "change_password": MessageLookupByLibrary.simpleMessage(
       "تغيير كلمة المرور",
