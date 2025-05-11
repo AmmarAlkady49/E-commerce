@@ -1,5 +1,4 @@
 import 'package:e_commerce_graduation/core/utils/routes/app_router.dart';
-import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
 import 'package:e_commerce_graduation/core/utils/app_constants.dart';
 import 'package:e_commerce_graduation/features/auth/auth_cubit/auth_cubit.dart';
 import 'package:e_commerce_graduation/features/cart/cubit/cart_cubit.dart';
@@ -24,6 +23,7 @@ void main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
+  debugInvertOversizedImages = false;
 
   SharedPreferences pref = await SharedPreferences.getInstance();
   String lang = pref.getString('lang') ?? 'ar';
@@ -33,7 +33,6 @@ void main() async {
     child: MyApp(lang: lang, rememberMe: rememberMe),
   ));
 
-  // 👇 Move this here inside main
   FlutterNativeSplash.remove();
 }
 

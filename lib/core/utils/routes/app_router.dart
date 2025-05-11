@@ -53,7 +53,7 @@ class AppRouter {
         return MaterialPageRoute(
             builder: (context) => ProductsByCategory(
                   categoryCode: args['categoryCode'],
-                  categoryCode2: args['categoryCode2'] ?? null,
+                  categoryCode2: args['categoryCode2'],
                   categoryName: args['categoryName'],
                 ));
 
