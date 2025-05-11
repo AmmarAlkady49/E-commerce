@@ -20,7 +20,7 @@ abstract class AuthServices {
   Future<bool> resendOtpCode(String email);
   Future<bool> resetPasword(String email, String password);
   Future<void> signoutFromGoogle();
-  Future<void> signinWithGoogle();
+  Future<GoogleSignInAccount?> signinWithGoogle();
   Future<bool> sendEmailForgetPassword(String emailText);
 }
 
@@ -146,7 +146,7 @@ class AuthServicesImpl implements AuthServices {
   //   return await FirebaseAuth.instance.signInWithCredential(credential);
   // }
   @override
-  Future<void> signinWithGoogle() async {
+  Future<GoogleSignInAccount?> signinWithGoogle() async { 
     final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
     if (googleUser == null) {
       throw Exception('xxxxxxxxxxxxD Google sign-in aborted');
