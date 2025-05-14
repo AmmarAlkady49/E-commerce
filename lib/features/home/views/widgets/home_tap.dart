@@ -3,6 +3,7 @@ import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
 import 'package:e_commerce_graduation/features/home/views/widgets/grid_view_for_categories.dart';
 import 'package:e_commerce_graduation/features/home/views/widgets/image_slider.dart';
 import 'package:e_commerce_graduation/features/home/views/widgets/recommended_products.dart';
+import 'package:e_commerce_graduation/features/notification/services/local_notification_services.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,6 +21,11 @@ class HomeTap extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // TextButton(
+              //     onPressed: () {
+              //       LocalNotificationServices.showBasicNotification();
+              //     },
+              //     child: const Icon(Icons.notification_important)),
               SizedBox(height: 8.h),
               ImageSlider(),
               SizedBox(height: 8.h),

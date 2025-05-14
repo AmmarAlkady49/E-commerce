@@ -64,6 +64,24 @@ class ListOfOderProducts extends StatelessWidget {
                         Icons.error,
                         color: Colors.red,
                       ),
+                      imageBuilder: (context, imageProvider) {
+                        final devicePixelRatio =
+                            MediaQuery.of(context).devicePixelRatio;
+                        final targetHeight = 90.h;
+                        final targetWidth =
+                            MediaQuery.of(context).size.width / 7.5;
+
+                        return Image(
+                          image: ResizeImage(
+                            imageProvider,
+                            width: (targetWidth * devicePixelRatio).toInt(),
+                            height: (targetHeight * devicePixelRatio).toInt(),
+                          ),
+                          fit: BoxFit.scaleDown,
+                          width: double.infinity,
+                          height: targetHeight,
+                        );
+                      },
                     ),
                   ),
                 ),

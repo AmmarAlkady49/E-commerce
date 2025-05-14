@@ -231,8 +231,13 @@ class _VerifyAccountState extends State<VerifyAccount> {
                   left: 24.w),
               child: Column(
                 children: [
-                  Image.asset("assets/images/auth/otp_blue.png",
-                      width: 100.w, height: 100.h),
+                  Image.asset(
+                    "assets/images/auth/otp_blue.png",
+                    width: 100.w,
+                    height: 100.h,
+                    cacheHeight: 300,
+                    cacheWidth: 320,
+                  ),
                   Text(
                     S.of(context).verify_email_1,
                     style: FontHelper.fontText(

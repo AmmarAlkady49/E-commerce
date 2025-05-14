@@ -56,10 +56,27 @@ class FavoriteProductItem extends StatelessWidget {
                     errorWidget: (context, url, error) => Image.asset(
                       'assets/images/home_page/no_image_placeholder.png',
                       fit: BoxFit.contain,
-                      height: 140.h,
                       width: double.infinity,
+                      height: 140.h,
                     ),
-                    fit: BoxFit.contain,
+                    imageBuilder: (context, imageProvider) {
+                      final devicePixelRatio =
+                          MediaQuery.of(context).devicePixelRatio;
+                      final targetHeight = 120.h;
+                      final targetWidth =
+                          MediaQuery.of(context).size.width / 7.5;
+
+                      return Image(
+                        image: ResizeImage(
+                          imageProvider,
+                          width: (targetWidth * devicePixelRatio).toInt(),
+                          height: (targetHeight * devicePixelRatio).toInt(),
+                        ),
+                        fit: BoxFit.scaleDown,
+                        width: double.infinity,
+                        height: targetHeight,
+                      );
+                    },
                   ),
                 ),
               ),

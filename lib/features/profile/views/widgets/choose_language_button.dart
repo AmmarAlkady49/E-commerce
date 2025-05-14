@@ -45,6 +45,8 @@ class _ChooseLanguageButtonState extends State<ChooseLanguageButton> {
                   : 'assets/images/other/egypt_flag.png',
               height: 40.h,
               width: 40.w,
+              cacheHeight: 119,
+              cacheWidth: 128,
             ),
             SizedBox(width: 12.w),
             Text(

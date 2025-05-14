@@ -59,6 +59,8 @@ class MyButton2 extends StatelessWidget {
                   'assets/images/auth/google.png',
                   height: 23.h,
                   width: 23.w,
+                  cacheHeight: 73,
+                  cacheWidth: 68,
                 ),
                 SizedBox(width: 8.w),
                 Text(S.of(context).sign_up_with_google,

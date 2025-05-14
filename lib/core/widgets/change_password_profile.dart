@@ -166,9 +166,11 @@ class ChangePasswordProfile extends StatelessWidget {
                                 ),
                                 SizedBox(height: 12.h),
                                 Image.asset(
-                                  'assets/images/other/success.png',
+                                  'assets/images/auth/password_changed.png',
                                   width: 160.w,
                                   height: 160.h,
+                                  cacheHeight: 479,
+                                  cacheWidth: 513,
                                 ),
                                 SizedBox(height: 12.h),
                                 Text(

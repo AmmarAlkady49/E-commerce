@@ -62,6 +62,8 @@ class _ImageSliderState extends State<ImageSlider> {
                         item,
                         fit: BoxFit.fill,
                         width: double.infinity,
+                        cacheHeight: 800,
+                        cacheWidth: 442,
                       ),
                     ),
                   ))

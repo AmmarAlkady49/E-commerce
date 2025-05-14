@@ -68,6 +68,8 @@ class ProductItem extends StatelessWidget {
                               fit: BoxFit.contain,
                               height: 140.h,
                               width: double.infinity,
+                              cacheHeight: 357,
+                              cacheWidth: 422,
                             )
                           : CachedNetworkImage(
                               imageUrl: HelperFunctions.fixGoogleDriveUrl(
@@ -75,12 +77,29 @@ class ProductItem extends StatelessWidget {
                               errorWidget: (context, url, error) => Image.asset(
                                 'assets/images/home_page/no_image_placeholder.png',
                                 fit: BoxFit.contain,
-                                height: 140.h,
                                 width: double.infinity,
+                                height: 140.h,
                               ),
-                              fit: BoxFit.contain,
-                              height: 140.h,
-                              width: double.infinity,
+                              imageBuilder: (context, imageProvider) {
+                                final devicePixelRatio =
+                                    MediaQuery.of(context).devicePixelRatio;
+                                final targetHeight = 100.h;
+                                final targetWidth =
+                                    MediaQuery.of(context).size.width / 4.w;
+
+                                return Image(
+                                  image: ResizeImage(
+                                    imageProvider,
+                                    width: (targetWidth * devicePixelRatio)
+                                        .toInt(),
+                                    height: (targetHeight * devicePixelRatio)
+                                        .toInt(),
+                                  ),
+                                  fit: BoxFit.scaleDown,
+                                  width: double.infinity,
+                                  height: targetHeight,
+                                );
+                              },
                             )),
                 ),
                 SizedBox(height: 6.h),

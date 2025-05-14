@@ -28,15 +28,14 @@ class AuthServicesImpl implements AuthServices {
   final aDio = Dio();
   final secureStorage = SecureStorage();
   final GoogleSignIn _googleSignIn = GoogleSignIn(
-    // clientId: AppConstants.googleClientId,
-    clientId:
-        '563886842859-ekb482r8dm27fp0kedd20plsbela73hp.apps.googleusercontent.com',
+    serverClientId: AppConstants.webClientId,
     scopes: [
       'email',
       'profile',
       'openid',
     ],
   );
+
   @override
   Future<bool> loginWithEmailAndPassword(String email, String password) async {
     try {
@@ -146,50 +145,98 @@ class AuthServicesImpl implements AuthServices {
   //   return await FirebaseAuth.instance.signInWithCredential(credential);
   // }
   @override
-  Future<GoogleSignInAccount?> signinWithGoogle() async { 
-    final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
-    if (googleUser == null) {
-      throw Exception('xxxxxxxxxxxxD Google sign-in aborted');
-    }
-    final GoogleSignInAuthentication googleAuth =
-        await googleUser.authentication;
+  Future<GoogleSignInAccount?> signinWithGoogle() async {
+    try {
+      log('[GoogleSignIn] Starting sign-in');
 
-    final String? idToken = googleAuth.idToken;
+      // Try sign in
+      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+      log('[GoogleSignIn] googleUser: $googleUser');
 
-    if (idToken == null) {
-      throw Exception('Failed to get ID token');
-    }
-    final apiResponse = await aDio.post(
-      "${AppConstants.baseUrl}${AppConstants.mobileGoogleLogin}",
-      data: {
-        "idToken": idToken,
-      },
-      options: Options(
-        validateStatus: (status) => status != null && status < 500,
-      ),
-    );
-    log(apiResponse.data);
-    if (apiResponse.statusCode == 200) {
-      log('Google sign-in successful: ${apiResponse.data}');
-      final responseMessage = apiResponse.data;
-      log('responseMessage: $responseMessage');
-      // if (responseMessage != null) {
-      //   await secureStorage.saveSecureData('token', responseMessage['token']);
-      //   await secureStorage.saveSecureData('isLogin', 'true');
-      //   await secureStorage.saveSecureData('email', googleUser.email);
-      //   await secureStorage.saveSecureData('id', googleUser.id);
-      // }
-    } else if (apiResponse.statusCode == 400) {
-      throw Exception(apiResponse.data['message'] ?? 'Failed to login');
-    } else if (apiResponse.statusCode == 401) {
-      throw Exception(apiResponse.data['message'] ?? 'Failed to login');
-    } else if (apiResponse.statusCode == 403) {
-      throw Exception(apiResponse.data['message'] ?? 'Failed to login');
-    } else if (apiResponse.statusCode == 404) {
-      throw Exception(apiResponse.data['message'] ?? 'Failed to login');
-    } else {
-      log('Failed to login: ${apiResponse.statusCode}');
-      throw Exception('Failed to login: ${apiResponse.statusCode}');
+      if (googleUser == null) {
+        log('[GoogleSignIn] User aborted sign-in');
+        throw Exception('Google sign-in aborted');
+      }
+
+      // Request a server auth code first - this is important!
+      log('[GoogleSignIn] Requesting server auth code');
+
+      // Explicitly request ID token by passing 'true' to the authentication method
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication.catchError((error) {
+        log('[GoogleSignIn] Authentication error: $error');
+        throw Exception('Failed to authenticate with Google: $error');
+      });
+
+      log('[GoogleSignIn] Authentication: accessToken=${googleAuth.accessToken}, idToken=${googleAuth.idToken}');
+
+      final String? idToken = googleAuth.idToken;
+
+      if (idToken == null) {
+        log('[GoogleSignIn] idToken is null, checking server auth code');
+        final String? serverAuthCode = googleUser.serverAuthCode;
+
+        if (serverAuthCode == null) {
+          log('[GoogleSignIn] Server auth code is also null');
+          throw Exception('Failed to get ID token or auth code from Google');
+        }
+
+        log('[GoogleSignIn] Using serverAuthCode instead: $serverAuthCode');
+
+        // If your backend supports exchanging server auth code for tokens:
+        final apiResponse = await aDio.post(
+          "${AppConstants.baseUrl}${AppConstants.mobileGoogleLogin}",
+          data: {
+            "serverAuthCode": serverAuthCode,
+          },
+          options: Options(
+            validateStatus: (status) => status != null && status < 500,
+          ),
+        );
+
+        // Handle response...
+      } else {
+        // Continue with idToken
+        log('[GoogleSignIn] Sending idToken to backend...');
+        final apiResponse = await aDio.post(
+          "${AppConstants.baseUrl}${AppConstants.mobileGoogleLogin}",
+          data: {
+            "idToken": idToken,
+          },
+          options: Options(
+            validateStatus: (status) => status != null && status < 500,
+          ),
+        );
+
+        log('[GoogleSignIn] Backend response (${apiResponse.statusCode}): ${apiResponse.data}');
+
+        if (apiResponse.statusCode == 200) {
+          log('[GoogleSignIn] Sign-in successful: ${apiResponse.data}');
+          final responseData = apiResponse.data;
+
+          // Save user authentication data
+          if (responseData != null && responseData is Map) {
+            if (responseData['token'] != null) {
+              await secureStorage.saveSecureData(
+                  'token', responseData['token']);
+              await secureStorage.saveSecureData('isLogin', 'true');
+              await secureStorage.saveSecureData('email', googleUser.email);
+              await secureStorage.saveSecureData('id', googleUser.id);
+              return googleUser;
+            }
+          }
+        } else {
+          final errorMessage = apiResponse.data['message'] ?? 'Unknown error';
+          log('[GoogleSignIn] Failed: $errorMessage');
+          throw Exception(errorMessage);
+        }
+      }
+
+      return googleUser;
+    } catch (e, stack) {
+      log('[GoogleSignIn] ERROR: $e');
+      log('[GoogleSignIn] STACK TRACE:\n$stack');
+      rethrow;
     }
   }
 

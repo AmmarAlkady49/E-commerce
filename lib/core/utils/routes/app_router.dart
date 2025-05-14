@@ -11,6 +11,7 @@ import 'package:e_commerce_graduation/core/models/product_response.dart';
 import 'package:e_commerce_graduation/features/auth/views/pages/verify_account.dart';
 import 'package:e_commerce_graduation/features/cart/cubit/cart_cubit.dart';
 import 'package:e_commerce_graduation/features/home/views/widgets/products_by_category.dart';
+import 'package:e_commerce_graduation/features/notification/cubit/notification_cubit.dart';
 import 'package:e_commerce_graduation/features/order/cubit/order_cubit.dart';
 import 'package:e_commerce_graduation/features/order/views/pages/confirm_order_page.dart';
 import 'package:e_commerce_graduation/features/favorites/cubit/favorites_cubit.dart';
@@ -47,7 +48,11 @@ class AppRouter {
       case AppRoutes.home:
         return MaterialPageRoute(builder: (_) => const HomePage());
       case AppRoutes.bottomNavBar:
-        return MaterialPageRoute(builder: (_) => const BottomNavBar());
+        return MaterialPageRoute(
+            builder: (_) => BlocProvider(
+                  create: (context) => NotificationCubit(),
+                  child: const BottomNavBar(),
+                ));
       case AppRoutes.productsByCategoryPage:
         final args = settings.arguments as Map<String, dynamic>;
         return MaterialPageRoute(

@@ -142,14 +142,22 @@ class AddressContainerWidget extends StatelessWidget {
                       ),
                       child: ListTile(
                         onTap: () => Navigator.of(context)
-                            .pushNamed(AppRoutes.addressPage),
+                            .pushNamed(AppRoutes.addressPage)
+                            .then(
+                              (value) => addressCubit.getAllAddresses(),
+                            ),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
                         contentPadding: EdgeInsets.symmetric(
                             horizontal: 8.w, vertical: 6.h),
-                        leading: Image.asset(
-                          'assets/images/home_page/location-unscreen2.gif',
+                        leading: Image(
+                          image: ResizeImage(
+                            AssetImage(
+                                'assets/images/home_page/location-unscreen2.gif'),
+                            width: 110,
+                            height: 110,
+                          ),
                           width: 40,
                           height: 40,
                         ),

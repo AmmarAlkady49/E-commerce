@@ -53,7 +53,9 @@ class AccountPage extends StatelessWidget {
                         child: Image.asset(
                             'assets/images/home_page/face_avatar1.png',
                             height: 120.h,
-                            width: 120.w),
+                            width: 120.w,
+                            cacheHeight: 385,
+                            cacheWidth: 360),
                       ),
                     ),
                   ),

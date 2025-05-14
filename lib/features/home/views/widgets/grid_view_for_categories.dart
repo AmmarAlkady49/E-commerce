@@ -124,6 +124,8 @@ class _GridViewForCategoriesState extends State<GridViewForCategories> {
                           child: Image.asset(
                             state.categories[index]['imageUrl'] ?? "",
                             fit: BoxFit.contain,
+                            cacheHeight: 220,
+                            cacheWidth: 207,
                           ),
                         ),
                       ),

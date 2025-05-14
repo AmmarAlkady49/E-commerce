@@ -1,8 +1,9 @@
 class AppConstants {
   static const String appTitle = 'E-Commerce Graduation Project';
-  // static const String googleClientId = 'https://563886842859-ekb482r8dm27fp0kedd20plsbela73hp.apps.googleusercontent.com/';
   static const String googleClientId =
       '563886842859-ekb482r8dm27fp0kedd20plsbela73hp.apps.googleusercontent.com';
+      static const String webClientId = '563886842859-v006q58f3c1jvpqu5apbggur8cpgbd61.apps.googleusercontent.com';
+  // 'com.googleusercontent.apps.563886842859-ekb482r8dm27fp0kedd20plsbela73hp';
 
   // APIs paths
   static const String baseUrl =
@@ -25,7 +26,8 @@ class AppConstants {
   static const String mobileGoogleLogin = '/Account/mobile-google-login';
   static const String addToWishlist = '/Wishlist/add-to-wishlist';
   static const String getWishlist = '/Wishlist/get-wishlist-by-id';
-  static const String removeFromWishlist = '/Wishlist/remove-item-from-wishlist';
+  static const String removeFromWishlist =
+      '/Wishlist/remove-item-from-wishlist';
   static const String clearWishlist = '/Wishlist/clear-wishlist';
   static const String getCart = '/Cart/get-cart-by-id';
   static const String removeCartItem = '/Cart/remove-item';
@@ -35,7 +37,8 @@ class AppConstants {
   static const String getAllCategories = '/Category/get-all-categories';
   static const String createOrder = '/Order/create-order';
   static const String getAllOrders = '/Order/get-all-orders-for-user';
-  static const String createOrderWithPayment = '/Payment/create-order-with-payment';
+  static const String createOrderWithPayment =
+      '/Payment/create-order-with-payment';
   static const String paymentCallback = '/Payment/callback';
   static const String getOrderStatus = '/Order/get-order-status-by-id';
 }
