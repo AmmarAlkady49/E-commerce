@@ -72,7 +72,7 @@ class _ContainerOfTheSigninWidgetState
                   SizedBox(height: 10.h),
                   MyOrDevider(size: size.width * 0.02, text: S.of(context).or),
                   SizedBox(height: 10.h),
-                  MyTextFormField(
+                  EnhancedTextFormField(
                     width: size.width * 0.8,
                     hint: S.of(context).enter_your_email,
                     textInputType: TextInputType.emailAddress,
@@ -91,7 +91,7 @@ class _ContainerOfTheSigninWidgetState
                     nextFocusNode: passwordFocusNode,
                   ),
                   SizedBox(height: 13.h),
-                  MyTextFormField(
+                  EnhancedTextFormField(
                     width: size.width * 0.8,
                     hint: S.of(context).password,
                     textInputType: TextInputType.visiblePassword,

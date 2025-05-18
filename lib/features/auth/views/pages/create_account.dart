@@ -14,75 +14,89 @@ class CreateAccount extends StatelessWidget {
     final Size size = MediaQuery.sizeOf(context);
 
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 255, 255, 255),
-      body: SingleChildScrollView(
-        // physics: NeverScrollableScrollPhysics(),
-        child: SizedBox(
-          height: size.height,
-          child: Stack(
-            children: [
-              Positioned(
-                top: 0,
-                left: 0,
-                right: 0,
-                child: SvgPicture.asset(
-                  'assets/images/auth/background1.svg',
-                  height: size.height * 0.5,
-                  width: size.width,
-                  fit: BoxFit.fill,
-                ),
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          return SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                minHeight: constraints.maxHeight,
+                minWidth: constraints.maxWidth,
               ),
-              Positioned(
-                  top: size.height * 0.068,
-                  left: 0,
-                  right: 0,
-                  child: Column(
-                    children: [
-                      Text(
-                        S.of(context).sign_up,
-                        style: FontHelper.fontText(
+              child: IntrinsicHeight(
+                child: Stack(
+                  children: [
+                    // Background SVG
+                    Positioned(
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      child: SvgPicture.asset(
+                        'assets/images/auth/background1.svg',
+                        height: size.height * 0.6,
+                        width: size.width,
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+
+                    // Content
+                    Column(
+                      children: [
+                        SizedBox(height: size.height * 0.068),
+                        // Sign up text
+                        Text(
+                          S.of(context).sign_up,
+                          style: FontHelper.fontText(
                             size: 36.sp,
                             weight: FontWeight.w700,
-                            color: Colors.white,context: context),
-                      ),
-                      SizedBox(height: 4.h),
-                      Text.rich(TextSpan(
-                        text: S.of(context).already_have_an_account,
-                        style: FontHelper.fontText(
-                            size: 15.sp,
-                            weight: FontWeight.w600,
-                            color: Colors.white,context: context),
-                        children: [
+                            color: Colors.white,
+                            context: context,
+                          ),
+                        ),
+                        SizedBox(height: 4.h),
+                        // Already have an account text
+                        Text.rich(
                           TextSpan(
-                            text: ' ${S.of(context).login2}',
+                            text: S.of(context).already_have_an_account,
                             style: FontHelper.fontText(
                               size: 15.sp,
-                              weight: FontWeight.w700,
+                              weight: FontWeight.w600,
                               color: Colors.white,
-                              decoration: TextDecoration.underline,context: context
+                              context: context,
                             ),
-                            recognizer: TapGestureRecognizer()
-                              ..onTap = () {
-                                Navigator.pop(context);
-                              },
+                            children: [
+                              TextSpan(
+                                text: ' ${S.of(context).login2}',
+                                style: FontHelper.fontText(
+                                  size: 15.sp,
+                                  weight: FontWeight.w700,
+                                  color: Colors.white,
+                                  decoration: TextDecoration.underline,
+                                  context: context,
+                                ),
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () {
+                                    Navigator.pop(context);
+                                  },
+                              ),
+                            ],
                           ),
-                        ],
-                      )),
-                    ],
-                  )),
-              Positioned(
-                top: size.height * 0.187,
-                left: 0,
-                right: 0,
-                // bottom: size.height * 0.05,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20.w),
-                  child: ContainerOfTheCreateAcount(),
+                        ),
+                        SizedBox(height: size.height * 0.04),
+                        // Form container
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 20.w),
+                          child: ContainerOfTheCreateAcount(),
+                        ),
+                        SizedBox(height: size.height * 0.05),
+                      ],
+                    ),
+                  ],
                 ),
               ),
-            ],
-          ),
-        ),
+            ),
+          );
+        },
       ),
     );
   }

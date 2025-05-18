@@ -10,6 +10,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:iconsax/iconsax.dart';
 
 class CustomeSearch extends SearchDelegate {
   final HomeCubit homeCubit;
@@ -69,11 +70,24 @@ class CustomeSearch extends SearchDelegate {
             child: Padding(
               padding:
                   EdgeInsets.only(left: 4.w, top: 4.w, bottom: 4.w, right: 4.w),
-              child: const Icon(Icons.clear, color: Colors.white),
+              child: query.isEmpty
+                  ? Icon(Iconsax.microphone_25, color: Colors.white)
+                  : Icon(Icons.clear, color: Colors.white),
             ),
-            onTap: () {
-              query = '';
-              showSuggestions(context);
+            onTap: () async {
+              if (query.isNotEmpty) {
+                query = '';
+                showSuggestions(context);
+              } else {
+                final speechToText = await Navigator.of(context)
+                    .pushNamed(AppRoutes.speechToText);
+                if (speechToText != null &&
+                    speechToText is String &&
+                    speechToText.trim().isNotEmpty) {
+                  query = speechToText.trim();
+                  showResults(context);
+                }
+              }
             }),
       ),
     ];

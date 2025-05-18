@@ -27,6 +27,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Don\'t have an account?",
     ),
     "Favorites": MessageLookupByLibrary.simpleMessage("Favorites"),
+    "Listening": MessageLookupByLibrary.simpleMessage("Listening..."),
     "account_exists": MessageLookupByLibrary.simpleMessage(
       "The account already exists for that email.",
     ),
@@ -324,6 +325,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "save_changes": MessageLookupByLibrary.simpleMessage("Save changes"),
     "search": MessageLookupByLibrary.simpleMessage("Search"),
     "search_": MessageLookupByLibrary.simpleMessage("Search..."),
+    "search_by_voice": MessageLookupByLibrary.simpleMessage("Search by voice"),
     "search_in_your_favorite": MessageLookupByLibrary.simpleMessage(
       "Search in your favorite",
     ),
@@ -363,12 +365,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "standard_delivery": MessageLookupByLibrary.simpleMessage(
       "Standard Delivery",
     ),
+    "start_speaking": MessageLookupByLibrary.simpleMessage(
+      "Start speaking to search...",
+    ),
     "street": MessageLookupByLibrary.simpleMessage("Street"),
     "street2": MessageLookupByLibrary.simpleMessage("Street"),
     "submet": MessageLookupByLibrary.simpleMessage("Submit"),
     "subtotal": MessageLookupByLibrary.simpleMessage("Subtotal"),
     "suez": MessageLookupByLibrary.simpleMessage("Suez"),
     "tanta": MessageLookupByLibrary.simpleMessage("Tanta"),
+    "tap_to_speak": MessageLookupByLibrary.simpleMessage("Tap to speak"),
     "the_address": MessageLookupByLibrary.simpleMessage("Address"),
     "too_many_requests": MessageLookupByLibrary.simpleMessage(
       "Too many requests, please try again later",

@@ -45,24 +45,57 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                               Navigator.of(context, rootNavigator: false)
                                   .pushNamed(AppRoutes.accountPage),
                           borderRadius: BorderRadius.circular(30.r),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(30),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border:
-                                    Border.all(color: Colors.black, width: 1),
-                                color: Colors.grey.shade400,
-                              ),
-                              child: Image.asset(
-                                'assets/images/home_page/face_avatar1.png',
-                                height: 55,
-                                width: 55,
-                                cacheHeight: 151,
-                                cacheWidth: 151,
-                              ),
-                            ),
-                          ),
+                          child: state is HomeAppBarLoaded
+                              ? ClipRRect(
+                                  borderRadius: BorderRadius.circular(100.r),
+                                  child: Container(
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        border: state.photoUrl != ''
+                                            ? null
+                                            : Border.all(
+                                                color: Colors.black, width: 1),
+                                        color: Colors.grey.shade400,
+                                      ),
+                                      child: state.photoUrl != ''
+                                          ? Image.network(
+                                              state.photoUrl,
+                                              height: 47,
+                                              width: 47,
+                                              cacheHeight: 151,
+                                              cacheWidth: 151,
+                                              fit: BoxFit.cover,
+                                            )
+                                          : state.gender == 'female'
+                                              ? Image.asset(
+                                                  'assets/images/home_page/face_avatar2.png',
+                                                  height: 47,
+                                                  width: 47,
+                                                  cacheHeight: 151,
+                                                  cacheWidth: 151,
+                                                  fit: BoxFit.contain,
+                                                )
+                                              : Image.asset(
+                                                  'assets/images/home_page/face_avatar1.png',
+                                                  height: 47,
+                                                  width: 47,
+                                                  cacheHeight: 151,
+                                                  cacheWidth: 151,
+                                                )),
+                                )
+                              : Shimmer.fromColors(
+                                  baseColor: Colors.grey[300]!,
+                                  highlightColor: Colors.grey[100]!,
+                                  child: Container(
+                                    width: 47.w,
+                                    height: 47.h,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      // borderRadius: BorderRadius.circular(10),
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                ),
                         ),
                         SizedBox(width: 8.w),
                         Column(

@@ -222,5 +222,11 @@
     "recommended_for_you": "Recommended for you",
     "recommended": "Recommended",
     "too_many_requests": "Too many requests, please try again later",
-    "lost_connection": "It seems that the internet connection is currently unavailable 📡. Please try again once the connection is restored."
+    "lost_connection": "It seems that the internet connection is currently unavailable 📡. Please try again once the connection is restored.",
+    "start_speaking" : "Start speaking to search...",
+    "search_by_voice" : "Search by voice",
+    "tap_to_speak" : "Tap to speak",
+    "Listening" : "Listening..."
+  
+
 }

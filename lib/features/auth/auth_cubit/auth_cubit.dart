@@ -23,7 +23,8 @@ class AuthCubit extends Cubit<AuthState> {
       required String fName,
       required String lName,
       required String phone,
-      required String birthDate}) async {
+      required String birthDate,
+      required String gender}) async {
     emit(AuthLoading());
     try {
       final result = await authServices.registerWithEmailAndPassword(
@@ -32,6 +33,8 @@ class AuthCubit extends Cubit<AuthState> {
         password: password,
         phone: phone,
         birthOfDate: birthDate,
+        gender: gender,
+        
       );
       if (result) {
         // await _saveUserData(email, fName, lName, phone, birthDate);
@@ -58,6 +61,9 @@ class AuthCubit extends Cubit<AuthState> {
         await secureStorage.saveSecureData("email", userData.email!);
         await secureStorage.saveSecureData("name", userData.name!);
         await secureStorage.saveSecureData("userId", userData.id!);
+        await secureStorage.saveSecureData('gender', userData.gender!);
+        await secureStorage.saveSecureData("photoUrl", '');
+
         // if (authServices.getCurrentUser()!.emailVerified) {
         emit(AuthSuccess());
         // } else {
@@ -115,7 +121,22 @@ class AuthCubit extends Cubit<AuthState> {
   void signinWithGoogle() async {
     emit(SigningWithGoogle());
     try {
-      await authServices.signinWithGoogle();
+      final result = await authServices.signinWithGoogle();
+
+      if (result != null) {
+        final userData = await profilePageServices.getUserData();
+        // Save user data to secure storage
+        await secureStorage.saveSecureData("isLogin", "true");
+        await secureStorage.saveSecureData("email", result.email);
+        await secureStorage.saveSecureData(
+            "name", userData.name ?? result.displayName!);
+        await secureStorage.saveSecureData("userId", userData.id ?? result.id);
+        await secureStorage.saveSecureData("photoUrl", result.photoUrl!);
+        // await secureStorage.saveSecureData("email", userData.email!);
+        // await secureStorage.saveSecureData("name", userData.name!);
+        // await secureStorage.saveSecureData("userId", userData.id!);
+        emit(AuthSuccess());
+      }
 
       log('Google sign-in successful:');
       emit(SigningWithGoogleSuccess());

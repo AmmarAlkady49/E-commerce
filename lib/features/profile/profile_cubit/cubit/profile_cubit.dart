@@ -27,6 +27,8 @@ class ProfileCubit extends Cubit<ProfileState> {
       await _profileAuthServices.signOut();
       await _profileAuthServices.signoutFromGoogle();
       await pref.setBool('rememberMe', false);
+      await secureStorage.deleteSecureData('token');
+      await secureStorage.deleteSecureData('email');
 
       emit(ProfileLogedOut());
     } catch (e) {
@@ -36,7 +38,7 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   // active Notifications Function
   Future<void> activeNotification() async {
-   activeNotifications = !activeNotifications;
+    activeNotifications = !activeNotifications;
   }
 
   // GetUserData Function
@@ -44,17 +46,21 @@ class ProfileCubit extends Cubit<ProfileState> {
     emit(AccountPageLoading());
     try {
       final CustomerData userData = await _profileAuthServices.getUserData();
+      final photoUrl = await secureStorage.readSecureData("photoUrl");
       emit(
         AccountPageLoaded(
           email: userData.email != null ? userData.email! : "null",
-          fName:
-              userData.name != null ? userData.name!.split(" ").first : "null",
-          lName:
-              userData.name != null ? userData.name!.split(" ").last : "null",
+          fName: userData.name != null
+              ? userData.name!.trim().split(" ").first
+              : "null",
+          lName: userData.name != null
+              ? userData.name!.trim().split(" ").last
+              : "null",
           phone: userData.phoneNumber != null ? userData.phoneNumber! : "null",
-          gender: userData.gender != null ? userData.gender! : "null",
+          gender: userData.gender != null ? userData.gender! : "male",
           birthDate:
               userData.dateOfBirth != null ? userData.dateOfBirth! : "null",
+          photoUrl: photoUrl,
         ),
       );
       currentUserData = userData;
@@ -73,6 +79,8 @@ class ProfileCubit extends Cubit<ProfileState> {
     emit(AccountPageLoading());
     try {
       final response = await _profileAuthServices.updateUserData(userData);
+      final photoUrl = await secureStorage.readSecureData("photoUrl");
+
       if (response) {
         final newUserData = await _profileAuthServices.getUserData();
 
@@ -80,10 +88,10 @@ class ProfileCubit extends Cubit<ProfileState> {
           AccountPageLoaded(
             email: newUserData.email != null ? newUserData.email! : "null",
             fName: newUserData.name != null
-                ? newUserData.name!.split(" ").first
+                ? newUserData.name!.trim().split(" ").first
                 : "null",
             lName: newUserData.name != null
-                ? newUserData.name!.split(" ").last
+                ? newUserData.name!.trim().split(" ").last
                 : "null",
             phone: newUserData.phoneNumber != null
                 ? newUserData.phoneNumber!
@@ -92,8 +100,11 @@ class ProfileCubit extends Cubit<ProfileState> {
             birthDate: newUserData.dateOfBirth != null
                 ? newUserData.dateOfBirth!
                 : "null",
+            photoUrl: photoUrl,
           ),
         );
+        await secureStorage.saveSecureData("name", newUserData.name!);
+        await secureStorage.saveSecureData('gender', newUserData.gender!);
       } else {
         emit(AccountPageError(message: "Failed to update user data"));
       }

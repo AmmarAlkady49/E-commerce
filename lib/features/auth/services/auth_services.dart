@@ -7,13 +7,13 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 abstract class AuthServices {
   Future<bool> loginWithEmailAndPassword(String email, String password);
-  Future<bool> registerWithEmailAndPassword({
-    required String name,
-    required String email,
-    required String password,
-    required String phone,
-    required String birthOfDate,
-  });
+  Future<bool> registerWithEmailAndPassword(
+      {required String name,
+      required String email,
+      required String password,
+      required String phone,
+      required String birthOfDate,
+      required String gender});
   Future<CustomerData?> getUserProfile();
   Future<bool> verifyEmail(String code, String email);
   Future<bool> verifyOtpCode(String email, String otpCode);
@@ -53,8 +53,6 @@ class AuthServicesImpl implements AuthServices {
         final responseMessage = apiResponse.data['message'];
         if (responseMessage != null) {
           await secureStorage.saveSecureData('token', responseMessage);
-          await secureStorage.saveSecureData('isLogin', 'true');
-          await secureStorage.saveSecureData('email', email);
           return true;
         } else {
           return false;
@@ -71,20 +69,20 @@ class AuthServicesImpl implements AuthServices {
   }
 
   @override
-  Future<bool> registerWithEmailAndPassword({
-    required String name,
-    required String email,
-    required String password,
-    required String phone,
-    required String birthOfDate,
-  }) async {
+  Future<bool> registerWithEmailAndPassword(
+      {required String name,
+      required String email,
+      required String password,
+      required String phone,
+      required String birthOfDate,
+      required String gender}) async {
     final customerData = CustomerData(
-      name: name,
-      email: email,
-      password: password,
-      phoneNumber: phone,
-      dateOfBirth: birthOfDate,
-    );
+        name: name,
+        email: email,
+        password: password,
+        phoneNumber: phone,
+        dateOfBirth: birthOfDate,
+        gender: gender);
     final apiResponse =
         await aDio.post("${AppConstants.baseUrl}${AppConstants.register}",
             data: customerData.toMap(),
@@ -148,91 +146,54 @@ class AuthServicesImpl implements AuthServices {
   Future<GoogleSignInAccount?> signinWithGoogle() async {
     try {
       log('[GoogleSignIn] Starting sign-in');
-
-      // Try sign in
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
-      log('[GoogleSignIn] googleUser: $googleUser');
 
       if (googleUser == null) {
         log('[GoogleSignIn] User aborted sign-in');
         throw Exception('Google sign-in aborted');
       }
 
-      // Request a server auth code first - this is important!
-      log('[GoogleSignIn] Requesting server auth code');
-
-      // Explicitly request ID token by passing 'true' to the authentication method
       final GoogleSignInAuthentication googleAuth =
-          await googleUser.authentication.catchError((error) {
-        log('[GoogleSignIn] Authentication error: $error');
-        throw Exception('Failed to authenticate with Google: $error');
-      });
-
-      log('[GoogleSignIn] Authentication: accessToken=${googleAuth.accessToken}, idToken=${googleAuth.idToken}');
+          await googleUser.authentication;
 
       final String? idToken = googleAuth.idToken;
+      final String? serverAuthCode = googleUser.serverAuthCode;
 
-      if (idToken == null) {
-        log('[GoogleSignIn] idToken is null, checking server auth code');
-        final String? serverAuthCode = googleUser.serverAuthCode;
+      if (idToken == null && serverAuthCode == null) {
+        throw Exception('Google sign-in failed: No ID token or auth code');
+      }
 
-        if (serverAuthCode == null) {
-          log('[GoogleSignIn] Server auth code is also null');
-          throw Exception('Failed to get ID token or auth code from Google');
-        }
+      final dataToSend = idToken != null
+          ? {'idToken': idToken}
+          : {'serverAuthCode': serverAuthCode};
 
-        log('[GoogleSignIn] Using serverAuthCode instead: $serverAuthCode');
+      log('[GoogleSignIn] Sending ${idToken != null ? "idToken" : "serverAuthCode"} to backend');
 
-        // If your backend supports exchanging server auth code for tokens:
-        final apiResponse = await aDio.post(
-          "${AppConstants.baseUrl}${AppConstants.mobileGoogleLogin}",
-          data: {
-            "serverAuthCode": serverAuthCode,
-          },
-          options: Options(
-            validateStatus: (status) => status != null && status < 500,
-          ),
-        );
+      final response = await aDio.post(
+        "${AppConstants.baseUrl}${AppConstants.mobileGoogleLogin}",
+        data: dataToSend,
+        options:
+            Options(validateStatus: (status) => status != null && status < 500),
+      );
 
-        // Handle response...
-      } else {
-        // Continue with idToken
-        log('[GoogleSignIn] Sending idToken to backend...');
-        final apiResponse = await aDio.post(
-          "${AppConstants.baseUrl}${AppConstants.mobileGoogleLogin}",
-          data: {
-            "idToken": idToken,
-          },
-          options: Options(
-            validateStatus: (status) => status != null && status < 500,
-          ),
-        );
+      log('[GoogleSignIn] Backend response (${response.statusCode}): ${response.data}');
 
-        log('[GoogleSignIn] Backend response (${apiResponse.statusCode}): ${apiResponse.data}');
-
-        if (apiResponse.statusCode == 200) {
-          log('[GoogleSignIn] Sign-in successful: ${apiResponse.data}');
-          final responseData = apiResponse.data;
-
-          // Save user authentication data
-          if (responseData != null && responseData is Map) {
-            if (responseData['token'] != null) {
-              await secureStorage.saveSecureData(
-                  'token', responseData['token']);
-              await secureStorage.saveSecureData('isLogin', 'true');
-              await secureStorage.saveSecureData('email', googleUser.email);
-              await secureStorage.saveSecureData('id', googleUser.id);
-              return googleUser;
-            }
-          }
-        } else {
-          final errorMessage = apiResponse.data['message'] ?? 'Unknown error';
-          log('[GoogleSignIn] Failed: $errorMessage');
-          throw Exception(errorMessage);
+      if (response.statusCode == 200 && response.data is Map) {
+        final responseData = response.data;
+        final token = responseData['token'];
+        log('[GoogleSignIn] Received token: $token');
+        if (token != null) {
+          await secureStorage.saveSecureData('token', token);
+          // await secureStorage.saveSecureData('isLogin', 'true');
+          // await secureStorage.saveSecureData('email', googleUser.email);
+          // await secureStorage.saveSecureData('id', googleUser.id);
+          // await secureStorage.saveSecureData('name', googleUser.displayName!);
+          return googleUser;
         }
       }
 
-      return googleUser;
+      final message = response.data['message'] ?? 'Unknown error';
+      throw Exception('Google sign-in failed: $message');
     } catch (e, stack) {
       log('[GoogleSignIn] ERROR: $e');
       log('[GoogleSignIn] STACK TRACE:\n$stack');

@@ -50,12 +50,23 @@ class AccountPage extends StatelessWidget {
                       child: ClipPath(
                         clipBehavior: Clip.antiAlias,
                         clipper: ShapeBorderClipper(shape: CircleBorder()),
-                        child: Image.asset(
-                            'assets/images/home_page/face_avatar1.png',
-                            height: 120.h,
-                            width: 120.w,
-                            cacheHeight: 385,
-                            cacheWidth: 360),
+                        child: (state.photoUrl != "")
+                            ? Image.network(
+                                state.photoUrl,
+                                height: 120.h,
+                                width: 120.w,
+                                cacheHeight: 385,
+                                cacheWidth: 360,
+                                fit: BoxFit.cover,
+                              )
+                            : Image.asset(
+                                state.gender == "female"
+                                    ? 'assets/images/home_page/face_avatar2.png'
+                                    : 'assets/images/home_page/face_avatar1.png',
+                                height: 120.h,
+                                width: 120.w,
+                                cacheHeight: 385,
+                                cacheWidth: 360),
                       ),
                     ),
                   ),
@@ -233,7 +244,7 @@ void showEditModalBottomSheet(
                   },
                   style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.symmetric(vertical: 10.0.h),
-                    backgroundColor: MyColor.kellyGreen2.withAlpha(200),
+                    backgroundColor: MyColor.kellyGreen3,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.r),
                     ),

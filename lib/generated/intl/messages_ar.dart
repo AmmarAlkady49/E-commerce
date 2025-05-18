@@ -27,6 +27,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "لا تمتلك حساب ؟",
     ),
     "Favorites": MessageLookupByLibrary.simpleMessage("المفضلة"),
+    "Listening": MessageLookupByLibrary.simpleMessage("يستمع..."),
     "account_exists": MessageLookupByLibrary.simpleMessage(
       "الحساب موجود بالفعل",
     ),
@@ -324,6 +325,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "save_changes": MessageLookupByLibrary.simpleMessage("حفظ التعديلات"),
     "search": MessageLookupByLibrary.simpleMessage("البحث"),
     "search_": MessageLookupByLibrary.simpleMessage("بحث..."),
+    "search_by_voice": MessageLookupByLibrary.simpleMessage("بحث بالصوت"),
     "search_in_your_favorite": MessageLookupByLibrary.simpleMessage(
       "إبحث في منتجاتك المفضلة",
     ),
@@ -357,12 +359,16 @@ class MessageLookup extends MessageLookupByLibrary {
       "ترتيب السعر من الأقل إلى الأعلى",
     ),
     "standard_delivery": MessageLookupByLibrary.simpleMessage("التوصيل العادي"),
+    "start_speaking": MessageLookupByLibrary.simpleMessage(
+      "ابدأ التحدث للبحث...",
+    ),
     "street": MessageLookupByLibrary.simpleMessage("الشارع"),
     "street2": MessageLookupByLibrary.simpleMessage("شارع"),
     "submet": MessageLookupByLibrary.simpleMessage("حفظ"),
     "subtotal": MessageLookupByLibrary.simpleMessage("المجموع الفرعي"),
     "suez": MessageLookupByLibrary.simpleMessage("السويس"),
     "tanta": MessageLookupByLibrary.simpleMessage("طنطا"),
+    "tap_to_speak": MessageLookupByLibrary.simpleMessage("انقر للتحدث"),
     "the_address": MessageLookupByLibrary.simpleMessage("العنوان"),
     "too_many_requests": MessageLookupByLibrary.simpleMessage(
       "لقد قمت بإرسال عدد كبير من الطلبات. يرجى المحاولة لاحقًا.",

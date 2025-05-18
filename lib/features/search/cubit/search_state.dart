@@ -1,22 +1,28 @@
 part of 'search_cubit.dart';
 
-class SearchState {}
+abstract class SearchState {}
 
-final class SearchInitial extends SearchState {}
+class SearchInitial extends SearchState {}
 
-// final class SearchRecentUpdated extends SearchState {
-//   List<String> reacentSearches;
-//   SearchRecentUpdated(this.reacentSearches);
-// }
+class SearchInitializing extends SearchState {}
 
-// final class SearchLoading extends SearchState {}
+class SearchInitialized extends SearchState {}
 
-// final class SearchLoaded extends SearchState {
-//   List<ProductResponse> searchResults;
-//   SearchLoaded(this.searchResults);
-// }
+class SearchInitializationFailed extends SearchState {
+  final String error;
+  SearchInitializationFailed({required this.error});
+}
 
-// final class SearchError extends SearchState {
-//   final String message;
-//   SearchError(this.message);
-// }
+class StartToListeningState extends SearchState {}
+
+class SpeechToTextLoaded extends SearchState {
+  final String text;
+  SpeechToTextLoaded({required this.text});
+}
+
+class StopToListeningState extends SearchState {}
+
+class SpeechToTextError extends SearchState {
+  final String error;
+  SpeechToTextError({required this.error});
+}

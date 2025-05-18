@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
 import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
@@ -6,6 +8,7 @@ import 'package:e_commerce_graduation/core/widgets/my_button2.dart';
 import 'package:e_commerce_graduation/core/widgets/my_or_devider.dart';
 import 'package:e_commerce_graduation/core/widgets/my_text_form_field.dart';
 import 'package:e_commerce_graduation/features/auth/auth_cubit/auth_cubit.dart';
+import 'package:e_commerce_graduation/features/auth/views/widgets/modern_gender_selector.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -31,6 +34,7 @@ class _ContainerOfTheCreateAcountState
   final TextEditingController birthOfDateController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  String? selectedGender = 'male';
 
   final FocusNode emailFocusNode = FocusNode();
   final FocusNode passwordFocusNode = FocusNode();
@@ -102,7 +106,7 @@ class _ContainerOfTheCreateAcountState
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    MyTextFormField(
+                    EnhancedTextFormField(
                       width: size.width * 0.395,
                       hint: S.of(context).first_name,
                       textInputType: TextInputType.name,
@@ -119,7 +123,7 @@ class _ContainerOfTheCreateAcountState
                       presentFocusNode: fNameFocusNode,
                       nextFocusNode: lNameFocusNode,
                     ),
-                    MyTextFormField(
+                    EnhancedTextFormField(
                       width: size.width * 0.395,
                       hint: S.of(context).last_name,
                       textInputType: TextInputType.name,
@@ -139,8 +143,8 @@ class _ContainerOfTheCreateAcountState
                   ],
                 ),
               ),
-              SizedBox(height: 13.h),
-              MyTextFormField(
+              SizedBox(height: 8.h),
+              EnhancedTextFormField(
                 width: size.width * 0.8,
                 hint: S.of(context).email,
                 textInputType: TextInputType.emailAddress,
@@ -157,8 +161,8 @@ class _ContainerOfTheCreateAcountState
                 presentFocusNode: emailFocusNode,
                 nextFocusNode: birthOfDateFocusNode,
               ),
-              SizedBox(height: 13.h),
-              MyTextFormField(
+              SizedBox(height: 8.h),
+              EnhancedTextFormField(
                 width: size.width * 0.8,
                 hint: S.of(context).birthday,
                 suffIcon: Iconsax.calendar_1,
@@ -174,10 +178,10 @@ class _ContainerOfTheCreateAcountState
                 readOnly: true,
                 onTap: _selectDate,
               ),
-              SizedBox(height: 13.h),
+              SizedBox(height: 8.h),
               Directionality(
                 textDirection: TextDirection.ltr,
-                child: MyTextFormField(
+                child: EnhancedTextFormField(
                   width: size.width * 0.8,
                   hint: S.of(context).phone,
                   textInputType: TextInputType.phone,
@@ -186,7 +190,7 @@ class _ContainerOfTheCreateAcountState
                     if (value!.isEmpty) {
                       return S.of(context).empty_cell;
                     }
-                    if (value.length != 10) {
+                    if (value.length != 11) {
                       return S.of(context).invalid_phone;
                     }
                     return null;
@@ -195,14 +199,14 @@ class _ContainerOfTheCreateAcountState
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        '+20',
+                        '+2',
                         style: TextStyle(
                           fontSize: 15.sp,
                           fontWeight: FontWeight.w400,
                           color: Colors.grey,
                         ),
                       ),
-                      SizedBox(width: 7.w),
+                      SizedBox(width: 8.w),
                       Container(
                         width: 1,
                         height: 18.h,
@@ -214,8 +218,17 @@ class _ContainerOfTheCreateAcountState
                   nextFocusNode: passwordFocusNode,
                 ),
               ),
-              SizedBox(height: 13.h),
-              MyTextFormField(
+              SizedBox(height: 8.h),
+              ModernGenderSelector(
+                selectedGender: selectedGender,
+                onGenderSelected: (value) {
+                  setState(() {
+                    selectedGender = value;
+                  });
+                },
+              ),
+              SizedBox(height: 10.h),
+              EnhancedTextFormField(
                 width: size.width * 0.8,
                 hint: S.of(context).password,
                 textInputType: TextInputType.visiblePassword,
@@ -232,8 +245,8 @@ class _ContainerOfTheCreateAcountState
                 presentFocusNode: passwordFocusNode,
                 nextFocusNode: confirmPasswordFocusNode,
               ),
-              SizedBox(height: 13.h),
-              MyTextFormField(
+              SizedBox(height: 8.h),
+              EnhancedTextFormField(
                 width: size.width * 0.8,
                 hint: S.of(context).confirm_password,
                 textInputType: TextInputType.visiblePassword,
@@ -318,20 +331,22 @@ class _ContainerOfTheCreateAcountState
                           lName: lNameController.text,
                           phone: phoneController.text,
                           birthDate: birthOfDateController.text,
+                          gender: selectedGender!,
                         );
+                        log("🚩 successfuly created account 🚩 $selectedGender");
                         // cubit.sendEmailVerification();
                       }
                     },
                   );
                 },
               ),
-              SizedBox(height: 13.h),
-              MyOrDevider(size: size.width * 0.02, text: S.of(context).or),
-              SizedBox(height: 13.h),
-              SizedBox(
-                width: size.width * 0.8,
-                child: MyButton2(),
-              )
+              // SizedBox(height: 8.h),
+              // MyOrDevider(size: size.width * 0.02, text: S.of(context).or),
+              // SizedBox(height: 8.h),
+              // SizedBox(
+              //   width: size.width * 0.8,
+              //   child: MyButton2(),
+              // )
             ],
           ),
         ),

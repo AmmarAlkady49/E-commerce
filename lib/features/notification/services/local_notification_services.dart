@@ -43,27 +43,26 @@ class LocalNotificationServices {
     log("Basic notification shown");
   }
 
-  //showRepeatedNotification
-  static void showRepeatedNotification(String title, String body) async {
+  // show dummy orderd notifiacations
+  static void showSingleNotification(String title, String body) async {
     const AndroidNotificationDetails android = AndroidNotificationDetails(
       'id 2',
-      'repeated notification',
+      'Ordered Notification',
+      channelDescription: 'Dummy order notifications',
       importance: Importance.max,
       priority: Priority.high,
+      playSound: true,
+      enableVibration: true,
       styleInformation: BigTextStyleInformation(''),
     );
-    NotificationDetails details = const NotificationDetails(
-      android: android,
-    );
+    const NotificationDetails details = NotificationDetails(android: android);
     int notificationId = DateTime.now().millisecondsSinceEpoch.remainder(10000);
-    await flutterLocalNotificationsPlugin.periodicallyShow(
+    await flutterLocalNotificationsPlugin.show(
       notificationId,
       title,
       body,
-      RepeatInterval.everyMinute,
       details,
       payload: "Payload Data",
-      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
     );
   }
 }

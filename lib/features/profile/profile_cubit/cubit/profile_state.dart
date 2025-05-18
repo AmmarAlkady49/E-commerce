@@ -34,6 +34,7 @@ final class AccountPageLoaded extends ProfileState {
   final String phone;
   final String gender;
   final String birthDate;
+  final String photoUrl;
 
   AccountPageLoaded({
     required this.email,
@@ -42,6 +43,7 @@ final class AccountPageLoaded extends ProfileState {
     required this.phone,
     required this.gender,
     required this.birthDate,
+    required this.photoUrl,
   });
 }
 

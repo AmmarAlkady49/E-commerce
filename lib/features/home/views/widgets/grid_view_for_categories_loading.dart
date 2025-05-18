@@ -48,7 +48,8 @@ class GridViewForCategoriesLoading extends StatelessWidget {
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Image.asset(''),
+                        child: Image.asset(
+                            'assets/images/categories/Baby supplies.png'),
                       ),
                     ),
                   ),

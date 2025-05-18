@@ -8,8 +8,11 @@ final class HomeAppBarLoading extends HomeState {}
 
 final class HomeAppBarLoaded extends HomeState {
   final String userName;
+  final String photoUrl;
+  final String? gender;
 
-  HomeAppBarLoaded(this.userName);
+  HomeAppBarLoaded(
+      {required this.userName, required this.photoUrl, required this.gender});
 }
 
 final class HomeAppBarError extends HomeState {
@@ -122,7 +125,6 @@ final class GetAllCategoriesForHomePageError extends HomeState {
 
 final class GetAllCategoriesForHomePageLoading extends HomeState {}
 
-
 final class GetProductsByCategoryForHomePageLoading extends HomeState {}
 
 final class GetAllCategoriesForHomePageSuccess extends HomeState {
@@ -142,5 +144,3 @@ final class GetProductsByCategoryForHomePageError extends HomeState {
 
   GetProductsByCategoryForHomePageError(this.error);
 }
-
-

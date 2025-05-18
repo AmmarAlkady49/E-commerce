@@ -1814,6 +1814,41 @@ class S {
       args: [],
     );
   }
+
+  /// `Start speaking to search...`
+  String get start_speaking {
+    return Intl.message(
+      'Start speaking to search...',
+      name: 'start_speaking',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search by voice`
+  String get search_by_voice {
+    return Intl.message(
+      'Search by voice',
+      name: 'search_by_voice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tap to speak`
+  String get tap_to_speak {
+    return Intl.message(
+      'Tap to speak',
+      name: 'tap_to_speak',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Listening...`
+  String get Listening {
+    return Intl.message('Listening...', name: 'Listening', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

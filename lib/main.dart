@@ -4,6 +4,7 @@ import 'package:e_commerce_graduation/features/auth/auth_cubit/auth_cubit.dart';
 import 'package:e_commerce_graduation/features/cart/cubit/cart_cubit.dart';
 import 'package:e_commerce_graduation/features/favorites/cubit/favorites_cubit.dart';
 import 'package:e_commerce_graduation/features/home/home_bubit/cubit/home_cubit.dart';
+import 'package:e_commerce_graduation/features/notification/cubit/notification_cubit.dart';
 import 'package:e_commerce_graduation/features/notification/services/local_notification_services.dart';
 import 'package:e_commerce_graduation/features/profile/profile_cubit/cubit/profile_cubit.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
@@ -75,6 +76,10 @@ class MyApp extends StatelessWidget {
               create: (context) => HomeCubit(
                 favoritesCubit: context.read<FavoritesCubit>(),
               ),
+            ),
+            BlocProvider<NotificationCubit>(
+              create: (context) =>
+                  NotificationCubit()..getDummyRepeatedNotificationList(),
             ),
           ],
           child: Builder(

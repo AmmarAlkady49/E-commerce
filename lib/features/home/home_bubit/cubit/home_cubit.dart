@@ -40,11 +40,13 @@ class HomeCubit extends Cubit<HomeState> {
     emit(HomeAppBarLoading());
     try {
       final userName = await secureStorage.readSecureData('name');
+      final photoUrl = await secureStorage.readSecureData("photoUrl");
+      final gender = await secureStorage.readSecureData('gender');
 
       final firstName = userName.split(' ')[0];
       final capitalizedName =
           firstName[0].toUpperCase() + firstName.substring(1).toLowerCase();
-      emit(HomeAppBarLoaded(capitalizedName));
+      emit(HomeAppBarLoaded(userName: capitalizedName, photoUrl: photoUrl, gender: gender));
       return userName;
     } catch (e) {
       emit(HomeAppBarError(e.toString()));

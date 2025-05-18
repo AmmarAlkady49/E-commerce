@@ -54,7 +54,7 @@ class ForgetPasswordPage extends StatelessWidget {
                         color: Colors.black,
                         context: context)),
                 SizedBox(height: 8.h),
-                MyTextFormField(
+                EnhancedTextFormField(
                     width: double.infinity,
                     hint: S.of(context).enter_your_email,
                     controller: emailController,

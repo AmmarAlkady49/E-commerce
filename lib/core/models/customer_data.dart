@@ -11,6 +11,7 @@ class CustomerData {
   final String? postalCode;
   final String? gender;
   final String? dateOfBirth;
+  final String? photoUrl;
 
   CustomerData(
       {this.id,
@@ -23,7 +24,8 @@ class CustomerData {
       this.country = 'null',
       this.postalCode = 'null',
       this.gender = 'male',
-      this.dateOfBirth});
+      this.dateOfBirth,
+      this.photoUrl = ''});
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -71,6 +73,7 @@ class CustomerData {
     String? postalCode,
     String? gender,
     String? dateOfBirth,
+    String? photoUrl,
   }) {
     return CustomerData(
       id: id ?? this.id,
@@ -84,6 +87,7 @@ class CustomerData {
       postalCode: postalCode ?? this.postalCode,
       gender: gender ?? this.gender,
       dateOfBirth: dateOfBirth ?? this.dateOfBirth,
+      photoUrl: photoUrl ?? this.photoUrl,
     );
   }
 }

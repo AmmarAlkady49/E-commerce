@@ -1,6 +1,9 @@
+import 'dart:math';
+
 import 'package:e_commerce_graduation/features/notification/models/notification_message_model.dart';
 import 'package:e_commerce_graduation/features/notification/services/local_notification_services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'dart:async';
 
 part 'notification_state.dart';
 
@@ -13,24 +16,32 @@ class NotificationCubit extends Cubit<NotificationState> {
               (item) => NotificationMessageModel(title: item[0], body: item[1]))
           .toList();
 
-  int _currentIndex = 0;
+  Timer? _timer;
 
   void getDummyRepeatedNotificationList() {
-    _showCurrentNotification();
+    _timer?.cancel();
+    _timer = Timer.periodic(const Duration(seconds: 30), (_) {
+      _showRandomNotification();
+    });
     emit(NotificationLoaded(_notificationList));
   }
 
-  void _showCurrentNotification() {
-    final currentNotification = _notificationList[_currentIndex];
-    LocalNotificationServices.showRepeatedNotification(
-      currentNotification.title,
-      currentNotification.body,
-    );
+  void _showRandomNotification() {
+    final random = Random();
+    final index = random.nextInt(_notificationList.length);
+    final notification = _notificationList[index];
 
-    _currentIndex = (_currentIndex + 1) % _notificationList.length;
+    log("Showing notification: ${notification.title} - ${notification.body}"
+        as num);
+    LocalNotificationServices.showSingleNotification(
+      notification.title,
+      notification.body,
+    );
   }
 
-  void showNextNotificationInOrder() {
-    _showCurrentNotification();
+  @override
+  Future<void> close() {
+    _timer?.cancel();
+    return super.close();
   }
 }
