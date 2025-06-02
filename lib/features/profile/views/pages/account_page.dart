@@ -1,6 +1,8 @@
+import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
 import 'package:e_commerce_graduation/core/utils/themes/app_bar_default_theme.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
 import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
+import 'package:e_commerce_graduation/core/widgets/error_page.dart';
 import 'package:e_commerce_graduation/features/profile/profile_cubit/cubit/profile_cubit.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:flutter/cupertino.dart';
@@ -16,7 +18,13 @@ class AccountPage extends StatelessWidget {
     final profileCubit = BlocProvider.of<ProfileCubit>(context);
     return Scaffold(
       appBar: AppBarDefaultTheme(title: S.of(context).personal_info),
-      body: BlocBuilder<ProfileCubit, ProfileState>(
+      body: BlocConsumer<ProfileCubit, ProfileState>(
+        listenWhen: (previous, current) => current is AccountPageError,
+        listener: (context, state) {
+          if (state is AccountPageError) {
+            Navigator.of(context).pushNamed(AppRoutes.tooManyRequestPage);
+          }
+        },
         bloc: profileCubit,
         buildWhen: (previous, current) =>
             current is AccountPageLoading ||
@@ -30,9 +38,7 @@ class AccountPage extends StatelessWidget {
             );
           }
           if (state is AccountPageError) {
-            return Center(
-              child: Text(state.message),
-            );
+            return ErrorPage();
           }
           if (state is AccountPageLoaded) {
             return Padding(

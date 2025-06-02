@@ -19,4 +19,5 @@ class AppRoutes {
   static const String productsByCategoryPage = '/products_by_category_page';
   static const String splash = '/splash';
   static const String speechToText = '/speech_to_text_search';
+  static const String tooManyRequestPage = '/too_many_request_page';
 }

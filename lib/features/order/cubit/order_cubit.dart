@@ -58,32 +58,32 @@ class OrderCubit extends Cubit<OrderState> {
     }
   }
 
-  // create Order
-  Future<void> createOrder() async {
-    emit(CreatingOrder());
-    try {
-      final userData = await _profilePageServices.getUserData();
-      final orderModelObject = CreateOrderModel(
-        cartId: userData.id!,
-        shippingDTO: ShippingDto(
-          address: userData.address!,
-          city: userData.city!,
-          country: userData.country!,
-          postalCode: userData.postalCode!,
-          shippingMethod: selectedDeliveryMethod.name,
-          useProfileAddress: true,
-          updateProfileAddress: true,
-        ),
-      );
-      await _orderServices.createOrder(orderModelObject);
-      // await _cartServices.deleteAllProductsFromCart(userData.id!);
-      log("🚩 successfuly created order 🚩");
-      emit(CreatedOrder());
-    } catch (e) {
-      log(e.toString());
-      emit(CreatingOrderError(e.toString()));
-    }
-  }
+  // // create Order
+  // Future<void> createOrder() async {
+  //   emit(CreatingOrder());
+  //   try {
+  //     final userData = await _profilePageServices.getUserData();
+  //     final orderModelObject = CreateOrderModel(
+  //       cartId: userData.id!,
+  //       shippingDTO: ShippingDto(
+  //         address: userData.address!,
+  //         city: userData.city!,
+  //         country: userData.country!,
+  //         postalCode: userData.postalCode!,
+  //         shippingMethod: selectedDeliveryMethod.name,
+  //         useProfileAddress: true,
+  //         updateProfileAddress: true,
+  //       ),
+  //     );
+  //     await _orderServices.createOrder(orderModelObject);
+  //     // await _cartServices.deleteAllProductsFromCart(userData.id!);
+  //     log("🚩 successfuly created order 🚩");
+  //     emit(CreatedOrder());
+  //   } catch (e) {
+  //     log(e.toString());
+  //     emit(CreatingOrderError(e.toString()));
+  //   }
+  // }
 
   // get all orders
   Future<void> getAllOrders() async {
@@ -103,6 +103,11 @@ class OrderCubit extends Cubit<OrderState> {
     emit(CreatingOrderWithPayment());
     try {
       final userData = await _profilePageServices.getUserData();
+      if (userData.address == "null") {
+        emit(CreatingOrderWithPaymentError("empty address"));
+        log("🚩 empty address 🚩");
+        return;
+      }
       final orderModelObject = CreateOrderModel(
         cartId: userData.id!,
         shippingDTO: ShippingDto(
@@ -123,8 +128,11 @@ class OrderCubit extends Cubit<OrderState> {
           context, AppRoutes.paymentWebviewPage,
           arguments: createdOrder.data.paymentUrl);
 
+          log("🚩 result from payment webview: $result 🚩");
+
       if (result == true) {
         emit(CreatedOrderWithPayment());
+
         cartCubit.hasFetchedCart = false;
         favoritesCubit.hasFetchedFavorites = false;
       } else {

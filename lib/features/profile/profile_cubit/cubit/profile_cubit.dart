@@ -116,10 +116,10 @@ class ProfileCubit extends Cubit<ProfileState> {
     }
   }
 
-  // get email from secure storage
-  Future<String?> getEmail() async {
-    final email = await secureStorage.readSecureData('email');
-    log("Email from secure storage: $email");
-    return email;
-  }
+  // // get email from secure storage
+  // Future<String?> getEmail() async {
+  //   final email = await secureStorage.readSecureData('email');
+  //   log("Email from secure storage: $email");
+  //   return email;
+  // }
 }

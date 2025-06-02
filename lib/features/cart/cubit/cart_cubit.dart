@@ -87,7 +87,11 @@ class CartCubit extends Cubit<CartState> {
 
       emit(CartItemDeleted());
       hasFetchedCart = false;
+    } on Exception catch (e) {
+      emit(CartError(e.toString()));
+      log(e.toString() + "11111111111");
     } catch (e) {
+      log(e.toString() + "22222222222");
       emit(CartError(e.toString()));
     }
   }

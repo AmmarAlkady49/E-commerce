@@ -2,6 +2,7 @@ import 'package:e_commerce_graduation/core/utils/helper_functions.dart';
 import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
 import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
+import 'package:e_commerce_graduation/core/widgets/show_modal_bottom_sheet.dart';
 import 'package:e_commerce_graduation/features/cart/model/cart_response_body.dart';
 import 'package:e_commerce_graduation/features/order/cubit/order_cubit.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
@@ -26,10 +27,28 @@ class PayButton extends StatelessWidget {
         if (state is CreatedOrderWithPayment) {
           Navigator.of(context).pushNamedAndRemoveUntil(
               AppRoutes.bottomNavBar, (route) => false);
+          // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          //   content: Text(
+          //     S.of(context).verify_email_successfully,
+          //     style: FontHelper.fontText(
+          //         size: 15.sp,
+          //         weight: FontWeight.w600,
+          //         color: Colors.white,
+          //         context: context),
+          //   ),
+          //   backgroundColor: Colors.green,
+          //   behavior: SnackBarBehavior.floating,
+          //   shape: RoundedRectangleBorder(
+          //     borderRadius: BorderRadius.circular(26),
+          //   ),
+          // ));
+          ShowModalBottomSheet.show(context);
         } else if (state is CreatingOrderWithPaymentError) {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text(
-              S.of(context).error_creating_order,
+              state.message == "empty address"
+                  ? S.of(context).empty_address
+                  : S.of(context).error_creating_order,
               textAlign: TextAlign.start,
               style: FontHelper.fontText(
                   size: 15.sp,

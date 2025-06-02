@@ -24,11 +24,8 @@ class BottomOfTheProductDetails extends StatelessWidget {
       builder: (context, state) {
         return Container(
           height: 65.h,
-          decoration: BoxDecoration(
-            // color: Color(0xfffefffe),
-            color: MyColor.white,
-            // color: Colors.amber,
-          ),
+          padding: EdgeInsets.only(bottom: 16.0.h),
+          decoration: BoxDecoration(color: MyColor.white),
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.0.w),
             child: Row(

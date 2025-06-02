@@ -1,6 +1,10 @@
+import 'dart:developer';
+
 import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
 import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
+import 'package:e_commerce_graduation/core/widgets/empty_search.dart';
+import 'package:e_commerce_graduation/core/widgets/error_page.dart';
 import 'package:e_commerce_graduation/features/home/home_bubit/cubit/home_cubit.dart';
 import 'package:e_commerce_graduation/features/search/views/widgets/category_list_view_widget.dart';
 import 'package:e_commerce_graduation/features/search/views/widgets/filter_icon_button.dart';
@@ -19,37 +23,38 @@ class CustomeSearch extends SearchDelegate {
   @override
   ThemeData appBarTheme(BuildContext context) {
     return ThemeData(
-        appBarTheme: AppBarTheme(
-          backgroundColor: MyColor.kellyGreen3,
-          elevation: 4,
-          shadowColor: Colors.black,
-          toolbarHeight: 57.h,
+      appBarTheme: AppBarTheme(
+        backgroundColor: MyColor.kellyGreen3,
+        elevation: 4,
+        shadowColor: Colors.black,
+        toolbarHeight: 57.h,
+      ),
+      inputDecorationTheme: InputDecorationTheme(
+        hintStyle: FontHelper.fontText(
+            size: 16.sp,
+            weight: FontWeight.w400,
+            color: Colors.black54,
+            context: context),
+        filled: true,
+        fillColor: Colors.white,
+        contentPadding: EdgeInsets.symmetric(horizontal: 10.w),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.r),
+          borderSide: BorderSide.none,
         ),
-        inputDecorationTheme: InputDecorationTheme(
-          hintStyle: FontHelper.fontText(
-              size: 16.sp,
-              weight: FontWeight.w400,
-              color: Colors.black54,
-              context: context),
-          filled: true,
-          fillColor: Colors.white,
-          contentPadding: EdgeInsets.symmetric(horizontal: 10.w),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12.r),
-            borderSide: BorderSide.none,
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.r),
+          borderSide: BorderSide(
+            color: Colors.black12,
+            width: 1.0,
           ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12.r),
-            borderSide: BorderSide(
-              color: Colors.black12,
-              width: 1.0,
-            ),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12.r),
-            borderSide: BorderSide.none,
-          ),
-        ));
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.r),
+          borderSide: BorderSide.none,
+        ),
+      ),
+    );
   }
 
   @override
@@ -117,10 +122,11 @@ class CustomeSearch extends SearchDelegate {
   Widget buildResults(BuildContext context) {
     homeCubit.searchProducts(query: query);
 
-    return Container(
-      height: MediaQuery.of(context).size.height,
-      decoration: BoxDecoration(color: Colors.grey.shade100),
-      child: SingleChildScrollView(
+    return SingleChildScrollView(
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          color: MyColor.seasalt,
+        ),
         child: Column(
           children: [
             CategoryListViewWidget(),
@@ -144,28 +150,10 @@ class CustomeSearch extends SearchDelegate {
                   );
                 } else if (state is SearchLoaded || state is FilterLoaded) {
                   final products = homeCubit.searchResults;
+                  log('Search results lengt::::::::::: ${products.length}');
 
                   if (products.isEmpty) {
-                    return Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox(height: 50.h),
-                          Icon(CupertinoIcons.search,
-                              size: 75, color: Colors.black54),
-                          SizedBox(height: 8.h),
-                          Text(
-                            S.of(context).no_products_found,
-                            style: FontHelper.fontText(
-                              size: 16.sp,
-                              weight: FontWeight.w600,
-                              color: Colors.black54,
-                              context: context,
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
+                    return EmptySearch();
                   }
 
                   return Padding(
@@ -210,12 +198,12 @@ class CustomeSearch extends SearchDelegate {
                           ),
                           itemCount: products.length,
                         ),
-                        SizedBox(height: 24.h),
+                        SizedBox(height: 36.h),
                       ],
                     ),
                   );
                 } else if (state is SearchError || state is FilterError) {
-                  return Center(child: Text('Something went wrong'));
+                  return ErrorPage();
                 } else {
                   return const SizedBox.shrink();
                 }
@@ -239,15 +227,38 @@ class CustomeSearch extends SearchDelegate {
           final recent = cubit.reacentSearches;
 
           if (recent.isEmpty) {
-            return Center(
-              child: Text(
-                S.of(context).no_recent_searches,
-                style: FontHelper.fontText(
-                  size: 14.sp,
-                  weight: FontWeight.w500,
-                  color: Colors.black54,
-                  context: context,
-                ),
+            return SizedBox(
+              width: double.infinity,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    padding: EdgeInsets.all(16.r),
+                    decoration: BoxDecoration(
+                      // color: Colors.grey.shade100,
+                      color: MyColor.kellyGreen3.withAlpha(40),
+                      borderRadius: BorderRadius.circular(16.r),
+                    ),
+                    child: Icon(
+                      Icons.history_outlined,
+                      size: 42.sp,
+                      // color: Colors.grey.shade500,
+                      color: MyColor.kellyGreen3,
+                    ),
+                  ),
+                  SizedBox(height: 12.h),
+                  Text(
+                    S.of(context).no_recent_searches,
+                    style: FontHelper.fontText(
+                      size: 16.sp,
+                      weight: FontWeight.w700,
+                      color: Colors.black87,
+                      context: context,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
               ),
             );
           }

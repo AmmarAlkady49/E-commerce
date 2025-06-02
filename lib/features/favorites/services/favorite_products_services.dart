@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 
 import 'package:e_commerce_graduation/core/utils/app_constants.dart';
@@ -25,6 +27,7 @@ class FavoriteProductsServicesImpl implements FavoriteProductsServices {
 
       if (apiResponse.statusCode == 200) {
         final items = apiResponse.data['items'];
+        log("getFavoriteProducts: ${apiResponse.data}");
 
         if (items is List) {
           return items
@@ -47,6 +50,7 @@ class FavoriteProductsServicesImpl implements FavoriteProductsServices {
 
   @override
   Future<bool> addFavoriteProduct(String userId, String productId) async {
+    log("addFavoriteProduct: userId=$userId, productId=$productId");
     try {
       final apiResponse = await aDio.post(
           "${AppConstants.baseUrl}${AppConstants.addToWishlist}",

@@ -223,10 +223,25 @@
     "recommended": "Recommended",
     "too_many_requests": "Too many requests, please try again later",
     "lost_connection": "It seems that the internet connection is currently unavailable 📡. Please try again once the connection is restored.",
-    "start_speaking" : "Start speaking to search...",
-    "search_by_voice" : "Search by voice",
-    "tap_to_speak" : "Tap to speak",
-    "Listening" : "Listening..."
-  
+    "start_speaking": "Start speaking to search...",
+    "search_by_voice": "Search by voice",
+    "tap_to_speak": "Tap to speak",
+    "Listening": "Listening...",
+    "too_many_requests2": "Too many requests",
+    "you_are_sending_too_many_requests": "You are sending too many requests, Please wait a few seconds and try again.",
+    "back": "Back",
+    "try_again": "Try again",
+    "need_help": "Need help? Contact support",
+    "something_went_wrong": "Something went wrong, please try again later.",
+    "error_description": "We encountered an unexpected issue. Please try again or return to the home page.",
+    "try_different_search" : "Try using different keywords or browsing categories",
+    "empty_address" : "Please add an address to proceed.",
+    "coninue_shopping": "Continue Shopping",
+    "order_confirmed_desc": "Thank you for your order! Your order has been successfully placed and is being processed. You will receive a confirmation email shortly.",
+    "order_confirmed_title": "Order Confirmed",
+    "track_your_order": "Track Your Order",
+    "have_questions": "Have any questions? Reach directly to our ",
+    "support_team": "support team",
+    "rating": "Rating"
 
 }

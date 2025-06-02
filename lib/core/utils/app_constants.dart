@@ -1,9 +1,5 @@
 class AppConstants {
   static const String appTitle = 'E-Commerce Graduation Project';
-  static const String googleClientId =
-      '563886842859-ekb482r8dm27fp0kedd20plsbela73hp.apps.googleusercontent.com';
-      static const String webClientId = '563886842859-v006q58f3c1jvpqu5apbggur8cpgbd61.apps.googleusercontent.com';
-  // 'com.googleusercontent.apps.563886842859-ekb482r8dm27fp0kedd20plsbela73hp';
 
   // APIs paths
   static const String baseUrl =
@@ -41,4 +37,5 @@ class AppConstants {
       '/Payment/create-order-with-payment';
   static const String paymentCallback = '/Payment/callback';
   static const String getOrderStatus = '/Order/get-order-status-by-id';
+  static const String getRecommendedProducts= '/Product/get-recommended-products';
 }

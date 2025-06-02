@@ -51,7 +51,10 @@ class ProductDetailsServicesImpl extends ProductDetailsServices {
       if (selectedProduct.statusCode == 200) {
         log('statusCode: ${selectedProduct.statusCode}');
         return ProductResponse.fromMap(selectedProduct.data);
-      } else {
+      } else if (selectedProduct.statusCode == 400) {
+        throw Exception('Bad request: ${selectedProduct.statusCode}');
+      }
+      else {
         throw Exception('Failed to load product detailssssss');
       }
     } catch (e) {

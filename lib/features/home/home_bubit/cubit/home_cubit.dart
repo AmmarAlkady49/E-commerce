@@ -25,7 +25,8 @@ class HomeCubit extends Cubit<HomeState> {
   List<String> reacentSearches = [];
   List<ProductResponse> searchResults = [];
   List<CategoryModel> categoriesList = [];
-
+  List<ProductResponse> homeProducts = [];
+  List<Map<String, String>> homeCategories = [];
   String? currentSearchQuery;
   int selectedCategoryIndex = 0;
 
@@ -35,6 +36,16 @@ class HomeCubit extends Cubit<HomeState> {
   double? _maxPrice;
   String? categoryCode;
   String? _sortBy;
+
+  //
+  bool _categoriesDone = false;
+  bool _productsDone = false;
+  bool _categoriesError = false;
+  bool _productsError = false;
+
+  bool get isLoading => !_categoriesDone || !_productsDone;
+  bool get hasError => _categoriesError || _productsError;
+//
   // Get UserData
   Future<String> getUserData() async {
     emit(HomeAppBarLoading());
@@ -46,7 +57,8 @@ class HomeCubit extends Cubit<HomeState> {
       final firstName = userName.split(' ')[0];
       final capitalizedName =
           firstName[0].toUpperCase() + firstName.substring(1).toLowerCase();
-      emit(HomeAppBarLoaded(userName: capitalizedName, photoUrl: photoUrl, gender: gender));
+      emit(HomeAppBarLoaded(
+          userName: capitalizedName, photoUrl: photoUrl, gender: gender));
       return userName;
     } catch (e) {
       emit(HomeAppBarError(e.toString()));
@@ -57,6 +69,8 @@ class HomeCubit extends Cubit<HomeState> {
 
   // Get All Products
   Future<void> getAllProducts() async {
+    _productsDone = false;
+    _productsError = false;
     emit(LoadingHomeProducts());
 
     try {
@@ -75,17 +89,61 @@ class HomeCubit extends Cubit<HomeState> {
         );
         return product.copyWith(isFavorite: isFavorite);
       }).toList();
+      homeProducts = finalProducts;
+      _productsDone = true;
       emit(LoadedHomeProducts(finalProducts));
     } on Exception catch (e) {
+      _productsDone = true;
+      _productsError = true;
       emit(ErrorHomeProducts(e.toString()));
     } catch (e) {
+      _productsDone = true;
+      _productsError = true;
       emit(ErrorHomeProducts(e.toString()));
+      log(e.toString());
+    }
+  }
 
+  Future<void> getRecommendedProducts() async {
+    _productsDone = false;
+    _productsError = false;
+    emit(LoadingHomeProducts());
+
+    try {
+      final userId = await secureStorage.readSecureData('userId');
+      // Fetching the recommended products ID
+      final recommendedProductsIds =
+          await homeServices.getRecommendedProductsID(userId);
+      final recommendedProducts =
+          await homeServices.getRecommendedProducts(recommendedProductsIds);
+      log("Recommended Products IDs: $recommendedProductsIds");
+      log("Recommended Products: $recommendedProducts");
+      final favoriteProducts =
+          await _favoriteProductsServices.getFavoriteProducts(userId);
+      final List<ProductResponse> finalProducts =
+          recommendedProducts.map((product) {
+        final isFavorite = favoriteProducts.any(
+          (item) => item.productId == product.productID,
+        );
+        return product.copyWith(isFavorite: isFavorite);
+      }).toList();
+      homeProducts = finalProducts;
+      _productsDone = true;
+      emit(LoadedHomeProducts(finalProducts));
+    } on Exception catch (e) {
+      _productsDone = true;
+      _productsError = true;
+      emit(ErrorHomeProducts(e.toString()));
+    } catch (e) {
+      _productsDone = true;
+      _productsError = true;
+      emit(ErrorHomeProducts(e.toString()));
       log(e.toString());
     }
   }
 
   Future<void> setFavortie(String productId) async {
+    log("Setting favorite for product ID: $productId");
     emit(SetFavoriteLoading(productId: productId));
     try {
       final userId = await secureStorage.readSecureData('userId');
@@ -104,6 +162,7 @@ class HomeCubit extends Cubit<HomeState> {
         favoritesCubit.hasFetchedFavorites = false;
       }
       emit(SetFavoriteSuccess(isFavorite: !isFavorite, productId: productId));
+      log("Favorite status for product ID $productId: ${!isFavorite}");
     } catch (e) {
       log("error in set favorite: ${e.toString()}");
       emit(SetFavoriteError(error: e.toString(), productId: productId));
@@ -131,23 +190,29 @@ class HomeCubit extends Cubit<HomeState> {
   Future<void> searchProducts({required String query}) async {
     isFiltering = false;
     resetFilters();
+    log("Searching for products with query: $query");
+
     emit(SearchLoading());
     try {
       final userId = await secureStorage.readSecureData('userId');
+
       final parameterRequest = ParameterRequest(
         pagenum: 1,
         maxpagesize: 30,
         pagesize: 30,
         search: query,
       );
+
       final allProducts = await homeServices.getAllProducts(parameterRequest);
-      searchResults = allProducts
-          .where((product) =>
-              product.name!.toLowerCase().contains(query.trim().toLowerCase()))
-          .toList();
+
+      searchResults = allProducts;
+
+      // Fetch favorites
       final favoriteProducts =
           await _favoriteProductsServices.getFavoriteProducts(userId);
-      final List<ProductResponse> finalProducts = searchResults.map((product) {
+
+      // Update `isFavorite` in search results
+      final finalProducts = searchResults.map((product) {
         final isFavorite = favoriteProducts.any(
           (item) => item.productId == product.productID,
         );
@@ -155,12 +220,15 @@ class HomeCubit extends Cubit<HomeState> {
       }).toList();
 
       searchResults = finalProducts;
-      log("search results: ${searchResults.length}");
       currentSearchQuery = query;
       addToRecentSearches(query);
-      emit(SearchLoaded(finalProducts));
+
+      log("Search results count: ${searchResults.length}");
+
+      // ✅ Emit the correct list
+      emit(SearchLoaded(searchResults));
     } catch (e) {
-      log("error in search products: ${e.toString()}");
+      log("Error in searchProducts: ${e.toString()}");
       emit(SearchError("Something went wrong: ${e.toString()}"));
     }
   }
@@ -294,6 +362,8 @@ class HomeCubit extends Cubit<HomeState> {
   // }
 
   void getAllCategoriesForHomePage() async {
+    _categoriesDone = false;
+    _categoriesError = false;
     emit(GetAllCategoriesForHomePageLoading());
     try {
       categoriesList = await homeServices.getAllCategories();
@@ -318,9 +388,16 @@ class HomeCubit extends Cubit<HomeState> {
       //   final movedCategory = returnedCategoriesList.removeAt(index);
       //   returnedCategoriesList.add(movedCategory);
       // }
-
+      _categoriesDone = true;
       emit(GetAllCategoriesForHomePage(returnedCategoriesList));
+      homeCategories = returnedCategoriesList;
+    } on Exception catch (e) {
+      _categoriesDone = true;
+      _categoriesError = true;
+      emit(GetAllCategoriesForHomePageError(e.toString()));
     } catch (e) {
+      _categoriesDone = true;
+      _categoriesError = true;
       log("error in get all categories: ${e.toString()}");
       emit(GetAllCategoriesForHomePageError(e.toString()));
     }

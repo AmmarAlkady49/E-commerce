@@ -1,8 +1,8 @@
-import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
+import 'package:e_commerce_graduation/core/widgets/error_page.dart';
 import 'package:e_commerce_graduation/features/home/home_bubit/cubit/home_cubit.dart';
 import 'package:e_commerce_graduation/features/home/views/widgets/custom_app_bar_for_category_products.dart';
+import 'package:e_commerce_graduation/core/widgets/empty_search.dart';
 import 'package:e_commerce_graduation/features/home/views/widgets/product_item.dart';
-import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -81,65 +81,23 @@ class _ProductsByCategoryState extends State<ProductsByCategory> {
           categoryCode2: widget.categoryCode2),
       body: Container(
         constraints: const BoxConstraints.expand(),
-        child: BlocConsumer<HomeCubit, HomeState>(
+        child: BlocBuilder<HomeCubit, HomeState>(
           bloc: homeCubit,
           buildWhen: (previous, current) =>
               current is GetProductsByCategoryForHomePageLoading ||
               current is GetProductsByCategoryForHomePageError ||
               current is GetProductsByCategoryForHomePage,
-          listener: (context, state) {
-            if (state is GetProductsByCategoryForHomePageError) {
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: Text(
-                  state.error,
-                  style: FontHelper.fontText(
-                      size: 15.sp,
-                      weight: FontWeight.w600,
-                      color: Colors.white,
-                      context: context),
-                ),
-                backgroundColor: Colors.redAccent,
-                behavior: SnackBarBehavior.floating,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(26),
-                ),
-              ));
-            }
-          },
           builder: (context, state) {
             if (state is GetProductsByCategoryForHomePageLoading) {
               return Center(child: CupertinoActivityIndicator());
             }
             if (state is GetProductsByCategoryForHomePageError) {
-              return Center(
-                child: Text(state.error),
-              );
+              return ErrorPage();
             }
             if (state is GetProductsByCategoryForHomePage) {
               final products = state.products;
               if (products.isEmpty) {
-                return Column(
-                  // mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(width: double.infinity),
-                    SizedBox(height: 200.h),
-                    Icon(
-                      Icons.search_off_outlined,
-                      size: 50.sp,
-                      color: Colors.grey,
-                    ),
-                    SizedBox(height: 8.h),
-                    Text(
-                      S.current.no_products_found,
-                      style: FontHelper.fontText(
-                          context: context,
-                          size: 20.sp,
-                          weight: FontWeight.bold,
-                          color: Colors.black87),
-                    ),
-                  ],
-                );
+                return EmptySearch();
               }
               return GridView.builder(
                 controller: _scrollController,
@@ -160,7 +118,13 @@ class _ProductsByCategoryState extends State<ProductsByCategory> {
                       categoryCode2: widget.categoryCode2,
                     );
                   } else {
-                    return const Center(child: CupertinoActivityIndicator());
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        CupertinoActivityIndicator(),
+                      ],
+                    );
                   }
                 },
               );

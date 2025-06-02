@@ -1,15 +1,12 @@
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
 import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
 import 'package:e_commerce_graduation/core/widgets/build_lost_connection_widget.dart';
-import 'package:e_commerce_graduation/features/cart/cubit/cart_cubit.dart';
 import 'package:e_commerce_graduation/features/cart/views/pages/cart_page.dart';
-import 'package:e_commerce_graduation/features/favorites/cubit/favorites_cubit.dart';
 import 'package:e_commerce_graduation/features/favorites/views/pages/favorites_page.dart';
 import 'package:e_commerce_graduation/features/home/views/pages/home_page.dart';
 import 'package:e_commerce_graduation/features/profile/views/pages/profile_page.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_offline/flutter_offline.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -37,8 +34,9 @@ class _BottomNavBarState extends State<BottomNavBar> {
   void initState() {
     super.initState();
     Future.microtask(() {
-      context.read<FavoritesCubit>().getFavoriteProducts(context);
-      context.read<CartCubit>().getCartItems();
+      // context.read<FavoritesCubit>().getFavoriteProducts(context);
+      // context.read<CartCubit>().getCartItems();
+      // // // // // // // 
       // context.read<NotificationCubit>().getDummyRepeatedNotificationList();
     });
   }

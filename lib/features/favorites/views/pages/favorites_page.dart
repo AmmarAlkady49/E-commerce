@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:e_commerce_graduation/core/utils/themes/app_bar_default_theme.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
 import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
+import 'package:e_commerce_graduation/core/widgets/error_page.dart';
 import 'package:e_commerce_graduation/features/favorites/cubit/favorites_cubit.dart';
 import 'package:e_commerce_graduation/features/favorites/views/widgets/empty_favorite_products.dart';
 import 'package:e_commerce_graduation/features/favorites/views/widgets/not_empty_favorite_products.dart';
@@ -47,25 +48,26 @@ class _FavoritesPageState extends State<FavoritesPage> {
           log(state.message);
           favoritesCubit.hasFetchedFavorites = false;
         }
-        if (state is FavoriteProductsError) {
-          log(state.message);
+        if (state is FavoriteProductsError || state is AddProductToCartError) {
+          // log(state.message);
           favoritesCubit.hasFetchedFavorites = false;
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(
-              state.message,
-              textAlign: TextAlign.end,
-              style: FontHelper.fontText(
-                  size: 15.sp,
-                  weight: FontWeight.w600,
-                  color: Colors.white,
-                  context: context),
-            ),
-            backgroundColor: Colors.redAccent,
-            behavior: SnackBarBehavior.floating,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(26),
-            ),
-          ));
+
+          // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          //   content: Text(
+          //     state.message,
+          //     textAlign: TextAlign.end,
+          //     style: FontHelper.fontText(
+          //         size: 15.sp,
+          //         weight: FontWeight.w600,
+          //         color: Colors.white,
+          //         context: context),
+          //   ),
+          //   backgroundColor: Colors.redAccent,
+          //   behavior: SnackBarBehavior.floating,
+          //   shape: RoundedRectangleBorder(
+          //     borderRadius: BorderRadius.circular(26),
+          //   ),
+          // ));
         }
       },
       buildWhen: (previous, current) =>
@@ -173,42 +175,10 @@ class _FavoritesPageState extends State<FavoritesPage> {
                         ? EmptyFavoriteProducts()
                         : NotEmptyFavoriteProducts(
                             favoriteProducts: state.favoriteProducts)
-                    : state is FavoriteProductsError
-                        ? RefreshIndicator(
-                            onRefresh: () {
-                              return favoritesCubit
-                                  .getFavoriteProducts(context);
-                            },
-                            child: SingleChildScrollView(
-                              physics: const AlwaysScrollableScrollPhysics(),
-                              child: Container(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.75,
-                                alignment: Alignment.center,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(
-                                      CupertinoIcons.xmark_octagon_fill,
-                                      size: 50.sp,
-                                      color: Colors.red.shade500,
-                                    ),
-                                    SizedBox(height: 4.h),
-                                    Text(
-                                      state.message,
-                                      textAlign: TextAlign.center,
-                                      style: FontHelper.fontText(
-                                          context: context,
-                                          size: 15.sp,
-                                          weight: FontWeight.w600,
-                                          color: Colors.black),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          )
-                        : const SizedBox.shrink(),
+                    : state is FavoriteProductsError ||
+                            state is AddProductToCartError
+                        ? ErrorPage()
+                        : SizedBox.shrink(),
           ),
         );
       },

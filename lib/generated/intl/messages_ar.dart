@@ -57,6 +57,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "assign_new_password_desc": MessageLookupByLibrary.simpleMessage(
       "يرجى إدخال كلمة المرور الجديدة لتعيينها لحسابك.",
     ),
+    "back": MessageLookupByLibrary.simpleMessage("العودة"),
     "bahrain": MessageLookupByLibrary.simpleMessage("البحرين"),
     "behera": MessageLookupByLibrary.simpleMessage("البحيرة"),
     "best_seller": MessageLookupByLibrary.simpleMessage("المنتجات المبيعة"),
@@ -96,6 +97,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "confirm_password": MessageLookupByLibrary.simpleMessage(
       "تأكيد كلمة المرور",
     ),
+    "coninue_shopping": MessageLookupByLibrary.simpleMessage("متابعة التسوق"),
     "continue_with_google": MessageLookupByLibrary.simpleMessage(
       "الاستمرار بواسطة جوجل",
     ),
@@ -116,6 +118,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "egypt": MessageLookupByLibrary.simpleMessage("مصر"),
     "egyption_currency": MessageLookupByLibrary.simpleMessage("ج.م"),
     "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
+    "empty_address": MessageLookupByLibrary.simpleMessage(
+      "يرجى اضافة عنوان للمتابعة",
+    ),
     "empty_cell": MessageLookupByLibrary.simpleMessage("الحقل فارغ"),
     "english": MessageLookupByLibrary.simpleMessage("En"),
     "enter_your_address": MessageLookupByLibrary.simpleMessage("ادخل عنوانك"),
@@ -139,6 +144,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "error_creating_order": MessageLookupByLibrary.simpleMessage(
       "خطأ في انشاء الطلب، يرجى المحاولة مرة أخرى",
+    ),
+    "error_description": MessageLookupByLibrary.simpleMessage(
+      "لقد حدث خطاء غير متوقع، يرجى المحاولة مرة أخرى أو العودة إلى الصفحة الرئيسية.",
     ),
     "error_login": MessageLookupByLibrary.simpleMessage(
       "حدث خطأ اثناء تسجيل الدخول",
@@ -171,6 +179,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "go_to_checkout": MessageLookupByLibrary.simpleMessage("الذهاب للدفع"),
     "google_error": MessageLookupByLibrary.simpleMessage(
       "حدث خطأ اثناء تسجيل الدخول بواسطة جوجل",
+    ),
+    "have_questions": MessageLookupByLibrary.simpleMessage(
+      "هل لديك أسئلة؟ قم بالاتصال مباشرة لفريق الدعم",
     ),
     "hi": MessageLookupByLibrary.simpleMessage("أهلآ"),
     "highest_price": MessageLookupByLibrary.simpleMessage("الاعلى سعرا"),
@@ -214,6 +225,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "most_recent": MessageLookupByLibrary.simpleMessage("الاكثر حديثا"),
     "my_orders": MessageLookupByLibrary.simpleMessage("طلباتي"),
     "name": MessageLookupByLibrary.simpleMessage("الاسم"),
+    "need_help": MessageLookupByLibrary.simpleMessage(
+      "تحتاج لمساعدة؟ اتصل بالدعم",
+    ),
     "new_arrival": MessageLookupByLibrary.simpleMessage("المنتجات الجديدة🔥"),
     "new_password": MessageLookupByLibrary.simpleMessage("كلمة مرور جديدة"),
     "no_address_found": MessageLookupByLibrary.simpleMessage(
@@ -248,6 +262,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "or_login_with": MessageLookupByLibrary.simpleMessage("أو من خلال"),
     "order": MessageLookupByLibrary.simpleMessage("طلب"),
     "order_confirmed": MessageLookupByLibrary.simpleMessage("تم تأكيد الطلب"),
+    "order_confirmed_desc": MessageLookupByLibrary.simpleMessage(
+      "شكرا لك على الطلب! تم تأكيد الطلب بنجاح وتم تحميله ويتم التجهيز. سوف تتلقى بريداً إلكترونياً قريبًا.",
+    ),
+    "order_confirmed_title": MessageLookupByLibrary.simpleMessage("طلب ناجح"),
     "order_created_successfully": MessageLookupByLibrary.simpleMessage(
       "تم انشاء الطلب بنجاح",
     ),
@@ -307,6 +325,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "profile": MessageLookupByLibrary.simpleMessage("الحساب"),
     "qatar": MessageLookupByLibrary.simpleMessage("قطر"),
     "quantity": MessageLookupByLibrary.simpleMessage("الكمية"),
+    "rating": MessageLookupByLibrary.simpleMessage("تقييم"),
     "recommended": MessageLookupByLibrary.simpleMessage("موصى به"),
     "recommended_for_you": MessageLookupByLibrary.simpleMessage("موصى به لك"),
     "remember_me": MessageLookupByLibrary.simpleMessage("تذكرني"),
@@ -347,6 +366,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "التسجيل بواسطة جوجل",
     ),
     "someone_name": MessageLookupByLibrary.simpleMessage("عمار"),
+    "something_went_wrong": MessageLookupByLibrary.simpleMessage(
+      "حدث خطاء، يرجى المحاولة لاحقًا",
+    ),
     "sort_by": MessageLookupByLibrary.simpleMessage("ترتيب حسب"),
     "sort_by_name": MessageLookupByLibrary.simpleMessage("ترتيب حسب الاسم"),
     "sort_by_rating": MessageLookupByLibrary.simpleMessage(
@@ -367,13 +389,22 @@ class MessageLookup extends MessageLookupByLibrary {
     "submet": MessageLookupByLibrary.simpleMessage("حفظ"),
     "subtotal": MessageLookupByLibrary.simpleMessage("المجموع الفرعي"),
     "suez": MessageLookupByLibrary.simpleMessage("السويس"),
+    "support_team": MessageLookupByLibrary.simpleMessage("فريق الدعم"),
     "tanta": MessageLookupByLibrary.simpleMessage("طنطا"),
     "tap_to_speak": MessageLookupByLibrary.simpleMessage("انقر للتحدث"),
     "the_address": MessageLookupByLibrary.simpleMessage("العنوان"),
     "too_many_requests": MessageLookupByLibrary.simpleMessage(
       "لقد قمت بإرسال عدد كبير من الطلبات. يرجى المحاولة لاحقًا.",
     ),
+    "too_many_requests2": MessageLookupByLibrary.simpleMessage(
+      "لقد قمت بإرسال عدد كبير من الطلبات..",
+    ),
     "total_amount": MessageLookupByLibrary.simpleMessage("المبلغ الكلي"),
+    "track_your_order": MessageLookupByLibrary.simpleMessage("تتبع طلبك"),
+    "try_again": MessageLookupByLibrary.simpleMessage("حاول مرة أخرى"),
+    "try_different_search": MessageLookupByLibrary.simpleMessage(
+      "حاول استخدام كلمات مختلفة او استكشاف الفئات",
+    ),
     "type_your_address": MessageLookupByLibrary.simpleMessage("ادخل عنوانك"),
     "verify_email": MessageLookupByLibrary.simpleMessage(
       "تحقق من بريدك الالكتروني",
@@ -391,6 +422,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "تم التحقق من الكود بنجاح",
     ),
     "weak_password": MessageLookupByLibrary.simpleMessage("كلمة المرور ضعيفة"),
+    "you_are_sending_too_many_requests": MessageLookupByLibrary.simpleMessage(
+      "لقد قمت بإرسال عدد كبير من الطلبات. يرجى الانتظار قليلاً ومحاولة المحاولة مرة أخرى.",
+    ),
     "you_can_add_items": MessageLookupByLibrary.simpleMessage(
       "يمكنك اضافة المنتجات المفضلة من خلال الضغط على القلب",
     ),

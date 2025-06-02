@@ -27,6 +27,8 @@ class CartServicesImpl implements CartServices {
         throw Exception('Server error: ${response.statusCode}');
       } else if (response.statusCode == 401) {
         throw Exception('Unauthorized: ${response.statusCode}');
+      } else if (response.statusCode == 429) {
+        throw Exception('Too many requests: ${response.statusCode}');
       } else {
         throw Exception('Failed to load cart items');
       }
@@ -86,6 +88,8 @@ class CartServicesImpl implements CartServices {
         throw Exception('Server error: ${apiResponse.statusCode}');
       } else if (apiResponse.statusCode == 401) {
         throw Exception('Unauthorized: ${apiResponse.statusCode}');
+      } else if (apiResponse.statusCode == 429) {
+        throw Exception('Too many requests: ${apiResponse.statusCode}');
       } else {
         throw Exception('Failed to delete all products from cart');
       }
@@ -115,6 +119,8 @@ class CartServicesImpl implements CartServices {
         throw Exception('Server error: ${apiResponse.statusCode}');
       } else if (apiResponse.statusCode == 401) {
         throw Exception('Unauthorized: ${apiResponse.statusCode}');
+      } else if (apiResponse.statusCode == 429) {
+        throw Exception('Too many requests: ${apiResponse.statusCode}');
       } else {
         throw Exception('Failed to update product quantity');
       }

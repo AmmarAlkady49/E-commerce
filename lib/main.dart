@@ -12,6 +12,7 @@ import 'package:e_commerce_graduation/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,6 +23,7 @@ void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await LocalNotificationServices.initNitification();
+  await dotenv.load(fileName: ".env");
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
@@ -30,7 +32,7 @@ void main() async {
 
   SharedPreferences pref = await SharedPreferences.getInstance();
   String lang = pref.getString('lang') ?? 'ar';
-  bool rememberMe = pref.getBool("rememberMe") ?? true;
+  bool rememberMe = pref.getBool("rememberMe") ?? false;
 
   runApp(Phoenix(
     child: MyApp(lang: lang, rememberMe: rememberMe),
@@ -67,7 +69,8 @@ class MyApp extends StatelessWidget {
             BlocProvider<CartCubit>(
               create: (context) => CartCubit(
                 favoritesCubit: context.read<FavoritesCubit>(),
-              )..getCartItems(),
+                // )..getCartItems(),
+              ),
             ),
             BlocProvider<ProfileCubit>(
               create: (context) => ProfileCubit(),

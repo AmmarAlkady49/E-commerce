@@ -1849,6 +1849,151 @@ class S {
   String get Listening {
     return Intl.message('Listening...', name: 'Listening', desc: '', args: []);
   }
+
+  /// `Too many requests`
+  String get too_many_requests2 {
+    return Intl.message(
+      'Too many requests',
+      name: 'too_many_requests2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You are sending too many requests, Please wait a few seconds and try again.`
+  String get you_are_sending_too_many_requests {
+    return Intl.message(
+      'You are sending too many requests, Please wait a few seconds and try again.',
+      name: 'you_are_sending_too_many_requests',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Back`
+  String get back {
+    return Intl.message('Back', name: 'back', desc: '', args: []);
+  }
+
+  /// `Try again`
+  String get try_again {
+    return Intl.message('Try again', name: 'try_again', desc: '', args: []);
+  }
+
+  /// `Need help? Contact support`
+  String get need_help {
+    return Intl.message(
+      'Need help? Contact support',
+      name: 'need_help',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Something went wrong, please try again later.`
+  String get something_went_wrong {
+    return Intl.message(
+      'Something went wrong, please try again later.',
+      name: 'something_went_wrong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We encountered an unexpected issue. Please try again or return to the home page.`
+  String get error_description {
+    return Intl.message(
+      'We encountered an unexpected issue. Please try again or return to the home page.',
+      name: 'error_description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Try using different keywords or browsing categories`
+  String get try_different_search {
+    return Intl.message(
+      'Try using different keywords or browsing categories',
+      name: 'try_different_search',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please add an address to proceed.`
+  String get empty_address {
+    return Intl.message(
+      'Please add an address to proceed.',
+      name: 'empty_address',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continue Shopping`
+  String get coninue_shopping {
+    return Intl.message(
+      'Continue Shopping',
+      name: 'coninue_shopping',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Thank you for your order! Your order has been successfully placed and is being processed. You will receive a confirmation email shortly.`
+  String get order_confirmed_desc {
+    return Intl.message(
+      'Thank you for your order! Your order has been successfully placed and is being processed. You will receive a confirmation email shortly.',
+      name: 'order_confirmed_desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Order Confirmed`
+  String get order_confirmed_title {
+    return Intl.message(
+      'Order Confirmed',
+      name: 'order_confirmed_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Track Your Order`
+  String get track_your_order {
+    return Intl.message(
+      'Track Your Order',
+      name: 'track_your_order',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Have any questions? Reach directly to our `
+  String get have_questions {
+    return Intl.message(
+      'Have any questions? Reach directly to our ',
+      name: 'have_questions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `support team`
+  String get support_team {
+    return Intl.message(
+      'support team',
+      name: 'support_team',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rating`
+  String get rating {
+    return Intl.message('Rating', name: 'rating', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

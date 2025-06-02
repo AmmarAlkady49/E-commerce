@@ -35,42 +35,39 @@ class _ConfirmOrderPageState extends State<ConfirmOrderPage> {
       backgroundColor: MyColor.seasalt,
       appBar: AppBarDefaultTheme(
           title: S.of(context).payment_process, needLeadingButton: true),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 0.w),
-        child: BlocBuilder<OrderCubit, OrderState>(
-          bloc: orderCubit,
-          buildWhen: (previous, current) =>
-              current is CartItemsLoading ||
-              current is CartItemsLoaded ||
-              current is CartItemsError,
-          builder: (context, state) {
-            if (state is CartItemsLoading) {
-              return const Center(child: CupertinoActivityIndicator());
-            } else if (state is CartItemsError) {
-              return Center(child: Text(state.message));
-            } else if (state is CartItemsLoaded) {
-              return SingleChildScrollView(
-                child: Column(
-                  children: [
-                    SizedBox(height: 16.h),
-                    AddressContainerWidget(),
-                    SizedBox(height: 16.h),
-                    ListOfOderProducts(cartItems: state.cartItems.items),
-                    SizedBox(height: 16.h),
-                    DeliveryMethodSelector(),
-                    SizedBox(height: 16.h),
-                    TotalSubtotalInfo(cartItems: state.cartItems),
-                    SizedBox(height: 16.h),
-                    PayButton(cartItems: state.cartItems),
-                    SizedBox(height: 32.h),
-                  ],
-                ),
-              );
-            } else {
-              return const SizedBox.shrink();
-            }
-          },
-        ),
+      body: BlocBuilder<OrderCubit, OrderState>(
+        bloc: orderCubit,
+        buildWhen: (previous, current) =>
+            current is CartItemsLoading ||
+            current is CartItemsLoaded ||
+            current is CartItemsError,
+        builder: (context, state) {
+          if (state is CartItemsLoading) {
+            return const Center(child: CupertinoActivityIndicator());
+          } else if (state is CartItemsError) {
+            return Center(child: Text(state.message));
+          } else if (state is CartItemsLoaded) {
+            return SingleChildScrollView(
+              child: Column(
+                children: [
+                  SizedBox(height: 16.h),
+                  AddressContainerWidget(),
+                  SizedBox(height: 16.h),
+                  ListOfOderProducts(cartItems: state.cartItems.items),
+                  SizedBox(height: 16.h),
+                  DeliveryMethodSelector(),
+                  SizedBox(height: 16.h),
+                  TotalSubtotalInfo(cartItems: state.cartItems),
+                  SizedBox(height: 16.h),
+                  PayButton(cartItems: state.cartItems),
+                  SizedBox(height: 32.h),
+                ],
+              ),
+            );
+          } else {
+            return const SizedBox.shrink();
+          }
+        },
       ),
     );
   }

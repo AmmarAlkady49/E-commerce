@@ -1,5 +1,6 @@
 import 'package:e_commerce_graduation/bottom_nav_bar.dart';
 import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
+import 'package:e_commerce_graduation/core/widgets/too_many_request_page.dart';
 import 'package:e_commerce_graduation/features/address/cubit/address_cubit.dart';
 import 'package:e_commerce_graduation/features/address/views/pages/address_page.dart';
 import 'package:e_commerce_graduation/features/address/views/pages/new_address_page.dart';
@@ -43,6 +44,8 @@ class AppRouter {
                 ));
       case AppRoutes.createAccount:
         return MaterialPageRoute(builder: (_) => CreateAccount());
+      case AppRoutes.tooManyRequestPage:
+        return MaterialPageRoute(builder: (_) => TooManyRequestsPage());
       case AppRoutes.forgotPassword:
         return MaterialPageRoute(builder: (_) => const ForgetPasswordPage());
       case AppRoutes.speechToText:

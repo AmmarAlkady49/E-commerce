@@ -12,8 +12,8 @@ final class CartLoaded extends CartState {
 }
 
 final class CartError extends CartState {
-  final String message;
-  CartError(this.message);
+  final String error;
+  CartError(this.error);
 }
 
 final class CartItemDeleting extends CartState {
@@ -24,8 +24,8 @@ final class CartItemDeleting extends CartState {
 final class CartItemDeleted extends CartState {}
 
 final class CartItemDeletedError extends CartState {
-  final String message;
-  CartItemDeletedError(this.message);
+  final String error;
+  CartItemDeletedError(this.error);
 }
 
 final class CartItemUpdating extends CartState {
@@ -40,6 +40,6 @@ final class CartItemUpdated extends CartState {
 }
 
 final class CartItemUpdatedError extends CartState {
-  final String message;
-  CartItemUpdatedError(this.message);
+  final String error;
+  CartItemUpdatedError(this.error);
 }

@@ -1,5 +1,6 @@
 import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
+import 'package:e_commerce_graduation/core/widgets/show_modal_bottom_sheet.dart';
 import 'package:e_commerce_graduation/features/home/home_bubit/cubit/home_cubit.dart';
 import 'package:e_commerce_graduation/features/search/views/widgets/custome_search.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
@@ -65,6 +66,15 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                                               cacheHeight: 151,
                                               cacheWidth: 151,
                                               fit: BoxFit.cover,
+                                              errorBuilder: (context, error,
+                                                      stackTrace) =>
+                                                  Image.asset(
+                                                'assets/images/home_page/face_avatar1.png',
+                                                height: 47,
+                                                width: 47,
+                                                cacheHeight: 151,
+                                                cacheWidth: 151,
+                                              ),
                                             )
                                           : state.gender == 'female'
                                               ? Image.asset(
@@ -145,7 +155,9 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                               color: Colors.black, size: 24.sp),
                         ),
                         IconButton(
-                          onPressed: () {},
+                          onPressed: () async {
+                            ShowModalBottomSheet.show(context);
+                          },
                           icon: Icon(Iconsax.notification,
                               color: Colors.black, size: 24.sp),
                         ),

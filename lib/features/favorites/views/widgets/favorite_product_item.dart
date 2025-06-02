@@ -64,7 +64,7 @@ class FavoriteProductItem extends StatelessWidget {
                           MediaQuery.of(context).devicePixelRatio;
                       final targetHeight = 120.h;
                       final targetWidth =
-                          MediaQuery.of(context).size.width / 7.5;
+                          MediaQuery.of(context).size.width / 3.w;
 
                       return Image(
                         image: ResizeImage(

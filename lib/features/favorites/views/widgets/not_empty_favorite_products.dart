@@ -1,5 +1,6 @@
-import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
-import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
+import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
+import 'package:e_commerce_graduation/core/widgets/empty_search.dart';
+import 'package:e_commerce_graduation/core/widgets/error_page.dart';
 import 'package:e_commerce_graduation/features/favorites/cubit/favorites_cubit.dart';
 import 'package:e_commerce_graduation/features/favorites/model/favorite_item_model.dart';
 import 'package:e_commerce_graduation/features/favorites/views/widgets/favorite_product_item.dart';
@@ -7,7 +8,6 @@ import 'package:e_commerce_graduation/features/favorites/views/widgets/search_se
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:iconsax/iconsax.dart';
 
 class NotEmptyFavoriteProducts extends StatelessWidget {
   final List<FavoriteItemModel> favoriteProducts;
@@ -22,31 +22,28 @@ class NotEmptyFavoriteProducts extends StatelessWidget {
           children: [
             SearchSectionForFavoritePage(),
             SizedBox(height: 18.h),
-            BlocBuilder<FavoritesCubit, FavoritesState>(
+            BlocConsumer<FavoritesCubit, FavoritesState>(
+              listenWhen: (previous, current) =>
+                  current is FavoriteProductsError ||
+                  current is AddProductToCartError,
               buildWhen: (previous, current) =>
                   current is FavoriteProductsLoading ||
                   current is FavoriteProductsLoaded ||
                   current is FavoriteProductsError ||
                   current is SearchFavoriteProductEmpty,
+              listener: (context, state) {
+                if (state is FavoriteProductsError ||
+                    state is AddProductToCartError) {
+                  Navigator.pushNamed(context, AppRoutes.tooManyRequestPage);
+                }
+              },
               builder: (context, state) {
+                if (state is FavoriteProductsError ||
+                    state is AddProductToCartError) {
+                  return ErrorPage();
+                }
                 if (state is SearchFavoriteProductEmpty) {
-                  return Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(height: 16.h),
-                      Icon(Iconsax.close_circle,
-                          size: 50.sp, color: MyColor.poppy),
-                      SizedBox(height: 4.h),
-                      Text(
-                        state.message,
-                        style: FontHelper.fontText(
-                            context: context,
-                            size: 20.sp,
-                            weight: FontWeight.w700,
-                            color: Colors.black87),
-                      ),
-                    ],
-                  );
+                  return EmptySearch();
                 } else if (state is FavoriteProductsLoaded) {
                   final favorites = state.favoriteProducts;
 

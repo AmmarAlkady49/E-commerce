@@ -57,6 +57,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "assign_new_password_desc": MessageLookupByLibrary.simpleMessage(
       "Please enter your new password to assign it to your account.",
     ),
+    "back": MessageLookupByLibrary.simpleMessage("Back"),
     "bahrain": MessageLookupByLibrary.simpleMessage("Bahrain"),
     "behera": MessageLookupByLibrary.simpleMessage("Behera"),
     "best_seller": MessageLookupByLibrary.simpleMessage("Best Seller"),
@@ -96,6 +97,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "confirm_password": MessageLookupByLibrary.simpleMessage(
       "Confirm Password",
     ),
+    "coninue_shopping": MessageLookupByLibrary.simpleMessage(
+      "Continue Shopping",
+    ),
     "continue_with_google": MessageLookupByLibrary.simpleMessage(
       "Continue with Google",
     ),
@@ -116,6 +120,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "egypt": MessageLookupByLibrary.simpleMessage("Egypt"),
     "egyption_currency": MessageLookupByLibrary.simpleMessage("EGP"),
     "email": MessageLookupByLibrary.simpleMessage("Email"),
+    "empty_address": MessageLookupByLibrary.simpleMessage(
+      "Please add an address to proceed.",
+    ),
     "empty_cell": MessageLookupByLibrary.simpleMessage("Empty cell"),
     "english": MessageLookupByLibrary.simpleMessage(" ع "),
     "enter_your_address": MessageLookupByLibrary.simpleMessage(
@@ -141,6 +148,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "error_creating_order": MessageLookupByLibrary.simpleMessage(
       "Error creating order, please try again",
+    ),
+    "error_description": MessageLookupByLibrary.simpleMessage(
+      "We encountered an unexpected issue. Please try again or return to the home page.",
     ),
     "error_login": MessageLookupByLibrary.simpleMessage(
       "Error login, please try again",
@@ -173,6 +183,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "go_to_checkout": MessageLookupByLibrary.simpleMessage("Go to Checkout"),
     "google_error": MessageLookupByLibrary.simpleMessage(
       "Google sign-in aborted",
+    ),
+    "have_questions": MessageLookupByLibrary.simpleMessage(
+      "Have any questions? Reach directly to our ",
     ),
     "hi": MessageLookupByLibrary.simpleMessage("Hi"),
     "highest_price": MessageLookupByLibrary.simpleMessage("Highest Price"),
@@ -214,6 +227,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "most_recent": MessageLookupByLibrary.simpleMessage("Most Recent"),
     "my_orders": MessageLookupByLibrary.simpleMessage("My Orders"),
     "name": MessageLookupByLibrary.simpleMessage("Name"),
+    "need_help": MessageLookupByLibrary.simpleMessage(
+      "Need help? Contact support",
+    ),
     "new_arrival": MessageLookupByLibrary.simpleMessage("New Arrival🔥"),
     "new_password": MessageLookupByLibrary.simpleMessage("New Password"),
     "no_address_found": MessageLookupByLibrary.simpleMessage(
@@ -246,6 +262,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "or_login_with": MessageLookupByLibrary.simpleMessage("Or login with"),
     "order": MessageLookupByLibrary.simpleMessage("Order"),
     "order_confirmed": MessageLookupByLibrary.simpleMessage("Order Confirmed"),
+    "order_confirmed_desc": MessageLookupByLibrary.simpleMessage(
+      "Thank you for your order! Your order has been successfully placed and is being processed. You will receive a confirmation email shortly.",
+    ),
+    "order_confirmed_title": MessageLookupByLibrary.simpleMessage(
+      "Order Confirmed",
+    ),
     "order_created_successfully": MessageLookupByLibrary.simpleMessage(
       "Order created successfully",
     ),
@@ -307,6 +329,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "profile": MessageLookupByLibrary.simpleMessage("Profile"),
     "qatar": MessageLookupByLibrary.simpleMessage("Qatar"),
     "quantity": MessageLookupByLibrary.simpleMessage("Quantity"),
+    "rating": MessageLookupByLibrary.simpleMessage("Rating"),
     "recommended": MessageLookupByLibrary.simpleMessage("Recommended"),
     "recommended_for_you": MessageLookupByLibrary.simpleMessage(
       "Recommended for you",
@@ -353,6 +376,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Sign Up with Google",
     ),
     "someone_name": MessageLookupByLibrary.simpleMessage("John Doe"),
+    "something_went_wrong": MessageLookupByLibrary.simpleMessage(
+      "Something went wrong, please try again later.",
+    ),
     "sort_by": MessageLookupByLibrary.simpleMessage("Sort by"),
     "sort_by_name": MessageLookupByLibrary.simpleMessage("Sort by name"),
     "sort_by_rating": MessageLookupByLibrary.simpleMessage("Sort by rating"),
@@ -373,13 +399,24 @@ class MessageLookup extends MessageLookupByLibrary {
     "submet": MessageLookupByLibrary.simpleMessage("Submit"),
     "subtotal": MessageLookupByLibrary.simpleMessage("Subtotal"),
     "suez": MessageLookupByLibrary.simpleMessage("Suez"),
+    "support_team": MessageLookupByLibrary.simpleMessage("support team"),
     "tanta": MessageLookupByLibrary.simpleMessage("Tanta"),
     "tap_to_speak": MessageLookupByLibrary.simpleMessage("Tap to speak"),
     "the_address": MessageLookupByLibrary.simpleMessage("Address"),
     "too_many_requests": MessageLookupByLibrary.simpleMessage(
       "Too many requests, please try again later",
     ),
+    "too_many_requests2": MessageLookupByLibrary.simpleMessage(
+      "Too many requests",
+    ),
     "total_amount": MessageLookupByLibrary.simpleMessage("Total amount"),
+    "track_your_order": MessageLookupByLibrary.simpleMessage(
+      "Track Your Order",
+    ),
+    "try_again": MessageLookupByLibrary.simpleMessage("Try again"),
+    "try_different_search": MessageLookupByLibrary.simpleMessage(
+      "Try using different keywords or browsing categories",
+    ),
     "type_your_address": MessageLookupByLibrary.simpleMessage(
       "Type your address",
     ),
@@ -404,6 +441,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "weak_password": MessageLookupByLibrary.simpleMessage(
       "The password provided is too weak.",
+    ),
+    "you_are_sending_too_many_requests": MessageLookupByLibrary.simpleMessage(
+      "You are sending too many requests, Please wait a few seconds and try again.",
     ),
     "you_can_add_items": MessageLookupByLibrary.simpleMessage(
       "You can add items to your favorite list by clicking the heart icon",

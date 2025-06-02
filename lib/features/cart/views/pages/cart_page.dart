@@ -1,6 +1,8 @@
+import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
 import 'package:e_commerce_graduation/core/utils/themes/app_bar_default_theme.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
 import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
+import 'package:e_commerce_graduation/core/widgets/error_page.dart';
 import 'package:e_commerce_graduation/features/cart/cubit/cart_cubit.dart';
 import 'package:e_commerce_graduation/features/cart/views/widgets/empty_cart.dart';
 import 'package:e_commerce_graduation/features/cart/views/widgets/not_empty_cart.dart';
@@ -49,8 +51,8 @@ class _CartPageState extends State<CartPage> {
 
                 showMenu(
                   context: context,
-                  position: RelativeRect.fromLTRB(offset.dx + -50,
-                      offset.dy + 00.h, offset.dx + 40, offset.dy + 10),
+                  position: RelativeRect.fromLTRB(offset.dx + -70,
+                      offset.dy + -6.h, offset.dx + 40, offset.dy + 10),
                   color: Colors.white,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)),
@@ -95,7 +97,6 @@ class _CartPageState extends State<CartPage> {
                               ElevatedButton(
                                 onPressed: () {
                                   cartCubit.clearTheCart();
-
                                   Navigator.pop(context);
                                 },
                                 style: ElevatedButton.styleFrom(
@@ -138,10 +139,18 @@ class _CartPageState extends State<CartPage> {
           if (state is CartItemUpdated || state is CartItemDeleted) {
             cartCubit.getCartItems();
           }
+
           if (state is CartItemUpdatedError ||
               state is CartItemDeletedError ||
               state is CartError) {
             cartCubit.hasFetchedCart = false;
+            if ((state is CartError && state.error == 'Too many requests') ||
+                (state is CartItemDeletedError &&
+                    state.error == 'Too many requests') ||
+                (state is CartItemUpdatedError &&
+                    state.error == 'Too many requests')) {
+              Navigator.pushNamed(context, AppRoutes.tooManyRequestPage);
+            }
           }
         },
         bloc: cartCubit,
@@ -153,7 +162,7 @@ class _CartPageState extends State<CartPage> {
           if (state is CartLoading) {
             return const Center(child: CupertinoActivityIndicator());
           } else if (state is CartError) {
-            return Center(child: Text(state.message));
+            return ErrorPage();
           } else if (state is CartLoaded) {
             final cartItems = state.cartItems;
             if (cartItems.items.isEmpty) {
@@ -162,7 +171,7 @@ class _CartPageState extends State<CartPage> {
               return NotEmptyCart(cartItems: cartItems);
             }
           } else {
-            return const SizedBox.shrink();
+            return SizedBox.shrink();
           }
         },
       ),

@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:e_commerce_graduation/core/models/customer_data.dart';
 import 'package:e_commerce_graduation/core/secure_storage.dart';
 import 'package:e_commerce_graduation/core/utils/app_constants.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 abstract class AuthServices {
@@ -28,7 +29,8 @@ class AuthServicesImpl implements AuthServices {
   final aDio = Dio();
   final secureStorage = SecureStorage();
   final GoogleSignIn _googleSignIn = GoogleSignIn(
-    serverClientId: AppConstants.webClientId,
+    // serverClientId: AppConstants.webClientId,
+    serverClientId: dotenv.env['WEB_CLIENT_ID'],
     scopes: [
       'email',
       'profile',
@@ -167,8 +169,6 @@ class AuthServicesImpl implements AuthServices {
           ? {'idToken': idToken}
           : {'serverAuthCode': serverAuthCode};
 
-      log('[GoogleSignIn] Sending ${idToken != null ? "idToken" : "serverAuthCode"} to backend');
-
       final response = await aDio.post(
         "${AppConstants.baseUrl}${AppConstants.mobileGoogleLogin}",
         data: dataToSend,
@@ -176,18 +176,11 @@ class AuthServicesImpl implements AuthServices {
             Options(validateStatus: (status) => status != null && status < 500),
       );
 
-      log('[GoogleSignIn] Backend response (${response.statusCode}): ${response.data}');
-
       if (response.statusCode == 200 && response.data is Map) {
         final responseData = response.data;
         final token = responseData['token'];
-        log('[GoogleSignIn] Received token: $token');
         if (token != null) {
           await secureStorage.saveSecureData('token', token);
-          // await secureStorage.saveSecureData('isLogin', 'true');
-          // await secureStorage.saveSecureData('email', googleUser.email);
-          // await secureStorage.saveSecureData('id', googleUser.id);
-          // await secureStorage.saveSecureData('name', googleUser.displayName!);
           return googleUser;
         }
       }

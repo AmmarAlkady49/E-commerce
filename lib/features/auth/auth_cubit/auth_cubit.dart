@@ -6,6 +6,7 @@ import 'package:e_commerce_graduation/features/profile/services/profile_page_ser
 import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'auth_state.dart';
 
@@ -34,7 +35,6 @@ class AuthCubit extends Cubit<AuthState> {
         phone: phone,
         birthOfDate: birthDate,
         gender: gender,
-        
       );
       if (result) {
         // await _saveUserData(email, fName, lName, phone, birthDate);
@@ -105,40 +105,26 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  // void siginWithGoogle() async {
-  //   emit(SigningWithGoogle());
-  //   try {
-  //     final result = await authServices.signinWithGoogle();
-  //     if (result.user != null) {
-  //       emit(SigningWithGoogleSuccess());
-  //     } else {
-  //       emit(SigningWithGoogleError(S.current.error_login));
-  //     }
-  //   } catch (e) {
-  //     emit(SigningWithGoogleError(S.current.error_login));
-  //   }
-  // }
   void signinWithGoogle() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
     emit(SigningWithGoogle());
     try {
       final result = await authServices.signinWithGoogle();
 
       if (result != null) {
         final userData = await profilePageServices.getUserData();
-        // Save user data to secure storage
         await secureStorage.saveSecureData("isLogin", "true");
         await secureStorage.saveSecureData("email", result.email);
         await secureStorage.saveSecureData(
             "name", userData.name ?? result.displayName!);
         await secureStorage.saveSecureData("userId", userData.id ?? result.id);
         await secureStorage.saveSecureData("photoUrl", result.photoUrl!);
-        // await secureStorage.saveSecureData("email", userData.email!);
-        // await secureStorage.saveSecureData("name", userData.name!);
-        // await secureStorage.saveSecureData("userId", userData.id!);
         emit(AuthSuccess());
       }
 
       log('Google sign-in successful:');
+      await prefs.setBool('rememberMe', true);
       emit(SigningWithGoogleSuccess());
     } on Exception catch (e) {
       log('Google sign-in errorrrrr: $e');

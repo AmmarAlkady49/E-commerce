@@ -1,4 +1,3 @@
-import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
 import 'package:e_commerce_graduation/features/cart/cubit/cart_cubit.dart';
 import 'package:e_commerce_graduation/features/cart/model/cart_item_model.dart';
 import 'package:flutter/material.dart';
@@ -42,21 +41,6 @@ class _IncrementDecrementButtonState extends State<IncrementDecrementButton> {
           setState(() {
             isChanging = false;
           });
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(
-              state.message,
-              style: FontHelper.fontText(
-                  size: 15.sp,
-                  weight: FontWeight.w600,
-                  color: Colors.white,
-                  context: context),
-            ),
-            backgroundColor: Colors.redAccent,
-            behavior: SnackBarBehavior.floating,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(26),
-            ),
-          ));
         }
       },
       builder: (context, state) {

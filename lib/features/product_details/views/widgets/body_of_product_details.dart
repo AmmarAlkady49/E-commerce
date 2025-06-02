@@ -16,17 +16,17 @@ class BodyOfProductDetails extends StatelessWidget {
     return SliverFillRemaining(
       child: Container(
         decoration: BoxDecoration(
-          // color: Color(0xfffefffe),
           color: MyColor.white,
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(30.r), topRight: Radius.circular(30.r)),
         ),
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 12.0.w, vertical: 18.h),
+          padding: EdgeInsets.only(
+              left: 12.0.w, right: 12.w, top: 24.h, bottom: 8.h),
           child: SingleChildScrollView(
             physics: const NeverScrollableScrollPhysics(),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -68,7 +68,7 @@ class BodyOfProductDetails extends StatelessWidget {
                 ),
                 SizedBox(height: 16.h),
                 RateingSection(product: product),
-                SizedBox(height: 4.h),
+                SizedBox(height: 16.h),
                 DescriptionWidget(description: product.description),
               ],
             ),
