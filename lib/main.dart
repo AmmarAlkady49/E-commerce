@@ -1,3 +1,4 @@
+import 'package:e_commerce_graduation/core/cubit/general_cubit.dart';
 import 'package:e_commerce_graduation/core/utils/routes/app_router.dart';
 import 'package:e_commerce_graduation/core/utils/app_constants.dart';
 import 'package:e_commerce_graduation/features/auth/auth_cubit/auth_cubit.dart';
@@ -83,6 +84,12 @@ class MyApp extends StatelessWidget {
             BlocProvider<NotificationCubit>(
               create: (context) =>
                   NotificationCubit()..getDummyRepeatedNotificationList(),
+            ),
+            BlocProvider<GeneralCubit>(
+              create: (context) => GeneralCubit(
+                favoritesCubit: context.read<FavoritesCubit>(),
+                homeCubit: context.read<HomeCubit>(),
+              ),
             ),
           ],
           child: Builder(

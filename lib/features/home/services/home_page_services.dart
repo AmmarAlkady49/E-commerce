@@ -103,7 +103,7 @@ class HomePageServicesImpl implements HomePageServices {
         ));
 
     if (apiResponse.statusCode == 200) {
-      return (apiResponse.data as List)
+      return (apiResponse.data as List) 
           .map((item) => CategoryModel.fromMap(item as Map<String, dynamic>))
           .toList();
     } else if (apiResponse.statusCode == 429) {

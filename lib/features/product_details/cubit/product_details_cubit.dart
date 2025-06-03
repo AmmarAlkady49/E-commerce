@@ -6,6 +6,7 @@ import 'package:e_commerce_graduation/features/cart/cubit/cart_cubit.dart';
 import 'package:e_commerce_graduation/features/cart/services/cart_services.dart';
 import 'package:e_commerce_graduation/features/favorites/cubit/favorites_cubit.dart';
 import 'package:e_commerce_graduation/features/favorites/services/favorite_products_services.dart';
+import 'package:e_commerce_graduation/features/home/home_bubit/cubit/home_cubit.dart';
 import 'package:e_commerce_graduation/features/product_details/services/product_details_services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,7 +15,11 @@ part 'product_details_state.dart';
 class ProductDetailsCubit extends Cubit<ProductDetailsState> {
   final CartCubit cartCubit;
   final FavoritesCubit favoritesCubit;
-  ProductDetailsCubit({required this.cartCubit, required this.favoritesCubit})
+  final HomeCubit homeCubit;
+  ProductDetailsCubit(
+      {required this.cartCubit,
+      required this.favoritesCubit,
+      required this.homeCubit})
       : super(ProductDetailsInitial());
 
   final ProductDetailsServices _productDetailsServices =
@@ -40,6 +45,7 @@ class ProductDetailsCubit extends Cubit<ProductDetailsState> {
       } else {
         await _favoritesServices2.addFavoriteProduct(userId, productId);
       }
+      homeCubit.hasFetchedRecommendedProducts = false;
       emit(SetProductFavoriteSuccess(
           isFavorite: !isFavorite, productId: productId));
       favoritesCubit.hasFetchedFavorites = false;

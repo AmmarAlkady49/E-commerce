@@ -13,6 +13,7 @@ part 'favorites_state.dart';
 
 class FavoritesCubit extends Cubit<FavoritesState> {
   // final CartCubit cartCubit;
+
   FavoritesCubit() : super(FavoritesInitial());
 
   final FavoriteProductsServices _favoritesServices2 =
@@ -73,12 +74,14 @@ class FavoritesCubit extends Cubit<FavoritesState> {
     }
   }
 
-  Future<void> deleteFavoriteProduct(String productId) async {
+  Future<void> deleteFavoriteProduct(
+      String productId, BuildContext context) async {
     emit(FavoriteProductsLoading());
     try {
       final userId = await secureStorage.readSecureData('userId');
       await _favoritesServices2.removeFavoriteProduct(userId, productId);
       hasFetchedFavorites = false;
+
       emit(UpdateFavoritePage());
     } catch (e) {
       log('Error deleting favorite product: $e');

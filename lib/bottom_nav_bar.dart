@@ -36,7 +36,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
     Future.microtask(() {
       // context.read<FavoritesCubit>().getFavoriteProducts(context);
       // context.read<CartCubit>().getCartItems();
-      // // // // // // // 
+      // // // // // // //
       // context.read<NotificationCubit>().getDummyRepeatedNotificationList();
     });
   }
@@ -69,9 +69,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
                     ? Container(
                         decoration: BoxDecoration(
                           color: MyColor.seasalt,
-                          // borderRadius: BorderRadius.only(
-                          //     topLeft: Radius.circular(20.r),
-                          //     topRight: Radius.circular(20.r)),
                           border:
                               Border(top: BorderSide(color: Colors.black12)),
                           boxShadow: [

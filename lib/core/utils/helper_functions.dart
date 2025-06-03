@@ -312,7 +312,7 @@ class HelperFunctions {
 
       case 'ادوات مكتبية':
         return {
-          'name': 'ادوات مكتبية',
+          'name': 'أدوات مكتبية',
           'categoryCode': categoryItem.categoryCode,
           'categoryCode2': "U594M0",
           'imageUrl': 'assets/images/categories/Stationery.png',
@@ -338,7 +338,7 @@ class HelperFunctions {
         };
       case 'شيبس و مقبلات':
         return {
-          'name': 'شيبس و مقبلات',
+          'name': 'شيبسي و مقبلات',
           'categoryCode': categoryItem.categoryCode,
           'imageUrl': 'assets/images/categories/Potato chips.png',
         };

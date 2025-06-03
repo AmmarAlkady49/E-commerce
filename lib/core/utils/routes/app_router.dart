@@ -11,6 +11,7 @@ import 'package:e_commerce_graduation/features/auth/views/pages/sign_in_page.dar
 import 'package:e_commerce_graduation/core/models/product_response.dart';
 import 'package:e_commerce_graduation/features/auth/views/pages/verify_account.dart';
 import 'package:e_commerce_graduation/features/cart/cubit/cart_cubit.dart';
+import 'package:e_commerce_graduation/features/home/home_bubit/cubit/home_cubit.dart';
 import 'package:e_commerce_graduation/features/home/views/widgets/products_by_category.dart';
 import 'package:e_commerce_graduation/features/order/cubit/order_cubit.dart';
 import 'package:e_commerce_graduation/features/order/views/pages/confirm_order_page.dart';
@@ -150,9 +151,12 @@ class AppRouter {
           builder: (context) {
             final cartCubit = context.read<CartCubit>();
             final favoriteCubit = context.read<FavoritesCubit>();
+            final homeCubit = context.read<HomeCubit>();
             final productDetailsCubit = ProductDetailsCubit(
-                cartCubit: cartCubit, favoritesCubit: favoriteCubit)
-              ..getProductDetails(product.productID!);
+              cartCubit: cartCubit,
+              favoritesCubit: favoriteCubit,
+              homeCubit: homeCubit,
+            )..getProductDetails(product.productID!);
 
             return BlocProvider.value(
               value: productDetailsCubit,

@@ -18,7 +18,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     context.read<HomeCubit>().getUserData();
-    // context.read<HomeCubit>().getAllProducts();
+    //  context.read<HomeCubit>().getAllProducts();
     context.read<HomeCubit>().getRecommendedProducts();
     context.read<HomeCubit>().getAllCategoriesForHomePage();
     //
