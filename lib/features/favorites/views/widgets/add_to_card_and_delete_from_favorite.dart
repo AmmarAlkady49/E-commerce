@@ -1,5 +1,5 @@
+import 'package:e_commerce_graduation/core/cubit/general_cubit.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
-import 'package:e_commerce_graduation/features/favorites/cubit/favorites_cubit.dart';
 import 'package:e_commerce_graduation/features/favorites/model/favorite_item_model.dart';
 import 'package:e_commerce_graduation/features/favorites/views/widgets/add_to_cart_button_fav_page.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
@@ -14,7 +14,8 @@ class AddToCardAndDeleteFromFavorite extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final favortiePageCubit = BlocProvider.of<FavoritesCubit>(context);
+    // final favortiePageCubit = BlocProvider.of<FavoritesCubit>(context);
+    final generalCubit = BlocProvider.of<GeneralCubit>(context);
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -48,7 +49,7 @@ class AddToCardAndDeleteFromFavorite extends StatelessWidget {
                       ),
                       child: InkWell(
                         onTap: () {
-                          favortiePageCubit.deleteFavoriteProduct(
+                          generalCubit.deleteFavoriteProduct(
                               productItem.productId.toString(), context);
                           Navigator.of(context).pop();
                         },

@@ -36,6 +36,8 @@ class OrderCubit extends Cubit<OrderState> {
   final ProfilePageServices _profilePageServices = ProfilePageServicesimpl();
   DeliveryMethod _selectedDeliveryMethod = DeliveryMethod.standard;
 
+  bool hasFetchedOrdersPage = false;
+
   DeliveryMethod get selectedDeliveryMethod => _selectedDeliveryMethod;
 
   void setDeliveryMethod(DeliveryMethod method) {
@@ -58,39 +60,16 @@ class OrderCubit extends Cubit<OrderState> {
     }
   }
 
-  // // create Order
-  // Future<void> createOrder() async {
-  //   emit(CreatingOrder());
-  //   try {
-  //     final userData = await _profilePageServices.getUserData();
-  //     final orderModelObject = CreateOrderModel(
-  //       cartId: userData.id!,
-  //       shippingDTO: ShippingDto(
-  //         address: userData.address!,
-  //         city: userData.city!,
-  //         country: userData.country!,
-  //         postalCode: userData.postalCode!,
-  //         shippingMethod: selectedDeliveryMethod.name,
-  //         useProfileAddress: true,
-  //         updateProfileAddress: true,
-  //       ),
-  //     );
-  //     await _orderServices.createOrder(orderModelObject);
-  //     // await _cartServices.deleteAllProductsFromCart(userData.id!);
-  //     log("🚩 successfuly created order 🚩");
-  //     emit(CreatedOrder());
-  //   } catch (e) {
-  //     log(e.toString());
-  //     emit(CreatingOrderError(e.toString()));
-  //   }
-  // }
-
   // get all orders
   Future<void> getAllOrders() async {
+    // if (hasFetchedOrdersPage) {
+    //   return;
+    // }
     emit(GettingAllOrders());
     try {
       final allOrders = await _orderServices.getAllOrders();
       log("🚩 all orders 🚩 ${allOrders.length}");
+      hasFetchedOrdersPage = true;
       emit(GotAllOrders(allOrders));
     } catch (e) {
       log(e.toString());
@@ -128,19 +107,19 @@ class OrderCubit extends Cubit<OrderState> {
           context, AppRoutes.paymentWebviewPage,
           arguments: createdOrder.data.paymentUrl);
 
-          log("🚩 result from payment webview: $result 🚩");
-
       if (result == true) {
+        hasFetchedOrdersPage = false;
         emit(CreatedOrderWithPayment());
 
         cartCubit.hasFetchedCart = false;
         favoritesCubit.hasFetchedFavorites = false;
+        hasFetchedOrdersPage = false;
       } else {
         emit(CreatingOrderWithPaymentError(
             "User exited payment before finishing"));
       }
 
-      log("🚩 successfuly created order with payment 🚩");
+      // log("🚩 successfuly created order with payment 🚩");
     } catch (e) {
       log(e.toString());
       emit(CreatingOrderWithPaymentError(e.toString()));

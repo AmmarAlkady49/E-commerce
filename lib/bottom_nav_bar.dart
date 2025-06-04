@@ -14,15 +14,16 @@ import 'package:iconsax/iconsax.dart';
 import 'package:line_icons/line_icons.dart';
 
 class BottomNavBar extends StatefulWidget {
-  const BottomNavBar({super.key});
+  final int selectedIndex;
+  const BottomNavBar({super.key, this.selectedIndex = 0});
 
   @override
   State<BottomNavBar> createState() => _BottomNavBarState();
 }
 
 class _BottomNavBarState extends State<BottomNavBar> {
-  int _selectedIndex = 0;
-
+  // int _selectedIndex =  0;
+  late int _selectedIndex;
   static List screenOptions = [
     HomePage(),
     CartPage(),
@@ -33,12 +34,14 @@ class _BottomNavBarState extends State<BottomNavBar> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() {
-      // context.read<FavoritesCubit>().getFavoriteProducts(context);
-      // context.read<CartCubit>().getCartItems();
-      // // // // // // //
-      // context.read<NotificationCubit>().getDummyRepeatedNotificationList();
-    });
+      _selectedIndex = widget.selectedIndex;
+    // Future.microtask(() {
+    //   log('BottomNavBar initState called with selectedIndex: $_selectedIndex');
+    //   // context.read<FavoritesCubit>().getFavoriteProducts(context);
+    //   // context.read<CartCubit>().getCartItems();
+    //   // // // // // // //
+    //   // context.read<NotificationCubit>().getDummyRepeatedNotificationList();
+    // });
   }
 
   bool isConnected = true;

@@ -150,8 +150,8 @@ class ListOfOrderImages extends StatelessWidget {
               imageBuilder: (context, imageProvider) {
                 final devicePixelRatio =
                     MediaQuery.of(context).devicePixelRatio;
-                final targetHeight = 90.h;
-                final targetWidth = MediaQuery.of(context).size.width / 8.w;
+                final targetHeight = 70.h;
+                final targetWidth = MediaQuery.of(context).size.width / 5.w;
 
                 return Image(
                   image: ResizeImage(

@@ -52,10 +52,10 @@ class AddToCartButton extends StatelessWidget {
                       color: status == "added" ? Colors.black45 : Colors.white,
                       weight: FontWeight.w700,
                       context: context,
-                      size: 15.sp,
+                      size: 14.5.sp,
                     ),
                   ),
-                SizedBox(width: 8.w),
+                SizedBox(width: status == "added" ? 4.w : 8.w),
                 if (status == "add" || status == "added")
                   Icon(
                     status == "add"

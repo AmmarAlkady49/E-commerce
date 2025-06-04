@@ -141,11 +141,13 @@ class AddressContainerWidget extends StatelessWidget {
                         ],
                       ),
                       child: ListTile(
-                        onTap: () => Navigator.of(context)
-                            .pushNamed(AppRoutes.addressPage)
-                            .then(
-                              (value) => addressCubit.getAllAddresses(),
-                            ),
+                        onTap: () {
+                          Navigator.of(context)
+                              .pushNamed(AppRoutes.addressPage)
+                              .then(
+                                (value) => addressCubit.getAllAddresses(),
+                              );
+                        },
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
@@ -153,7 +155,7 @@ class AddressContainerWidget extends StatelessWidget {
                             horizontal: 8.w, vertical: 6.h),
                         leading: Image(
                           image: ResizeImage(
-                            AssetImage(
+                            const AssetImage(
                                 'assets/images/home_page/location-unscreen2.gif'),
                             width: 110,
                             height: 110,

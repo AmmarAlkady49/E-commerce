@@ -1994,6 +1994,41 @@ class S {
   String get rating {
     return Intl.message('Rating', name: 'rating', desc: '', args: []);
   }
+
+  /// `Product Added Successfully!`
+  String get product_added_successfully {
+    return Intl.message(
+      'Product Added Successfully!',
+      name: 'product_added_successfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What would you like to do next?`
+  String get what_would_you_like_to_do_next {
+    return Intl.message(
+      'What would you like to do next?',
+      name: 'what_would_you_like_to_do_next',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Go to Cart`
+  String get go_to_cart {
+    return Intl.message('Go to Cart', name: 'go_to_cart', desc: '', args: []);
+  }
+
+  /// `Continue Shopping`
+  String get continue_shopping {
+    return Intl.message(
+      'Continue Shopping',
+      name: 'continue_shopping',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

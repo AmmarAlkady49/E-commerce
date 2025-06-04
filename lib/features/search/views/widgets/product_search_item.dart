@@ -63,9 +63,9 @@ class ProductSearchItem extends StatelessWidget {
                         imageBuilder: (context, imageProvider) {
                           final devicePixelRatio =
                               MediaQuery.of(context).devicePixelRatio;
-                          final targetHeight = 100.h;
+                          final targetHeight = 120.h;
                           final targetWidth =
-                              MediaQuery.of(context).size.width / 4.w;
+                              MediaQuery.of(context).size.width / 3.w;
 
                           return Image(
                             image: ResizeImage(

@@ -71,7 +71,7 @@ class CartItem extends StatelessWidget {
                     final devicePixelRatio =
                         MediaQuery.of(context).devicePixelRatio;
                     final targetHeight = 90.h;
-                    final targetWidth = MediaQuery.of(context).size.width / 7.5;
+                    final targetWidth = MediaQuery.of(context).size.width / 5.w;
 
                     return Image(
                       image: ResizeImage(

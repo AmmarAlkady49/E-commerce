@@ -17,6 +17,8 @@ class AddressCubit extends Cubit<AddressState> {
   final addressServices = AddressServicesImpl();
   final secureStorage = SecureStorage();
 
+  bool hasFetchedAddresses = false;
+
   // add new address
   Future<void> addNewAddress(
       {required String country,
@@ -38,6 +40,7 @@ class AddressCubit extends Cubit<AddressState> {
         dateOfBirth: userProfile.dateOfBirth!,
       );
       if (result) {
+        hasFetchedAddresses = false;
         emit(AddNewAddressSucess());
       } else {
         emit(AddNewAddressError(message: "address not added successfully"));
@@ -49,6 +52,9 @@ class AddressCubit extends Cubit<AddressState> {
 
   // get all addresses
   Future<void> getAllAddresses() async {
+    if (hasFetchedAddresses) {
+      return;
+    }
     emit(GettingAddresses());
     final userProfile = await _profileAuthServices.getUserData();
     try {
@@ -73,8 +79,6 @@ class AddressCubit extends Cubit<AddressState> {
     final userProfile = await _profileAuthServices.getUserData();
 
     try {
-      // final userId = _authService.getCurrentUser()!.uid;
-      // await addressServices.deleteAddress(userId, addressId);
       final result = await _appServices.editAccountProfile(
         name: userProfile.name!,
         email: userProfile.email!,
@@ -87,6 +91,7 @@ class AddressCubit extends Cubit<AddressState> {
         dateOfBirth: userProfile.dateOfBirth!,
       );
       if (result) {
+        hasFetchedAddresses = false;
         emit(DeleteAddressSucess());
       } else {
         emit(DeleteAddressError(message: "address not deleted successfully"));
@@ -95,22 +100,4 @@ class AddressCubit extends Cubit<AddressState> {
       emit(DeleteAddressError(message: e.toString()));
     }
   }
-
-  // update address
-  // Future<void> updateAddress(AddressModel address) async {
-  //   // emit(UpdateingAddress());
-  //   try {
-  //     final userId = _authService.getCurrentUser()!.uid;
-  //     final addresses = await addressServices.getAddresses(userId);
-  //     final oldAddress =
-  //         addresses.firstWhere((element) => element.isDefault == true);
-  //     oldAddress.copyWith(isDefault: false);
-
-  //     await addressServices.unSelectAddress(userId, oldAddress);
-  //     await addressServices.selectAddress(userId, address);
-  //     emit(UpdateAddressSucess());
-  //   } catch (e) {
-  //     emit(UpdateAddressError(message: e.toString()));
-  //   }
-  // }
 }

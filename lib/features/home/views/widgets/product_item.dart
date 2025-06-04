@@ -39,7 +39,7 @@ class ProductItem extends StatelessWidget {
                     categoryCode!, categoryCode2!)
                 : homeCubit.getRecommendedProducts());
       },
-      borderRadius: BorderRadius.circular(12.r),
+      borderRadius: BorderRadius.circular(20.r),
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,

@@ -74,20 +74,22 @@ class FavoritesCubit extends Cubit<FavoritesState> {
     }
   }
 
-  Future<void> deleteFavoriteProduct(
-      String productId, BuildContext context) async {
-    emit(FavoriteProductsLoading());
-    try {
-      final userId = await secureStorage.readSecureData('userId');
-      await _favoritesServices2.removeFavoriteProduct(userId, productId);
-      hasFetchedFavorites = false;
+  // MARK: This function replaced in the general_cubit.dart
 
-      emit(UpdateFavoritePage());
-    } catch (e) {
-      log('Error deleting favorite product: $e');
-      emit(FavoriteProductsError(message: e.toString()));
-    }
-  }
+  // Future<void> deleteFavoriteProduct(
+  //     String productId, BuildContext context) async {
+  //   emit(FavoriteProductsLoading());
+  //   try {
+  //     final userId = await secureStorage.readSecureData('userId');
+  //     await _favoritesServices2.removeFavoriteProduct(userId, productId);
+  //     hasFetchedFavorites = false;
+
+  //     emit(UpdateFavoritePage());
+  //   } catch (e) {
+  //     log('Error deleting favorite product: $e');
+  //     emit(FavoriteProductsError(message: e.toString()));
+  //   }
+  // }
 
   // add to cart
   Future<void> addToCart(
@@ -107,7 +109,8 @@ class FavoritesCubit extends Cubit<FavoritesState> {
       emit(AddProductToCartError(productId: productId, message: e.toString()));
     }
   }
-
+  
+  // MARK: This function replaced in the general_cubit.dart
   // delete all Favorite Products
   Future<void> clearFavorites() async {
     emit(FavoriteProductsLoading());

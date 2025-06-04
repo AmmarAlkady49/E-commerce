@@ -11,7 +11,6 @@ import 'package:iconsax/iconsax.dart';
 import 'package:shimmer/shimmer.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
-  // final TabController tabController;
   const HomeAppBar({super.key});
 
   @override
@@ -44,7 +43,12 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                         InkWell(
                           onTap: () =>
                               Navigator.of(context, rootNavigator: false)
-                                  .pushNamed(AppRoutes.accountPage),
+                                  .pushNamed(AppRoutes.accountPage)
+                                  .then((value) {
+                            // if (value == true) {
+                            homeCubit.getUserData();
+                            // }
+                          }),
                           borderRadius: BorderRadius.circular(30.r),
                           child: state is HomeAppBarLoaded
                               ? ClipRRect(

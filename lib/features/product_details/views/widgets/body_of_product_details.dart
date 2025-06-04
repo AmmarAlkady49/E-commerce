@@ -72,7 +72,7 @@ class BodyOfProductDetails extends StatelessWidget {
                 DescriptionWidget(description: product.description),
               ],
             ),
-          ),
+          ), 
         ),
       ),
     );

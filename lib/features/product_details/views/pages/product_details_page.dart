@@ -1,3 +1,4 @@
+import 'package:e_commerce_graduation/core/widgets/error_page.dart';
 import 'package:e_commerce_graduation/features/product_details/cubit/product_details_cubit.dart';
 import 'package:e_commerce_graduation/features/product_details/views/widgets/body_of_product_details.dart';
 import 'package:e_commerce_graduation/features/product_details/views/widgets/bottom_of_the_product_details.dart';
@@ -31,9 +32,7 @@ class ProductDetailsPage extends StatelessWidget {
                 ),
               );
             } else if (state is ProductDetailsError) {
-              return Center(
-                child: Text(state.message),
-              );
+              return Scaffold(body: ErrorPage());
             } else if (state is ProductDetailsLoaded) {
               final product = state.product;
               return Scaffold(

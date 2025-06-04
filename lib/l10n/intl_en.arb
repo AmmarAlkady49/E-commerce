@@ -234,14 +234,17 @@
     "need_help": "Need help? Contact support",
     "something_went_wrong": "Something went wrong, please try again later.",
     "error_description": "We encountered an unexpected issue. Please try again or return to the home page.",
-    "try_different_search" : "Try using different keywords or browsing categories",
-    "empty_address" : "Please add an address to proceed.",
+    "try_different_search": "Try using different keywords or browsing categories",
+    "empty_address": "Please add an address to proceed.",
     "coninue_shopping": "Continue Shopping",
     "order_confirmed_desc": "Thank you for your order! Your order has been successfully placed and is being processed. You will receive a confirmation email shortly.",
     "order_confirmed_title": "Order Confirmed",
     "track_your_order": "Track Your Order",
     "have_questions": "Have any questions? Reach directly to our ",
     "support_team": "support team",
-    "rating": "Rating"
-
+    "rating": "Rating",
+    "product_added_successfully": "Product Added Successfully!",
+    "what_would_you_like_to_do_next": "What would you like to do next?",
+    "go_to_cart": "Go to Cart",
+    "continue_shopping": "Continue Shopping"
 }

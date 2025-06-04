@@ -98,6 +98,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "تأكيد كلمة المرور",
     ),
     "coninue_shopping": MessageLookupByLibrary.simpleMessage("متابعة التسوق"),
+    "continue_shopping": MessageLookupByLibrary.simpleMessage("متابعة التسوق"),
     "continue_with_google": MessageLookupByLibrary.simpleMessage(
       "الاستمرار بواسطة جوجل",
     ),
@@ -176,6 +177,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "gender": MessageLookupByLibrary.simpleMessage("النوع"),
     "general": MessageLookupByLibrary.simpleMessage("عام"),
     "giza": MessageLookupByLibrary.simpleMessage("الجيزه"),
+    "go_to_cart": MessageLookupByLibrary.simpleMessage("اذهب إلى العربة"),
     "go_to_checkout": MessageLookupByLibrary.simpleMessage("الذهاب للدفع"),
     "google_error": MessageLookupByLibrary.simpleMessage(
       "حدث خطأ اثناء تسجيل الدخول بواسطة جوجل",
@@ -321,6 +323,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "preferences": MessageLookupByLibrary.simpleMessage("التفضيلات"),
     "price": MessageLookupByLibrary.simpleMessage("السعر"),
     "product": MessageLookupByLibrary.simpleMessage("منتج"),
+    "product_added_successfully": MessageLookupByLibrary.simpleMessage(
+      "تمت إضافة المنتج بنجاح!",
+    ),
     "products": MessageLookupByLibrary.simpleMessage("منتجات"),
     "profile": MessageLookupByLibrary.simpleMessage("الحساب"),
     "qatar": MessageLookupByLibrary.simpleMessage("قطر"),
@@ -422,6 +427,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "تم التحقق من الكود بنجاح",
     ),
     "weak_password": MessageLookupByLibrary.simpleMessage("كلمة المرور ضعيفة"),
+    "what_would_you_like_to_do_next": MessageLookupByLibrary.simpleMessage(
+      "ماذا تريد ان تفعل بعد ذلك؟",
+    ),
     "you_are_sending_too_many_requests": MessageLookupByLibrary.simpleMessage(
       "لقد قمت بإرسال عدد كبير من الطلبات. يرجى الانتظار قليلاً ومحاولة المحاولة مرة أخرى.",
     ),

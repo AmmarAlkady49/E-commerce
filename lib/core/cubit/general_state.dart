@@ -4,22 +4,18 @@ class GeneralState {}
 
 final class GeneralInitial extends GeneralState {}
 
-final class SetFavoriteLoading extends GeneralState {
-  final String productId;
+final class FavoriteProductsLoadingGeneral extends GeneralState {}
 
-  SetFavoriteLoading({required this.productId});
+final class UpdateFavoritePageGeneral extends GeneralState {}
+
+final class FavoriteProductsErrorGeneral extends GeneralState {
+  final String message;
+
+  FavoriteProductsErrorGeneral({required this.message});
 }
 
-final class SetFavoriteSuccess extends GeneralState {
-  final bool isFavorite;
-  final String productId;
+final class FavoriteProductsLoadedGeneral extends GeneralState {
+  final List<FavoriteItemModel> favoriteProducts;
 
-  SetFavoriteSuccess({required this.isFavorite, required this.productId});
-}
-
-final class SetFavoriteError extends GeneralState {
-  final String error;
-  final String productId;
-
-  SetFavoriteError({required this.error, required this.productId});
+  FavoriteProductsLoadedGeneral({required this.favoriteProducts});
 }

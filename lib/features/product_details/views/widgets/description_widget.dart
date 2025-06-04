@@ -83,27 +83,10 @@ class _DescriptionWidgetState extends State<DescriptionWidget>
                 width: 1,
               ),
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  widget.description?.trim() ?? S.of(context).no_description,
-                  maxLines: isExpanded ? null : 2,
-                  overflow:
-                      isExpanded ? TextOverflow.visible : TextOverflow.ellipsis,
-                  style: FontHelper.fontText(
-                    size: 14.sp,
-                    color: Colors.black87,
-                    context: context,
-                    weight: FontWeight.w500,
-                    // height: 1.5,
-                  ),
-                ),
-                if (widget.description != null &&
-                    widget.description!.length > 100) ...[
-                  SizedBox(height: 8.h),
-                  GestureDetector(
-                    onTap: () {
+            child: InkWell(
+              onTap: (widget.description != null &&
+                      widget.description!.length > 100)
+                  ? () {
                       setState(() {
                         isExpanded = !isExpanded;
                         if (isExpanded) {
@@ -112,8 +95,29 @@ class _DescriptionWidgetState extends State<DescriptionWidget>
                           _animationController.reverse();
                         }
                       });
-                    },
-                    child: Row(
+                    }
+                  : null,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    widget.description?.trim() ?? S.of(context).no_description,
+                    maxLines: isExpanded ? null : 2,
+                    overflow: isExpanded
+                        ? TextOverflow.visible
+                        : TextOverflow.ellipsis,
+                    style: FontHelper.fontText(
+                      size: 14.sp,
+                      color: Colors.black87,
+                      context: context,
+                      weight: FontWeight.w500,
+                      // height: 1.5,
+                    ),
+                  ),
+                  if (widget.description != null &&
+                      widget.description!.length > 100) ...[
+                    SizedBox(height: 8.h),
+                    Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
@@ -143,9 +147,9 @@ class _DescriptionWidgetState extends State<DescriptionWidget>
                         ),
                       ],
                     ),
-                  ),
+                  ],
                 ],
-              ],
+              ),
             ),
           ),
         ),

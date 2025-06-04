@@ -27,6 +27,7 @@ class HomeCubit extends Cubit<HomeState> {
   List<CategoryModel> categoriesList = [];
   List<ProductResponse> homeProducts = [];
   List<Map<String, String>> homeCategories = [];
+  List<int?> chachingRecommendedProductsIds = [];
   String? currentSearchQuery;
   int selectedCategoryIndex = 0;
 
@@ -131,8 +132,8 @@ class HomeCubit extends Cubit<HomeState> {
           await homeServices.getRecommendedProductsID(userId);
       final recommendedProducts =
           await homeServices.getRecommendedProducts(recommendedProductsIds);
-      log("Recommended Products IDs: $recommendedProductsIds");
-      log("Recommended Products: $recommendedProducts");
+      chachingRecommendedProductsIds =
+          recommendedProducts.map((product) => product.productID).toList();
       final favoriteProducts =
           await _favoriteProductsServices.getFavoriteProducts(userId);
       final List<ProductResponse> finalProducts =
@@ -379,7 +380,11 @@ class HomeCubit extends Cubit<HomeState> {
   // }
 
   void getAllCategoriesForHomePage() async {
-    if (hasFetchedCategories) return;
+    if (hasFetchedCategories) {
+      log("🔥 getAllCategoriesForHomePage already called, skipping...");
+      return;
+    }
+    ;
     _categoriesDone = false;
     _categoriesError = false;
     emit(GetAllCategoriesForHomePageLoading());

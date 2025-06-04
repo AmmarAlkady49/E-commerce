@@ -21,7 +21,6 @@ import 'package:e_commerce_graduation/features/order/views/pages/my_order_page.d
 import 'package:e_commerce_graduation/features/order/views/pages/payment_webview_page.dart';
 import 'package:e_commerce_graduation/features/product_details/cubit/product_details_cubit.dart';
 import 'package:e_commerce_graduation/features/product_details/views/pages/product_details_page.dart';
-import 'package:e_commerce_graduation/features/profile/profile_cubit/cubit/profile_cubit.dart';
 import 'package:e_commerce_graduation/features/profile/views/pages/account_page.dart';
 import 'package:e_commerce_graduation/core/widgets/change_password_profile.dart';
 import 'package:e_commerce_graduation/features/profile/views/pages/lang_page.dart';
@@ -59,7 +58,9 @@ class AppRouter {
       case AppRoutes.home:
         return MaterialPageRoute(builder: (_) => const HomePage());
       case AppRoutes.bottomNavBar:
-        return MaterialPageRoute(builder: (_) => const BottomNavBar());
+        final int selectedIndex = settings.arguments as int? ?? 0;
+        return MaterialPageRoute(
+            builder: (_) => BottomNavBar(selectedIndex: selectedIndex));
       case AppRoutes.productsByCategoryPage:
         final args = settings.arguments as Map<String, dynamic>;
         return MaterialPageRoute(
@@ -70,11 +71,13 @@ class AppRouter {
                 ));
 
       case AppRoutes.profile:
-        return MaterialPageRoute(
-            builder: (_) => BlocProvider(
-                  create: (_) => ProfileCubit(),
-                  child: const ProfilePage(),
-                ));
+        return MaterialPageRoute(builder: (_) => const ProfilePage());
+      // Uncomment the following lines if you want to use BlocProvider for ProfilePage
+      // return MaterialPageRoute(
+      // builder: (_) => BlocProvider(
+      //       create: (_) => ProfileCubit(),
+      //       child: const ProfilePage(),
+      //     ));
       case AppRoutes.languagePage:
         return MaterialPageRoute(builder: (_) => const LangPage());
       case AppRoutes.paymentWebviewPage:
@@ -90,13 +93,14 @@ class AppRouter {
                   child: const ConfirmOrderPage(),
                 ));
       case AppRoutes.myOrderPage:
-        return MaterialPageRoute(
-            builder: (_) => BlocProvider(
-                  create: (context) => OrderCubit(
-                      cartCubit: context.read<CartCubit>(),
-                      favoritesCubit: context.read<FavoritesCubit>()),
-                  child: const MyOrderPage(),
-                ));
+        return MaterialPageRoute(builder: (_) => MyOrderPage());
+      // return MaterialPageRoute(
+      //     builder: (_) => BlocProvider(
+      //           create: (context) => OrderCubit(
+      //               cartCubit: context.read<CartCubit>(),
+      //               favoritesCubit: context.read<FavoritesCubit>()),
+      //           child: const MyOrderPage(),
+      //         ));
 
       case AppRoutes.verifyEmail:
         final args = settings.arguments as Map<String, dynamic>;
@@ -136,15 +140,7 @@ class AppRouter {
                   child: ChangePasswordProfile(email: email),
                 ));
       case AppRoutes.accountPage:
-        return MaterialPageRoute(
-            builder: (_) => BlocProvider(
-                  create: (context) {
-                    final cubit = ProfileCubit();
-                    cubit.getUserData();
-                    return cubit;
-                  },
-                  child: const AccountPage(),
-                ));
+        return MaterialPageRoute(builder: (_) => const AccountPage());
       case AppRoutes.productPage:
         final product = settings.arguments as ProductResponse;
         return MaterialPageRoute(

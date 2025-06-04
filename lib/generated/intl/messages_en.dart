@@ -100,6 +100,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "coninue_shopping": MessageLookupByLibrary.simpleMessage(
       "Continue Shopping",
     ),
+    "continue_shopping": MessageLookupByLibrary.simpleMessage(
+      "Continue Shopping",
+    ),
     "continue_with_google": MessageLookupByLibrary.simpleMessage(
       "Continue with Google",
     ),
@@ -180,6 +183,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "gender": MessageLookupByLibrary.simpleMessage("Gender"),
     "general": MessageLookupByLibrary.simpleMessage("General"),
     "giza": MessageLookupByLibrary.simpleMessage("Giza"),
+    "go_to_cart": MessageLookupByLibrary.simpleMessage("Go to Cart"),
     "go_to_checkout": MessageLookupByLibrary.simpleMessage("Go to Checkout"),
     "google_error": MessageLookupByLibrary.simpleMessage(
       "Google sign-in aborted",
@@ -325,6 +329,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "preferences": MessageLookupByLibrary.simpleMessage("Preferences"),
     "price": MessageLookupByLibrary.simpleMessage("Price"),
     "product": MessageLookupByLibrary.simpleMessage("Product"),
+    "product_added_successfully": MessageLookupByLibrary.simpleMessage(
+      "Product Added Successfully!",
+    ),
     "products": MessageLookupByLibrary.simpleMessage("Products"),
     "profile": MessageLookupByLibrary.simpleMessage("Profile"),
     "qatar": MessageLookupByLibrary.simpleMessage("Qatar"),
@@ -441,6 +448,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "weak_password": MessageLookupByLibrary.simpleMessage(
       "The password provided is too weak.",
+    ),
+    "what_would_you_like_to_do_next": MessageLookupByLibrary.simpleMessage(
+      "What would you like to do next?",
     ),
     "you_are_sending_too_many_requests": MessageLookupByLibrary.simpleMessage(
       "You are sending too many requests, Please wait a few seconds and try again.",

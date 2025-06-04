@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
 import 'package:e_commerce_graduation/core/utils/themes/app_bar_default_theme.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
@@ -26,7 +28,8 @@ class ProfilePage extends StatelessWidget {
             bloc: profileCubit,
             listenWhen: (previous, current) =>
                 current is ProfileLogedOut || current is ProfileLogOutError,
-            buildWhen: (previous, current) => current is ProfileLogedOut,
+            buildWhen: (previous, current) =>
+                current is ProfileLogedOut || current is ProfileLogingOut,
             listener: (context, state) {
               if (state is ProfileLogedOut) {
                 Navigator.of(context).pushNamedAndRemoveUntil(
@@ -53,9 +56,15 @@ class ProfilePage extends StatelessWidget {
               }
             },
             builder: (context, state) {
-              if (state is ProfileLogingOut) {
-                return CircularProgressIndicator();
-              }
+              // if (state is ProfileLogingOut) {
+              //   log('Logging out...');
+              //   return LogOutButton(
+              //     leadingIcon: Iconsax.logout,
+              //     title: S.of(context).logout,
+              //     onTap: () {},
+              //     isLoading: true,
+              //   );
+              // }
               return SingleChildScrollView(
                 child: Padding(
                   padding: EdgeInsets.symmetric(vertical: 18.h),
@@ -128,13 +137,20 @@ class ProfilePage extends StatelessWidget {
                           title: S.of(context).address,
                           leadingIcon: Iconsax.location),
                       SizedBox(height: 12.h),
-                      LogOutButton(
-                        leadingIcon: Iconsax.logout,
-                        title: S.of(context).logout,
-                        onTap: () async {
-                          await profileCubit.logout();
-                        },
-                      )
+                      state is ProfileLogingOut
+                          ? LogOutButton(
+                              leadingIcon: Iconsax.logout,
+                              title: S.of(context).logout,
+                              onTap: () {},
+                              isLoading: true,
+                            )
+                          : LogOutButton(
+                              leadingIcon: Iconsax.logout,
+                              title: S.of(context).logout,
+                              onTap: () async {
+                                await profileCubit.logout();
+                              },
+                            )
                     ],
                   ),
                 ),

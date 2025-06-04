@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
 import 'package:e_commerce_graduation/core/utils/themes/app_bar_default_theme.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
@@ -12,6 +13,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:iconsax/iconsax.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});
@@ -29,6 +31,93 @@ class _CartPageState extends State<CartPage> {
       // cartCubit.getCartItems();
       context.read<CartCubit>().getCartItems();
     });
+  }
+
+  void _showModernConfirmationDialog(
+      BuildContext context, CartCubit cartCubit) {
+    AwesomeDialog(
+      context: context,
+      dialogType: DialogType.warning,
+      animType: AnimType.scale,
+      dialogBackgroundColor: MyColor.white,
+      barrierColor: Colors.black.withAlpha(175),
+      title: S.of(context).confirm_deletion,
+      desc: S.of(context).are_you_sure,
+      titleTextStyle: FontHelper.fontText(
+        size: 20.sp,
+        weight: FontWeight.w800,
+        color: Colors.black87,
+        context: context,
+      ),
+      descTextStyle: FontHelper.fontText(
+        size: 16.sp,
+        weight: FontWeight.w600,
+        color: Colors.black54,
+        context: context,
+      ),
+      borderSide: BorderSide(
+        color: MyColor.poppy.withAlpha(60),
+        width: 2,
+      ),
+      width: MediaQuery.of(context).size.width * 0.9,
+      dialogBorderRadius: BorderRadius.circular(20.r),
+      headerAnimationLoop: false,
+      showCloseIcon: true,
+      closeIcon: Container(
+        padding: EdgeInsets.all(4.r),
+        decoration: BoxDecoration(
+          color: Colors.grey.shade200,
+          shape: BoxShape.circle,
+        ),
+        child: Icon(
+          Icons.close,
+          color: Colors.black54,
+          size: 20.sp,
+        ),
+      ),
+      // Custom header with warning icon
+      customHeader: Container(
+        height: 90.h,
+        width: 90.w,
+        decoration: BoxDecoration(
+          color: MyColor.poppy.withAlpha(20),
+          shape: BoxShape.circle,
+          border: Border.all(
+            color: MyColor.poppy.withAlpha(100),
+            width: 3,
+          ),
+        ),
+        child: Icon(
+          Iconsax.warning_2,
+          color: MyColor.poppy,
+          size: 45.sp,
+        ),
+      ),
+      // Cancel button
+      btnCancelOnPress: () {},
+      btnCancelText: S.of(context).cancel,
+      btnCancelColor: Colors.grey.shade500,
+      btnCancelIcon: Iconsax.close_circle,
+      // Confirm delete button
+      btnOkOnPress: () {
+        cartCubit.clearTheCart();
+      },
+      btnOkText: S.of(context).delete.toUpperCase(),
+      btnOkColor: MyColor.poppy,
+      btnOkIcon: Iconsax.trash,
+      // Enhanced button styling
+      buttonsTextStyle: FontHelper.fontText(
+        size: 16.sp,
+        weight: FontWeight.w700,
+        color: Colors.white,
+        context: context,
+      ),
+      buttonsBorderRadius: BorderRadius.circular(25.r),
+      // Animation and interaction enhancements
+      dismissOnTouchOutside: false,
+      dismissOnBackKeyPress: false,
+      useRootNavigator: true,
+    ).show();
   }
 
   @override
@@ -66,55 +155,7 @@ class _CartPageState extends State<CartPage> {
                               weight: FontWeight.w600,
                               color: MyColor.poppy)),
                       onTap: () {
-                        // Future.delayed(Duration(milliseconds: 200), () {
-                        showDialog(
-                          context: context,
-                          builder: (context) => AlertDialog(
-                            title: Text(S.of(context).confirm_deletion,
-                                style: FontHelper.fontText(
-                                    context: context,
-                                    size: 18.sp,
-                                    weight: FontWeight.w700,
-                                    color: Colors.black87)),
-                            content: Text(S.of(context).are_you_sure2,
-                                style: FontHelper.fontText(
-                                    context: context,
-                                    size: 14.sp,
-                                    weight: FontWeight.w700,
-                                    color: Colors.black54)),
-                            actions: [
-                              TextButton(
-                                onPressed: () => Navigator.pop(context),
-                                child: Text(
-                                  S.of(context).cancel,
-                                  style: FontHelper.fontText(
-                                      color: Colors.black,
-                                      context: context,
-                                      size: 15.sp,
-                                      weight: FontWeight.w700),
-                                ),
-                              ),
-                              ElevatedButton(
-                                onPressed: () {
-                                  cartCubit.clearTheCart();
-                                  Navigator.pop(context);
-                                },
-                                style: ElevatedButton.styleFrom(
-                                    backgroundColor: MyColor.poppy),
-                                child: Text(
-                                  S.of(context).delete.toUpperCase(),
-                                  style: FontHelper.fontText(
-                                      color: Colors.white,
-                                      context: context,
-                                      size: 15.sp,
-                                      weight: FontWeight.w700),
-                                ),
-                              ),
-                            ],
-                          ),
-                          // );
-                          // }
-                        );
+                        _showModernConfirmationDialog(context, cartCubit);
                       },
                     ),
                   ],

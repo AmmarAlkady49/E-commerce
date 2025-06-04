@@ -242,5 +242,9 @@
     "track_your_order": "تتبع طلبك",
     "have_questions": "هل لديك أسئلة؟ قم بالاتصال مباشرة لفريق الدعم",
     "support_team": "فريق الدعم",
-    "rating": "تقييم"
+    "rating": "تقييم",
+    "product_added_successfully": "تمت إضافة المنتج بنجاح!",
+    "what_would_you_like_to_do_next": "ماذا تريد ان تفعل بعد ذلك؟",
+    "go_to_cart": "اذهب إلى العربة",
+    "continue_shopping": "متابعة التسوق"
 }

@@ -18,11 +18,11 @@ class _MyOrderPageState extends State<MyOrderPage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      // final cartCubit = BlocProvider.of<CartCubit>(context);
-      // cartCubit.getCartItems();
-      context.read<OrderCubit>().getAllOrders();
-    });
+    context.read<OrderCubit>().getAllOrders();
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //   // final cartCubit = BlocProvider.of<CartCubit>(context);
+    //   // cartCubit.getCartItems();
+    // });
   }
 
   @override
