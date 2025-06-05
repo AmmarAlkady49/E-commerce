@@ -20,4 +20,6 @@ class AppRoutes {
   static const String splash = '/splash';
   static const String speechToText = '/speech_to_text_search';
   static const String tooManyRequestPage = '/too_many_request_page';
+  static const String productReviewsPage = '/productReviews';
+  static const String addReviewPage = '/addReviewPage';
 }

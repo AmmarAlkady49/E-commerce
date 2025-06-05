@@ -12,10 +12,6 @@ abstract class HomePageServices {
   Future<List<CategoryModel>> getAllCategories();
   Future<List<int>> getRecommendedProductsID(String userId);
   Future<List<ProductResponse>> getRecommendedProducts(List<int> productIds);
-
-  // Future<bool> addFavoriteProduct(String userId, int productId);
-  // Future<void> deleteFavoriteProduct(String userId, String productId);
-  // Future<List<ProductItemModel>> getFavoriteProducts(String userId);
 }
 
 class HomePageServicesImpl implements HomePageServices {

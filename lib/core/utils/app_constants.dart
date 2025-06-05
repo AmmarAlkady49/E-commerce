@@ -38,4 +38,5 @@ class AppConstants {
   static const String paymentCallback = '/Payment/callback';
   static const String getOrderStatus = '/Order/get-order-status-by-id';
   static const String getRecommendedProducts= '/Product/get-recommended-products';
+  static const String addProductReview = '/ProductReview/add-product-review';
 }

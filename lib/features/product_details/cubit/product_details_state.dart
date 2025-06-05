@@ -58,3 +58,14 @@ final class ProductDetailsError extends ProductDetailsState {
     required this.message,
   });
 }
+
+final class ProductAddingReview extends ProductDetailsState {}
+
+final class ProductAddedReview extends ProductDetailsState {}
+
+final class ProductAddedReviewError extends ProductDetailsState {
+  final String message;
+  ProductAddedReviewError({
+    required this.message,
+  });
+}

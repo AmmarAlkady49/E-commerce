@@ -30,6 +30,8 @@ class ProductDetailsCubit extends Cubit<ProductDetailsState> {
       FavoriteProductsServicesImpl();
   int quantity = 1;
 
+  // bool shouldFetchProductDetailsagain = true;
+
   // set product to favorite
   Future<void> setProductFavorite(String productId) async {
     emit(SetProductFavoriteLoading());
@@ -71,18 +73,6 @@ class ProductDetailsCubit extends Cubit<ProductDetailsState> {
     }
   }
 
-  // // Get Product Details
-  // Future<void> getProductDetails(int productId) async {
-  //   emit(ProductDetailsLoading());
-  //   try {
-  //     final product =
-  //         await _productDetailsServices.getProductDetails(productId);
-
-  //     emit(ProductDetailsLoaded(product: product));
-  //   } catch (e) {
-  //     emit(ProductDetailsError(message: e.toString()));
-  //   }
-  // }
   // Get Product Details
   Future<void> getProductDetails(int productId) async {
     emit(ProductDetailsLoading());
@@ -121,6 +111,20 @@ class ProductDetailsCubit extends Cubit<ProductDetailsState> {
     } catch (e) {
       log('Error adding product to cart: $e');
       emit(ProductAddedToCartError(message: e.toString()));
+    }
+  }
+
+  // add review
+  Future<void> addReview(int productId, String review, int rating) async {
+    emit(ProductAddingReview());
+    try {
+      await _productDetailsServices.addProductReview(productId, review, rating);
+      emit(ProductAddedReview());
+      // homeCubit.hasFetchedRecommendedProducts = false;
+      
+    } catch (e) {
+      log('Error adding product review: $e');
+      emit(ProductAddedReviewError(message: e.toString()));
     }
   }
 }

@@ -2029,6 +2029,246 @@ class S {
       args: [],
     );
   }
+
+  /// `Overall Rating`
+  String get overall_rating {
+    return Intl.message(
+      'Overall Rating',
+      name: 'overall_rating',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Based on`
+  String get based_on {
+    return Intl.message('Based on', name: 'based_on', desc: '', args: []);
+  }
+
+  /// `All Reviews`
+  String get all_reviews {
+    return Intl.message('All Reviews', name: 'all_reviews', desc: '', args: []);
+  }
+
+  /// `Anonymous User`
+  String get anonymous_user {
+    return Intl.message(
+      'Anonymous User',
+      name: 'anonymous_user',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No reviews yet`
+  String get no_reviews_yet {
+    return Intl.message(
+      'No reviews yet',
+      name: 'no_reviews_yet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Be the first to review this product`
+  String get be_first_to_review {
+    return Intl.message(
+      'Be the first to review this product',
+      name: 'be_first_to_review',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Product Reviews`
+  String get product_reviews {
+    return Intl.message(
+      'Product Reviews',
+      name: 'product_reviews',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Write a Review`
+  String get write_a_review {
+    return Intl.message(
+      'Write a Review',
+      name: 'write_a_review',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Review`
+  String get add_review {
+    return Intl.message('Add Review', name: 'add_review', desc: '', args: []);
+  }
+
+  /// `Reviewing Product`
+  String get reviewing_product {
+    return Intl.message(
+      'Reviewing Product',
+      name: 'reviewing_product',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Product Name`
+  String get product_name {
+    return Intl.message(
+      'Product Name',
+      name: 'product_name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tap to rate`
+  String get tap_to_rate {
+    return Intl.message('Tap to rate', name: 'tap_to_rate', desc: '', args: []);
+  }
+
+  /// `Please select a rating`
+  String get please_select_rating {
+    return Intl.message(
+      'Please select a rating',
+      name: 'please_select_rating',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your Name`
+  String get your_name {
+    return Intl.message('Your Name', name: 'your_name', desc: '', args: []);
+  }
+
+  /// `Optional`
+  String get optional {
+    return Intl.message('Optional', name: 'optional', desc: '', args: []);
+  }
+
+  /// `Your Review`
+  String get your_review {
+    return Intl.message('Your Review', name: 'your_review', desc: '', args: []);
+  }
+
+  /// `Please enter your review`
+  String get please_enter_review {
+    return Intl.message(
+      'Please enter your review',
+      name: 'please_enter_review',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Review is too short, please write at least 10 characters`
+  String get review_too_short {
+    return Intl.message(
+      'Review is too short, please write at least 10 characters',
+      name: 'review_too_short',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Share your experience with this product`
+  String get share_your_experience {
+    return Intl.message(
+      'Share your experience with this product',
+      name: 'share_your_experience',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Submit Review`
+  String get submit_review {
+    return Intl.message(
+      'Submit Review',
+      name: 'submit_review',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Poor`
+  String get poor {
+    return Intl.message('Poor', name: 'poor', desc: '', args: []);
+  }
+
+  /// `Fair`
+  String get fair {
+    return Intl.message('Fair', name: 'fair', desc: '', args: []);
+  }
+
+  /// `Good`
+  String get good {
+    return Intl.message('Good', name: 'good', desc: '', args: []);
+  }
+
+  /// `Very Good`
+  String get very_good {
+    return Intl.message('Very Good', name: 'very_good', desc: '', args: []);
+  }
+
+  /// `Excellent`
+  String get excellent {
+    return Intl.message('Excellent', name: 'excellent', desc: '', args: []);
+  }
+
+  /// `Please select a rating to submit your review`
+  String get please_select_rating_2 {
+    return Intl.message(
+      'Please select a rating to submit your review',
+      name: 'please_select_rating_2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Review submitted successfully`
+  String get review_submitted_successfully {
+    return Intl.message(
+      'Review submitted successfully',
+      name: 'review_submitted_successfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to submit review, please try again`
+  String get failed_to_submit_review {
+    return Intl.message(
+      'Failed to submit review, please try again',
+      name: 'failed_to_submit_review',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your name`
+  String get enter_your_name {
+    return Intl.message(
+      'Enter your name',
+      name: 'enter_your_name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Review is too long, please limit it to 50 characters`
+  String get review_too_long {
+    return Intl.message(
+      'Review is too long, please limit it to 50 characters',
+      name: 'review_too_long',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

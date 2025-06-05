@@ -74,48 +74,6 @@ class HomeCubit extends Cubit<HomeState> {
     }
   }
 
-  // // Get All Products
-  // Future<void> getAllProducts() async {
-  //   if (hasFetchedRecommendedProducts) {
-  //     log("🔥 getAllProducts already called, skipping...");
-  //     return;
-  //   }
-  //   _productsDone = false;
-  //   _productsError = false;
-  //   emit(LoadingHomeProducts());
-
-  //   try {
-  //     final userId = await secureStorage.readSecureData('userId');
-  //     final ParameterRequest parameterRequest = ParameterRequest(
-  //       pagenum: 1,
-  //       maxpagesize: 10,
-  //       pagesize: 10,
-  //     );
-  //     final products = await homeServices.getAllProducts(parameterRequest);
-  //     final favoriteProducts =
-  //         await _favoriteProductsServices.getFavoriteProducts(userId);
-  //     final List<ProductResponse> finalProducts = products.map((product) {
-  //       final isFavorite = favoriteProducts.any(
-  //         (item) => item.productId == product.productID,
-  //       );
-  //       return product.copyWith(isFavorite: isFavorite);
-  //     }).toList();
-  //     homeProducts = finalProducts;
-  //     _productsDone = true;
-  //     hasFetchedRecommendedProducts = true;
-  //     emit(LoadedHomeProducts(finalProducts));
-  //   } on Exception catch (e) {
-  //     _productsDone = true;
-  //     _productsError = true;
-  //     emit(ErrorHomeProducts(e.toString()));
-  //   } catch (e) {
-  //     _productsDone = true;
-  //     _productsError = true;
-  //     emit(ErrorHomeProducts(e.toString()));
-  //     log(e.toString());
-  //   }
-  // }
-
   Future<void> getRecommendedProducts() async {
     if (hasFetchedRecommendedProducts) {
       log("🔥 getRecommendedProducts already called, skipping...");
@@ -180,7 +138,6 @@ class HomeCubit extends Cubit<HomeState> {
       }
       hasFetchedRecommendedProducts = false;
       emit(SetFavoriteSuccess(isFavorite: !isFavorite, productId: productId));
-      log("Favorite status for product ID $productId: ${!isFavorite}");
     } catch (e) {
       log("error in set favorite: ${e.toString()}");
       emit(SetFavoriteError(error: e.toString(), productId: productId));
@@ -361,24 +318,6 @@ class HomeCubit extends Cubit<HomeState> {
     emit(FiltersReset());
   }
 
-  //   void getAllCategories() async {
-  //   try {
-  //     categoriesList = await homeServices.getAllCategories();
-
-  //     categoriesList.removeWhere(
-  //         (category) => category.name.toLowerCase() == "no category");
-
-  //     categoriesList.insert(
-  //         0, CategoryModel(categoryCode: '', name: "كل الفئات"));
-
-  //     emit(LoadedCategories(categoriesList));
-  //     log(categoriesList.length.toString());
-  //   } catch (e) {
-  //     log(" error in get all categories: ${e.toString()}");
-  //     emit(ErrorCategories(e.toString()));
-  //   }
-  // }
-
   void getAllCategoriesForHomePage() async {
     if (hasFetchedCategories) {
       log("🔥 getAllCategoriesForHomePage already called, skipping...");
@@ -402,15 +341,6 @@ class HomeCubit extends Cubit<HomeState> {
           .where((categoryMap) => categoryMap.isNotEmpty)
           .toList();
 
-      // final categoryToMove = 'اخري';
-      // final index = returnedCategoriesList.indexWhere(
-      //   (category) => category['name'] == categoryToMove,
-      // );
-
-      // if (index != -1) {
-      //   final movedCategory = returnedCategoriesList.removeAt(index);
-      //   returnedCategoriesList.add(movedCategory);
-      // }
       _categoriesDone = true;
       hasFetchedCategories = true;
       emit(GetAllCategoriesForHomePage(returnedCategoriesList));

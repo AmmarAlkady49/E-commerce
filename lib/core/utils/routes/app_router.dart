@@ -21,6 +21,8 @@ import 'package:e_commerce_graduation/features/order/views/pages/my_order_page.d
 import 'package:e_commerce_graduation/features/order/views/pages/payment_webview_page.dart';
 import 'package:e_commerce_graduation/features/product_details/cubit/product_details_cubit.dart';
 import 'package:e_commerce_graduation/features/product_details/views/pages/product_details_page.dart';
+import 'package:e_commerce_graduation/features/product_details/views/widgets/add_review_page.dart';
+import 'package:e_commerce_graduation/features/product_details/views/widgets/product_reviews.dart';
 import 'package:e_commerce_graduation/features/profile/views/pages/account_page.dart';
 import 'package:e_commerce_graduation/core/widgets/change_password_profile.dart';
 import 'package:e_commerce_graduation/features/profile/views/pages/lang_page.dart';
@@ -141,6 +143,21 @@ class AppRouter {
                 ));
       case AppRoutes.accountPage:
         return MaterialPageRoute(builder: (_) => const AccountPage());
+      case AppRoutes.productReviewsPage:
+        final args = settings.arguments as Map<String, dynamic>;
+        return MaterialPageRoute(
+            builder: (_) => ProductReviews(
+                  product: args['product'],
+                  productDetailsCubit: args['productDetailsCubit'],
+                ));
+      case AppRoutes.addReviewPage:
+        final args = settings.arguments as Map<String, dynamic>;
+
+        return MaterialPageRoute(
+            builder: (_) => AddReviewPage(
+                  product: args['product'],
+                  productDetailsCubit: args['productDetailsCubit'],
+                ));
       case AppRoutes.productPage:
         final product = settings.arguments as ProductResponse;
         return MaterialPageRoute(

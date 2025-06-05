@@ -277,7 +277,7 @@ class _ContainerOfTheCreateAcountState
                   if (state is CreatingAccoutSuccess) {
                     Navigator.pushReplacementNamed(
                       context,
-                      AppRoutes.verifyEmail,
+                      AppRoutes.verifyEmail, 
                       arguments: {
                         "email": emailController.text,
                         "pageType": "register",

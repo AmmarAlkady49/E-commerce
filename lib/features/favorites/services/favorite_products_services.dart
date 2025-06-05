@@ -9,7 +9,6 @@ abstract class FavoriteProductsServices {
   Future<List<FavoriteItemModel>> getFavoriteProducts(String userId);
   Future<bool> addFavoriteProduct(String userId, String productId);
   Future<bool> removeFavoriteProduct(String userId, String productId);
-  // Future<void> addToProduct(String userId, AddToCartModel product);
   Future<bool> removeAllProducts(String userId);
 }
 
@@ -27,8 +26,6 @@ class FavoriteProductsServicesImpl implements FavoriteProductsServices {
 
       if (apiResponse.statusCode == 200) {
         final items = apiResponse.data['items'];
-        log("getFavoriteProducts: ${apiResponse.data}");
-
         if (items is List) {
           return items
               .map((item) =>
@@ -102,12 +99,6 @@ class FavoriteProductsServicesImpl implements FavoriteProductsServices {
       throw Exception('Failed to remove favorite product: $e');
     }
   }
-
-  // @override
-  // Future<void> addToProduct(String userId, AddToCartModel product) async {
-  //   await _firestoreServices.setData(
-  //       path: ApiPathes.cartItem(userId, product.id), data: product.toMap());
-  // }
 
   @override
   Future<bool> removeAllProducts(String userId) async {

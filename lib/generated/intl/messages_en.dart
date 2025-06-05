@@ -32,6 +32,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "The account already exists for that email.",
     ),
     "add_new_address": MessageLookupByLibrary.simpleMessage("Add New Address"),
+    "add_review": MessageLookupByLibrary.simpleMessage("Add Review"),
     "add_to_card2": MessageLookupByLibrary.simpleMessage("Add to Cart"),
     "add_to_cart": MessageLookupByLibrary.simpleMessage("Add to Cart"),
     "added": MessageLookupByLibrary.simpleMessage("Added"),
@@ -39,9 +40,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "address": MessageLookupByLibrary.simpleMessage("Address"),
     "address_new": MessageLookupByLibrary.simpleMessage("New Address"),
     "alexandria": MessageLookupByLibrary.simpleMessage("Alexandria"),
+    "all_reviews": MessageLookupByLibrary.simpleMessage("All Reviews"),
     "already_have_an_account": MessageLookupByLibrary.simpleMessage(
       "Already have an account?",
     ),
+    "anonymous_user": MessageLookupByLibrary.simpleMessage("Anonymous User"),
     "apply": MessageLookupByLibrary.simpleMessage("Apply"),
     "apply_filters": MessageLookupByLibrary.simpleMessage("Apply Filters"),
     "are_you_sure": MessageLookupByLibrary.simpleMessage(
@@ -59,6 +62,10 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "back": MessageLookupByLibrary.simpleMessage("Back"),
     "bahrain": MessageLookupByLibrary.simpleMessage("Bahrain"),
+    "based_on": MessageLookupByLibrary.simpleMessage("Based on"),
+    "be_first_to_review": MessageLookupByLibrary.simpleMessage(
+      "Be the first to review this product",
+    ),
     "behera": MessageLookupByLibrary.simpleMessage("Behera"),
     "best_seller": MessageLookupByLibrary.simpleMessage("Best Seller"),
     "birthday": MessageLookupByLibrary.simpleMessage("Birth Day"),
@@ -143,6 +150,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "enter_your_email_to_reset": MessageLookupByLibrary.simpleMessage(
       "Please enter your email to reset the password",
     ),
+    "enter_your_name": MessageLookupByLibrary.simpleMessage("Enter your name"),
     "enter_your_password": MessageLookupByLibrary.simpleMessage(
       "Enter your password",
     ),
@@ -167,9 +175,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "error_verification_code": MessageLookupByLibrary.simpleMessage(
       "Error verification code, please try again",
     ),
+    "excellent": MessageLookupByLibrary.simpleMessage("Excellent"),
     "express_delivery": MessageLookupByLibrary.simpleMessage(
       "Express Delivery",
     ),
+    "failed_to_submit_review": MessageLookupByLibrary.simpleMessage(
+      "Failed to submit review, please try again",
+    ),
+    "fair": MessageLookupByLibrary.simpleMessage("Fair"),
     "female": MessageLookupByLibrary.simpleMessage("Female"),
     "filter": MessageLookupByLibrary.simpleMessage("Filter"),
     "filter_by_price": MessageLookupByLibrary.simpleMessage("filter by price"),
@@ -185,6 +198,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "giza": MessageLookupByLibrary.simpleMessage("Giza"),
     "go_to_cart": MessageLookupByLibrary.simpleMessage("Go to Cart"),
     "go_to_checkout": MessageLookupByLibrary.simpleMessage("Go to Checkout"),
+    "good": MessageLookupByLibrary.simpleMessage("Good"),
     "google_error": MessageLookupByLibrary.simpleMessage(
       "Google sign-in aborted",
     ),
@@ -257,11 +271,13 @@ class MessageLookup extends MessageLookupByLibrary {
       "No recent searches",
     ),
     "no_reviews": MessageLookupByLibrary.simpleMessage("No reviews yet"),
+    "no_reviews_yet": MessageLookupByLibrary.simpleMessage("No reviews yet"),
     "no_saved_addresses": MessageLookupByLibrary.simpleMessage(
       "No Saved Address",
     ),
     "notification": MessageLookupByLibrary.simpleMessage("Notification"),
     "number": MessageLookupByLibrary.simpleMessage("Number"),
+    "optional": MessageLookupByLibrary.simpleMessage("Optional"),
     "or": MessageLookupByLibrary.simpleMessage("Or"),
     "or_login_with": MessageLookupByLibrary.simpleMessage("Or login with"),
     "order": MessageLookupByLibrary.simpleMessage("Order"),
@@ -278,6 +294,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "order_details": MessageLookupByLibrary.simpleMessage("Order Details"),
     "order_status": MessageLookupByLibrary.simpleMessage("Order Status"),
     "other": MessageLookupByLibrary.simpleMessage("Other"),
+    "overall_rating": MessageLookupByLibrary.simpleMessage("Overall Rating"),
     "palestine": MessageLookupByLibrary.simpleMessage("Palestine"),
     "password": MessageLookupByLibrary.simpleMessage("Password"),
     "password2": MessageLookupByLibrary.simpleMessage("Password"),
@@ -319,9 +336,19 @@ class MessageLookup extends MessageLookupByLibrary {
     "please_enter_a_valid_value": MessageLookupByLibrary.simpleMessage(
       "Please enter a valid value",
     ),
+    "please_enter_review": MessageLookupByLibrary.simpleMessage(
+      "Please enter your review",
+    ),
     "please_select_axact_address": MessageLookupByLibrary.simpleMessage(
       "Please select the exact address where you would like to receive your orders to ensure fast and smooth delivery.",
     ),
+    "please_select_rating": MessageLookupByLibrary.simpleMessage(
+      "Please select a rating",
+    ),
+    "please_select_rating_2": MessageLookupByLibrary.simpleMessage(
+      "Please select a rating to submit your review",
+    ),
+    "poor": MessageLookupByLibrary.simpleMessage("Poor"),
     "postal_code": MessageLookupByLibrary.simpleMessage("Postal Code"),
     "postal_code_desc": MessageLookupByLibrary.simpleMessage(
       "Please enter your postal code to ensure fast and smooth delivery.",
@@ -332,6 +359,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "product_added_successfully": MessageLookupByLibrary.simpleMessage(
       "Product Added Successfully!",
     ),
+    "product_name": MessageLookupByLibrary.simpleMessage("Product Name"),
+    "product_reviews": MessageLookupByLibrary.simpleMessage("Product Reviews"),
     "products": MessageLookupByLibrary.simpleMessage("Products"),
     "profile": MessageLookupByLibrary.simpleMessage("Profile"),
     "qatar": MessageLookupByLibrary.simpleMessage("Qatar"),
@@ -348,6 +377,18 @@ class MessageLookup extends MessageLookupByLibrary {
     "reset_password": MessageLookupByLibrary.simpleMessage("Reset Password"),
     "reset_password_successfully": MessageLookupByLibrary.simpleMessage(
       "Reset password successfully",
+    ),
+    "review_submitted_successfully": MessageLookupByLibrary.simpleMessage(
+      "Review submitted successfully",
+    ),
+    "review_too_long": MessageLookupByLibrary.simpleMessage(
+      "Review is too long, please limit it to 50 characters",
+    ),
+    "review_too_short": MessageLookupByLibrary.simpleMessage(
+      "Review is too short, please write at least 10 characters",
+    ),
+    "reviewing_product": MessageLookupByLibrary.simpleMessage(
+      "Reviewing Product",
     ),
     "reviews": MessageLookupByLibrary.simpleMessage("Reviews"),
     "saudi_arabia": MessageLookupByLibrary.simpleMessage("Saudi Arabia"),
@@ -368,6 +409,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "see_all": MessageLookupByLibrary.simpleMessage("See All"),
     "selecet_location": MessageLookupByLibrary.simpleMessage("Select Location"),
     "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+    "share_your_experience": MessageLookupByLibrary.simpleMessage(
+      "Share your experience with this product",
+    ),
     "shipping": MessageLookupByLibrary.simpleMessage("Shipping"),
     "shipping_fees": MessageLookupByLibrary.simpleMessage("Shipping fees"),
     "shop_by_brand": MessageLookupByLibrary.simpleMessage("Shop by Brand"),
@@ -404,10 +448,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "street": MessageLookupByLibrary.simpleMessage("Street"),
     "street2": MessageLookupByLibrary.simpleMessage("Street"),
     "submet": MessageLookupByLibrary.simpleMessage("Submit"),
+    "submit_review": MessageLookupByLibrary.simpleMessage("Submit Review"),
     "subtotal": MessageLookupByLibrary.simpleMessage("Subtotal"),
     "suez": MessageLookupByLibrary.simpleMessage("Suez"),
     "support_team": MessageLookupByLibrary.simpleMessage("support team"),
     "tanta": MessageLookupByLibrary.simpleMessage("Tanta"),
+    "tap_to_rate": MessageLookupByLibrary.simpleMessage("Tap to rate"),
     "tap_to_speak": MessageLookupByLibrary.simpleMessage("Tap to speak"),
     "the_address": MessageLookupByLibrary.simpleMessage("Address"),
     "too_many_requests": MessageLookupByLibrary.simpleMessage(
@@ -446,12 +492,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "verify_otp_code_successfully": MessageLookupByLibrary.simpleMessage(
       "Verify OTP code successfully",
     ),
+    "very_good": MessageLookupByLibrary.simpleMessage("Very Good"),
     "weak_password": MessageLookupByLibrary.simpleMessage(
       "The password provided is too weak.",
     ),
     "what_would_you_like_to_do_next": MessageLookupByLibrary.simpleMessage(
       "What would you like to do next?",
     ),
+    "write_a_review": MessageLookupByLibrary.simpleMessage("Write a Review"),
     "you_are_sending_too_many_requests": MessageLookupByLibrary.simpleMessage(
       "You are sending too many requests, Please wait a few seconds and try again.",
     ),
@@ -465,5 +513,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Your cart is Empty",
     ),
     "your_email": MessageLookupByLibrary.simpleMessage("Your Email"),
+    "your_name": MessageLookupByLibrary.simpleMessage("Your Name"),
+    "your_review": MessageLookupByLibrary.simpleMessage("Your Review"),
   };
 }

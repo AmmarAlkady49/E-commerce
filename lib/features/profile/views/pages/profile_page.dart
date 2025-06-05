@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
 import 'package:e_commerce_graduation/core/utils/themes/app_bar_default_theme.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';

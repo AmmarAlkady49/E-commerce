@@ -222,7 +222,7 @@ class ChangePasswordProfile extends StatelessWidget {
                         height: 42.h,
                         buttonTitle: S.of(context).save,
                         onTap: () async {
-                          if (formKey.currentState!.validate()) {
+                          if (formKey.currentState!.validate()) {  
                             email != null
                                 ? await authCubit.updatePassword(
                                     newPassword: passwordController.text,
