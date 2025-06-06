@@ -4,8 +4,6 @@ import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
 import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
 import 'package:e_commerce_graduation/core/widgets/my_button1.dart';
-import 'package:e_commerce_graduation/core/widgets/my_button2.dart';
-import 'package:e_commerce_graduation/core/widgets/my_or_devider.dart';
 import 'package:e_commerce_graduation/core/widgets/my_text_form_field.dart';
 import 'package:e_commerce_graduation/features/auth/auth_cubit/auth_cubit.dart';
 import 'package:e_commerce_graduation/features/auth/views/widgets/modern_gender_selector.dart';
