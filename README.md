@@ -217,73 +217,73 @@ Before running this project, make sure you have the following installed:
   <table>
     <tr>
       <td align="center">
-        <img src="assets/screenshots/login_page.png" width="350px" alt="Login Screen"/>
+        <img src="assets/screenshots/login_page.png" width="450px" alt="Login Screen"/>
         <br><strong>Authentication</strong>
       </td>
       <td align="center">
-        <img src="assets/screenshots/home_page.png" width="350px" alt="Home Page Screenshot">
+        <img src="assets/screenshots/home_page.png" width="450px" alt="Home Page Screenshot">
         <br><strong>Home Screen</strong>
       </td>
       <td align="center">
-        <img src="assets/screenshots/product_details.png" width="350px" alt="Product Details"/>
+        <img src="assets/screenshots/product_details.png" width="450px" alt="Product Details"/>
         <br><strong>Product Details</strong>
       </td>
       <td align="center">
-        <img src="assets/screenshots/search_page.png" width="350px" alt="Product Details"/>
+        <img src="assets/screenshots/search_page.png" width="450px" alt="Product Details"/>
         <br><strong>Product Search</strong>
       </td>
     </tr>
     <tr>
       <td align="center">
-        <img src="assets/screenshots/search_history.png" width="350px" alt="Login Screen"/>
+        <img src="assets/screenshots/search_history.png" width="450px" alt="Login Screen"/>
         <br><strong>Search History</strong>
       </td>
       <td align="center">
-        <img src="assets/screenshots/speech_to_text.png" width="350px" alt="Home Page Screenshot">
+        <img src="assets/screenshots/speech_to_text.png" width="450px" alt="Home Page Screenshot">
         <br><strong>Speech Recognition</strong>
       </td>
        <td align="center">
-        <img src="assets/screenshots/cart_page.png" width="350px" alt="Shopping Cart"/>
+        <img src="assets/screenshots/cart_page.png" width="450px" alt="Shopping Cart"/>
         <br><strong>Shopping Cart</strong>
       </td>
       <td align="center">
-        <img src="assets/screenshots/checkout_page.png" width="350px" alt="Checkout"/>
+        <img src="assets/screenshots/checkout_page.png" width="450px" alt="Checkout"/>
         <br><strong>Checkout Process</strong>
       </td>
     </tr>
     <tr>
       <td align="center">
-        <img src="assets/screenshots/favorite_page.png" width="350px" alt="wishlist"/>
+        <img src="assets/screenshots/favorite_page.png" width="450px" alt="wishlist"/>
         <br><strong>wishlist</strong>
       </td>
       <td align="center">
-        <img src="assets/screenshots/settings_page.png" width="350px" alt="Settings"/>
+        <img src="assets/screenshots/settings_page.png" width="450px" alt="Settings"/>
         <br><strong>Settings</strong>
       </td>
       <td align="center">
-        <img src="assets/screenshots/profile_page.png" width="350px" alt="User Profile"/>
+        <img src="assets/screenshots/profile_page.png" width="450px" alt="User Profile"/>
         <br><strong>User Profile</strong>
       </td>
       <td align="center">
-        <img src="assets/screenshots/edit_profile_info.png" width="350px" alt="Edit Profile Info"/>
+        <img src="assets/screenshots/edit_profile_info.png" width="450px" alt="Edit Profile Info"/>
         <br><strong>Edit Profile Info</strong>
       </td>
     </tr>
     <tr>
       <td align="center">
-        <img src="assets/screenshots/list_of_orders.png" width="350px" alt="Order History"/>
+        <img src="assets/screenshots/list_of_orders.png" width="450px" alt="Order History"/>
         <br><strong>Order History</strong>
       </td>
       <td align="center">
-        <img src="assets/screenshots/address.png" width="350px" alt="Saved Address"/>
+        <img src="assets/screenshots/address.png" width="450px" alt="Saved Address"/>
         <br><strong>Saved Address</strong>
       </td>
       <td align="center">
-        <img src="assets/screenshots/language_page.png" width="350px" alt="Arabic RTL Support"/>
+        <img src="assets/screenshots/language_page.png" width="450px" alt="Arabic RTL Support"/>
         <br><strong>Arabic RTL Support</strong>
       </td>
       <td align="center">
-        <img src="assets/screenshots/delete_dialog.png" width="350px" alt="Deleting Dialog Box
+        <img src="assets/screenshots/delete_dialog.png" width="450px" alt="Deleting Dialog Box
 "/>
         <br><strong>Deleting Dialog Box
 </strong>
