@@ -46,6 +46,7 @@ class HomeTap extends StatelessWidget {
               if (homeCubit.isLoading) {
                 return Column(
                   children: [
+                    SizedBox(height: 12.h),
                     ImageSlider(),
                     SizedBox(height: 12.h),
                     GridViewForCategoriesLoading(),

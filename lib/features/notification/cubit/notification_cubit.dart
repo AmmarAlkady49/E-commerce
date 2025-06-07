@@ -1,5 +1,5 @@
 import 'dart:math';
-
+import 'dart:developer' as developer;
 import 'package:e_commerce_graduation/features/notification/models/notification_message_model.dart';
 import 'package:e_commerce_graduation/features/notification/services/local_notification_services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,6 +18,11 @@ class NotificationCubit extends Cubit<NotificationState> {
 
   Timer? _timer;
 
+  // void showNow() {
+  //   _showRandomNotification();
+  // }
+
+
   void getDummyRepeatedNotificationList() {
     _timer?.cancel();
     _timer = Timer.periodic(const Duration(seconds: 30), (_) {
@@ -31,8 +36,8 @@ class NotificationCubit extends Cubit<NotificationState> {
     final index = random.nextInt(_notificationList.length);
     final notification = _notificationList[index];
 
-    log("Showing notification: ${notification.title} - ${notification.body}"
-        as num);
+    developer.log(
+        "Showing notification: ${notification.title} - ${notification.body}");
     LocalNotificationServices.showSingleNotification(
       notification.title,
       notification.body,
