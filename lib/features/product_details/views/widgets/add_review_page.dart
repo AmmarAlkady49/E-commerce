@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerce_graduation/core/models/product_response.dart';
 import 'package:e_commerce_graduation/core/utils/helper_functions.dart';
-import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
 import 'package:e_commerce_graduation/core/utils/themes/app_bar_default_theme.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
 import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
@@ -26,14 +25,11 @@ class AddReviewPage extends StatefulWidget {
 
 class _AddReviewPageState extends State<AddReviewPage> {
   final _formKey = GlobalKey<FormState>();
-  final _nameController = TextEditingController();
   final _reviewController = TextEditingController();
   int _selectedRating = 0;
-  bool _isLoading = false;
 
   @override
   void dispose() {
-    _nameController.dispose();
     _reviewController.dispose();
     super.dispose();
   }
@@ -60,10 +56,6 @@ class _AddReviewPageState extends State<AddReviewPage> {
               // Rating Section
               _buildRatingSection(),
               SizedBox(height: 24.h),
-
-              // // Name Input Section
-              // _buildNameInputSection(),
-              // SizedBox(height: 24.h),
 
               // Review Text Section
               _buildReviewTextSection(),
@@ -401,8 +393,7 @@ class _AddReviewPageState extends State<AddReviewPage> {
           current is ProductAddedReview || current is ProductAddedReviewError,
       listener: (context, state) async {
         if (state is ProductAddedReview) {
-          // await cubit.getProductDetails(widget.product.productID!);
-          await Future.delayed(const Duration(milliseconds: 500), () {
+          Future.delayed(const Duration(milliseconds: 300), () {
             _showSuccessSnackBar(S.of(context).review_submitted_successfully);
           });
           Navigator.pop(context, true);

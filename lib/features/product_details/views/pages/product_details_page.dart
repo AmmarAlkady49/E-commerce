@@ -17,7 +17,6 @@ class ProductDetailsPage extends StatelessWidget {
       top: false,
       child: PopScope(
         canPop: true,
-        // onPopInvokedWithResult: (didPop, result) => setState(() {}),
         child: BlocBuilder<ProductDetailsCubit, ProductDetailsState>(
           bloc: productDetailsCubit,
           buildWhen: (previous, current) =>
@@ -36,9 +35,7 @@ class ProductDetailsPage extends StatelessWidget {
             } else if (state is ProductDetailsLoaded) {
               final product = state.product;
               return Scaffold(
-                  // backgroundColor: Colors.grey.shade200,
                   backgroundColor: Colors.grey.shade300,
-                  // backgroundColor: MyColor.,
                   body: CustomScrollView(
                     slivers: [
                       CustomAppBarProductDetails(product: product),

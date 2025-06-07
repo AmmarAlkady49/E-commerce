@@ -42,8 +42,6 @@ class RateingSection extends StatelessWidget {
         SizedBox(height: 12.h),
         InkWell(
           onTap: () {
-            // product.rating != null
-            //     ?
             Navigator.pushNamed(
               context,
               AppRoutes.productReviewsPage,
@@ -52,7 +50,6 @@ class RateingSection extends StatelessWidget {
                 "productDetailsCubit": context.read<ProductDetailsCubit>(),
               },
             );
-            // : null;
           },
           child: Container(
             padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),

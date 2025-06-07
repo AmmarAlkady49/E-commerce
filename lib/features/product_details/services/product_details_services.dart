@@ -4,10 +4,12 @@ import 'package:dio/dio.dart';
 import 'package:e_commerce_graduation/core/models/product_response.dart';
 import 'package:e_commerce_graduation/core/secure_storage.dart';
 import 'package:e_commerce_graduation/core/utils/app_constants.dart';
+import 'package:e_commerce_graduation/features/product_details/models/product_reviews_model.dart';
 
 abstract class ProductDetailsServices {
   Future<ProductResponse> getProductDetails(int productId);
   Future<void> addProductReview(int productId, String review, int rating);
+  Future<List<ProductReviewsModel>> getProductReviews(int productId);
 }
 
 class ProductDetailsServicesImpl extends ProductDetailsServices {
@@ -52,6 +54,34 @@ class ProductDetailsServicesImpl extends ProductDetailsServices {
       );
     } catch (e) {
       throw Exception('Failed to add product review: $e');
+    }
+  }
+
+  @override
+  Future<List<ProductReviewsModel>> getProductReviews(int productId) async {
+    try {
+      final response = await aDio.get(
+        "${AppConstants.baseUrl}${AppConstants.getProductReviews}/$productId",
+        options: Options(
+          headers: {
+            "Authorization": "Bearer ${secureStorage.readSecureData('token')}",
+          },
+        ),
+      );
+
+      if (response.statusCode == 200) {
+        final List<dynamic> data = response.data;
+        return data
+            .map((json) =>
+                ProductReviewsModel.fromMap(json as Map<String, dynamic>))
+            .toList();
+      } else if (response.statusCode == 400) {
+        throw Exception('Bad request: ${response.statusCode}');
+      } else {
+        throw Exception('Failed to get product reviews');
+      }
+    } catch (e) {
+      throw Exception('Failed to get product reviews: $e');
     }
   }
 }

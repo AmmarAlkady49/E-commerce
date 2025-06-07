@@ -3,20 +3,37 @@ import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
 import 'package:e_commerce_graduation/core/utils/themes/app_bar_default_theme.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
 import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
+import 'package:e_commerce_graduation/core/widgets/error_page.dart';
 import 'package:e_commerce_graduation/features/product_details/cubit/product_details_cubit.dart';
+import 'package:e_commerce_graduation/features/product_details/models/product_reviews_model.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:intl/intl.dart';
 
-class ProductReviews extends StatelessWidget {
+class ProductReviews extends StatefulWidget {
   final ProductResponse product;
   final ProductDetailsCubit productDetailsCubit;
 
-  const ProductReviews(
-      {super.key, required this.product, required this.productDetailsCubit});
+  const ProductReviews({
+    super.key,
+    required this.product,
+    required this.productDetailsCubit,
+  });
+
+  @override
+  State<ProductReviews> createState() => _ProductReviewsState();
+}
+
+class _ProductReviewsState extends State<ProductReviews> {
+  @override
+  void initState() {
+    super.initState();
+    widget.productDetailsCubit.getProductReviews(widget.product.productID!);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,23 +43,48 @@ class ProductReviews extends StatelessWidget {
         title: S.of(context).product_reviews,
         needLeadingButton: true,
       ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.all(16.w),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Overall Rating Section
-            _buildOverallRatingSection(context),
-            SizedBox(height: 24.h),
+      body: BlocConsumer<ProductDetailsCubit, ProductDetailsState>(
+        listenWhen: (previous, current) => current is ProductAddedReview,
+        listener: (context, state) async {
+          if (state is ProductAddedReview) {
+            await widget.productDetailsCubit
+                .getProductReviews(widget.product.productID!);
+          }
+        },
+        bloc: widget.productDetailsCubit,
+        buildWhen: (previous, current) =>
+            current is ProductReviewsLoading ||
+            current is ProductReviewsLoaded ||
+            current is ProductReviewsError,
+        builder: (context, state) {
+          if (state is ProductReviewsLoading) {
+            return Center(
+                child: CupertinoActivityIndicator(color: Colors.black));
+          } else if (state is ProductReviewsError) {
+            return ErrorPage();
+          } else if (state is ProductReviewsLoaded) {
+            return SingleChildScrollView(
+              padding: EdgeInsets.all(16.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Overall Rating Section
+                  _buildOverallRatingSection(context, state),
+                  SizedBox(height: 24.h),
 
-            // Add Review Button
-            writeRate(context, product),
-            SizedBox(height: 24.h),
+                  // Add Review Button
+                  writeRate(context, widget.product),
+                  SizedBox(height: 24.h),
 
-            // Reviews List
-            _buildReviewsSection(context),
-          ],
-        ),
+                  // Reviews List
+                  _buildReviewsSection(context, state),
+                ],
+              ),
+            );
+          } else {
+            return SizedBox.shrink();
+          }
+        },
       ),
     );
   }
@@ -50,17 +92,10 @@ class ProductReviews extends StatelessWidget {
   GestureDetector writeRate(BuildContext context, ProductResponse product) {
     return GestureDetector(
       onTap: () async {
-        final result = await Navigator.pushNamed(
-            context, AppRoutes.addReviewPage,
-            arguments: {
-              "product": product,
-              "productDetailsCubit": productDetailsCubit,
-            });
-
-        if (result == true) {
-          // Refresh the reviews manually
-          await productDetailsCubit.getProductDetails(product.productID!);
-        }
+        await Navigator.pushNamed(context, AppRoutes.addReviewPage, arguments: {
+          "product": product,
+          "productDetailsCubit": widget.productDetailsCubit,
+        });
       },
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
@@ -121,7 +156,12 @@ class ProductReviews extends StatelessWidget {
     );
   }
 
-  Widget _buildOverallRatingSection(BuildContext context) {
+  Widget _buildOverallRatingSection(
+      BuildContext context, ProductReviewsLoaded state) {
+    double rating = state.reviews.isEmpty
+        ? 0.0
+        : state.reviews.map((e) => e.rating).reduce((a, b) => a + b) /
+            state.reviews.length.toDouble();
     return Container(
       padding: EdgeInsets.all(16.w),
       decoration: BoxDecoration(
@@ -152,7 +192,7 @@ class ProductReviews extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      "${product.rating?.toStringAsFixed(1)}",
+                      state.reviews.isEmpty ? "0.0" : rating.toString(),
                       style: FontHelper.fontText(
                         size: 28.sp,
                         weight: FontWeight.w800,
@@ -170,7 +210,9 @@ class ProductReviews extends StatelessWidget {
                 ),
                 SizedBox(height: 4.h),
                 Text(
-                  "${S.of(context).based_on} ${product.reviewCount ?? 0} ${S.of(context).reviews}",
+                  state.reviews.isEmpty
+                      ? "${S.of(context).based_on}  0 ${S.of(context).reviews}"
+                      : "${S.of(context).based_on}  ${state.reviews.length} ${S.of(context).reviews}",
                   style: FontHelper.fontText(
                     size: 12.sp,
                     weight: FontWeight.w500,
@@ -185,7 +227,7 @@ class ProductReviews extends StatelessWidget {
           // Star Rating Display
           Column(
             children: List.generate(5, (index) {
-              double rating = product.rating?.toDouble() ?? 0.0;
+              // double rating = widget.product.rating?.toDouble() ?? 0.0;
               if (index < rating.floor()) {
                 return Icon(
                   Icons.star_rounded,
@@ -212,11 +254,11 @@ class ProductReviews extends StatelessWidget {
     );
   }
 
-  Widget _buildReviewsSection(BuildContext context) {
-    if (product.reviews == null || product.reviews!.isEmpty) {
+  Widget _buildReviewsSection(
+      BuildContext context, ProductReviewsLoaded state) {
+    if (state.reviews.isEmpty) {
       return _buildNoReviewsWidget(context);
     }
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -232,7 +274,7 @@ class ProductReviews extends StatelessWidget {
             ),
             SizedBox(width: 12.w),
             Text(
-              "${S.of(context).all_reviews} (${product.reviews!.length})",
+              "${S.of(context).all_reviews} (${state.reviews.length})",
               style: FontHelper.fontText(
                 size: 18.sp,
                 weight: FontWeight.w700,
@@ -246,10 +288,10 @@ class ProductReviews extends StatelessWidget {
         ListView.separated(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          itemCount: product.reviews!.length,
+          itemCount: state.reviews.length,
           separatorBuilder: (context, index) => SizedBox(height: 16.h),
           itemBuilder: (context, index) {
-            final review = product.reviews![index];
+            final review = state.reviews[index];
             return _buildReviewCard(context, review);
           },
         ),
@@ -257,7 +299,7 @@ class ProductReviews extends StatelessWidget {
     );
   }
 
-  Widget _buildReviewCard(BuildContext context, Review review) {
+  Widget _buildReviewCard(BuildContext context, ProductReviewsModel review) {
     return Container(
       padding: EdgeInsets.all(16.w),
       decoration: BoxDecoration(
@@ -279,8 +321,8 @@ class ProductReviews extends StatelessWidget {
                 radius: 20.r,
                 backgroundColor: MyColor.kellyGreen3.withAlpha(100),
                 child: Text(
-                  review.name != null && review.name!.isNotEmpty
-                      ? review.name![0].toUpperCase()
+                  review.customerName.isNotEmpty
+                      ? review.customerName[0].toUpperCase()
                       : 'U',
                   style: FontHelper.fontText(
                     size: 14.sp,
@@ -297,7 +339,7 @@ class ProductReviews extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      review.name ?? S.of(context).anonymous_user,
+                      review.customerName,
                       style: FontHelper.fontText(
                         size: 14.sp,
                         weight: FontWeight.w600,
@@ -323,7 +365,7 @@ class ProductReviews extends StatelessWidget {
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: List.generate(5, (index) {
-                  int rating = review.rating ?? 0;
+                  int rating = review.rating;
                   if (index < rating) {
                     return Icon(
                       Icons.star_rounded,
@@ -345,9 +387,9 @@ class ProductReviews extends StatelessWidget {
           SizedBox(height: 12.h),
 
           // Review Text
-          if (review.reviewText != null && review.reviewText!.isNotEmpty)
+          if (review.reviewText.isNotEmpty)
             Text(
-              review.reviewText!,
+              review.reviewText,
               style: FontHelper.fontText(
                 size: 13.sp,
                 weight: FontWeight.w400,
@@ -374,22 +416,34 @@ class ProductReviews extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Icon(
-            Icons.rate_review_outlined,
-            size: 48.sp,
-            color: Colors.grey.shade400,
+          // Icon container
+          CircleAvatar(
+            radius: 24.r,
+            backgroundColor: MyColor.kellyGreen3.withAlpha(170),
+            child: Icon(
+              Icons.rate_review_outlined,
+              size: 24.sp,
+              color: Colors.white,
+            ),
           ),
+
           SizedBox(height: 16.h),
+
+          // Main title
           Text(
             S.of(context).no_reviews_yet,
             style: FontHelper.fontText(
               size: 16.sp,
               weight: FontWeight.w600,
-              color: Colors.grey.shade600,
+              color: Colors.grey.shade700,
               context: context,
             ),
+            textAlign: TextAlign.center,
           ),
-          SizedBox(height: 8.h),
+
+          SizedBox(height: 6.h),
+
+          // Subtitle
           Text(
             S.of(context).be_first_to_review,
             style: FontHelper.fontText(

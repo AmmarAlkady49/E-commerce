@@ -69,3 +69,18 @@ final class ProductAddedReviewError extends ProductDetailsState {
     required this.message,
   });
 }
+
+final class ProductReviewsLoading extends ProductDetailsState {}
+
+final class ProductReviewsLoaded extends ProductDetailsState {
+  final List<ProductReviewsModel> reviews;
+  ProductReviewsLoaded({
+    required this.reviews,
+  });
+}
+final class ProductReviewsError extends ProductDetailsState {
+  final String message;
+  ProductReviewsError({
+    required this.message,
+  });
+}

@@ -1,6 +1,5 @@
 import 'package:e_commerce_graduation/core/utils/helper_functions.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
-import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,23 +21,12 @@ class RecommendedProductsLoading extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              Text(S.of(context).recommended_for_you,
-                  style: FontHelper.fontText(
-                      size: 17.sp,
-                      weight: FontWeight.w800,
-                      color: Colors.black,
-                      context: context)),
-              const Spacer(),
-              Text(S.of(context).see_all,
-                  style: FontHelper.fontText(
-                      size: 12.sp,
-                      weight: FontWeight.w800,
-                      color: MyColor.kellyGreen3,
-                      context: context)),
-            ],
-          ),
+          Text(S.of(context).recommended_for_you,
+              style: FontHelper.fontText(
+                  size: 17.sp,
+                  weight: FontWeight.w800,
+                  color: Colors.black,
+                  context: context)),
           SizedBox(height: 12.h),
           GridView.builder(
             shrinkWrap: true,

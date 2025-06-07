@@ -7,6 +7,7 @@ import 'package:e_commerce_graduation/features/cart/services/cart_services.dart'
 import 'package:e_commerce_graduation/features/favorites/cubit/favorites_cubit.dart';
 import 'package:e_commerce_graduation/features/favorites/services/favorite_products_services.dart';
 import 'package:e_commerce_graduation/features/home/home_bubit/cubit/home_cubit.dart';
+import 'package:e_commerce_graduation/features/product_details/models/product_reviews_model.dart';
 import 'package:e_commerce_graduation/features/product_details/services/product_details_services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -29,6 +30,8 @@ class ProductDetailsCubit extends Cubit<ProductDetailsState> {
   final FavoriteProductsServices _favoritesServices2 =
       FavoriteProductsServicesImpl();
   int quantity = 1;
+  bool hasFetchedProductReviews = false;
+  bool shouldFetchProductDetailsPage = false;
 
   // bool shouldFetchProductDetailsagain = true;
 
@@ -75,6 +78,9 @@ class ProductDetailsCubit extends Cubit<ProductDetailsState> {
 
   // Get Product Details
   Future<void> getProductDetails(int productId) async {
+    if (shouldFetchProductDetailsPage) {
+      return;
+    }
     emit(ProductDetailsLoading());
 
     try {
@@ -90,7 +96,7 @@ class ProductDetailsCubit extends Cubit<ProductDetailsState> {
 
       // Update product.isFavorite manually
       final updatedProduct = productDetails.copyWith(isFavorite: isFavorite);
-
+      shouldFetchProductDetailsPage = false;
       emit(ProductDetailsLoaded(product: updatedProduct));
     } catch (e) {
       emit(ProductDetailsError(message: e.toString()));
@@ -107,7 +113,6 @@ class ProductDetailsCubit extends Cubit<ProductDetailsState> {
 
       emit(ProductAddedToCart());
       cartCubit.hasFetchedCart = false;
-      // hasFetchedFavorites = false;
     } catch (e) {
       log('Error adding product to cart: $e');
       emit(ProductAddedToCartError(message: e.toString()));
@@ -119,12 +124,29 @@ class ProductDetailsCubit extends Cubit<ProductDetailsState> {
     emit(ProductAddingReview());
     try {
       await _productDetailsServices.addProductReview(productId, review, rating);
+      hasFetchedProductReviews = false;
+      shouldFetchProductDetailsPage = true;
       emit(ProductAddedReview());
-      // homeCubit.hasFetchedRecommendedProducts = false;
-      
     } catch (e) {
       log('Error adding product review: $e');
       emit(ProductAddedReviewError(message: e.toString()));
+    }
+  }
+
+  // get product reviews
+  Future<void> getProductReviews(int productId) async {
+    if (hasFetchedProductReviews) {
+      return;
+    }
+    emit(ProductReviewsLoading());
+    try {
+      final reviews =
+          await _productDetailsServices.getProductReviews(productId);
+      hasFetchedProductReviews = true;
+      emit(ProductReviewsLoaded(reviews: reviews));
+    } catch (e) {
+      log('Error fetching product reviews: $e');
+      emit(ProductReviewsError(message: e.toString()));
     }
   }
 }

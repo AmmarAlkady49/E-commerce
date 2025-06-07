@@ -143,8 +143,9 @@ class BottomOfTheProductDetails extends StatelessWidget {
       bloc: productDetailsCubit,
       listenWhen: (previous, current) => current is ProductAddedToCart,
       listener: (context, state) {
+        // _showAddToCartSuccessDialog(context);
         if (state is ProductAddedToCart) {
-          Future.delayed(const Duration(milliseconds: 500), () {
+          Future.delayed(const Duration(milliseconds: 200), () {
             _showAddToCartSuccessDialog(context);
           });
         }

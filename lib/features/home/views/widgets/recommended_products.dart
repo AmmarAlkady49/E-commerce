@@ -14,71 +14,30 @@ class RecommendedProducts extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Text(S.of(context).recommended_for_you,
-            //     style: FontHelper.fontText(
-            //         size: 17.sp,
-            //         weight: FontWeight.w800,
-            //         color: Colors.black,
-            //         context: context)),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  S.of(context).recommended_for_you,
-                  style: FontHelper.fontText(
-                    size: 18.sp,
-                    weight: FontWeight.w800,
-                    color: Colors.black87,
-                    context: context,
-                  ),
-                ),
-                SizedBox(height: 2.h),
-                Container(
-                  height: 3.h,
-                  width: 40.w * 1.5,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        Color(0xff53B175),
-                        Color(0xff53B175).withAlpha(100),
-                      ],
-                    ),
-                    borderRadius: BorderRadius.circular(2.r),
-                  ),
-                ),
-              ],
+            Text(
+              S.of(context).recommended_for_you,
+              style: FontHelper.fontText(
+                size: 18.sp,
+                weight: FontWeight.w800,
+                color: Colors.black87,
+                context: context,
+              ),
             ),
-            const Spacer(),
+            SizedBox(height: 2.h),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
+              height: 3.h,
+              width: 40.w * 1.5,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    Color(0xff53B175).withAlpha(30),
-                    Color(0xff53B175).withAlpha(10),
+                    Color(0xff53B175),
+                    Color(0xff53B175).withAlpha(100),
                   ],
                 ),
-                borderRadius: BorderRadius.circular(20.r),
-                border: Border.all(
-                  color: Color(0xff53B175).withAlpha(100),
-                  width: 1,
-                ),
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    S.of(context).see_all,
-                    style: FontHelper.fontText(
-                      size: 12.sp,
-                      weight: FontWeight.w600,
-                      color: Color(0xff53B175),
-                      context: context,
-                    ),
-                  ),
-                ],
+                borderRadius: BorderRadius.circular(2.r),
               ),
             ),
           ],
