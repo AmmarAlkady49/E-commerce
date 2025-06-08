@@ -1,7 +1,9 @@
 import 'package:e_commerce_graduation/core/utils/routes/app_routes.dart';
 import 'package:e_commerce_graduation/core/utils/themes/font_helper.dart';
-import 'package:e_commerce_graduation/core/widgets/show_modal_bottom_sheet.dart';
+import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
+import 'package:e_commerce_graduation/core/utils/themes/notification_storage.dart';
 import 'package:e_commerce_graduation/features/home/home_bubit/cubit/home_cubit.dart';
+import 'package:e_commerce_graduation/features/notification/models/notification_message_model.dart';
 import 'package:e_commerce_graduation/features/search/views/widgets/custome_search.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:flutter/material.dart';
@@ -56,17 +58,20 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                                   child: Container(
                                       decoration: BoxDecoration(
                                         shape: BoxShape.circle,
-                                        border: state.photoUrl != ''
-                                            ? null
-                                            : Border.all(
-                                                color: Colors.black, width: 1),
-                                        color: Colors.grey.shade400,
+                                        color: Colors.grey.shade200,
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.black12,
+                                            blurRadius: 6,
+                                            offset: Offset(0, 2),
+                                          )
+                                        ],
                                       ),
                                       child: state.photoUrl != ''
                                           ? Image.network(
                                               state.photoUrl,
-                                              height: 47,
-                                              width: 47,
+                                              height: 48.sp,
+                                              width: 48.sp,
                                               cacheHeight: 151,
                                               cacheWidth: 151,
                                               fit: BoxFit.cover,
@@ -74,8 +79,8 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                                                       stackTrace) =>
                                                   Image.asset(
                                                 'assets/images/home_page/face_avatar1.png',
-                                                height: 47,
-                                                width: 47,
+                                                height: 48.sp,
+                                                width: 48.sp,
                                                 cacheHeight: 151,
                                                 cacheWidth: 151,
                                               ),
@@ -83,16 +88,16 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                                           : state.gender == 'female'
                                               ? Image.asset(
                                                   'assets/images/home_page/face_avatar2.png',
-                                                  height: 47,
-                                                  width: 47,
+                                                  height: 48.sp,
+                                                  width: 48.sp,
                                                   cacheHeight: 151,
                                                   cacheWidth: 151,
                                                   fit: BoxFit.contain,
                                                 )
                                               : Image.asset(
                                                   'assets/images/home_page/face_avatar1.png',
-                                                  height: 47,
-                                                  width: 47,
+                                                  height: 48.sp,
+                                                  width: 48.sp,
                                                   cacheHeight: 151,
                                                   cacheWidth: 151,
                                                 )),
@@ -101,8 +106,8 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                                   baseColor: Colors.grey[300]!,
                                   highlightColor: Colors.grey[100]!,
                                   child: Container(
-                                    width: 47.w,
-                                    height: 47.h,
+                                    width: 48.sp,
+                                    height: 48.sp,
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                       // borderRadius: BorderRadius.circular(10),
@@ -149,21 +154,52 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                           ],
                         ),
                         const Spacer(),
-                        IconButton(
+                        // IconButton(
+                        //   onPressed: () {
+                        //     showSearch(
+                        //         context: context,
+                        //         delegate: CustomeSearch(homeCubit: homeCubit));
+                        //   },
+                        //   icon: Icon(Iconsax.search_normal_1,
+                        //       color: Colors.black, size: 24.sp),
+                        // ),
+                        // IconButton(
+                        //   onPressed: () async {
+                        //     List<NotificationMessageModel> notifications =
+                        //         await NotificationStorage.loadNotifications();
+
+                        //     Navigator.pushNamed(
+                        //         context, AppRoutes.notificationPage,
+                        //         arguments: notifications);
+                        //   },
+                        //   icon: Icon(Iconsax.notification,
+                        //       color: Colors.black, size: 24.sp),
+                        // ),
+                        _buildActionButton(
+                          icon: Iconsax.search_normal_1,
                           onPressed: () {
                             showSearch(
                                 context: context,
                                 delegate: CustomeSearch(homeCubit: homeCubit));
                           },
-                          icon: Icon(Iconsax.search_normal_1,
-                              color: Colors.black, size: 24.sp),
                         ),
-                        IconButton(
+                        SizedBox(width: 8.w),
+                        _buildActionButton(
+                          icon: Iconsax.notification,
+                          hasNotification: state is HomeAppBarLoaded
+                              ? state.hasNotification
+                              : false,
                           onPressed: () async {
-                            ShowModalBottomSheet.show(context);
+                            List<NotificationMessageModel> notifications =
+                                await NotificationStorage.loadNotifications();
+
+                            Navigator.pushNamed(
+                                    context, AppRoutes.notificationPage,
+                                    arguments: notifications)
+                                .then((value) {
+                              homeCubit.getUserData();
+                            });
                           },
-                          icon: Icon(Iconsax.notification,
-                              color: Colors.black, size: 24.sp),
                         ),
                       ],
                     ),
@@ -181,4 +217,47 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
       },
     );
   }
+}
+
+Widget _buildActionButton({
+  required IconData icon,
+  required VoidCallback onPressed,
+  bool hasNotification = false,
+}) {
+  return Stack(
+    children: [
+      SizedBox(
+        width: 45.w,
+        height: 45.h,
+        child: IconButton(
+          onPressed: onPressed,
+          icon: Icon(
+            icon,
+            color: Colors.black,
+            size: 24.sp,
+          ),
+          padding: EdgeInsets.zero,
+        ),
+      ),
+
+      // Notification Badge
+      if (hasNotification)
+        Positioned(
+          right: 8.w,
+          top: 8.h,
+          child: Container(
+            width: 8.w,
+            height: 8.h,
+            decoration: BoxDecoration(
+              color: MyColor.poppy,
+              shape: BoxShape.circle,
+              border: Border.all(
+                color: MyColor.white,
+                width: 1.5,
+              ),
+            ),
+          ),
+        ),
+    ],
+  );
 }

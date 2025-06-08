@@ -111,6 +111,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "country": MessageLookupByLibrary.simpleMessage("الدولة"),
     "create_account": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
+    "days_ago": MessageLookupByLibrary.simpleMessage("منذ أيام"),
     "delete": MessageLookupByLibrary.simpleMessage("حذف"),
     "delete_all": MessageLookupByLibrary.simpleMessage("حذف الكل"),
     "delivery_to": MessageLookupByLibrary.simpleMessage("توصيل الى"),
@@ -202,6 +203,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "hi": MessageLookupByLibrary.simpleMessage("أهلآ"),
     "highest_price": MessageLookupByLibrary.simpleMessage("الاعلى سعرا"),
     "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
+    "hours_ago": MessageLookupByLibrary.simpleMessage("منذ ساعات"),
     "invalid_email": MessageLookupByLibrary.simpleMessage(
       "البريد الالكتروني غير صحيح",
     ),
@@ -212,6 +214,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "invalid_postal_code": MessageLookupByLibrary.simpleMessage(
       "الرمز البريدي غير صحيح",
     ),
+    "just_now": MessageLookupByLibrary.simpleMessage("الآن"),
     "language": MessageLookupByLibrary.simpleMessage("اللغة"),
     "last_name": MessageLookupByLibrary.simpleMessage("الإسم الأخير"),
     "last_search": MessageLookupByLibrary.simpleMessage("البحث الأخير"),
@@ -237,6 +240,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "max_price": MessageLookupByLibrary.simpleMessage("أكبر سعر"),
     "min_price": MessageLookupByLibrary.simpleMessage("أقل سعر "),
+    "minutes_ago": MessageLookupByLibrary.simpleMessage("منذ دقائق"),
     "most_popular": MessageLookupByLibrary.simpleMessage("المنتجات الشائعة"),
     "most_recent": MessageLookupByLibrary.simpleMessage("الاكثر حديثا"),
     "my_orders": MessageLookupByLibrary.simpleMessage("طلباتي"),
@@ -258,6 +262,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "no_matching_products": MessageLookupByLibrary.simpleMessage(
       "لا توجد منتجات مطابقة.",
     ),
+    "no_notifications_yet": MessageLookupByLibrary.simpleMessage(
+      "لا توجد إشعارات حتى الآن",
+    ),
     "no_orders_found": MessageLookupByLibrary.simpleMessage("لا توجد طلبات"),
     "no_products_found": MessageLookupByLibrary.simpleMessage(
       "لا توجد منتجات مطابقة",
@@ -276,6 +283,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "لا يوجد عنوان محفوظ",
     ),
     "notification": MessageLookupByLibrary.simpleMessage("الاشعارات"),
+    "notification_empty_message": MessageLookupByLibrary.simpleMessage(
+      "لا توجد إشعارات جديدة في الوقت الحالي. يرجى التحقق لاحقًا.",
+    ),
     "number": MessageLookupByLibrary.simpleMessage("رقم"),
     "optional": MessageLookupByLibrary.simpleMessage("اختياري"),
     "or": MessageLookupByLibrary.simpleMessage("أو"),
@@ -478,6 +488,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "ماذا تريد ان تفعل بعد ذلك؟",
     ),
     "write_a_review": MessageLookupByLibrary.simpleMessage("اكتب تقييمًا"),
+    "yesterday": MessageLookupByLibrary.simpleMessage("أمس"),
     "you_are_sending_too_many_requests": MessageLookupByLibrary.simpleMessage(
       "لقد قمت بإرسال عدد كبير من الطلبات. يرجى الانتظار قليلاً ومحاولة المحاولة مرة أخرى.",
     ),

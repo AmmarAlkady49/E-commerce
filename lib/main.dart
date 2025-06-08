@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:e_commerce_graduation/core/cubit/general_cubit.dart';
 import 'package:e_commerce_graduation/core/utils/routes/app_router.dart';
 import 'package:e_commerce_graduation/core/utils/app_constants.dart';
@@ -8,11 +6,13 @@ import 'package:e_commerce_graduation/features/cart/cubit/cart_cubit.dart';
 import 'package:e_commerce_graduation/features/favorites/cubit/favorites_cubit.dart';
 import 'package:e_commerce_graduation/features/home/home_bubit/cubit/home_cubit.dart';
 import 'package:e_commerce_graduation/features/notification/cubit/notification_cubit.dart';
-import 'package:e_commerce_graduation/features/notification/services/local_notification_services.dart';
+import 'package:e_commerce_graduation/features/notification/services/notification_services.dart';
 import 'package:e_commerce_graduation/features/order/cubit/order_cubit.dart';
 import 'package:e_commerce_graduation/features/profile/profile_cubit/cubit/profile_cubit.dart';
+import 'package:e_commerce_graduation/firebase_options.dart';
 import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:e_commerce_graduation/splash_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,17 +20,16 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
+final navigatorKey = GlobalKey<NavigatorState>();
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  await LocalNotificationServices.initNitification();
-  if (Platform.isAndroid && await Permission.notification.isDenied) {
-    await Permission.notification.request();
-  }
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await NotificationServicesImpl().initNotificationsFirebase();
+  await NotificationServicesImpl().initNotificationLocal();
   await dotenv.load(fileName: ".env");
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
@@ -97,8 +96,7 @@ class MyApp extends StatelessWidget {
                   homeCubit: context.read<HomeCubit>()),
             ),
             BlocProvider<NotificationCubit>(
-              create: (context) =>
-                  NotificationCubit()..getDummyRepeatedNotificationList(),
+              create: (context) => NotificationCubit(),
             ),
             BlocProvider<GeneralCubit>(
               create: (context) => GeneralCubit(
@@ -112,6 +110,7 @@ class MyApp extends StatelessWidget {
               return MaterialApp(
                 title: AppConstants.appTitle,
                 debugShowCheckedModeBanner: false,
+                navigatorKey: navigatorKey,
                 localizationsDelegates: [
                   S.delegate,
                   GlobalMaterialLocalizations.delegate,

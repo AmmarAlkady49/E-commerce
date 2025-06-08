@@ -24,18 +24,16 @@
 - [About the Project](#about-the-project)
 - [Key Features](#key-features)
 - [Tech Stack](#tech-stack)
-- [Project Architecture](#project-architecture)
 - [Folder Structure](#folder-structure)
 - [Getting Started](#getting-started)
 - [Screenshots](#screenshots)
-- [Localization](#localization)
 - [Academic Context](#academic-context)
 - [Contact](#contact)
 
 ---
 
 ## 📱 App Demo Preview
-<div align="center"> <h3>✨ Experience Smarket in Action</h3> <p><em>A glimpse into the intelligent shopping experience</em></p> </div> <div align="center"> <table> <tr> <td align="center"> <img src="assets/screenshots/home_page.png" width="250px" alt="Home Page with Recommendations"/> <br><strong>🏠 Home Page</strong> <br><em>Powered by AI-based recommendation system</em> </td> <td align="center"> <img src="assets/screenshots/product_details.png" width="250px" alt="Product Details Page"/> <br><strong>🛍️ Product Details</strong> <br><em>Detailed product insights and reviews</em> </td> <td align="center"> <img src="assets/screenshots/speech_to_text.png" width="250px" alt="Speech to Text Feature"/> <br><strong>🎤 Voice Search</strong> <br><em>Search products using speech-to-text</em> </td> </tr> </table> </div> <div align="center"> <p>💡 <strong>Powered by AI</strong> • 🔒 <strong>Secure Payments</strong> • 🌐 <strong>Bilingual Support</strong> • 📱 <strong>Modern UI/UX</strong></p> </div>
+<div align="center"> <h3>✨ Experience Smarket in Action</h3> <p><em>A glimpse into the intelligent shopping experience</em></p> </div> <div align="center"> <table> <tr> <td align="center"> <img src="assets/screenshots/home_page.png" width="350px" alt="Home Page with Recommendations"/> <br><strong>🏠 Home Page</strong> <br><em>Powered by AI-based recommendation system</em> </td> <td align="center"> <img src="assets/screenshots/product_details.png" width="350px" alt="Product Details Page"/> <br><strong>🛍️ Product Details</strong> <br><em>Detailed product insights and reviews</em> </td> <td align="center"> <img src="assets/screenshots/speech_to_text.png" width="350px" alt="Speech to Text Feature"/> <br><strong>🎤 Voice Search</strong> <br><em>Search products using speech-to-text</em> </td> </tr> </table> </div> <div align="center"> <p>💡 <strong>Powered by AI</strong> • 🔒 <strong>Secure Payments</strong> • 🌐 <strong>Bilingual Support</strong> • 📱 <strong>Modern UI/UX</strong></p> </div>
 
 ---
 
@@ -43,26 +41,15 @@
 
 **Smarket** is a comprehensive AI-powered e-commerce mobile application developed as a Computer Science graduation project. The app demonstrates advanced mobile development practices, AI integration, and localization techniques specifically tailored for the Egyptian market.
 
-### 🌟 Project Vision
-To create a modern, intelligent shopping experience that combines cutting-edge AI technology with seamless user experience, secure payment processing, and cultural localization.
-
-### 🎯 Target Market
-- **Primary**: Egyptian e-commerce users
-- **Language Support**: Arabic (RTL) and English
-- **Payment Methods**: Paymob integration for local payment preferences
-- **Cultural Adaptation**: UI/UX designed for Middle Eastern users
-
 ## ✨ Key Features
 
 ### 🤖 **AI-Powered Intelligence**
 - **Personalized Recommendations**: Machine learning algorithms suggest products based on user behavior
 - **Voice Search**: Speech-to-text integration for hands-free product discovery
-- **Smart Chatbot**: AI-driven customer support with natural language processing
-
+  
 ### 🔐 **Authentication & Security**
 - **Google Sign-In Integration**: Seamless OAuth2 authentication
 - **Email/Password Authentication**: Traditional login with secure validation
-- **JWT Token Management**: Automatic token refresh with secure storage
 - **Flutter Secure Storage**: Encrypted local data persistence
 
 ### 💳 **Payment Integration**
@@ -83,7 +70,8 @@ To create a modern, intelligent shopping experience that combines cutting-edge A
 - **Search & Filters**: Advanced product search with multiple criteria
 
 ### 📱 **Mobile-First Features**
-- **Local Notifications**: Push notifications for orders, promotions, and updates
+- **Firebase Push Notifications**: Real-time notifications for orders, promotions, and updates
+- **Local Notifications**: Scheduled reminders and app-based alerts
 - **Responsive Design**: Optimized for all screen sizes and orientations
 - **Performance Optimization**: Fast loading times and smooth animations
 
@@ -100,31 +88,6 @@ To create a modern, intelligent shopping experience that combines cutting-edge A
 ### **Development Tools**
 - **IDE**: VS Code / Android Studio
 - **Version Control**: Git with GitFlow workflow
-
-## 🏗️ Project Architecture
-
-The application follows **Clean Architecture** principles with **BLoC pattern** for state management:
-<div align="center">
-
-```
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│  Presentation   │    │  Business Logic │    │   Data Layer    │
-│     Layer       │◄──►│     Layer       │◄──►│                 │
-│                 │    │                 │    │                 │
-│ • UI Widgets    │    │ • BLoC/Cubit    │    │ • Repositories  │
-│ • Pages/Screens │    │ • Use Cases     │    │ • Data Sources  │
-│ • State Binding │    │ • Validation    │    │ • API Services  │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-```
-
-</div>
-
-### **Data Flow**
-1. **UI Event** → User interaction triggers an event
-2. **BLoC Processing** → Business logic processes the event
-3. **Repository Call** → Data layer fetches/posts data
-4. **State Emission** → New state emitted to UI
-5. **UI Update** → Interface updates reactively
 
 ## 📁 Folder Structure
 
@@ -209,132 +172,95 @@ Before running this project, make sure you have the following installed:
    flutter run
    ```
 
-## 📸 Screenshots
-
-<!-- > **Note**: -->
+# 📸 Screenshots
 
 <div align="center">
   <table>
     <tr>
       <td align="center">
-        <img src="assets/screenshots/login_page.png" width="600px" alt="Login Screen"/>
+        <img src="assets/screenshots/login_page.png" width="450px" alt="Login Screen"/>
         <br><strong>Authentication</strong>
       </td>
       <td align="center">
-        <img src="assets/screenshots/home_page.png" width="600px" alt="Home Page Screenshot">
+        <img src="assets/screenshots/home_page.png" width="450px" alt="Home Page Screenshot">
         <br><strong>Home Screen</strong>
       </td>
       <td align="center">
-        <img src="assets/screenshots/product_details.png" width="600px" alt="Product Details"/>
+        <img src="assets/screenshots/product_details.png" width="450px" alt="Product Details"/>
         <br><strong>Product Details</strong>
-      </td>
-      <td align="center">
-        <img src="assets/screenshots/search_page.png" width="600px" alt="Product Details"/>
-        <br><strong>Product Search</strong>
       </td>
     </tr>
     <tr>
       <td align="center">
-        <img src="assets/screenshots/search_history.png" width="600px" alt="Login Screen"/>
+        <img src="assets/screenshots/search_page.png" width="450px" alt="Product Search"/>
+        <br><strong>Product Search</strong>
+      </td>
+      <td align="center">
+        <img src="assets/screenshots/search_history.png" width="450px" alt="Search History"/>
         <br><strong>Search History</strong>
       </td>
       <td align="center">
-        <img src="assets/screenshots/speech_to_text.png" width="600px" alt="Home Page Screenshot">
+        <img src="assets/screenshots/speech_to_text.png" width="450px" alt="Speech Recognition">
         <br><strong>Speech Recognition</strong>
-      </td>
-       <td align="center">
-        <img src="assets/screenshots/cart_page.png" width="600px" alt="Shopping Cart"/>
-        <br><strong>Shopping Cart</strong>
-      </td>
-      <td align="center">
-        <img src="assets/screenshots/checkout_page.png" width="600px" alt="Checkout"/>
-        <br><strong>Checkout Process</strong>
       </td>
     </tr>
     <tr>
       <td align="center">
-        <img src="assets/screenshots/favorite_page.png" width="600px" alt="wishlist"/>
-        <br><strong>wishlist</strong>
+        <img src="assets/screenshots/cart_page.png" width="450px" alt="Shopping Cart"/>
+        <br><strong>Shopping Cart</strong>
       </td>
       <td align="center">
-        <img src="assets/screenshots/settings_page.png" width="600px" alt="Settings"/>
+        <img src="assets/screenshots/checkout_page.png" width="450px" alt="Checkout"/>
+        <br><strong>Checkout Process</strong>
+      </td>
+      <td align="center">
+        <img src="assets/screenshots/favorite_page.png" width="450px" alt="Wishlist"/>
+        <br><strong>Wishlist</strong>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+        <img src="assets/screenshots/settings_page.png" width="450px" alt="Settings"/>
         <br><strong>Settings</strong>
       </td>
       <td align="center">
-        <img src="assets/screenshots/profile_page.png" width="600px" alt="User Profile"/>
+        <img src="assets/screenshots/profile_page.png" width="450px" alt="User Profile"/>
         <br><strong>User Profile</strong>
       </td>
       <td align="center">
-        <img src="assets/screenshots/edit_profile_info.png" width="600px" alt="Edit Profile Info"/>
+        <img src="assets/screenshots/edit_profile_info.png" width="450px" alt="Edit Profile Info"/>
         <br><strong>Edit Profile Info</strong>
       </td>
     </tr>
     <tr>
       <td align="center">
-        <img src="assets/screenshots/list_of_orders.png" width="600px" alt="Order History"/>
+        <img src="assets/screenshots/list_of_orders.png" width="450px" alt="Order History"/>
         <br><strong>Order History</strong>
       </td>
       <td align="center">
-        <img src="assets/screenshots/address.png" width="600px" alt="Saved Address"/>
+        <img src="assets/screenshots/address.png" width="450px" alt="Saved Address"/>
         <br><strong>Saved Address</strong>
       </td>
       <td align="center">
-        <img src="assets/screenshots/language_page.png" width="600px" alt="Arabic RTL Support"/>
+        <img src="assets/screenshots/language_page.png" width="450px" alt="Arabic RTL Support"/>
         <br><strong>Arabic RTL Support</strong>
       </td>
+    </tr>
+    <tr>
       <td align="center">
-        <img src="assets/screenshots/delete_dialog.png" width="600px" alt="Deleting Dialog Box
-"/>
-        <br><strong>Deleting Dialog Box
-</strong>
+        <img src="assets/screenshots/delete_dialog.png" width="450px" alt="Deleting Dialog Box"/>
+        <br><strong>Deleting Dialog Box</strong>
+      </td>
+      <td align="center">
+        <img src="assets/screenshots/notifications.png" width="450px" alt="notifications page"/>
+        <br><strong>Notifications Page</strong>
+      </td>
+      <td align="center">
+        <!-- Empty cell for spacing -->
       </td>
     </tr>
   </table>
 </div>
-
-### 🎥 Demo Video
-[Add link to demo video if available]</br>
-
-<!-- BEGIN YOUTUBE-CARDS -->
-name: GitHub Readme YouTube Cards
-on:
-  schedule:
-    # Runs every hour, on the hour
-    - cron: "0 * * * *"
-  workflow_dispatch:
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    # Allow the job to commit to the repository
-    permissions:
-      contents: write
-    # Run the GitHub Readme YouTube Cards action
-    steps:
-      - uses: DenverCoder1/github-readme-youtube-cards@main
-        with:
-          channel_id: UCipSxT7a3rn81vGLw9lqRkg
-<!-- END YOUTUBE-CARDS -->
-
-
-## 🌐 Localization
-
-The app supports both Arabic and English with complete RTL layout support:
-
-### Supported Languages
-- **Arabic (العربية)**: Full RTL support with cultural adaptations
-- **English**: Default LTR layout
-
-### Adding New Translations
-1. Edit `l10n/app_en.arb` for English text
-2. Edit `l10n/app_ar.arb` for Arabic text
-3. Run `flutter gen-l10n` to generate translation files
-4. Use in code: `context.l10n.translationKey`
-
-### RTL Support Features
-- Automatic text direction detection
-- Mirrored layouts for RTL languages
-- Culturally appropriate icons and imagery
 
 ## 🎓 Academic Context
 
@@ -372,6 +298,18 @@ This application was developed as a **Computer Science graduation project** to d
 - **Multi-vendor Support**: Marketplace functionality
 - **Advanced Search**: Elasticsearch integration
 
+
+## 🔗 Related Repositories
+
+### Backend API
+This mobile application works with a dedicated backend API that handles:
+- **User Authentication & Management**
+- **Product Catalog & Inventory**
+- **Order Processing & Payment Integration**
+
+🔧 **Backend Repository**: [Smarket Backend API](https://github.com/WalidTawfik1/EcommerceGraduation.git)
+
+---
 
 ## 📞 Contact
 

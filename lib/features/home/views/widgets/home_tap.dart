@@ -21,7 +21,7 @@ class HomeTap extends StatelessWidget {
       backgroundColor: MyColor.white,
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 16.h),
+          padding: EdgeInsets.symmetric(horizontal: 0.w, vertical: 16.h),
           child: BlocConsumer<HomeCubit, HomeState>(
             bloc: homeCubit,
             listener: (context, state) {
@@ -46,7 +46,6 @@ class HomeTap extends StatelessWidget {
               if (homeCubit.isLoading) {
                 return Column(
                   children: [
-                    SizedBox(height: 12.h),
                     ImageSlider(),
                     SizedBox(height: 12.h),
                     GridViewForCategoriesLoading(),
@@ -62,7 +61,7 @@ class HomeTap extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     ImageSlider(),
-                    SizedBox(height: 18.h),
+                    SizedBox(height: 14.h),
                     GridViewForCategories(categories: homeCubit.homeCategories),
                     SizedBox(height: 12.h),
                     RecommendedProducts(products: homeCubit.homeProducts),

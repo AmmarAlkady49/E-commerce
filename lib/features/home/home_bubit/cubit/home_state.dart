@@ -10,9 +10,13 @@ final class HomeAppBarLoaded extends HomeState {
   final String userName;
   final String photoUrl;
   final String? gender;
+  bool hasNotification;
 
   HomeAppBarLoaded(
-      {required this.userName, required this.photoUrl, required this.gender});
+      {required this.userName,
+      required this.photoUrl,
+      required this.gender,
+      this.hasNotification = false});
 }
 
 final class HomeAppBarError extends HomeState {

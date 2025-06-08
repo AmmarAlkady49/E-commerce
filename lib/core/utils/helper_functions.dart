@@ -1,4 +1,5 @@
 import 'package:e_commerce_graduation/features/home/model/category_model.dart';
+import 'package:e_commerce_graduation/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -110,196 +111,29 @@ class HelperFunctions {
     }
   }
 
-  // static Map<String, String> getAllCategoriesForHomePage(
-  //     CategoryModel categoryItem) {
-  //   switch (categoryItem.name) {
-  //     case 'أرز و مكرونة و بقوليات':
-  //       return {
-  //         'name': 'أرز و مكرونة و بقوليات',
-  //         'categoryCode': categoryItem.categoryCode,
-  //         'imageUrl':
-  //             // 'https://drive.google.com/file/d/1LT176UypGKqmwsolo8IR-VPQFpyqkUql/view?usp=sharing',
-  //             'https://drive.google.com/file/d/1LT176UypGKqmwsolo8IR-VPQFpyqkUql/view?usp=sharing',
-  //       };
-  //     case 'اخري':
-  //       return {
-  //         'name': 'أكثر',
-  //         'categoryCode': categoryItem.categoryCode,
-  //         'categoryCode2': "NotFoundC",
-  //         'imageUrl':
-  //             'https://drive.google.com/file/d/1_r-RddCnTVuo-8flYAfvWoRZdycyahKZ/view?usp=sharing',
-  //       };
-  //     // case 'ادوات مطبخ':
-  //     //   return {
-  //     //     'name': 'ادوات مطبخ',
-  //     //     'categoryCode': categoryItem.categoryCode,
-  //     //     'imageUrl':
-  //     //         'https://drive.google.com/file/d/1G48PU2qQAECySUTUsgXiRoSuFybeeGGE/view?usp=sharing',
-  //     //   };
-  //     case 'ادوات مكتبية':
-  //       return {
-  //         'name': 'ادوات مكتبية',
-  //         'categoryCode': categoryItem.categoryCode,
-  //         'categoryCode2': "U594M0",
-  //         'imageUrl':
-  //             'https://drive.google.com/file/d/1SqWCG59YW1YGqAYEohc88UkXKEbDpRMI/view?usp=sharing',
-  //       };
-  //     case 'حلويات':
-  //       return {
-  //         'name': 'حلويات',
-  //         'categoryCode': categoryItem.categoryCode,
-  //         'imageUrl':
-  //             'https://drive.google.com/file/d/1w5gw35QopOxi1iuWs_7mcPZzPbi4ewJn/view?usp=sharing',
-  //       };
-  //     case 'خضروات':
-  //       return {
-  //         'name': 'فاكهة و خضروات',
-  //         'categoryCode': categoryItem.categoryCode,
-  //         'categoryCode2': "J366R0",
-  //         'imageUrl':
-  //             'https://drive.google.com/file/d/1pQmkC_UAaEYVAFeiT5_uVH9Dv5_LCSIv/view?usp=sharing',
-  //       };
-  //     // case 'فاكهة':
-  //     //   return {
-  //     //     'name': 'فاكهة',
-  //     //     'categoryCode': categoryItem.categoryCode,
-  //     //     'imageUrl':
-  //     //         'https://drive.google.com/file/d/1dY7lL4-ci_oCA2PbI9ypYW5CA3x7cuRU/view?usp=sharing',
-  //     //   };
-  //     case 'دخان':
-  //       return {
-  //         'name': 'دخان',
-  //         'categoryCode': categoryItem.categoryCode,
-  //         'imageUrl':
-  //             'https://drive.google.com/file/d/1iG4msnL1kBmAUXMwwosGv28kk1jnq6xP/view?usp=sharing',
-  //       };
-  //     case 'شيبس و مقبلات':
-  //       return {
-  //         'name': 'شيبس و مقبلات',
-  //         'categoryCode': categoryItem.categoryCode,
-  //         'imageUrl':
-  //             'https://drive.google.com/file/d/1LRedZlCwKyULoayniCzWc0_hK8PPz1uW/view?usp=sharing',
-  //       };
-  //     case 'عطارة':
-  //       return {
-  //         'name': 'عطارة',
-  //         'categoryCode': categoryItem.categoryCode,
-  //         'imageUrl':
-  //             'https://drive.google.com/file/d/1hLyszF4MpRTP_HvPiBJJzaZfNPn2gB25/view?usp=sharing',
-  //       };
-  //     case 'عناية شخصية':
-  //       return {
-  //         'name': 'عناية شخصية',
-  //         'categoryCode': categoryItem.categoryCode,
-  //         'imageUrl':
-  //             'https://drive.google.com/file/d/1MO_kScL__fSWTMrAfqEWKennDY1hyK6O/view?usp=sharing',
-  //       };
-  //     case 'مأكولات بحرية':
-  //       return {
-  //         'name': 'مأكولات بحرية',
-  //         'categoryCode': categoryItem.categoryCode,
-  //         'imageUrl':
-  //             'https://drive.google.com/file/d/14emVuweULP6N3LBZ2r0n--TB1RMaglNA/view?usp=sharing',
-  //       };
-  //     case 'مجمدات':
-  //       return {
-  //         'name': 'مجمدات',
-  //         'categoryCode': categoryItem.categoryCode,
-  //         'imageUrl':
-  //             'https://drive.google.com/file/d/1WUiqpgL9dfbeVQAf6kTc4Axk_wj4yFeY/view?usp=sharing',
-  //       };
-  //     case 'مستلزمات أطفال':
-  //       return {
-  //         'name': 'مستلزمات أطفال',
-  //         'categoryCode': categoryItem.categoryCode,
-  //         'imageUrl':
-  //             'https://drive.google.com/file/d/16JPOElPqw7a6-89r2r-AY6aMYHRWQWXv/view?usp=sharing',
-  //       };
-  //     case 'مستلزمات المطبخ':
-  //       return {
-  //         'name': 'مستلزمات المطبخ',
-  //         'categoryCode': categoryItem.categoryCode,
-  //         'categoryCode2': "U829D0",
-  //         'imageUrl':
-  //             'https://drive.google.com/file/d/1WYcbzvjSdRulOWcGSolglvWdFDEzhG6k/view?usp=sharing',
-  //       };
-  //     case 'مستلزمات منزلية':
-  //       return {
-  //         'name': 'مستلزمات منزلية',
-  //         'categoryCode': categoryItem.categoryCode,
-  //         'categoryCode2': "W389K0",
-  //         'imageUrl':
-  //             'https://drive.google.com/file/d/1XM3zwLL0Kl8mV54pDG8rMqyTjx64LUXr/view?usp=sharing',
-  //       };
-  //     case 'مشروبات':
-  //       return {
-  //         'name': 'مشروبات',
-  //         'categoryCode': categoryItem.categoryCode,
-  //         'imageUrl':
-  //             'https://drive.google.com/file/d/1WFneML_lc2IBUht0B3oB5BK2xgl_3xJ-/view?usp=sharing',
-  //       };
-  //     case 'معلبات':
-  //       return {
-  //         'name': 'معلبات',
-  //         'categoryCode': categoryItem.categoryCode,
-  //         'imageUrl':
-  //             'https://drive.google.com/file/d/1wltBW1O7FOHfERd-D2s7j8pdtOGXv_i0/view?usp=sharing',
-  //       };
-  //     // case 'مكونات الطبخ':
-  //     //   return {
-  //     //     'name': 'مكونات الطبخ',
-  //     //     'categoryCode': categoryItem.categoryCode,
-  //     //     'imageUrl':
-  //     //         'https://drive.google.com/file/d/1C1DKNp0jSbY5fZv5sx6kR8scHMcMX-Pe/view?usp=sharing',
-  //     //   };
-  //     case 'منتجات ألبان و بيض':
-  //       return {
-  //         'name': 'منتجات ألبان و بيض',
-  //         'categoryCode': categoryItem.categoryCode,
-  //         'imageUrl':
-  //             'https://drive.google.com/file/d/1hwbKzYAmqFAmq9Kz4sqMzfo5F8HY7J3Y/view?usp=sharing',
-  //       };
-  //     // case 'منتجات سريعة التحضير و سكر':
-  //     //   return {
-  //     //     'name': 'منتجات سريعة التحضير و سكر',
-  //     //     'categoryCode': categoryItem.categoryCode,
-  //     //     'imageUrl':
-  //     //         'https://drive.google.com/file/d/1G48PU2qQAECySUTUsgXiRoSuFybeeGGE/view?usp=sharing',
-  //     //   };
-  //     case 'منتجات فطور غذائية':
-  //       return {
-  //         'name': 'منتجات غذائية',
-  //         'categoryCode': categoryItem.categoryCode,
-  //         'categoryCode2': "G555I0",
-  //         'imageUrl':
-  //             'https://drive.google.com/file/d/1tiQg18uaHW8bwZSn7XU_LhxfHe4fXjVq/view?usp=sharing',
-  //       };
-  //     // case 'منتجات مكتبية':
-  //     //   return {
-  //     //     'name': 'منتجات مكتبية',
-  //     //     'categoryCode': categoryItem.categoryCode,
-  //     //     'imageUrl':
-  //     //         'https://drive.google.com/file/d/1j2HjeFc7t1WRUzcniZoz9S-VjhkahEpc/view?usp=sharing',
-  //     //   };
-  //     case 'منظفات':
-  //       return {
-  //         'name': 'منظفات',
-  //         'categoryCode': categoryItem.categoryCode,
-  //         'imageUrl':
-  //             'https://drive.google.com/file/d/1kSeFNrsaBntfxTN_9cMIvzkgx3hQC4EY/view?usp=sharing',
-  //       };
-  //     // case 'no category':
-  //     //   return {
-  //     //     // 'name': 'لا يوجد فئة',
-  //     //     // 'categoryCode': categoryItem.categoryCode,
-  //     //     // 'imageUrl':
-  //     //     //     'https://drive.google.com/file/d/1_r-RddCnTVuo-8flYAfvWoRZdycyahKZ/view?usp=sharing',
-  //     //   };
+  static String formatNotificationTime(String isoTime, BuildContext context) {
+    final now = DateTime.now();
+    final messageTime = DateTime.tryParse(isoTime);
 
-  //     default:
-  //       return {};
-  //   }
-  // }
+    if (messageTime == null) return isoTime;
+
+    final difference = now.difference(messageTime);
+
+    if (difference.inSeconds < 60) {
+      return S.of(context).just_now;
+    } else if (difference.inMinutes < 60) {
+      return '${difference.inMinutes} ${S.of(context).minutes_ago}';
+    } else if (difference.inHours < 24) {
+      return '${difference.inHours} ${S.of(context).hours_ago}';
+    } else if (difference.inDays == 1) {
+      return S.of(context).yesterday;
+    } else if (difference.inDays < 7) {
+      return '${difference.inDays} ${S.of(context).days_ago}';
+    } else {
+      return DateFormat('MMM d, yyyy').format(messageTime);
+    }
+  }
+
   static Map<String, String> getAllCategoriesForHomePage(
       CategoryModel categoryItem) {
     switch (categoryItem.name) {

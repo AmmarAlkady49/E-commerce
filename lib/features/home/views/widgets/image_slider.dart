@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:e_commerce_graduation/core/utils/themes/my_color.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ImageSlider extends StatefulWidget {
   const ImageSlider({super.key});
@@ -75,10 +76,9 @@ class _ImageSliderState extends State<ImageSlider> {
             return GestureDetector(
               onTap: () => _controller.animateToPage(entry.key),
               child: Container(
-                width: _current == entry.key ? 23.0 : 12.0,
+                width: _current == entry.key ? 25.0 : 12.5,
                 height: 8.5,
-                margin:
-                    const EdgeInsets.symmetric(vertical: 8.0, horizontal: 1.5),
+                margin: EdgeInsets.only(top: 8.0.h, left: 1.5.w, right: 1.5.w),
                 decoration: BoxDecoration(
                     borderRadius: _current == entry.key
                         ? BorderRadius.circular(10)

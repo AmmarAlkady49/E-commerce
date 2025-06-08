@@ -13,6 +13,8 @@ import 'package:e_commerce_graduation/features/auth/views/pages/verify_account.d
 import 'package:e_commerce_graduation/features/cart/cubit/cart_cubit.dart';
 import 'package:e_commerce_graduation/features/home/home_bubit/cubit/home_cubit.dart';
 import 'package:e_commerce_graduation/features/home/views/widgets/products_by_category.dart';
+import 'package:e_commerce_graduation/features/notification/models/notification_message_model.dart';
+import 'package:e_commerce_graduation/features/notification/views/notification_page.dart';
 import 'package:e_commerce_graduation/features/order/cubit/order_cubit.dart';
 import 'package:e_commerce_graduation/features/order/views/pages/confirm_order_page.dart';
 import 'package:e_commerce_graduation/features/favorites/cubit/favorites_cubit.dart';
@@ -50,6 +52,12 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => TooManyRequestsPage());
       case AppRoutes.forgotPassword:
         return MaterialPageRoute(builder: (_) => const ForgetPasswordPage());
+      case AppRoutes.notificationPage:
+        final args = settings.arguments as List<NotificationMessageModel>;
+        return MaterialPageRoute(
+            builder: (_) => NotificationPage(
+                  notifications: args,
+                ));
       case AppRoutes.speechToText:
         return MaterialPageRoute(
             builder: (_) => BlocProvider(

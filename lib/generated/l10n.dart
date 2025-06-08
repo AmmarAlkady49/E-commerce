@@ -2269,6 +2269,51 @@ class S {
       args: [],
     );
   }
+
+  /// `No notifications yet`
+  String get no_notifications_yet {
+    return Intl.message(
+      'No notifications yet',
+      name: 'no_notifications_yet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You will receive notifications about your orders, products, and more here.`
+  String get notification_empty_message {
+    return Intl.message(
+      'You will receive notifications about your orders, products, and more here.',
+      name: 'notification_empty_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `minutes ago`
+  String get minutes_ago {
+    return Intl.message('minutes ago', name: 'minutes_ago', desc: '', args: []);
+  }
+
+  /// `hours ago`
+  String get hours_ago {
+    return Intl.message('hours ago', name: 'hours_ago', desc: '', args: []);
+  }
+
+  /// `days ago`
+  String get days_ago {
+    return Intl.message('days ago', name: 'days_ago', desc: '', args: []);
+  }
+
+  /// `Yesterday`
+  String get yesterday {
+    return Intl.message('Yesterday', name: 'yesterday', desc: '', args: []);
+  }
+
+  /// `Just now`
+  String get just_now {
+    return Intl.message('Just now', name: 'just_now', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

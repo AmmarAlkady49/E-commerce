@@ -115,6 +115,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "country": MessageLookupByLibrary.simpleMessage("Country"),
     "create_account": MessageLookupByLibrary.simpleMessage("Create Account"),
+    "days_ago": MessageLookupByLibrary.simpleMessage("days ago"),
     "delete": MessageLookupByLibrary.simpleMessage("Delete"),
     "delete_all": MessageLookupByLibrary.simpleMessage("Delete All"),
     "delivery_to": MessageLookupByLibrary.simpleMessage("Delivery to"),
@@ -208,12 +209,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "hi": MessageLookupByLibrary.simpleMessage("Hi"),
     "highest_price": MessageLookupByLibrary.simpleMessage("Highest Price"),
     "home": MessageLookupByLibrary.simpleMessage("Home"),
+    "hours_ago": MessageLookupByLibrary.simpleMessage("hours ago"),
     "invalid_email": MessageLookupByLibrary.simpleMessage("Invalid email"),
     "invalid_name": MessageLookupByLibrary.simpleMessage("Invalid name"),
     "invalid_phone": MessageLookupByLibrary.simpleMessage("Invalid phone"),
     "invalid_postal_code": MessageLookupByLibrary.simpleMessage(
       "Invalid postal code",
     ),
+    "just_now": MessageLookupByLibrary.simpleMessage("Just now"),
     "language": MessageLookupByLibrary.simpleMessage("Language"),
     "last_name": MessageLookupByLibrary.simpleMessage("Last Name"),
     "last_search": MessageLookupByLibrary.simpleMessage("Last Search"),
@@ -241,6 +244,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "max_price": MessageLookupByLibrary.simpleMessage("Max Price"),
     "min_price": MessageLookupByLibrary.simpleMessage("Min Price"),
+    "minutes_ago": MessageLookupByLibrary.simpleMessage("minutes ago"),
     "most_popular": MessageLookupByLibrary.simpleMessage("Most Popular"),
     "most_recent": MessageLookupByLibrary.simpleMessage("Most Recent"),
     "my_orders": MessageLookupByLibrary.simpleMessage("My Orders"),
@@ -262,6 +266,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "no_matching_products": MessageLookupByLibrary.simpleMessage(
       "No matching products found.",
     ),
+    "no_notifications_yet": MessageLookupByLibrary.simpleMessage(
+      "No notifications yet",
+    ),
     "no_orders_found": MessageLookupByLibrary.simpleMessage("No orders found"),
     "no_products_found": MessageLookupByLibrary.simpleMessage(
       "No products found",
@@ -276,6 +283,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "No Saved Address",
     ),
     "notification": MessageLookupByLibrary.simpleMessage("Notification"),
+    "notification_empty_message": MessageLookupByLibrary.simpleMessage(
+      "You will receive notifications about your orders, products, and more here.",
+    ),
     "number": MessageLookupByLibrary.simpleMessage("Number"),
     "optional": MessageLookupByLibrary.simpleMessage("Optional"),
     "or": MessageLookupByLibrary.simpleMessage("Or"),
@@ -500,6 +510,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "What would you like to do next?",
     ),
     "write_a_review": MessageLookupByLibrary.simpleMessage("Write a Review"),
+    "yesterday": MessageLookupByLibrary.simpleMessage("Yesterday"),
     "you_are_sending_too_many_requests": MessageLookupByLibrary.simpleMessage(
       "You are sending too many requests, Please wait a few seconds and try again.",
     ),

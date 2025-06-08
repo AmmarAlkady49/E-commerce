@@ -22,4 +22,5 @@ class AppRoutes {
   static const String tooManyRequestPage = '/too_many_request_page';
   static const String productReviewsPage = '/productReviews';
   static const String addReviewPage = '/addReviewPage';
+  static const String notificationPage = '/notification_page';
 }

@@ -276,6 +276,13 @@
     "review_submitted_successfully": "تم إرسال التقييم بنجاح",
     "failed_to_submit_review": "فشل في إرسال التقييم",
     "enter_your_name": "ادخل اسمك",
-    "review_too_long": "المراجعة طويلة جدا، يرجى كتابة على الاكثر 50 حرف"
+    "review_too_long": "المراجعة طويلة جدا، يرجى كتابة على الاكثر 50 حرف",
+        "no_notifications_yet": "لا توجد إشعارات حتى الآن",
+    "notification_empty_message": "لا توجد إشعارات جديدة في الوقت الحالي. يرجى التحقق لاحقًا.",
+      "minutes_ago": "منذ دقائق",
+    "hours_ago": "منذ ساعات",
+    "days_ago": "منذ أيام",
+    "yesterday": "أمس",
+    "just_now": "الآن"
 
 }

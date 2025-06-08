@@ -276,5 +276,12 @@
     "review_submitted_successfully": "Review submitted successfully",
     "failed_to_submit_review": "Failed to submit review, please try again",
     "enter_your_name": "Enter your name",
-    "review_too_long": "Review is too long, please limit it to 50 characters"
+    "review_too_long": "Review is too long, please limit it to 50 characters",
+    "no_notifications_yet": "No notifications yet",
+    "notification_empty_message": "You will receive notifications about your orders, products, and more here.",
+    "minutes_ago": "minutes ago",
+    "hours_ago": "hours ago",
+    "days_ago": "days ago",
+    "yesterday": "Yesterday",
+    "just_now": "Just now"
 }

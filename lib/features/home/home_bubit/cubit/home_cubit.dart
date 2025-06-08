@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:e_commerce_graduation/core/models/product_response.dart';
 import 'package:e_commerce_graduation/core/secure_storage.dart';
 import 'package:e_commerce_graduation/core/utils/helper_functions.dart';
+import 'package:e_commerce_graduation/core/utils/themes/notification_storage.dart';
 import 'package:e_commerce_graduation/features/favorites/cubit/favorites_cubit.dart';
 import 'package:e_commerce_graduation/features/favorites/services/favorite_products_services.dart';
 import 'package:e_commerce_graduation/features/home/model/category_model.dart';
@@ -60,12 +61,17 @@ class HomeCubit extends Cubit<HomeState> {
       final userName = await secureStorage.readSecureData('name');
       final photoUrl = await secureStorage.readSecureData("photoUrl");
       final gender = await secureStorage.readSecureData('gender');
+      final notifications = await NotificationStorage.loadNotifications();
+      final hasNotification = notifications.isNotEmpty;
 
       final firstName = userName.split(' ')[0];
       final capitalizedName =
           firstName[0].toUpperCase() + firstName.substring(1).toLowerCase();
       emit(HomeAppBarLoaded(
-          userName: capitalizedName, photoUrl: photoUrl, gender: gender));
+          userName: capitalizedName,
+          photoUrl: photoUrl,
+          gender: gender,
+          hasNotification: hasNotification));
       return userName;
     } catch (e) {
       emit(HomeAppBarError(e.toString()));
