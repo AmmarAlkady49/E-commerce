@@ -45,3 +45,6 @@ app.*.map.json
 /android/app/release
 
 *.env
+
+# Firebase config (auto-generated, sensitive info)
+lib/firebase_options.dart
